@@ -1,4 +1,3 @@
-import java.util.*; 
 
 /**
  * Represents one listing of a property for rental on Airbnb.
