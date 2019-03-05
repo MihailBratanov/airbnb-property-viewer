@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Viewer
+comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ Viewer\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=stage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=parentPane
+comment2.target=void\ makeMenuBar(javafx.scene.layout.Pane)
+comment3.params=event
+comment3.target=void\ buttonClick(javafx.event.ActionEvent)
+comment3.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
+numComments=4
