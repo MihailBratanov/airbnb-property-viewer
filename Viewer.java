@@ -5,8 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -29,15 +28,18 @@ public class Viewer extends Application
     {
         // Create a Button or any control item
         this.stage = stage;
-
         // Create a new grid pane
         VBox root = new VBox();
-        //makeMenuBar(root);
+        makeMenuBar(root);
         
-        Label label1 = new Label();
-        Label label2 = new Label();
-        Label label3 = new Label();
+        Label label1 = new Label("main thing");
+        Label label2 = new Label("from ~ to");
+        Label label3 = new Label("panel controls");
         
+        Pane contentPane = new BorderPane(label1, label2, null, label3, null);
+        root.getChildren().add(contentPane);
+        //root.getChildren().add(contentPane1);
+        //root.getChildren().add(contentPane2);
         /*pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setMinSize(300, 300);
         //pane.setVgap(10);
@@ -48,17 +50,29 @@ public class Viewer extends Application
 
         // Add the button and label into the pane
         pane.add(myLabel, 1, 0);
-        pane.add(myButton, 0, 0);
+        pane.add(myButton, 0, 0);*/
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(pane, 300,100);
-        stage.setTitle("JavaFX Example");
+        Scene scene = new Scene(root, 300,100);
+        stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
 
         // Show the Stage (window)
-        stage.show();*/
+        stage.show();
     }
 
+    private void makeMenuBar(Pane parentPane) {
+        MenuBar menuBar = new MenuBar();
+        parentPane.getChildren().add(menuBar);
+        
+        Menu helpMenu = new Menu("Help");
+        MenuItem aboutItem = new MenuItem("About this program...");
+        // aboutItem.setOnAction();
+        helpMenu.getItems().addAll(aboutItem);
+        
+        menuBar.getMenus().addAll(helpMenu);
+    }
+    
     /**
      * This will be executed when the button is clicked
      * It increments the count by 1
