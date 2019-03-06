@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
+import javafx.geometry.Pos;
 
 /**
  * Write a description of JavaFX class Viewer here.
@@ -21,6 +22,10 @@ public class MapViewer extends Application
 
     private Label myLabel = new Label("0");
     private Stage stage;
+    private double width;
+    private double height;
+    private double windowWidth;
+    private double windowHeight;
 
     @Override
     public void start(Stage stage) throws Exception
@@ -29,47 +34,168 @@ public class MapViewer extends Application
         this.stage = stage;
         // Create a new grid pane
         VBox root = new VBox();
-        makeMenuBar(root);
-
+        
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        MenuBar menu = makeMenuBar(root);
 
+        StackPane stackpane = new StackPane();
+        
+
+        Label imageLabel = LoadImage();
+        
+        windowWidth = root.getMinWidth();
+        windowHeight = root.getMinHeight();
+        
+        Button enfi = new Button("Enfield");
+        Button barn = new Button("Barnet");
+        Button hrgy = new Button("Haringey");
+        Button walt = new Button("Waltham");
+        Button harr = new Button("H&W");
+        Button brent = new Button("Brent Cross");
+        Button cam = new Button("Camden");
+        Button isli = new Button("Islington");
+        Button hack = new Button("Hackney");
+        Button redb = new Button("Red Bridge");
+        Button hav = new Button("Havering");
+        
+        
+        Button hill = new Button("Hill");
+        Button eali = new Button("Ealing");
+        Button kens = new Button("Kens");
+        Button wstm = new Button("Westm");
+        Button towh = new Button("Tower hill");
+        Button newh = new Button("Newh");
+        Button bark = new Button("Bark");
+        
+        
+        
+        Button houn = new Button("Hounslow");
+        Button hamm = new Button("Hamm");
+        Button wand = new Button("Wand");
+        Button city = new Button("City");
+        Button gwch = new Button("Gwch");
+        Button bexl = new Button("Bexl");
+        
+        Button rich = new Button("Rich");
+        Button mert = new Button("Mert");
+        Button lamb = new Button("Lambeth");
+        Button sthw = new Button("Southwark");
+        Button lews = new Button("Lewisham");
+        Button king = new Button("Kingston");
+        Button sutt = new Button("Sutton");
+        Button croy = new Button("Croydon");
+        Button brom = new Button("Bromley");
+        
+        GridPane gridPane = new GridPane();
+        
+        for (int i = 0; i < 15; i ++){
+            RowConstraints row = new RowConstraints(height/15);
+            gridPane.getRowConstraints().add(row);
+        }
+        
+        for (int i = 0; i < 16; i ++){
+            ColumnConstraints col = new ColumnConstraints(width/16);
+            gridPane.getColumnConstraints().add(col);
+        }
+
+        gridPane.add(enfi,8,1);
+        
+        gridPane.add(barn,5,3);
+        gridPane.add(hrgy,7,3);
+        gridPane.add(walt,9,3);
+        
+        gridPane.add(harr,2,5);
+        gridPane.add(brent,4,5);
+        gridPane.add(cam,6,5);
+        gridPane.add(isli,8,5);
+        gridPane.add(hack,10,5);
+        gridPane.add(redb,12,5);
+        gridPane.add(hav,14,5);
+        
+        gridPane.add(hill,1,7);
+        gridPane.add(eali,3,7);
+        gridPane.add(kens,5,7);
+        gridPane.add(wstm,7,7);
+        gridPane.add(towh,9,7);
+        gridPane.add(newh,11,7);
+        gridPane.add(bark,13,7);
+        
+        gridPane.add(houn,2,9);
+        gridPane.add(hamm,4,9);
+        gridPane.add(wand,6,9);
+        gridPane.add(city,8,9);
+        gridPane.add(gwch,10,9);
+        gridPane.add(bexl,12,9);
+        
+        gridPane.add(rich,3,11);
+        gridPane.add(mert,5,11);
+        gridPane.add(lamb,7,11);
+        gridPane.add(sthw,9,11);
+        gridPane.add(lews,11,11);
+        
+        gridPane.add(king,4,13);
+        gridPane.add(sutt,6,13);
+        gridPane.add(croy,8,13);
+        gridPane.add(brom,10,13);
+
+        
+
+        //Pane contentPane = new BorderPane(null, null, null, null, imageLabel);
+        //center north east south west
+        //gridPane.getChildren().addAll(test);
+        
+        stackpane.getChildren().addAll(imageLabel, gridPane);
+        FlowPane flowPane = new FlowPane();
+        flowPane.getChildren().addAll(stackpane);
+        root.getChildren().add(flowPane);
+        
+
+        // JavaFX must have a Scene (window content) inside a Stage (window)
+        Scene scene = new Scene(root, windowWidth, windowHeight);
+        stage.setTitle("Airbnb Property Viewer");
+        stage.setScene(scene);
+        stage.show();
+    }
+    
+    private void openMap(Stage stage){
+        
+        
+        
+    }
+
+    private Label LoadImage(){
         Label imageLabel = new Label();        
         String imagePath = "boroughs.png";
         Image image = new Image(imagePath);
 
         ImageView imageViewer = new ImageView(image);
 
-        double width =  image.getWidth();
+        width =  image.getWidth();
         width = width / 4;
-        double height =  image.getHeight(); 
+        height =  image.getHeight(); 
         height = height / 4;
 
         imageViewer.setPreserveRatio(true);
-        imageViewer.setFitHeight(width);
-        imageViewer.setFitWidth(height);
+        imageViewer.setFitHeight(height);
+        imageViewer.setFitWidth(width);
         imageViewer.setSmooth(true);
         imageLabel.setGraphic(imageViewer);
-
-        Pane contentPane = new BorderPane(imageLabel ,null, null, null, null);
-        //center north east south west
-        root.getChildren().add(contentPane);
-
-        // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, width, height);
-        stage.setTitle("Airbnb Property Viewer");
-        stage.setScene(scene);
-        stage.show();
+       
+        return imageLabel;
     }
 
-    private void makeMenuBar(Pane parentPane) {
+    private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
         parentPane.getChildren().add(menuBar);
 
         Menu helpMenu = new Menu("Help");
+        Menu helpMenu2 = new Menu("About");
         MenuItem aboutItem = new MenuItem("About this program...");
         // aboutItem.setOnAction();
         helpMenu.getItems().addAll(aboutItem);
 
-        menuBar.getMenus().addAll(helpMenu);
+        menuBar.getMenus().addAll(helpMenu, helpMenu2);
+        
+        return menuBar;
     }
 }
