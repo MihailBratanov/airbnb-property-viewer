@@ -22,6 +22,7 @@ public class MapViewer extends Application
 
     private Label myLabel = new Label("0");
     private Stage stage;
+    VBox root;
     private double width;
     private double height;
     private double windowWidth;
@@ -33,7 +34,7 @@ public class MapViewer extends Application
         // Create a Button or any control item
         this.stage = stage;
         // Create a new grid pane
-        VBox root = new VBox();
+        root = new VBox();
         
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         MenuBar menu = makeMenuBar(root);
@@ -157,10 +158,8 @@ public class MapViewer extends Application
         stage.show();
     }
     
-    private void openMap(Stage stage){
-        
-        
-        
+    public Pane getMap(){
+        return root;
     }
 
     private Label LoadImage(){
