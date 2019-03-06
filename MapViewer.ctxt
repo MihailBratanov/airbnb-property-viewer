@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=MapViewer
+comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ Viewer\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=stage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=parentPane
+comment2.target=void\ makeMenuBar(javafx.scene.layout.Pane)
+numComments=3
