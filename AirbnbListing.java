@@ -63,10 +63,10 @@ public class AirbnbListing {
     private int availability365;
 
     public AirbnbListing(String id, String name, String host_id,
-                         String host_name, String neighbourhood, double latitude,
-                         double longitude, String room_type, int price,
-                         int minimumNights, int numberOfReviews, String lastReview,
-                         double reviewsPerMonth, int calculatedHostListingsCount, int availability365) {
+    String host_name, String neighbourhood, double latitude,
+    double longitude, String room_type, int price,
+    int minimumNights, int numberOfReviews, String lastReview,
+    double reviewsPerMonth, int calculatedHostListingsCount, int availability365) {
         this.id = id;
         this.name = name;
         this.host_id = host_id;
@@ -147,21 +147,21 @@ public class AirbnbListing {
     @Override
     public String toString() {
         return "AirbnbListing{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", host_id='" + host_id + '\'' +
-                ", host_name='" + host_name + '\'' +
-                ", neighbourhood='" + neighbourhood + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", room_type='" + room_type + '\'' +
-                ", price=" + price +
-                ", minimumNights=" + minimumNights +
-                ", numberOfReviews=" + numberOfReviews +
-                ", lastReview='" + lastReview + '\'' +
-                ", reviewsPerMonth=" + reviewsPerMonth +
-                ", calculatedHostListingsCount=" + calculatedHostListingsCount +
-                ", availability365=" + availability365 +
-                '}';
+        "id='" + id + '\'' +
+        ", name='" + name + '\'' +
+        ", host_id='" + host_id + '\'' +
+        ", host_name='" + host_name + '\'' +
+        ", neighbourhood='" + neighbourhood + '\'' +
+        ", latitude=" + latitude +
+        ", longitude=" + longitude +
+        ", room_type='" + room_type + '\'' +
+        ", price=" + price +
+        ", minimumNights=" + minimumNights +
+        ", numberOfReviews=" + numberOfReviews +
+        ", lastReview='" + lastReview + '\'' +
+        ", reviewsPerMonth=" + reviewsPerMonth +
+        ", calculatedHostListingsCount=" + calculatedHostListingsCount +
+        ", availability365=" + availability365 +
+        '}';
     }
 }

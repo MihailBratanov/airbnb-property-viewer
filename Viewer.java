@@ -1,5 +1,4 @@
 
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,11 +30,11 @@ public class Viewer extends Application
         // Create a new grid pane
         VBox root = new VBox();
         makeMenuBar(root);
-        
+
         Label label1 = new Label("main thing");
         Label label2 = new Label("from ~ to");
         Label label3 = new Label("panel controls");
-        
+
         Pane contentPane = new BorderPane(label1, label2, null, label3, null);
         root.getChildren().add(contentPane);
         //root.getChildren().add(contentPane1);
@@ -64,15 +63,15 @@ public class Viewer extends Application
     private void makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
         parentPane.getChildren().add(menuBar);
-        
+
         Menu helpMenu = new Menu("Help");
         MenuItem aboutItem = new MenuItem("About this program...");
         // aboutItem.setOnAction();
         helpMenu.getItems().addAll(aboutItem);
-        
+
         menuBar.getMenus().addAll(helpMenu);
     }
-    
+
     /**
      * This will be executed when the button is clicked
      * It increments the count by 1
