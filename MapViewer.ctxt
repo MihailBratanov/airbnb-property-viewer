@@ -7,6 +7,4 @@ comment2.params=
 comment2.target=javafx.scene.layout.Pane\ getMap()
 comment3.params=
 comment3.target=javafx.scene.control.Label\ LoadImage()
-comment4.params=parentPane
-comment4.target=javafx.scene.control.MenuBar\ makeMenuBar(javafx.scene.layout.Pane)
-numComments=5
+numComments=4

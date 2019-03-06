@@ -37,7 +37,6 @@ public class MapViewer extends Application
         root = new VBox();
         
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-        MenuBar menu = makeMenuBar(root);
 
         StackPane stackpane = new StackPane();
         
@@ -181,20 +180,5 @@ public class MapViewer extends Application
         imageLabel.setGraphic(imageViewer);
        
         return imageLabel;
-    }
-
-    private MenuBar makeMenuBar(Pane parentPane) {
-        MenuBar menuBar = new MenuBar();
-        parentPane.getChildren().add(menuBar);
-
-        Menu helpMenu = new Menu("Help");
-        Menu helpMenu2 = new Menu("About");
-        MenuItem aboutItem = new MenuItem("About this program...");
-        // aboutItem.setOnAction();
-        helpMenu.getItems().addAll(aboutItem);
-
-        menuBar.getMenus().addAll(helpMenu, helpMenu2);
-        
-        return menuBar;
     }
 }
