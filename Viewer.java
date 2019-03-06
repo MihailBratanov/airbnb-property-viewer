@@ -1,5 +1,3 @@
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,10 +33,15 @@ public class Viewer extends Application
         Label label1 = new Label("main thing");
         Label label2 = new Label("from ~ to");
         Label label3 = new Label("panel controls");
+        Pane panelPane = new Pane();
+        panelPane.setMinSize(300,75);  // temp. placeholder
+        Pane navigationPane = new AnchorPane();
+        navigationPane.setId("navigationpane");
+        makeNavigationPane(navigationPane);
         
-        Pane contentPane = new BorderPane(label1, label2, null, label3, null);
+        Pane contentPane = new BorderPane(panelPane, null, null, navigationPane, null);
+
         root.getChildren().add(contentPane);
-        //root.getChildren().add(contentPane1);
         //root.getChildren().add(contentPane2);
         /*pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setMinSize(300, 300);
@@ -53,7 +56,8 @@ public class Viewer extends Application
         pane.add(myButton, 0, 0);*/
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, 300,100);
+        Scene scene = new Scene(root, 300,200);
+        scene.getStylesheets().add("viewerstyle.css");
         stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
 
@@ -71,6 +75,16 @@ public class Viewer extends Application
         helpMenu.getItems().addAll(aboutItem);
         
         menuBar.getMenus().addAll(helpMenu);
+    }
+    
+    private void makeNavigationPane(Pane parentPane) {
+        Button previousPaneButton = new Button("< Back");
+        Button nextPaneButton = new Button("Next >");
+        parentPane.getChildren().addAll(previousPaneButton, nextPaneButton);
+        AnchorPane.setLeftAnchor(previousPaneButton, 10.0);
+        AnchorPane.setRightAnchor(nextPaneButton, 10.0);
+        AnchorPane.setTopAnchor(previousPaneButton, 5.0);
+        AnchorPane.setTopAnchor(nextPaneButton, 5.0);
     }
     
     /**
