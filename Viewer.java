@@ -105,7 +105,11 @@ public class Viewer extends Application
     }
     
     private void nextPane(ActionEvent event){
-
+        MapViewer map = new MapViewer();
+        map.start(stage);
+        
+        panelPane = map.getMap();
+        updateScreen(stage);
     }
     
     private void updateScreen(Stage stage){

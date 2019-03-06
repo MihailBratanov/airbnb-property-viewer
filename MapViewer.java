@@ -29,7 +29,7 @@ public class MapViewer extends Application
     private double windowHeight;
 
     @Override
-    public void start(Stage stage) throws Exception
+    public void start(Stage stage)
     {
         // Create a Button or any control item
         this.stage = stage;
