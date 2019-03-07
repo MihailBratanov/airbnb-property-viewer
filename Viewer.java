@@ -5,7 +5,9 @@ import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.input.*;
 import javafx.stage.Stage;
+import java.util.*;
 
 /**
  * Write a description of JavaFX class Viewer here.
@@ -20,47 +22,32 @@ public class Viewer extends Application
     private int count = 0;
     private Label myLabel = new Label("0");
     private Stage stage;
+    private BorderPane contentPane;
     private Pane panelPane;
-    private Pane contentPane;
     private Pane navigationPane;
-    VBox root;
-
+    private BorderPane root;
+    private Stack panelStack;
+    
     @Override
     public void start(Stage stage) throws Exception
     {
         // Create a Button or any control item
         this.stage = stage;
         // Create a new grid pane
-        root = new VBox();
-        makeMenuBar(root);
-
-        Label label1 = new Label("main thing");
-        Label label2 = new Label("from ~ to");
-        Label label3 = new Label("panel controls");
-
-        //Pane panelPane = new Pane();
-        makePanelPane();
 
         // panelPane.setMinSize(300,75);  // temp. placeholder
-        navigationPane = new AnchorPane();
-        navigationPane.setId("navigationpane");
-        makeNavigationPane(navigationPane);
+        
+        
+       // makeNavigationPane(navigationPane);
+        
+        contentPane = new BorderPane(makePanelPane(), null, null, makeNavigationPane(), null);
+        contentPane.setCenter(panelPane);
+        contentPane.setBottom(navigationPane);
 
-        contentPane = new BorderPane(panelPane, null, null, navigationPane, null);
-
-        root.getChildren().add(contentPane);
-        //root.getChildren().add(contentPane2);
-        /*pane.setPadding(new Insets(10, 10, 10, 10));
-        pane.setMinSize(300, 300);
-        //pane.setVgap(10);
-        //pane.setHgap(10);
-
-        //set an action on the button using method reference
-        myButton.setOnAction(this::buttonClick);
-
-        // Add the button and label into the pane
-        pane.add(myLabel, 1, 0);
-        pane.add(myButton, 0, 0);*/
+        //root.getChildren().add(contentPane);
+        root = new BorderPane();
+        root.setBottom(contentPane);
+        root.setTop(makeMenuBar(root));
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
@@ -72,52 +59,108 @@ public class Viewer extends Application
         stage.show();
     }
 
-    private void makeMenuBar(Pane parentPane) {
+    private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
-        parentPane.getChildren().add(menuBar);
-
+        
+        Menu propertyMenu = new Menu("Airbnb Property Viewer");
+        MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
+        SeparatorMenuItem propertyMenuTopSeparator = new SeparatorMenuItem();
+        MenuItem hideViewerItem = new MenuItem("Hide");
+        hideViewerItem.setOnAction(this::hideViewer);
+        hideViewerItem.setAccelerator(new KeyCodeCombination(KeyCode.H, KeyCodeCombination.SHORTCUT_DOWN));
+        MenuItem showViewerItem = new MenuItem("Show");
+        showViewerItem.setOnAction(this::showViewer);
+        showViewerItem.setAccelerator(new KeyCodeCombination(KeyCode.G, KeyCodeCombination.SHORTCUT_DOWN));
+        SeparatorMenuItem propertyMenuBottomSeparator = new SeparatorMenuItem();
+        MenuItem quitViewerItem = new MenuItem("Quit Property Viewer");
+        quitViewerItem.setOnAction(this::quitViewer);
+        quitViewerItem.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCodeCombination.SHORTCUT_DOWN));
+        propertyMenu.getItems().addAll(aboutViewerItem, propertyMenuTopSeparator, hideViewerItem, showViewerItem, propertyMenuBottomSeparator, quitViewerItem);
+        
+        Menu viewMenu = new Menu ("View");
+        MenuItem zoomInItem = new MenuItem("Zoom In");
+        MenuItem actualSizeItem = new MenuItem("Actual Size");
+        MenuItem zoomOutItem = new MenuItem("Zoom Out");
+        SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
+        MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
+        viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
+        
         Menu helpMenu = new Menu("Help");
+        MenuItem instructionItem = new MenuItem("Instructions");
+        helpMenu.getItems().addAll(instructionItem);
+        
+        Menu aboutMenu = new Menu("About");
         MenuItem aboutItem = new MenuItem("About this program...");
         // aboutItem.setOnAction();
-        helpMenu.getItems().addAll(aboutItem);
+        aboutMenu.getItems().addAll(aboutItem);
 
-        menuBar.getMenus().addAll(helpMenu);
+        menuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu, aboutMenu);
+        return menuBar;
     }
 
-    private void makeNavigationPane(Pane parentPane){
+    private Pane makeNavigationPane(){
+        navigationPane = new AnchorPane();
+        navigationPane.setId("navigationpane");
         Button previousPaneButton = new Button("< Back");
         Button nextPaneButton = new Button("Next >");
-        
+        previousPaneButton.setDisable(true);
+        nextPaneButton.setDisable(false);
+        previousPaneButton.setOnAction(this::previousPane);
         nextPaneButton.setOnAction(this::nextPane);
         
-        parentPane.getChildren().addAll(previousPaneButton, nextPaneButton);
+        navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
         AnchorPane.setLeftAnchor(previousPaneButton, 10.0);
         AnchorPane.setRightAnchor(nextPaneButton, 10.0);
         AnchorPane.setTopAnchor(previousPaneButton, 5.0);
         AnchorPane.setTopAnchor(nextPaneButton, 5.0);
+        AnchorPane.setBottomAnchor(previousPaneButton, 5.0);
+        AnchorPane.setBottomAnchor(nextPaneButton, 5.0);
+        
+        return navigationPane;
     }
     
-    private void makePanelPane() {
+    private Pane makePanelPane() {
         Pane panelPane = new Pane();
         /*MapViewer map = new MapViewer();
         map.start(stage);
         Pane panelPane = map.getMap();*/
+        return panelPane;
     }
     
     private void nextPane(ActionEvent event){
-        MapViewer map = new MapViewer();
-        map.start(stage);
-        
-        panelPane = map.getMap();
+        MapViewer newPanel = new MapViewer();
+        newPanel.start(stage);
+        panelPane = newPanel.getPanel();
         updateScreen(stage);
+        
+        panelStack.push(panelPane);
     }
+    
+    private void previousPane(ActionEvent event) {
+        /*panelPane = panelStack.pop().getPanel();
+        updateScreen(stage);*/
+    }   
+
     
     private void updateScreen(Stage stage){
         try {
             start(stage);
         }
         catch(Exception NullPointerException){
+            updateScreen(stage);
         }
+    }
+    
+    private void hideViewer(ActionEvent event) {
+        stage.hide();
+    }
+    
+    private void showViewer(ActionEvent event) {
+        stage.show();
+    }
+    
+    private void quitViewer(ActionEvent event) {
+        System.exit(0);
     }
     
     /**
