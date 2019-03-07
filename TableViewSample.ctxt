@@ -1,7 +1,14 @@
 #BlueJ class context
 comment0.target=TableViewSample
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment2.params=stage
-comment2.target=void\ start(javafx.stage.Stage)
-numComments=3
+comment1.params=stage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=event
+comment2.target=void\ leftButtonClick(javafx.event.ActionEvent)
+comment2.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
+comment3.params=data\ lowerLimit\ upperLimit
+comment3.target=java.util.ArrayList\ filterData(java.util.ArrayList,\ int,\ int)
+comment3.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
+comment4.params=event
+comment4.target=void\ rightButtonClick(javafx.event.ActionEvent)
+comment4.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
+numComments=5
