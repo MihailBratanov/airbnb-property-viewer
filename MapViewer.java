@@ -158,6 +158,7 @@ public class MapViewer extends Application
     }
     
     public Pane getPanel(){
+
         return root;
     }
 
