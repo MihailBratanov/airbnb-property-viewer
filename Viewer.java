@@ -27,6 +27,8 @@ public class Viewer extends Application
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
+    private Scene scene;
+    private BorderPane launchPane;
     
     @Override
     public void start(Stage stage) throws Exception
@@ -45,15 +47,19 @@ public class Viewer extends Application
         contentPane.setBottom(navigationPane);
 
         //root.getChildren().add(contentPane);
+        
         root = new BorderPane();
         root.setBottom(contentPane);
         root.setTop(makeMenuBar(root));
-
+        
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
+        scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
         scene.getStylesheets().add("viewerstyle.css");
         stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
+        
+
+        
 
         // Show the Stage (window)
         stage.show();
@@ -128,28 +134,18 @@ public class Viewer extends Application
     }
     
     private void nextPane(ActionEvent event){
-        MapViewer newPanel = new MapViewer();
-        newPanel.start(stage);
-        panelPane = newPanel.getPanel();
-        updateScreen(stage);
-        
-        panelStack.push(panelPane);
+        MapViewer newPanel = new MapViewer(0,0);
+        Pane mapPane = newPanel.getPanel();
+        root.setCenter(mapPane);
+        stage.setWidth(root.getMaxWidth());
+        stage.setHeight(root.getMaxHeight());
+        stage.show();
     }
     
     private void previousPane(ActionEvent event) {
         /*panelPane = panelStack.pop().getPanel();
         updateScreen(stage);*/
     }   
-
-    
-    private void updateScreen(Stage stage){
-        try {
-            start(stage);
-        }
-        catch(Exception NullPointerException){
-            updateScreen(stage);
-        }
-    }
     
     private void hideViewer(ActionEvent event) {
         stage.hide();
