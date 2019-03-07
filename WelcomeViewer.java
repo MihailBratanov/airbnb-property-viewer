@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
+import java.util.*;
 
 /**
  * Write a description of JavaFX class WelcomeViewer here.
@@ -27,6 +28,9 @@ public class WelcomeViewer extends Application
     private double height;
     private double windowWidth;
     private double windowHeight;
+    private int lowerlimit;
+    private int upperlimit;
+    
     @Override
     public void start(Stage stage) throws Exception
     {
@@ -49,8 +53,9 @@ public class WelcomeViewer extends Application
 
         final ComboBox from =new ComboBox();
         from.getItems().addAll(
-            "Please Slelect",
-            "8",
+            "--Please Select--",
+            "5",
+            "25",
             "50",
             "100",
             "200",
@@ -74,11 +79,15 @@ public class WelcomeViewer extends Application
             "6000",
             "6500",
             "7000");
+        //lowerlimit = Integer.parseInt( (String)from.getValue());
+
+            
 
         final ComboBox to =new ComboBox();
         to.getItems().addAll(
-            "Please Slelect",
-            "8",
+            "--Please Select--",
+            "5",
+            "25",
             "50",
             "100",
             "200",
@@ -102,8 +111,7 @@ public class WelcomeViewer extends Application
             "6000",
             "6500",
             "7000");
-            
-
+            //upperlimit= Integer.parseInt((String) to.getValue());
         Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
         Label toLabel=new Label("To");
@@ -126,7 +134,17 @@ public class WelcomeViewer extends Application
         // Show the Stage (window)
         stage.show();
     }
-    
+
+    public Integer lowerLimit()
+    {
+        return lowerlimit;
+    }
+
+    public Integer upperLimit()
+    {
+        return upperlimit;
+    }
+
     public Pane gerPanel(){
         return root;
     }
