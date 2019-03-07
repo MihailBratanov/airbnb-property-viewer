@@ -24,6 +24,7 @@ public class TableViewSample extends Application {
 
     private final ObservableList<AirbnbListing> tableData =
         FXCollections.observableArrayList();
+
     private TableView table = new TableView();
     private Label statsLabel;
     @Override
