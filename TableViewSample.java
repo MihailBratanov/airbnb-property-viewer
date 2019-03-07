@@ -15,11 +15,11 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 public class TableViewSample extends Application {
 
-    // private final ObservableList<AirbnbListing> data =
-    //    FXCollections.observableArrayList(). 
+   
     public AirbnbDataLoader loader=new AirbnbDataLoader();
     public ArrayList<AirbnbListing> data=loader.load();
-
+  private final ObservableList<AirbnbListing> tableData =
+        FXCollections.observableArrayList(loader.load());
     private TableView table = new TableView();
     public static void main(String[] args) {
       //  data=loader.load();
@@ -40,14 +40,27 @@ public class TableViewSample extends Application {
         label.setFont(new Font("Arial", 20));
 
         table.setEditable(true);
-
+        table.setItems(tableData);
+        
         TableColumn hostNameCol = new TableColumn("Host");
         hostNameCol.setMinWidth(100);
         hostNameCol.setCellValueFactory(
         new PropertyValueFactory<>("host_name"));
+        
         TableColumn priceCol = new TableColumn("Price");
+            priceCol.setMinWidth(100);
+        priceCol.setCellValueFactory(
+        new PropertyValueFactory<>("price"));
+        
         TableColumn reviewsCol = new TableColumn("Reviews");
+            reviewsCol.setMinWidth(100);
+        reviewsCol.setCellValueFactory(
+        new PropertyValueFactory<>("numberOfReviews"));
+        
         TableColumn minNightsCol = new TableColumn("Min Nights");
+            minNightsCol.setMinWidth(100);
+        minNightsCol.setCellValueFactory(
+        new PropertyValueFactory<>("minimumNights"));
         table.getColumns().addAll(hostNameCol, priceCol, reviewsCol, minNightsCol);
 
         final VBox vbox = new VBox();
