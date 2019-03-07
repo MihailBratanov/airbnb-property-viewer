@@ -1,5 +1,3 @@
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,6 +20,10 @@ public class Viewer extends Application
     private int count = 0;
     private Label myLabel = new Label("0");
     private Stage stage;
+    private Pane panelPane;
+    private Pane contentPane;
+    private Pane navigationPane;
+    VBox root;
 
     @Override
     public void start(Stage stage) throws Exception
@@ -29,16 +31,24 @@ public class Viewer extends Application
         // Create a Button or any control item
         this.stage = stage;
         // Create a new grid pane
-        VBox root = new VBox();
+        root = new VBox();
         makeMenuBar(root);
-        
+
         Label label1 = new Label("main thing");
         Label label2 = new Label("from ~ to");
         Label label3 = new Label("panel controls");
-        
-        Pane contentPane = new BorderPane(label1, label2, null, label3, null);
+
+        //Pane panelPane = new Pane();
+        makePanelPane();
+
+        // panelPane.setMinSize(300,75);  // temp. placeholder
+        navigationPane = new AnchorPane();
+        navigationPane.setId("navigationpane");
+        makeNavigationPane(navigationPane);
+
+        contentPane = new BorderPane(panelPane, null, null, navigationPane, null);
+
         root.getChildren().add(contentPane);
-        //root.getChildren().add(contentPane1);
         //root.getChildren().add(contentPane2);
         /*pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setMinSize(300, 300);
@@ -53,7 +63,8 @@ public class Viewer extends Application
         pane.add(myButton, 0, 0);*/
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, 300,100);
+        Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
+        scene.getStylesheets().add("viewerstyle.css");
         stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
 
@@ -64,13 +75,49 @@ public class Viewer extends Application
     private void makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
         parentPane.getChildren().add(menuBar);
-        
+
         Menu helpMenu = new Menu("Help");
         MenuItem aboutItem = new MenuItem("About this program...");
         // aboutItem.setOnAction();
         helpMenu.getItems().addAll(aboutItem);
-        
+
         menuBar.getMenus().addAll(helpMenu);
+    }
+
+    private void makeNavigationPane(Pane parentPane){
+        Button previousPaneButton = new Button("< Back");
+        Button nextPaneButton = new Button("Next >");
+        
+        nextPaneButton.setOnAction(this::nextPane);
+        
+        parentPane.getChildren().addAll(previousPaneButton, nextPaneButton);
+        AnchorPane.setLeftAnchor(previousPaneButton, 10.0);
+        AnchorPane.setRightAnchor(nextPaneButton, 10.0);
+        AnchorPane.setTopAnchor(previousPaneButton, 5.0);
+        AnchorPane.setTopAnchor(nextPaneButton, 5.0);
+    }
+    
+    private void makePanelPane() {
+        Pane panelPane = new Pane();
+        /*MapViewer map = new MapViewer();
+        map.start(stage);
+        Pane panelPane = map.getMap();*/
+    }
+    
+    private void nextPane(ActionEvent event){
+        MapViewer map = new MapViewer();
+        map.start(stage);
+        
+        panelPane = map.getMap();
+        updateScreen(stage);
+    }
+    
+    private void updateScreen(Stage stage){
+        try {
+            start(stage);
+        }
+        catch(Exception NullPointerException){
+        }
     }
     
     /**
