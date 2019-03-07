@@ -157,7 +157,7 @@ public class MapViewer extends Application
         stage.show();
     }
     
-    public Pane getMap(){
+    public Pane getPanel(){
         return root;
     }
 
