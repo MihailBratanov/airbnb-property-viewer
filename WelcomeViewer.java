@@ -28,8 +28,8 @@ public class WelcomeViewer extends Application
     private double height;
     private double windowWidth;
     private double windowHeight;
-    private int lowerlimit;
-    private int upperlimit;
+    private int lowerLimit;
+    private int upperLimit;
     
     @Override
     public void start(Stage stage) throws Exception
@@ -51,7 +51,7 @@ public class WelcomeViewer extends Application
 
         //Label imageLabel = LoadImage();
 
-        final ComboBox from =new ComboBox();
+        final ComboBox from = new ComboBox();
         from.getItems().addAll(
             "--Please Select--",
             "5",
@@ -79,8 +79,14 @@ public class WelcomeViewer extends Application
             "6000",
             "6500",
             "7000");
-        //lowerlimit = Integer.parseInt( (String)from.getValue());
-
+            
+        from.setValue("--Please Select--");
+            
+            
+        String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
+        if (lowerLimitString != "--Please Select--"){
+            lowerLimit = Integer.parseInt(lowerLimitString);
+        }
             
 
         final ComboBox to =new ComboBox();
@@ -111,7 +117,14 @@ public class WelcomeViewer extends Application
             "6000",
             "6500",
             "7000");
-            //upperlimit= Integer.parseInt((String) to.getValue());
+            
+        to.setValue("--Please Select--");
+        
+        String upperLimitString = from.getSelectionModel().getSelectedItem().toString();
+        if (lowerLimitString != "--Please Select--"){
+            upperLimit = Integer.parseInt(upperLimitString);
+        }
+            
         Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
         Label toLabel=new Label("To");
@@ -126,6 +139,7 @@ public class WelcomeViewer extends Application
 
         // Add the button and label into the pane
 
+
         // JavaFX must have a Scene (window content) inside a Stage (window)
         Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
         stage.setTitle("Welcome");
@@ -135,17 +149,17 @@ public class WelcomeViewer extends Application
         stage.show();
     }
 
-    public Integer lowerLimit()
+    public Integer getLowerLimit()
     {
-        return lowerlimit;
+        return lowerLimit;
     }
 
-    public Integer upperLimit()
+    public Integer getUpperLimit()
     {
-        return upperlimit;
+        return upperLimit;
     }
 
-    public Pane gerPanel(){
+    public Pane getPanel(){
         return root;
     }
 }

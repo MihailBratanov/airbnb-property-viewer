@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Viewer
-comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ Viewer\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ Viewer\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
 comment2.params=parentPane
@@ -15,5 +15,5 @@ comment6.params=stage
 comment6.target=void\ updateScreen(javafx.stage.Stage)
 comment7.params=event
 comment7.target=void\ buttonClick(javafx.event.ActionEvent)
-comment7.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
+comment7.text=\r\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\r\n\ It\ increments\ the\ count\ by\ 1\r\n
 numComments=8
