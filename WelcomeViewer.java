@@ -84,6 +84,7 @@ public class WelcomeViewer extends Application
             
             
         String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
+        
         if (lowerLimitString != "--Please Select--"){
             lowerLimit = Integer.parseInt(lowerLimitString);
         }
@@ -123,6 +124,7 @@ public class WelcomeViewer extends Application
         String upperLimitString = from.getSelectionModel().getSelectedItem().toString();
         if (lowerLimitString != "--Please Select--"){
             upperLimit = Integer.parseInt(upperLimitString);
+            to.setValue(upperLimit);
         }
             
         Button myButton = new Button("Count");
