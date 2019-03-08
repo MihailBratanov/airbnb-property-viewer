@@ -17,7 +17,7 @@ import javafx.geometry.Pos;
  * @version (a version number or a date)
  */
 
-public class MapViewer extends Application
+public class MapViewer
 {
 
     private Label myLabel = new Label("0");
@@ -27,13 +27,8 @@ public class MapViewer extends Application
     private double height;
     private double windowWidth;
     private double windowHeight;
-
-    @Override
-    public void start(Stage stage)
-    {
-        // Create a Button or any control item
-        this.stage = stage;
-        // Create a new grid pane
+    
+    public MapViewer(int lowerLimit, int upperLimit){
         root = new VBox();
         
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -66,9 +61,7 @@ public class MapViewer extends Application
         Button towh = new Button("Tower hill");
         Button newh = new Button("Newh");
         Button bark = new Button("Bark");
-        
-        
-        
+
         Button houn = new Button("Hounslow");
         Button hamm = new Button("Hamm");
         Button wand = new Button("Wand");
@@ -139,29 +132,16 @@ public class MapViewer extends Application
         gridPane.add(brom,10,13);
 
         
-
-        //Pane contentPane = new BorderPane(null, null, null, null, imageLabel);
-        //center north east south west
-        //gridPane.getChildren().addAll(test);
-        
         stackpane.getChildren().addAll(imageLabel, gridPane);
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane);
         root.getChildren().add(flowPane);
-        
-
-        // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, windowWidth, windowHeight);
-        stage.setTitle("Airbnb Property Viewer");
-        stage.setScene(scene);
-        stage.show();
     }
     
     public Pane getPanel(){
-
         return root;
     }
-
+    
     private Label LoadImage(){
         Label imageLabel = new Label();        
         String imagePath = "boroughs.png";
