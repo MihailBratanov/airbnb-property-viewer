@@ -109,7 +109,7 @@ public class Viewer extends Application
         navigationPane.setId("navigationpane");
         Button previousPaneButton = new Button("< Back");
         Button nextPaneButton = new Button("Next >");
-        previousPaneButton.setDisable(true);
+        previousPaneButton.setDisable(false);
         nextPaneButton.setDisable(false);
         previousPaneButton.setOnAction(this::previousPane);
         nextPaneButton.setOnAction(this::nextPane);
@@ -143,8 +143,12 @@ public class Viewer extends Application
     }
     
     private void previousPane(ActionEvent event) {
-        /*panelPane = panelStack.pop().getPanel();
-        updateScreen(stage);*/
+        WelcomeViewer newPanel = new WelcomeViewer();
+        Pane welcomePane = newPanel.getPanel();
+        root.setCenter(welcomePane);
+        stage.setWidth(root.getMaxWidth());
+        stage.setHeight(root.getMaxHeight());
+        stage.show();
     }   
     
     private void hideViewer(ActionEvent event) {
