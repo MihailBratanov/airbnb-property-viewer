@@ -17,7 +17,7 @@ import java.util.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class WelcomeViewer extends Application
+public class WelcomeViewer
 {
     // We keep track of the count, and label displaying the count:
 
@@ -31,15 +31,7 @@ public class WelcomeViewer extends Application
     private int lowerLimit;
     private int upperLimit;
     
-    @Override
-    public void start(Stage stage) throws Exception
-    {
-        // Create a Button or any control item
-
-        // Create a Button or any control item
-        this.stage = stage;
-
-        // Create a new grid pane
+    public WelcomeViewer(){
         root = new VBox();
 
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -133,20 +125,10 @@ public class WelcomeViewer extends Application
         range.getChildren().addAll(fromLabel,from,toLabel,to);
         range.setAlignment(Pos.TOP_RIGHT);
         root.getChildren().addAll(range);
-
-        //set an action on the button using method reference
-        //myButton.setOnAction(this::buttonClick);
-
-        // Add the button and label into the pane
-
-
-        // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
-        stage.setTitle("Welcome");
-        stage.setScene(scene);
-
-        // Show the Stage (window)
-        stage.show();
+    }
+    
+    public Pane getPanel(){
+        return root;
     }
 
     public Integer getLowerLimit()
@@ -157,9 +139,5 @@ public class WelcomeViewer extends Application
     public Integer getUpperLimit()
     {
         return upperLimit;
-    }
-
-    public Pane getPanel(){
-        return root;
     }
 }

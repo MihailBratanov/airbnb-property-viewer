@@ -1,12 +1,12 @@
 #BlueJ class context
 comment0.target=WelcomeViewer
-comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ WelcomeViewer\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=stage
-comment1.target=void\ start(javafx.stage.Stage)
+comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ WelcomeViewer\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=
+comment1.target=WelcomeViewer()
 comment2.params=
-comment2.target=java.lang.Integer\ getLowerLimit()
+comment2.target=javafx.scene.layout.Pane\ getPanel()
 comment3.params=
-comment3.target=java.lang.Integer\ getUpperLimit()
+comment3.target=java.lang.Integer\ getLowerLimit()
 comment4.params=
-comment4.target=javafx.scene.layout.Pane\ getPanel()
+comment4.target=java.lang.Integer\ getUpperLimit()
 numComments=5
