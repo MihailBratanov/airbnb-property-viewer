@@ -4,12 +4,8 @@ comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ Viewer\ here.\n\n\ @
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
 comment10.params=event
-
-comment10.target=void\ quitViewer(javafx.event.ActionEvent)
-comment11.params=event
-comment11.target=void\ buttonClick(javafx.event.ActionEvent)
-comment11.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
-
+comment10.target=void\ buttonClick(javafx.event.ActionEvent)
+comment10.text=\n\ This\ will\ be\ executed\ when\ the\ button\ is\ clicked\n\ It\ increments\ the\ count\ by\ 1\n
 comment2.params=parentPane
 comment2.target=javafx.scene.control.MenuBar\ makeMenuBar(javafx.scene.layout.Pane)
 comment3.params=
@@ -27,4 +23,3 @@ comment8.target=void\ showViewer(javafx.event.ActionEvent)
 comment9.params=event
 comment9.target=void\ quitViewer(javafx.event.ActionEvent)
 numComments=11
-
