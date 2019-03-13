@@ -22,14 +22,14 @@ public class MapViewer
 
     private Label myLabel = new Label("0");
     private Stage stage;
-    VBox root;
+    HBox root;
     private double width;
     private double height;
     private double windowWidth;
     private double windowHeight;
     
     public MapViewer(int lowerLimit, int upperLimit){
-        root = new VBox();
+        root = new HBox();
         
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
@@ -104,7 +104,7 @@ public class MapViewer
         gridPane.add(hack,10,5);
         gridPane.add(redb,12,5);
         gridPane.add(hav,14,5);
-        
+         
         gridPane.add(hill,1,7);
         gridPane.add(eali,3,7);
         gridPane.add(kens,5,7);
@@ -135,7 +135,10 @@ public class MapViewer
         stackpane.getChildren().addAll(imageLabel, gridPane);
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane);
+        
+        
         root.getChildren().add(flowPane);
+        root.setAlignment(Pos.CENTER);
     }
     
     public Pane getPanel(){
@@ -150,9 +153,9 @@ public class MapViewer
         ImageView imageViewer = new ImageView(image);
 
         width =  image.getWidth();
-        width = width / 8;
+        width = width / 4;
         height =  image.getHeight(); 
-        height = height / 8;
+        height = height / 4;
 
         imageViewer.setPreserveRatio(true);
         imageViewer.setFitHeight(height);
