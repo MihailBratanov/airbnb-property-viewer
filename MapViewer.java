@@ -150,9 +150,9 @@ public class MapViewer
         ImageView imageViewer = new ImageView(image);
 
         width =  image.getWidth();
-        width = width / 4;
+        width = width / 6;
         height =  image.getHeight(); 
-        height = height / 4;
+        height = height / 6;
 
         imageViewer.setPreserveRatio(true);
         imageViewer.setFitHeight(height);

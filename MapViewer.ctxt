@@ -1,12 +1,10 @@
 #BlueJ class context
 comment0.target=MapViewer
-
 comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ Viewer\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=lowerLimit\ upperLimit
 comment1.target=MapViewer(int,\ int)
 comment2.params=
 comment2.target=javafx.scene.layout.Pane\ getPanel()
-
 comment3.params=
 comment3.target=javafx.scene.control.Label\ LoadImage()
 numComments=4

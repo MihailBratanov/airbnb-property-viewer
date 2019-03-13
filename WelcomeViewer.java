@@ -128,7 +128,10 @@ public class WelcomeViewer
         range.getChildren().addAll(fromLabel,from,toLabel,to);
         range.setAlignment(Pos.TOP_RIGHT);
         root.getChildren().addAll(range);
-
+    }
+    
+    private void test(ActionEvent event){
+        System.out.println("selected");
     }
     
     public Pane getPanel(){

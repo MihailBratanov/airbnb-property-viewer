@@ -2,7 +2,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.geometry.Insets;
+import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.input.*;
@@ -19,8 +19,6 @@ import java.util.*;
 public class Viewer extends Application
 {
     // We keep track of the count, and label displaying the count:
-    private int count = 0;
-    private Label myLabel = new Label("0");
     private Stage stage;
     private BorderPane contentPane;
     private Pane panelPane;
@@ -41,17 +39,14 @@ public class Viewer extends Application
 
         // panelPane.setMinSize(300,75);  // temp. placeholder
         
-        
-       // makeNavigationPane(navigationPane);
-        
-        contentPane = new BorderPane(makePanelPane(), null, null, makeNavigationPane(), null);
+        WelcomeViewer welcomePanel = new WelcomeViewer();
+        panelPane = welcomePanel.getPanel();
+        contentPane = new BorderPane();
         contentPane.setCenter(panelPane);
-        contentPane.setBottom(navigationPane);
-
-        //root.getChildren().add(contentPane);
+        contentPane.setBottom(makeNavigationPane());
         
         root = new BorderPane();
-        root.setBottom(contentPane);
+        root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
         
         // JavaFX must have a Scene (window content) inside a Stage (window)
@@ -60,9 +55,6 @@ public class Viewer extends Application
         stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
         
-
-        
-
         // Show the Stage (window)
         stage.show();
     }
@@ -117,8 +109,8 @@ public class Viewer extends Application
         nextPaneButton.setOnAction(this::nextPane);
         
         navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
-        AnchorPane.setLeftAnchor(previousPaneButton, 10.0);
-        AnchorPane.setRightAnchor(nextPaneButton, 10.0);
+        AnchorPane.setLeftAnchor(previousPaneButton, 5.0);
+        AnchorPane.setRightAnchor(nextPaneButton, 5.0);
         AnchorPane.setTopAnchor(previousPaneButton, 5.0);
         AnchorPane.setTopAnchor(nextPaneButton, 5.0);
         AnchorPane.setBottomAnchor(previousPaneButton, 5.0);
@@ -127,19 +119,10 @@ public class Viewer extends Application
         return navigationPane;
     }
     
-    private Pane makePanelPane() {
-        Pane panelPane = new Pane();
-        /*MapViewer map = new MapViewer();
-        map.start(stage);
-        Pane panelPane = map.getMap();*/
-        return panelPane;
-    }
-    
     private void nextPane(ActionEvent event){
-
         MapViewer newPanel = new MapViewer(0,0);
         Pane mapPane = newPanel.getPanel();
-        root.setCenter(mapPane);
+        contentPane.setCenter(mapPane);
         stage.setWidth(root.getMaxWidth());
         stage.setHeight(root.getMaxHeight());
         stage.show();
@@ -148,7 +131,7 @@ public class Viewer extends Application
     private void previousPane(ActionEvent event) {
         WelcomeViewer newPanel = new WelcomeViewer();
         Pane welcomePane = newPanel.getPanel();
-        root.setCenter(welcomePane);
+        contentPane.setCenter(welcomePane);
         stage.setWidth(root.getMaxWidth());
         stage.setHeight(root.getMaxHeight());
         stage.show();
@@ -164,17 +147,5 @@ public class Viewer extends Application
     
     private void quitViewer(ActionEvent event) {
         System.exit(0);
-
-    }
-    
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
-     */
-    private void buttonClick(ActionEvent event)
-    {
-        // Counts number of button clicks and shows the result on a label
-        count = count + 1;
-        myLabel.setText(Integer.toString(count));
     }
 }
