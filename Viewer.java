@@ -28,18 +28,21 @@ public class Viewer extends Application
 
     private Scene scene;
     private BorderPane launchPane;
-
     
+    WelcomeViewer welcomePanel = new WelcomeViewer();
+
     @Override
     public void start(Stage stage) throws Exception
     {
+
         // Create a Button or any control item
         this.stage = stage;
         // Create a new grid pane
 
         // panelPane.setMinSize(300,75);  // temp. placeholder
         
-        WelcomeViewer welcomePanel = new WelcomeViewer();
+        
+        welcomePanel.setComboBox();
         panelPane = welcomePanel.getPanel();
         contentPane = new BorderPane();
         contentPane.setCenter(panelPane);
@@ -106,7 +109,7 @@ public class Viewer extends Application
         previousPaneButton.setDisable(false);
         nextPaneButton.setDisable(false);
         previousPaneButton.setOnAction(this::previousPane);
-        nextPaneButton.setOnAction(this::nextPane);
+        nextPaneButton.setOnAction(e -> nextPane());
         
         navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
         AnchorPane.setLeftAnchor(previousPaneButton, 5.0);
@@ -119,8 +122,10 @@ public class Viewer extends Application
         return navigationPane;
     }
     
-    private void nextPane(ActionEvent event){
-        MapViewer newPanel = new MapViewer(0,0);
+    private void nextPane(){
+        int lowerLimit = welcomePanel.getLowerLimit();
+        int upperLimit = welcomePanel.getUpperLimit();
+        MapViewer newPanel = new MapViewer(lowerLimit, upperLimit);
         Pane mapPane = newPanel.getPanel();
         contentPane.setCenter(mapPane);
         stage.setWidth(root.getMaxWidth());

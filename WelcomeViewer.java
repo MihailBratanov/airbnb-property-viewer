@@ -18,7 +18,7 @@ import java.util.*;
  * @version (a version number or a date)
  */
 
-public class WelcomeViewer
+public class WelcomeViewer extends Panel
 
 {
     // We keep track of the count, and label displaying the count:
@@ -32,7 +32,8 @@ public class WelcomeViewer
     private double windowHeight;
     private int lowerLimit;
     private int upperLimit;
-    
+    final ComboBox from = new ComboBox();
+    final ComboBox to = new ComboBox();
 
     public WelcomeViewer(){
         root = new VBox();
@@ -46,7 +47,7 @@ public class WelcomeViewer
 
         //Label imageLabel = LoadImage();
 
-        final ComboBox from = new ComboBox();
+        
         from.getItems().addAll(
             "--Please Select--",
             "5",
@@ -77,14 +78,14 @@ public class WelcomeViewer
             
         from.setValue("--Please Select--");
             
-            
         String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
         if (lowerLimitString != "--Please Select--"){
             lowerLimit = Integer.parseInt(lowerLimitString);
-        }
+        }    
+
             
 
-        final ComboBox to =new ComboBox();
+
         to.getItems().addAll(
             "--Please Select--",
             "5",
@@ -115,10 +116,8 @@ public class WelcomeViewer
             
         to.setValue("--Please Select--");
         
-        String upperLimitString = from.getSelectionModel().getSelectedItem().toString();
-        if (lowerLimitString != "--Please Select--"){
-            upperLimit = Integer.parseInt(upperLimitString);
-        }
+
+        
             
         Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
@@ -130,21 +129,35 @@ public class WelcomeViewer
         root.getChildren().addAll(range);
     }
     
-    private void test(ActionEvent event){
-        System.out.println("selected");
+    public void setComboBox(){
+        from.setOnAction(e -> setLowerLimit());
+        to.setOnAction(e -> setUpperLimit());
     }
     
+    private void setLowerLimit() {
+        String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
+        if (lowerLimitString != "--Please Select--"){
+            lowerLimit = Integer.parseInt(lowerLimitString);
+        }
+    }
+    
+    private void setUpperLimit() {
+        String upperLimitString = to.getSelectionModel().getSelectedItem().toString();
+        if (upperLimitString != "--Please Select--"){
+            upperLimit = Integer.parseInt(upperLimitString);
+        }
+    }
+ 
     public Pane getPanel(){
         return root;
-
     }
 
-    public Integer getLowerLimit()
+    public int getLowerLimit()
     {
         return lowerLimit;
     }
 
-    public Integer getUpperLimit()
+    public int getUpperLimit()
     {
         return upperLimit;
     }

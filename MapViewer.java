@@ -17,7 +17,7 @@ import javafx.geometry.Pos;
  * @version (a version number or a date)
  */
 
-public class MapViewer
+public class MapViewer extends Panel
 {
 
     private Label myLabel = new Label("0");
