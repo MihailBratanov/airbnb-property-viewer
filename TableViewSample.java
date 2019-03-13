@@ -24,9 +24,10 @@ public class TableViewSample extends Application {
 
     private final ObservableList<AirbnbListing> tableData =
         FXCollections.observableArrayList();
-
     private TableView table = new TableView();
     private Label statsLabel;
+    private ArrayList<String>statActions=new ArrayList();
+    private int currentActionIndex=0;
     @Override
     public void start(Stage stage) {
         //data=loader.load();
@@ -34,6 +35,12 @@ public class TableViewSample extends Application {
         int lowerLimit=200;
         int upperLimit=1000;
         tableData.addAll(filterData(data,lowerLimit,upperLimit));
+
+        statActions.add("Average reviews");
+        statActions.add("Available properties");
+        statActions.add("Homes and appartments");
+        statActions.add("Most expensive borough");
+
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));
         pane.setMinSize(500, 500);
@@ -79,6 +86,7 @@ public class TableViewSample extends Application {
 
         Button myLeftButton = new Button("<");
         statsLabel=new Label();
+        statsLabel.setText(statActions.get(currentActionIndex));
         Button myRightButton=new Button(">");
 
         Label statDataLabel=new Label("");
@@ -96,7 +104,9 @@ public class TableViewSample extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     * This method retirns the index of the current 
+     */
     /**
      * This will be executed when the button is clicked
      * It increments the count by 1
@@ -104,8 +114,26 @@ public class TableViewSample extends Application {
     private void leftButtonClick(ActionEvent event)
     {
         // Counts number of button clicks and shows the result on a label
+        currentActionIndex++;
+        if(currentActionIndex>statActions.size()-1){
+            currentActionIndex=0;
+        }
+        statsLabel.setText(statActions.get(currentActionIndex));
+        // doStatistic();
+        currentActionIndex=currentActionIndex;
 
-        statsLabel.setText("clicked left");
+    }
+    /**
+     * This will be executed when the button is clicked
+     * It increments the count by 1
+     */
+    private void doStatistic()
+    {
+        
+        // Counts number of button clicks and shows the result on a label
+        for(AirbnbListing listing :tableData){
+
+        }
     }
 
     /**
@@ -118,8 +146,8 @@ public class TableViewSample extends Application {
         ArrayList<AirbnbListing> newList= new ArrayList<>();
         for(AirbnbListing listing : data){
             if(listing.getNeighbourhood().equals("Croydon") && listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
-              
-              newList.add(listing);
+
+                newList.add(listing);
             }
 
         }
@@ -132,8 +160,13 @@ public class TableViewSample extends Application {
      */
     private void rightButtonClick(ActionEvent event)
     {
-        // Counts number of button clicks and shows the result on a label
+        currentActionIndex--;
+        if(currentActionIndex<0){
+            currentActionIndex=statActions.size()-1;
+        }
+        statsLabel.setText(statActions.get(currentActionIndex));
+        // doStatistic();
+        currentActionIndex=currentActionIndex;
 
-        statsLabel.setText("clicked right");
     }
 }
