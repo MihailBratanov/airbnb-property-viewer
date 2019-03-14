@@ -29,6 +29,10 @@ public class Viewer extends Application
     private Scene scene;
     private BorderPane launchPane;
     
+    private Button previousPaneButton;
+    private Button nextPaneButton;
+    private boolean isPriceRangeValid = false;
+    
     WelcomeViewer welcomePanel = new WelcomeViewer();
 
     @Override
@@ -43,6 +47,8 @@ public class Viewer extends Application
         
         
         welcomePanel.setComboBox();
+        welcomePanel.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        welcomePanel.getToComboBox().setOnAction(e -> checkRangeValidity());
         panelPane = welcomePanel.getPanel();
         contentPane = new BorderPane();
         contentPane.setCenter(panelPane);
@@ -82,8 +88,12 @@ public class Viewer extends Application
         
         Menu viewMenu = new Menu ("View");
         MenuItem zoomInItem = new MenuItem("Zoom In");
+        zoomInItem.setOnAction(this::zoomIn);
+        //zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.+, KeyCodeCombination.SHORTCUT_DOWN));
         MenuItem actualSizeItem = new MenuItem("Actual Size");
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
+        zoomOutItem.setOnAction(this::zoomIn);
+        //zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.-, KeyCodeCombination.SHORTCUT_DOWN));
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
         viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
@@ -102,12 +112,12 @@ public class Viewer extends Application
     }
 
     private Pane makeNavigationPane(){
+        
         navigationPane = new AnchorPane();
         navigationPane.setId("navigationpane");
-        Button previousPaneButton = new Button("< Back");
-        Button nextPaneButton = new Button("Next >");
-        previousPaneButton.setDisable(false);
-        nextPaneButton.setDisable(false);
+        previousPaneButton = new Button("< Back");
+        nextPaneButton = new Button("Next >");
+        checkRangeValidity();
         previousPaneButton.setOnAction(this::previousPane);
         nextPaneButton.setOnAction(e -> nextPane());
         
@@ -120,6 +130,19 @@ public class Viewer extends Application
         AnchorPane.setBottomAnchor(nextPaneButton, 5.0);
         
         return navigationPane;
+    }
+    
+    private void checkRangeValidity() {
+        isPriceRangeValid = welcomePanel.checkValid();
+        System.out.println(isPriceRangeValid);
+        if (isPriceRangeValid) {
+            previousPaneButton.setDisable(false);
+            nextPaneButton.setDisable(false);
+        }
+        else {
+            previousPaneButton.setDisable(true);
+            nextPaneButton.setDisable(true);
+        }
     }
     
     private void nextPane(){
@@ -142,6 +165,9 @@ public class Viewer extends Application
         stage.show();
     }   
     
+    
+    
+    // Menubar Buttons
     private void hideViewer(ActionEvent event) {
         stage.hide();
     }
@@ -152,5 +178,13 @@ public class Viewer extends Application
     
     private void quitViewer(ActionEvent event) {
         System.exit(0);
+    }
+    
+    private void zoomIn(ActionEvent event) {
+        
+    }
+    
+    private void zoomOut(ActionEvent event) {
+        
     }
 }

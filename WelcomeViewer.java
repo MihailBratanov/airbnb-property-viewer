@@ -139,12 +139,29 @@ public class WelcomeViewer extends Panel
         if (lowerLimitString != "--Please Select--"){
             lowerLimit = Integer.parseInt(lowerLimitString);
         }
+        else {
+            lowerLimit = -1;
+        }
     }
     
     private void setUpperLimit() {
         String upperLimitString = to.getSelectionModel().getSelectedItem().toString();
         if (upperLimitString != "--Please Select--"){
             upperLimit = Integer.parseInt(upperLimitString);
+        }
+        else {
+            upperLimit = -2;
+        }
+    }
+    
+    public boolean checkValid() {
+        setLowerLimit();
+        setUpperLimit();
+        if (lowerLimit > upperLimit) {
+            return false;
+        }
+        else {
+            return true;
         }
     }
  
@@ -161,5 +178,14 @@ public class WelcomeViewer extends Panel
     {
         return upperLimit;
     }
-
+    
+    public ComboBox getFromComboBox()
+    {
+        return from;
+    }
+    
+    public ComboBox getToComboBox()
+    {
+        return to;
+    }
 }
