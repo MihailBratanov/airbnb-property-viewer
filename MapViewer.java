@@ -162,4 +162,8 @@ public class MapViewer extends Panel
        
         return imageLabel;
     }
+    
+    public void setRange(int lowerLimit, int upperLimit) {
+        
+    }
 }

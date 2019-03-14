@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
 import java.util.*;
 
 /**
@@ -22,18 +23,22 @@ public class Viewer extends Application
     private Stage stage;
     private BorderPane contentPane;
     private Pane panelPane;
+    private Panel currentPanel;
+    private ArrayList<Panel> panelList;
+    WelcomeViewer welcomePanel = new WelcomeViewer();
+    MapViewer mapPanel = new MapViewer(0, 0);
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
 
     private Scene scene;
-    private BorderPane launchPane;
     
     private Button previousPaneButton;
     private Button nextPaneButton;
     private boolean isPriceRangeValid = false;
     
-    WelcomeViewer welcomePanel = new WelcomeViewer();
+    private static final String VERSION = "Version 0.0.1";
+    
 
     @Override
     public void start(Stage stage) throws Exception
@@ -45,10 +50,7 @@ public class Viewer extends Application
 
         // panelPane.setMinSize(300,75);  // temp. placeholder
         
-        
-        welcomePanel.setComboBox();
-        welcomePanel.getFromComboBox().setOnAction(e -> checkRangeValidity());
-        welcomePanel.getToComboBox().setOnAction(e -> checkRangeValidity());
+        makeWelcomePanel();
         panelPane = welcomePanel.getPanel();
         contentPane = new BorderPane();
         contentPane.setCenter(panelPane);
@@ -59,13 +61,22 @@ public class Viewer extends Application
         root.setTop(makeMenuBar(root));
         
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
+        scene = new Scene(root, root.getMaxHeight(), root.getMaxWidth());
         scene.getStylesheets().add("viewerstyle.css");
         stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
         
         // Show the Stage (window)
         stage.show();
+
+    }
+    
+    private void makeWelcomePanel() {
+        welcomePanel.setComboBox();
+        welcomePanel.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        welcomePanel.getToComboBox().setOnAction(e -> checkRangeValidity());
+        currentPanel = welcomePanel;
+
     }
 
     private MenuBar makeMenuBar(Pane parentPane) {
@@ -73,6 +84,7 @@ public class Viewer extends Application
         
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
+        aboutViewerItem.setOnAction(this::aboutProgram);
         SeparatorMenuItem propertyMenuTopSeparator = new SeparatorMenuItem();
         MenuItem hideViewerItem = new MenuItem("Hide");
         hideViewerItem.setOnAction(this::hideViewer);
@@ -92,22 +104,19 @@ public class Viewer extends Application
         //zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.+, KeyCodeCombination.SHORTCUT_DOWN));
         MenuItem actualSizeItem = new MenuItem("Actual Size");
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
-        zoomOutItem.setOnAction(this::zoomIn);
+        zoomOutItem.setOnAction(this::zoomOut);
         //zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.-, KeyCodeCombination.SHORTCUT_DOWN));
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
+        fullScreenItem.setOnAction(this::fullScreen);
         viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
         
         Menu helpMenu = new Menu("Help");
         MenuItem instructionItem = new MenuItem("Instructions");
+        instructionItem.setOnAction(this::instruction);
         helpMenu.getItems().addAll(instructionItem);
-        
-        Menu aboutMenu = new Menu("About");
-        MenuItem aboutItem = new MenuItem("About this program...");
-        // aboutItem.setOnAction();
-        aboutMenu.getItems().addAll(aboutItem);
 
-        menuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu, aboutMenu);
+        menuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu);
         return menuBar;
     }
 
@@ -148,9 +157,16 @@ public class Viewer extends Application
     private void nextPane(){
         int lowerLimit = welcomePanel.getLowerLimit();
         int upperLimit = welcomePanel.getUpperLimit();
-        MapViewer newPanel = new MapViewer(lowerLimit, upperLimit);
-        Pane mapPane = newPanel.getPanel();
-        contentPane.setCenter(mapPane);
+        
+        /*currentPanel = panelList.get(1);
+        if (currentPanel == mapPanel) {
+            System.out.println("next panel is map");
+        }*/
+        
+        mapPanel.setRange(lowerLimit, upperLimit);
+        Pane nextPane = mapPanel.getPanel();
+        
+        contentPane.setCenter(nextPane);
         stage.setWidth(root.getMaxWidth());
         stage.setHeight(root.getMaxHeight());
         stage.show();
@@ -168,6 +184,14 @@ public class Viewer extends Application
     
     
     // Menubar Buttons
+    private void aboutProgram(ActionEvent event) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("About Property Viewer");
+        alert.setHeaderText(null);  // Alerts have an optionl header. We don't want one.
+        alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
+        alert.showAndWait();
+    }
+    
     private void hideViewer(ActionEvent event) {
         stage.hide();
     }
@@ -185,6 +209,14 @@ public class Viewer extends Application
     }
     
     private void zoomOut(ActionEvent event) {
+        
+    }
+    
+    private void fullScreen(ActionEvent event) {
+        stage.setFullScreen(true);
+    }
+
+    private void instruction(ActionEvent event) {
         
     }
 }

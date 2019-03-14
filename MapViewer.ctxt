@@ -7,4 +7,6 @@ comment2.params=
 comment2.target=javafx.scene.layout.Pane\ getPanel()
 comment3.params=
 comment3.target=javafx.scene.control.Label\ LoadImage()
-numComments=4
+comment4.params=lowerLimit\ upperLimit
+comment4.target=void\ setRange(int,\ int)
+numComments=5
