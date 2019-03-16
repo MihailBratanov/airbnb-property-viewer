@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
+import javafx.scene.paint.*;
 import javafx.scene.control.Alert.AlertType;
 import java.util.*;
 
@@ -26,7 +27,7 @@ public class Viewer extends Application
     private Panel currentPanel;
     private ArrayList<Panel> panelList;
     WelcomeViewer welcomePanel = new WelcomeViewer();
-    MapViewer mapPanel = new MapViewer(0, 0);
+    MapViewer mapPanel = new MapViewer(0,0);
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
@@ -157,6 +158,7 @@ public class Viewer extends Application
         int upperLimit = welcomePanel.getUpperLimit();
 
         mapPanel.setRange(lowerLimit, upperLimit);
+        
         Pane nextPane = mapPanel.getPanel();
         
         HBox hbox = new HBox();
@@ -164,6 +166,7 @@ public class Viewer extends Application
         hbox.getChildren().addAll(nextPane);
         hbox.setAlignment(Pos.CENTER);
         contentPane.setCenter(hbox);
+        contentPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         stage.show();
     }
 

@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Borough
+comment0.text=\n\ Write\ a\ description\ of\ JavaFX\ class\ Borough\ here.\n\n\ @author\ (your\ name)\n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment1.params=name\ x\ y
+comment1.target=Borough(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=javafx.scene.control.Button\ getButton()
+comment4.params=
+comment4.target=int\ getX()
+comment5.params=
+comment5.target=int\ getY()
+numComments=6
