@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
@@ -23,10 +24,11 @@ public class Viewer extends Application
     private Stage stage;
     private BorderPane contentPane;
     private Pane panelPane;
-    private Panel currentPanel;
-    private ArrayList<Panel> panelList;
-    WelcomeViewer welcomePanel = new WelcomeViewer();
-    MapViewer mapPanel = new MapViewer(0, 0);
+    private int panelNumber;
+    private WelcomeViewer welcomeViewer;
+    private MapViewer mapViewer;
+    private Pane currentPane;
+    
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
@@ -35,26 +37,28 @@ public class Viewer extends Application
     private Button previousPaneButton;
     private Button nextPaneButton;
     private boolean isPriceRangeValid = false;
+    private int lowerLimit;
+    private int upperLimit;
 
     private static final String VERSION = "Version 0.0.1";
 
     @Override
     public void start(Stage stage) throws Exception
     {
-
-        // Create a Button or any control item
         this.stage = stage;
         // Create a new grid pane
-
-        // panelPane.setMinSize(300,75);  // temp. placeholder
-
-        makeWelcomePanel();
-        panelPane = welcomePanel.getPanel();
+        welcomeViewer = new WelcomeViewer();
+        welcomeViewer.setComboBoxAction();
+        welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+        panelNumber = 1;
+        panelPane = welcomeViewer.getPanel();
         contentPane = new BorderPane();
         contentPane.setCenter(panelPane);
         contentPane.setBottom(makeNavigationPane());
 
         root = new BorderPane();
+        root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
 
@@ -66,16 +70,8 @@ public class Viewer extends Application
 
         // Show the Stage (window)
         stage.show();
-
     }
 
-    private void makeWelcomePanel() {
-        welcomePanel.setComboBox();
-        welcomePanel.getFromComboBox().setOnAction(e -> checkRangeValidity());
-        welcomePanel.getToComboBox().setOnAction(e -> checkRangeValidity());
-        currentPanel = welcomePanel;
-
-    }
 
     private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
@@ -119,7 +115,6 @@ public class Viewer extends Application
     }
 
     private Pane makeNavigationPane(){
-
         navigationPane = new AnchorPane();
         navigationPane.setId("navigationpane");
         previousPaneButton = new Button("< Back");
@@ -135,13 +130,12 @@ public class Viewer extends Application
         AnchorPane.setTopAnchor(nextPaneButton, 5.0);
         AnchorPane.setBottomAnchor(previousPaneButton, 5.0);
         AnchorPane.setBottomAnchor(nextPaneButton, 5.0);
-
+        
         return navigationPane;
     }
 
     private void checkRangeValidity() {
-        isPriceRangeValid = welcomePanel.checkValid();
-        System.out.println(isPriceRangeValid);
+        isPriceRangeValid = welcomeViewer.checkValid();
         if (isPriceRangeValid) {
             previousPaneButton.setDisable(false);
             nextPaneButton.setDisable(false);
@@ -150,32 +144,54 @@ public class Viewer extends Application
             previousPaneButton.setDisable(true);
             nextPaneButton.setDisable(true);
         }
+        lowerLimit = welcomeViewer.getLowerLimit();
+        upperLimit = welcomeViewer.getUpperLimit();
     }
 
     private void nextPane(){
-        int lowerLimit = welcomePanel.getLowerLimit();
-        int upperLimit = welcomePanel.getUpperLimit();
-
-        mapPanel.setRange(lowerLimit, upperLimit);
-        Pane nextPane = mapPanel.getPanel();
+        panelNumber++;
+        switchPanel(lowerLimit, upperLimit);
         
-        HBox hbox = new HBox();
-        
-        hbox.getChildren().addAll(nextPane);
-        hbox.setAlignment(Pos.CENTER);
-        contentPane.setCenter(hbox);
+        System.out.println(lowerLimit + " " + upperLimit);
+        contentPane.setCenter(currentPane);
         stage.show();
     }
 
     private void previousPane(ActionEvent event) {
-        WelcomeViewer newPanel = new WelcomeViewer();
-        Pane welcomePane = newPanel.getPanel();
-        contentPane.setCenter(welcomePane);
-        stage.setWidth(root.getMaxWidth());
-        stage.setHeight(root.getMaxHeight());
-        stage.show();
-    }   
+        panelNumber--;
+        switchPanel(lowerLimit, upperLimit);
 
+        System.out.println(lowerLimit + " " + upperLimit);
+        contentPane.setCenter(currentPane);
+        stage.show();
+    }
+
+    private void switchPanel(int lowerLimit, int upperLimit) {
+        switch(panelNumber) {
+            case 1:
+                makeWelcomePanel();
+                break;
+            case 2:
+                makeMapPanel();
+                break;
+        }
+    }
+    
+    private void makeWelcomePanel() {
+        welcomeViewer = new WelcomeViewer();
+        welcomeViewer.setComboBoxAction();
+        welcomeViewer.setComboBox(lowerLimit, upperLimit);
+        welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+
+        panelNumber = 1;
+        currentPane = welcomeViewer.getPanel();
+    }
+    
+    private void makeMapPanel() {
+        mapViewer = new MapViewer(lowerLimit, upperLimit);
+        currentPane = mapViewer.getPanel();
+    }
     
     // Menubar Buttons
     private void aboutProgram(ActionEvent event) {

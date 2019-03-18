@@ -129,9 +129,16 @@ public class WelcomeViewer extends Panel
         root.getChildren().addAll(range);
     }
     
-    public void setComboBox(){
+    public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
+    }
+    
+    public void setComboBox(int lowerLimit, int upperLimit) {
+        String fromValue = Integer.toString(lowerLimit);
+        String toValue = Integer.toString(upperLimit);
+        from.setValue(fromValue);
+        to.setValue(toValue);
     }
     
     private void setLowerLimit() {
@@ -140,7 +147,7 @@ public class WelcomeViewer extends Panel
             lowerLimit = Integer.parseInt(lowerLimitString);
         }
         else {
-            lowerLimit = -1;
+            lowerLimit = 9999;
         }
     }
     
@@ -150,18 +157,18 @@ public class WelcomeViewer extends Panel
             upperLimit = Integer.parseInt(upperLimitString);
         }
         else {
-            upperLimit = -2;
+            upperLimit = 9998;
         }
     }
     
     public boolean checkValid() {
         setLowerLimit();
         setUpperLimit();
-        if (lowerLimit > upperLimit) {
-            return false;
+        if (lowerLimit <= upperLimit) {
+            return true;
         }
         else {
-            return true;
+            return false;
         }
     }
  

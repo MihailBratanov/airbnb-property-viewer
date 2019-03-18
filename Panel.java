@@ -8,7 +8,6 @@
 public class Panel
 {
     // instance variables - replace the example below with your own
-    private int x;
 
     /**
      * Constructor for objects of class Panels
@@ -16,7 +15,7 @@ public class Panel
     public Panel()
     {
         // initialise instance variables
-        x = 0;
+
     }
 
     /**
