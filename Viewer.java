@@ -27,6 +27,7 @@ public class Viewer extends Application
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
+    private StatViewer statViewer;
     private Pane currentPane;
     
     private Pane navigationPane;
@@ -61,6 +62,7 @@ public class Viewer extends Application
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
+        root.setMaxSize(500, 500);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root, root.getMaxHeight(), root.getMaxWidth());
@@ -95,11 +97,11 @@ public class Viewer extends Application
         Menu viewMenu = new Menu ("View");
         MenuItem zoomInItem = new MenuItem("Zoom In");
         zoomInItem.setOnAction(this::zoomIn);
-        //zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.+, KeyCodeCombination.SHORTCUT_DOWN));
+        zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.PLUS, KeyCodeCombination.SHORTCUT_DOWN));
         MenuItem actualSizeItem = new MenuItem("Actual Size");
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
         zoomOutItem.setOnAction(this::zoomOut);
-        //zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.-, KeyCodeCombination.SHORTCUT_DOWN));
+        zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.MINUS, KeyCodeCombination.SHORTCUT_DOWN));
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
         fullScreenItem.setOnAction(this::fullScreen);
@@ -152,7 +154,6 @@ public class Viewer extends Application
         panelNumber++;
         switchPanel(lowerLimit, upperLimit);
         
-        System.out.println(lowerLimit + " " + upperLimit);
         contentPane.setCenter(currentPane);
         stage.show();
     }
@@ -161,7 +162,6 @@ public class Viewer extends Application
         panelNumber--;
         switchPanel(lowerLimit, upperLimit);
 
-        System.out.println(lowerLimit + " " + upperLimit);
         contentPane.setCenter(currentPane);
         stage.show();
     }
@@ -190,6 +190,11 @@ public class Viewer extends Application
     
     private void makeMapPanel() {
         mapViewer = new MapViewer(lowerLimit, upperLimit);
+        currentPane = mapViewer.getPanel();
+    }
+    
+    private void makeStatPanel() {
+        // statViewer = new StatViewer(lowerLimit, upperLimit);
         currentPane = mapViewer.getPanel();
     }
     
