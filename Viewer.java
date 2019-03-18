@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
+import javafx.scene.paint.*;
 import javafx.scene.control.Alert.AlertType;
 import java.util.*;
 
@@ -30,6 +31,7 @@ public class Viewer extends Application
     private StatViewer statViewer;
     private Pane currentPane;
     
+
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
