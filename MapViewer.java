@@ -9,8 +9,11 @@ import javafx.scene.image.*;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
+import javafx.scene.shape.Polygon;
 import java.util.ArrayList;
 import java.util.*;
+import javafx.scene.text.Text;
+import java.lang.Math; 
 
 /**
  * Write a description of JavaFX class Viewer here.
@@ -29,17 +32,21 @@ public class MapViewer extends Panel
     private double height;
     private double windowWidth;
     private double windowHeight;
-    private ArrayList<AirbnbListing> houses;
+    private ArrayList<String> houses;
     private HashMap <Button, String> boroughVariable;
-    private Button enfield, barnet, haringey, waltham, harrow, brent, camden, islington, hackney, redbridge,
+    private Borough enfield, barnet, haringey, waltham, harrow, brent, camden, islington, hackney, redbridge,
     havering, hillingdon, ealing, kensington, westminster, tower, newham, barking, hounslow,
     hammersmith, wandsworth, city, greenwich, bexley, richmond,merton, lambeth, southwark, 
     lewisham, kingston, sutton, croydon, bromley ;
-    private ArrayList <Button> boroughs;
+    private ArrayList <Borough> boroughs;
+    private HashMap <String, Integer> boroughCount;
 
     public MapViewer(int lowerLimit, int upperLimit){
         houses = loadData(lowerLimit, upperLimit);
-        System.out.println(houses);
+        
+        boroughCount = countBoroughs(houses);
+        
+        System.out.print(boroughCount);
 
         root = new HBox();
 
@@ -61,67 +68,81 @@ public class MapViewer extends Panel
         GridPane gridPane = new GridPane();
 
         for (int i = 0; i < 15; i ++){
-            RowConstraints row = new RowConstraints(height/15);
+            RowConstraints row = new RowConstraints(height/17);
             gridPane.getRowConstraints().add(row);
         }
 
         for (int i = 0; i < 16; i ++){
-            ColumnConstraints col = new ColumnConstraints(width/16);
+            ColumnConstraints col = new ColumnConstraints(height/15);
             gridPane.getColumnConstraints().add(col);
         }
 
-        gridPane.add(enfield,8,1);
+        for (Borough borough : boroughs){
+            for (String currentBorough : boroughCount.keySet()){
+                if (currentBorough.equals(borough.getName())){
+                    Polygon hexagon = new Polygon();
+        
+                    hexagon.getPoints().addAll(new Double[]{        
+                        hexPointX(30), hexPointY(30),
+                        hexPointX(90), hexPointY(90),
+                        hexPointX(150), hexPointY(150),
+                        hexPointX(210), hexPointY(210),
+                        hexPointX(270), hexPointY(270),
+                        hexPointX(330), hexPointY(330),
+                        
+                    });
+                    
+                    int colorGreen = (int) Math.round(boroughCount.get(currentBorough)* 0.1);
+                    colorGreen = colorGreen % 255;
+                    colorGreen = 255 - colorGreen;
+                    int colorRed = 255 - colorGreen;
+                    System.out.print(colorGreen);
+                    hexagon.setFill(Color.rgb(colorRed,colorGreen,0));
 
-        gridPane.add(barnet,5,3);
+                    hexagon.setStroke(Color.BLACK);
+                    
+                    Text text = new Text(borough.getX(),borough.getY(), borough.getShortName());
+                    
+                    gridPane.add(hexagon,borough.getX(),borough.getY());
+                    gridPane.add(text,borough.getX(),borough.getY());
+                }
+            }
+        }
+        
+        
+        
+        
+        
 
-        gridPane.add(haringey,7,3);
-        gridPane.add(waltham,9,3);
-
-        gridPane.add(harrow,2,5);
-        gridPane.add(brent,4,5);
-        gridPane.add(camden,6,5);
-        gridPane.add(islington,8,5);
-        gridPane.add(hackney,10,5);
-        gridPane.add(redbridge,12,5);
-        gridPane.add(havering,14,5);
-
-        gridPane.add(hillingdon,1,7);
-        gridPane.add(ealing,3,7);
-        gridPane.add(kensington,5,7);
-        gridPane.add(westminster,7,7);
-        gridPane.add(tower,9,7);
-        gridPane.add(newham,11,7);
-        gridPane.add(barking,13,7);
-
-        gridPane.add(hounslow,2,9);
-        gridPane.add(hammersmith,4,9);
-        gridPane.add(wandsworth,6,9);
-        gridPane.add(city,8,9);
-        gridPane.add(greenwich,10,9);
-        gridPane.add(bexley,12,9);
-
-        gridPane.add(richmond,3,11);
-        gridPane.add(merton,5,11);
-        gridPane.add(lambeth,7,11);
-        gridPane.add(southwark,9,11);
-        gridPane.add(lewisham,11,11);
-
-        gridPane.add(kingston,4,13);
-        gridPane.add(sutton,6,13);
-        gridPane.add(croydon,8,13);
-        gridPane.add(bromley,10,13);
-
-        //setHouseButton();
-
-        stackpane.getChildren().addAll(imageLabel, gridPane);
+        stackpane.getChildren().addAll(gridPane);
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane);
 
         root.getChildren().add(flowPane);
         root.setAlignment(Pos.CENTER);
     }
-
-    private ArrayList loadData(int lowerLimit, int upperLimit){
+    
+    private double hexPointX(double degree){
+        double centerPoint = height/15;
+        
+        double rad = (Math.PI / 180) * degree;
+        
+        double X = centerPoint + height/14 * Math.cos(rad);
+        
+        return X;
+    }
+    
+    private double hexPointY(double degree){
+        double centerPoint = height/15;
+        
+        double rad = (Math.PI / 180) * degree;
+        
+        double X = centerPoint + height/14 * Math.sin(rad);
+        
+        return X;
+    }
+    
+    private ArrayList<String> loadData(int lowerLimit, int upperLimit){
         AirbnbDataLoader loader = new AirbnbDataLoader();
         ArrayList<AirbnbListing> data = loader.load();
         ArrayList<AirbnbListing> specifiedData = new ArrayList<>();
@@ -138,45 +159,86 @@ public class MapViewer extends Panel
 
         return neighbourhoods;
     }
-
+    
+    private HashMap countBoroughs(ArrayList<String> neighbourhoods){
+        
+        ArrayList<String> boroughs = new ArrayList <>();
+        
+        for (String borough : neighbourhoods){
+            String thisBorough = borough.replaceAll("\\s+","");
+            boroughs.add(thisBorough);
+        }
+        
+        
+        String thisProperty;
+        
+        boroughCount = new HashMap<>();
+        
+        while(boroughs.size() > 0 ){
+            
+            thisProperty = boroughs.get(0);
+            
+            Boolean exists = boroughCount.containsKey(thisProperty);
+            
+            if ( ! exists){
+                boroughCount.put(thisProperty, 1);
+            }
+            
+            else if (exists){
+                int count = boroughCount.get(thisProperty);
+                count += 1;
+                boroughCount.replace(thisProperty, count);
+            }
+            
+            boroughs.remove(0);
+        }
+        
+        return boroughCount;
+    }
+    
     private void createButtons(){
-        enfield = new Button("Enfield");
-        barnet = new Button("Barnet");
-        haringey = new Button("Haringey");
-        waltham = new Button("Waltham");
-        harrow = new Button("H&W");
-        brent = new Button("Brent Cross");
-        camden = new Button("Camden");
-        islington = new Button("Islington");
-        hackney = new Button("Hackney");
-        redbridge = new Button("Red Bridge");
-        havering = new Button("Havering");
+        
+        enfield     = new Borough("Enfield",8,1);
 
-        hillingdon = new Button("Hill");
-        ealing = new Button("Ealing");
-        kensington = new Button("Kens");
-        westminster = new Button("Westm");
-        tower = new Button("Tower hill");
-        newham = new Button("Newh");
-        barking = new Button("Bark");
-
-        hounslow = new Button("Hounslow");
-        hammersmith = new Button("Hamm");
-        wandsworth = new Button("Wand");
-        city = new Button("City");
-        greenwich = new Button("Gwch");
-        bexley = new Button("Bexl");
-
-        richmond = new Button("Rich");
-        merton = new Button("Mert");
-        lambeth = new Button("Lambeth");
-        southwark = new Button("Southwark");
-        lewisham = new Button("Lewisham");
-        kingston = new Button("Kingston");
-        sutton = new Button("Sutton");
-        croydon = new Button("Croydon");
-        bromley = new Button("Bromley");
-
+        barnet      = new Borough("Barnet",5,3);
+        
+        haringey    = new Borough("Haringey",7,3);
+        waltham     = new Borough("WalthamForest",9,3);
+        
+        harrow      = new Borough("Harrow",2,5);
+        brent       = new Borough("Brent",4,5);
+        camden      = new Borough("Camden",6,5);
+        islington   = new Borough("Islington",8,5);
+        hackney     = new Borough("Hackney",10,5);
+        redbridge   = new Borough("Redbridge",12,5);
+        havering    = new Borough("Havering",14,5);
+        
+        hillingdon  = new Borough("Hillingdon",1,7);
+        ealing      = new Borough("Ealing",3,7);
+        kensington  = new Borough("KensingtonandChelsea",5,7);
+        westminster = new Borough("Westminster",7,7);
+        tower       = new Borough("TowerHamlets",9,7);
+        newham      = new Borough("Newham",11,7);
+        barking     = new Borough("BarkingandDagenham",13,7);
+        
+        hounslow    = new Borough("Hounslow",2,9);
+        hammersmith = new Borough("HammersmithandFulham",4,9);
+        wandsworth  = new Borough("Wandsworth",6,9);
+        city        = new Borough("CityofLondon",8,9);
+        greenwich   = new Borough("Greenwich",10,9);
+        bexley      = new Borough("Bexley",12,9);
+        
+        richmond    = new Borough("RichmonduponThames",3,11);
+        merton      = new Borough("Merton",5,11);
+        lambeth     = new Borough("Lambeth",7,11);
+        southwark   = new Borough("Southwark",9,11);
+        lewisham    = new Borough("Lewisham",11,11);
+        
+        kingston    = new Borough("Kingston",4,13);
+        sutton      = new Borough("Sutton",6,13);
+        croydon     = new Borough("Croydon",8,13);
+        bromley     = new Borough("Bromley",10,13);
+        
         boroughs = new ArrayList<>( Arrays.asList(
                 enfield, barnet, haringey, waltham, harrow, brent, camden, islington, hackney, redbridge,
                 havering, hillingdon, ealing, kensington, westminster, tower, newham, barking, hounslow,
@@ -184,24 +246,7 @@ public class MapViewer extends Panel
                 lewisham, kingston, sutton, croydon, bromley ));
 
     }
-
     
-    private void setHouseButton(){
-        
-        Image house = new Image("house.png");
-        
-        for (Button borough : boroughs){
-            borough.setGraphic(new ImageView(house));
-            
-            
-            /*for (String house : houses){
-                if (borough.getName() == house.substring(0, house.indexOf(' '))){
-                    
-                }
-            }*/
-        }
-    }
-
     public Pane getPanel(){
         return root;
     }
@@ -214,9 +259,9 @@ public class MapViewer extends Panel
         ImageView imageViewer = new ImageView(image);
 
         width =  image.getWidth();
-        width = width * 0.3;
+        width = width * 0.2;
         height =  image.getHeight(); 
-        height = height * 0.3;
+        height = height * 0.2;
 
         imageViewer.setPreserveRatio(true);
         imageViewer.setFitHeight(height);
@@ -229,5 +274,6 @@ public class MapViewer extends Panel
 
     public void setRange(int lowerLimit, int upperLimit) {
         houses = loadData(lowerLimit, upperLimit);
+        boroughCount = countBoroughs(houses);
     }
 }

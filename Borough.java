@@ -26,11 +26,26 @@ public class Borough
         this.name = name;
         this.x = x;
         this.y = y;
-        button = new Button();
+        button = new Button(name);
     }
     
     public String getName(){
         return name;
+    }
+    
+    public String getShortName(){
+        String shortName;
+        
+        if (name.length() > 7){
+            shortName = name.substring(0,7);
+        }
+        else {
+            shortName = name;
+        }
+        
+        shortName = "   "  + shortName.toUpperCase();
+        
+        return shortName;
     }
     
     public Button getButton(){

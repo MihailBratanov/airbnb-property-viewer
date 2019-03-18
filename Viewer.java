@@ -27,7 +27,7 @@ public class Viewer extends Application
     private Panel currentPanel;
     private ArrayList<Panel> panelList;
     WelcomeViewer welcomePanel = new WelcomeViewer();
-    MapViewer mapPanel = new MapViewer(0,0);
+    MapViewer mapPanel;
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
@@ -157,7 +157,7 @@ public class Viewer extends Application
         int lowerLimit = welcomePanel.getLowerLimit();
         int upperLimit = welcomePanel.getUpperLimit();
 
-        mapPanel.setRange(lowerLimit, upperLimit);
+        mapPanel = new MapViewer(lowerLimit, upperLimit);
         
         Pane nextPane = mapPanel.getPanel();
         
