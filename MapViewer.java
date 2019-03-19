@@ -10,10 +10,14 @@ import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
 import javafx.scene.shape.Polygon;
+import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
 import java.util.*;
 import javafx.scene.text.Text;
 import java.lang.Math; 
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.text.*;
 
 /**
  * Write a description of JavaFX class Viewer here.
@@ -45,8 +49,6 @@ public class MapViewer extends Panel
         houses = loadData(lowerLimit, upperLimit);
         
         boroughCount = countBoroughs(houses);
-        
-        System.out.print(boroughCount);
 
         root = new HBox();
 
@@ -60,10 +62,15 @@ public class MapViewer extends Panel
         windowWidth = root.getMinWidth();
         windowHeight = root.getMinHeight();
 
-        Image house = new Image("house.png");
-
         createButtons();
 
+        DropShadow shadow = new DropShadow(7,2,7, Color.GREY);
+        DropShadow noShadow = new DropShadow(7,2,7, Color.TRANSPARENT);
+        InnerShadow pressed = new InnerShadow(3,4,3, Color.WHITE);
+        
+        Text boroughHover = new Text();
+        boroughHover.setFont(new Font(20));
+        
         
         GridPane gridPane = new GridPane();
 
@@ -79,7 +86,7 @@ public class MapViewer extends Panel
 
         for (Borough borough : boroughs){
             for (String currentBorough : boroughCount.keySet()){
-                if (currentBorough.equals(borough.getName())){
+                if (currentBorough.equals(borough.getNameID())){
                     Polygon hexagon = new Polygon();
         
                     hexagon.getPoints().addAll(new Double[]{        
@@ -96,27 +103,89 @@ public class MapViewer extends Panel
                     colorGreen = colorGreen % 255;
                     colorGreen = 255 - colorGreen;
                     int colorRed = 255 - colorGreen;
-                    System.out.print(colorGreen);
                     hexagon.setFill(Color.rgb(colorRed,colorGreen,0));
 
                     hexagon.setStroke(Color.BLACK);
+
+                    hexagon.setEffect(noShadow);
                     
                     Text text = new Text(borough.getX(),borough.getY(), borough.getShortName());
                     
+                    hexagon.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(pressed);
+                        }
+                    });
+                    
+                     hexagon.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(shadow);
+                        }
+                    });
+                    
+                    hexagon.addEventFilter(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            boroughHover.setText(borough.getName());
+                            text.setText(borough.getFullName());
+                            hexagon.setEffect(shadow);
+                        }
+                    });
+                    
+                    hexagon.addEventFilter(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(null);
+                            text.setText(borough.getShortName());
+                        }
+                    });
+                                    
+                    
+                    
+                    text.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            System.out.println("Borough :" + borough.getName());
+                            hexagon.setEffect(pressed);
+                        }
+                    });
+                    
+                    text.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            System.out.println("Borough :" + borough.getName());
+                            hexagon.setEffect(shadow);
+                        }
+                    });
+                    
+                    
+                    text.addEventFilter(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(shadow);
+                            text.setText(borough.getFullName());
+                        }
+                    });
+                    
+                    text.addEventFilter(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            text.setText(borough.getShortName());
+                        }
+                    });
+                 
                     gridPane.add(hexagon,borough.getX(),borough.getY());
                     gridPane.add(text,borough.getX(),borough.getY());
                 }
             }
         }
         
-        
-        
-        
-        
 
         stackpane.getChildren().addAll(gridPane);
         FlowPane flowPane = new FlowPane();
-        flowPane.getChildren().addAll(stackpane);
+        flowPane.getChildren().addAll(stackpane,boroughHover);
 
         root.getChildren().add(flowPane);
         root.setAlignment(Pos.CENTER);
@@ -203,7 +272,7 @@ public class MapViewer extends Panel
         barnet      = new Borough("Barnet",5,3);
         
         haringey    = new Borough("Haringey",7,3);
-        waltham     = new Borough("WalthamForest",9,3);
+        waltham     = new Borough("Waltham Forest",9,3);
         
         harrow      = new Borough("Harrow",2,5);
         brent       = new Borough("Brent",4,5);
@@ -215,26 +284,26 @@ public class MapViewer extends Panel
         
         hillingdon  = new Borough("Hillingdon",1,7);
         ealing      = new Borough("Ealing",3,7);
-        kensington  = new Borough("KensingtonandChelsea",5,7);
+        kensington  = new Borough("Kensington and Chelsea",5,7);
         westminster = new Borough("Westminster",7,7);
-        tower       = new Borough("TowerHamlets",9,7);
+        tower       = new Borough("Tower Hamlets",9,7);
         newham      = new Borough("Newham",11,7);
-        barking     = new Borough("BarkingandDagenham",13,7);
+        barking     = new Borough("Barking and Dagenham",13,7);
         
         hounslow    = new Borough("Hounslow",2,9);
-        hammersmith = new Borough("HammersmithandFulham",4,9);
+        hammersmith = new Borough("Hammersmith and Fulham",4,9);
         wandsworth  = new Borough("Wandsworth",6,9);
-        city        = new Borough("CityofLondon",8,9);
+        city        = new Borough("City of London",8,9);
         greenwich   = new Borough("Greenwich",10,9);
         bexley      = new Borough("Bexley",12,9);
         
-        richmond    = new Borough("RichmonduponThames",3,11);
+        richmond    = new Borough("Richmond upon Thames",3,11);
         merton      = new Borough("Merton",5,11);
         lambeth     = new Borough("Lambeth",7,11);
         southwark   = new Borough("Southwark",9,11);
         lewisham    = new Borough("Lewisham",11,11);
         
-        kingston    = new Borough("Kingston",4,13);
+        kingston    = new Borough("Kingston upon Thames",4,13);
         sutton      = new Borough("Sutton",6,13);
         croydon     = new Borough("Croydon",8,13);
         bromley     = new Borough("Bromley",10,13);

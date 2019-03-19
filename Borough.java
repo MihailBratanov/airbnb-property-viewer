@@ -19,18 +19,31 @@ public class Borough
     private String name;
     private int x;
     private int y;
-    private Button button;
+    private String nameId;
     
     public Borough(String name, int x, int y)
     {
         this.name = name;
         this.x = x;
         this.y = y;
-        button = new Button(name);
+        this.nameId = name.replaceAll("\\s+","");
     }
     
     public String getName(){
         return name;
+    }
+    
+    public String getNameID(){
+        return nameId;
+    }
+    
+    public String getFullName(){
+        if (name.length() >7){
+            return ("  " + name.toUpperCase());
+        }
+        else{
+            return ("  " + name.toUpperCase());
+        }
     }
     
     public String getShortName(){
@@ -46,10 +59,6 @@ public class Borough
         shortName = "   "  + shortName.toUpperCase();
         
         return shortName;
-    }
-    
-    public Button getButton(){
-        return button;
     }
     
     public int getX(){
