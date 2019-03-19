@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.scene.input.*;
-import javafx.stage.Stage;
+import javafx.stage.*;
 import javafx.scene.paint.*;
 import javafx.scene.control.Alert.AlertType;
 import java.util.*;
@@ -64,14 +64,17 @@ public class Viewer extends Application
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
-        root.setMaxSize(500, 500);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        scene = new Scene(root, root.getMaxHeight(), root.getMaxWidth());
+        scene = new Scene(root);
         scene.getStylesheets().add("viewerstyle.css");
         stage.setTitle("Airbnb Property Viewer");
+        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
+        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 3 / 4);
+        stage.setMinWidth(400);
+        stage.setMinHeight(200);
         stage.setScene(scene);
-
+        
         // Show the Stage (window)
         stage.show();
     }
@@ -125,7 +128,7 @@ public class Viewer extends Application
         nextPaneButton = new Button("Next >");
         checkRangeValidity();
         previousPaneButton.setOnAction(this::previousPane);
-        nextPaneButton.setOnAction(e -> nextPane());
+        nextPaneButton.setOnAction(this::nextPane);
 
         navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
         AnchorPane.setLeftAnchor(previousPaneButton, 5.0);
@@ -141,7 +144,6 @@ public class Viewer extends Application
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
         if (isPriceRangeValid) {
-            previousPaneButton.setDisable(false);
             nextPaneButton.setDisable(false);
         }
         else {
@@ -152,7 +154,7 @@ public class Viewer extends Application
         upperLimit = welcomeViewer.getUpperLimit();
     }
 
-    private void nextPane(){
+    private void nextPane(ActionEvent event){
         panelNumber++;
         switchPanel(lowerLimit, upperLimit);
         
@@ -163,7 +165,7 @@ public class Viewer extends Application
     private void previousPane(ActionEvent event) {
         panelNumber--;
         switchPanel(lowerLimit, upperLimit);
-
+        checkRangeValidity();
         contentPane.setCenter(currentPane);
         stage.show();
     }
@@ -172,9 +174,12 @@ public class Viewer extends Application
         switch(panelNumber) {
             case 1:
                 makeWelcomePanel();
+                previousPaneButton.setDisable(true);
                 break;
             case 2:
                 makeMapPanel();
+                previousPaneButton.setDisable(false);
+                nextPaneButton.setDisable(true);
                 break;
         }
     }

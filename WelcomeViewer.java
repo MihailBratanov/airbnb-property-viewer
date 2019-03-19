@@ -157,7 +157,7 @@ public class WelcomeViewer extends Panel
             upperLimit = Integer.parseInt(upperLimitString);
         }
         else {
-            upperLimit = 9998;
+            upperLimit = -9998;
         }
     }
     
