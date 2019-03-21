@@ -31,7 +31,8 @@ public class MapViewer extends Panel
 
     private Label myLabel = new Label("0");
     private Stage stage;
-    HBox root;
+    VBox root;
+    ScrollPane scrollPane;
     private double width;
     private double height;
     private double windowWidth;
@@ -50,8 +51,8 @@ public class MapViewer extends Panel
         
         boroughCount = countBoroughs(houses);
 
-        root = new HBox();
-
+        root = new VBox();
+        
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
         StackPane stackpane = new StackPane();
@@ -188,10 +189,14 @@ public class MapViewer extends Panel
 
         stackpane.getChildren().addAll(gridPane);
 
+
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane,boroughHover);
+        
+        scrollPane = new ScrollPane();
+        scrollPane.setContent(flowPane);
 
-        root.getChildren().addAll(flowPane);
+        root.getChildren().addAll(scrollPane);
         root.setAlignment(Pos.CENTER);
     }
     
@@ -323,6 +328,7 @@ public class MapViewer extends Panel
     public Pane getPanel(){
         return root;
     }
+
 
     private Label LoadImage(){
         Label imageLabel = new Label();        
