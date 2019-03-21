@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
 import java.util.*;
+import javafx.scene.image.*;
+import javafx.scene.image.*;
+import javafx.animation.*;
+import javafx.util.Duration;
 
 /**
  * Write a description of JavaFX class WelcomeViewer here.
@@ -17,7 +21,9 @@ import java.util.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class WelcomeViewer extends Application
+
+public class WelcomeViewer extends Panel
+
 {
     // We keep track of the count, and label displaying the count:
 
@@ -30,28 +36,27 @@ public class WelcomeViewer extends Application
     private double windowHeight;
     private int lowerLimit;
     private int upperLimit;
-    
-    @Override
-    public void start(Stage stage) throws Exception
-    {
-        // Create a Button or any control item
+    final ComboBox from = new ComboBox();
+    final ComboBox to = new ComboBox();
 
-        // Create a Button or any control item
-        this.stage = stage;
+public static Duration ZERO;
 
-        // Create a new grid pane
+    public WelcomeViewer(){
         root = new VBox();
-
+        
+   
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
         StackPane stackpane = new StackPane();
+        
+        root.setMinSize(500.0, 500.0);
+        windowWidth= root.getMinWidth();
+        windowHeight=root.getMinHeight();
+        
+       
+        
 
-        windowWidth = root.getMinWidth();
-        windowHeight = root.getMinHeight();
-
-        //Label imageLabel = LoadImage();
-
-        final ComboBox from = new ComboBox();
+        
         from.getItems().addAll(
             "--Please Select--",
             "5",
@@ -82,15 +87,14 @@ public class WelcomeViewer extends Application
             
         from.setValue("--Please Select--");
             
-            
         String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
-        
         if (lowerLimitString != "--Please Select--"){
             lowerLimit = Integer.parseInt(lowerLimitString);
-        }
+        }    
+
             
 
-        final ComboBox to =new ComboBox();
+
         to.getItems().addAll(
             "--Please Select--",
             "5",
@@ -118,50 +122,142 @@ public class WelcomeViewer extends Application
             "6000",
             "6500",
             "7000");
-            
+
         to.setValue("--Please Select--");
         
-        String upperLimitString = from.getSelectionModel().getSelectedItem().toString();
-        if (lowerLimitString != "--Please Select--"){
-            upperLimit = Integer.parseInt(upperLimitString);
-            to.setValue(upperLimit);
-        }
+        ProgressBar loadingBar=new ProgressBar();
+        Label succesfully = new Label("Succesfully loaded!");
+
+        
+
+
+        
             
+        
+        
         Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
         Label toLabel=new Label("To");
-
+        
         HBox range = new HBox();
+        VBox airbnb=new VBox();
+        HBox loadingBox=new HBox();
+        HBox succesfullyLoaded=new HBox();
+        
+        Label imageLabel = LoadImage();
+        Label loading = new Label("loading..."); 
+        
+    
+        
         range.getChildren().addAll(fromLabel,from,toLabel,to);
+        succesfullyLoaded.getChildren().addAll(succesfully);
+        airbnb.getChildren().addAll(imageLabel);
+        loadingBox.getChildren().addAll(loading,loadingBar);
+        
         range.setAlignment(Pos.TOP_RIGHT);
-        root.getChildren().addAll(range);
+        airbnb.setAlignment(Pos.CENTER);
+        loadingBox.setAlignment(Pos.CENTER);
+        succesfullyLoaded.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(range,airbnb,loadingBox,succesfullyLoaded);
+        
+    }
+    
 
-        //set an action on the button using method reference
-        //myButton.setOnAction(this::buttonClick);
+     private void delay(int millisec)
+    {
+        try {
+            Thread.sleep(millisec);
+        }
+        catch (InterruptedException ie) {
+            // wake up
+        }
+    }
+    
+    public void setComboBoxAction(){
+        from.setOnAction(e -> setLowerLimit());
+        to.setOnAction(e -> setUpperLimit());
+    }
+    
+     private Label LoadImage(){
+        Label imageLabel = new Label();        
+        String imagePath = "airbnb.png";
+        Image image = new Image(imagePath);
 
-        // Add the button and label into the pane
+        ImageView imageViewer = new ImageView(image);
 
+        width =  image.getWidth();
+        width = width/2;
+        height =  image.getHeight(); 
+        height = height/2;
 
-        // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
-        stage.setTitle("Welcome");
-        stage.setScene(scene);
-
-        // Show the Stage (window)
-        stage.show();
+        imageViewer.setPreserveRatio(true);
+        imageViewer.setFitHeight(height);
+        imageViewer.setFitWidth(width);
+        imageViewer.setSmooth(true);
+        imageLabel.setGraphic(imageViewer);
+       
+        return imageLabel;
+    }
+    
+    public void setComboBox(int lowerLimit, int upperLimit) {
+        String fromValue = Integer.toString(lowerLimit);
+        String toValue = Integer.toString(upperLimit);
+        from.setValue(fromValue);
+        to.setValue(toValue);
+    }
+    
+    private void setLowerLimit() {
+        String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
+        if (lowerLimitString != "--Please Select--"){
+            lowerLimit = Integer.parseInt(lowerLimitString);
+        }
+        else {
+            lowerLimit = 9999;
+        }
+    }
+    
+    private void setUpperLimit() {
+        String upperLimitString = to.getSelectionModel().getSelectedItem().toString();
+        if (upperLimitString != "--Please Select--"){
+            upperLimit = Integer.parseInt(upperLimitString);
+        }
+        else {
+            upperLimit = 9998;
+        }
+    }
+    
+    public boolean checkValid() {
+        setLowerLimit();
+        setUpperLimit();
+        if (lowerLimit <= upperLimit) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+ 
+    public Pane getPanel(){
+        return root;
     }
 
-    public Integer getLowerLimit()
+    public int getLowerLimit()
     {
         return lowerLimit;
     }
 
-    public Integer getUpperLimit()
+    public int getUpperLimit()
     {
         return upperLimit;
     }
-
-    public Pane getPanel(){
-        return root;
+    
+    public ComboBox getFromComboBox()
+    {
+        return from;
+    }
+    
+    public ComboBox getToComboBox()
+    {
+        return to;
     }
 }

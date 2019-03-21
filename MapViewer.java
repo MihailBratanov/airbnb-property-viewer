@@ -17,24 +17,19 @@ import javafx.geometry.Pos;
  * @version (a version number or a date)
  */
 
-public class MapViewer extends Application
+public class MapViewer extends Panel
 {
 
     private Label myLabel = new Label("0");
     private Stage stage;
-    VBox root;
+    HBox root;
     private double width;
     private double height;
     private double windowWidth;
     private double windowHeight;
-
-    @Override
-    public void start(Stage stage)
-    {
-        // Create a Button or any control item
-        this.stage = stage;
-        // Create a new grid pane
-        root = new VBox();
+    
+    public MapViewer(int lowerLimit, int upperLimit){
+        root = new HBox();
         
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
@@ -66,9 +61,7 @@ public class MapViewer extends Application
         Button towh = new Button("Tower hill");
         Button newh = new Button("Newh");
         Button bark = new Button("Bark");
-        
-        
-        
+
         Button houn = new Button("Hounslow");
         Button hamm = new Button("Hamm");
         Button wand = new Button("Wand");
@@ -111,7 +104,7 @@ public class MapViewer extends Application
         gridPane.add(hack,10,5);
         gridPane.add(redb,12,5);
         gridPane.add(hav,14,5);
-        
+         
         gridPane.add(hill,1,7);
         gridPane.add(eali,3,7);
         gridPane.add(kens,5,7);
@@ -139,29 +132,19 @@ public class MapViewer extends Application
         gridPane.add(brom,10,13);
 
         
-
-        //Pane contentPane = new BorderPane(null, null, null, null, imageLabel);
-        //center north east south west
-        //gridPane.getChildren().addAll(test);
-        
         stackpane.getChildren().addAll(imageLabel, gridPane);
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane);
-        root.getChildren().add(flowPane);
         
-
-        // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, windowWidth, windowHeight);
-        stage.setTitle("Airbnb Property Viewer");
-        stage.setScene(scene);
-        stage.show();
+        
+        root.getChildren().add(flowPane);
+        root.setAlignment(Pos.CENTER);
     }
     
     public Pane getPanel(){
-
         return root;
     }
-
+    
     private Label LoadImage(){
         Label imageLabel = new Label();        
         String imagePath = "boroughs.png";
@@ -170,9 +153,9 @@ public class MapViewer extends Application
         ImageView imageViewer = new ImageView(image);
 
         width =  image.getWidth();
-        width = width / 4;
+        width = width / 6;
         height =  image.getHeight(); 
-        height = height / 4;
+        height = height / 6;
 
         imageViewer.setPreserveRatio(true);
         imageViewer.setFitHeight(height);
@@ -181,5 +164,9 @@ public class MapViewer extends Application
         imageLabel.setGraphic(imageViewer);
        
         return imageLabel;
+    }
+    
+    public void setRange(int lowerLimit, int upperLimit) {
+        
     }
 }

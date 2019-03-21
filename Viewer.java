@@ -2,11 +2,13 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.geometry.Insets;
+import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import javafx.scene.paint.*;
 import javafx.scene.input.*;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
 import java.util.*;
 
 /**
@@ -19,38 +21,49 @@ import java.util.*;
 public class Viewer extends Application
 {
     // We keep track of the count, and label displaying the count:
-    private int count = 0;
-    private Label myLabel = new Label("0");
     private Stage stage;
     private BorderPane contentPane;
     private Pane panelPane;
+    private int panelNumber;
+    private WelcomeViewer welcomeViewer;
+    private MapViewer mapViewer;
+    private Pane currentPane;
+    
     private Pane navigationPane;
     private BorderPane root;
     private Stack panelStack;
-    
+
+    private Scene scene;
+    private Button previousPaneButton;
+    private Button nextPaneButton;
+    private boolean isPriceRangeValid = false;
+    private int lowerLimit;
+    private int upperLimit;
+
+    private static final String VERSION = "Version 0.0.1";
+
     @Override
     public void start(Stage stage) throws Exception
     {
-        // Create a Button or any control item
         this.stage = stage;
         // Create a new grid pane
-
-        // panelPane.setMinSize(300,75);  // temp. placeholder
-        
-        
-       // makeNavigationPane(navigationPane);
-        
-        contentPane = new BorderPane(makePanelPane(), null, null, makeNavigationPane(), null);
+        welcomeViewer = new WelcomeViewer();
+        welcomeViewer.setComboBoxAction();
+        welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+        panelNumber = 1;
+        panelPane = welcomeViewer.getPanel();
+        contentPane = new BorderPane();
         contentPane.setCenter(panelPane);
-        contentPane.setBottom(navigationPane);
+        contentPane.setBottom(makeNavigationPane());
 
-        //root.getChildren().add(contentPane);
         root = new BorderPane();
-        root.setBottom(contentPane);
+        root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        Scene scene = new Scene(root, root.getMinHeight(), root.getMinWidth());
+        scene = new Scene(root, root.getMaxHeight(), root.getMaxWidth());
         scene.getStylesheets().add("viewerstyle.css");
         stage.setTitle("Airbnb Property Viewer");
         stage.setScene(scene);
@@ -59,11 +72,13 @@ public class Viewer extends Application
         stage.show();
     }
 
+
     private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
-        
+
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
+        aboutViewerItem.setOnAction(this::aboutProgram);
         SeparatorMenuItem propertyMenuTopSeparator = new SeparatorMenuItem();
         MenuItem hideViewerItem = new MenuItem("Hide");
         hideViewerItem.setOnAction(this::hideViewer);
@@ -76,41 +91,41 @@ public class Viewer extends Application
         quitViewerItem.setOnAction(this::quitViewer);
         quitViewerItem.setAccelerator(new KeyCodeCombination(KeyCode.Q, KeyCodeCombination.SHORTCUT_DOWN));
         propertyMenu.getItems().addAll(aboutViewerItem, propertyMenuTopSeparator, hideViewerItem, showViewerItem, propertyMenuBottomSeparator, quitViewerItem);
-        
+
         Menu viewMenu = new Menu ("View");
         MenuItem zoomInItem = new MenuItem("Zoom In");
+        zoomInItem.setOnAction(this::zoomIn);
+        //zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.+, KeyCodeCombination.SHORTCUT_DOWN));
         MenuItem actualSizeItem = new MenuItem("Actual Size");
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
+        zoomOutItem.setOnAction(this::zoomOut);
+        //zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.-, KeyCodeCombination.SHORTCUT_DOWN));
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
+        fullScreenItem.setOnAction(this::fullScreen);
         viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
-        
+
         Menu helpMenu = new Menu("Help");
         MenuItem instructionItem = new MenuItem("Instructions");
+        instructionItem.setOnAction(this::instruction);
         helpMenu.getItems().addAll(instructionItem);
-        
-        Menu aboutMenu = new Menu("About");
-        MenuItem aboutItem = new MenuItem("About this program...");
-        // aboutItem.setOnAction();
-        aboutMenu.getItems().addAll(aboutItem);
 
-        menuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu, aboutMenu);
+        menuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu);
         return menuBar;
     }
 
     private Pane makeNavigationPane(){
         navigationPane = new AnchorPane();
         navigationPane.setId("navigationpane");
-        Button previousPaneButton = new Button("< Back");
-        Button nextPaneButton = new Button("Next >");
-        previousPaneButton.setDisable(true);
-        nextPaneButton.setDisable(false);
+        previousPaneButton = new Button("< Back");
+        nextPaneButton = new Button("Next >");
+        checkRangeValidity();
         previousPaneButton.setOnAction(this::previousPane);
-        nextPaneButton.setOnAction(this::nextPane);
-        
+        nextPaneButton.setOnAction(e -> nextPane());
+
         navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
-        AnchorPane.setLeftAnchor(previousPaneButton, 10.0);
-        AnchorPane.setRightAnchor(nextPaneButton, 10.0);
+        AnchorPane.setLeftAnchor(previousPaneButton, 5.0);
+        AnchorPane.setRightAnchor(nextPaneButton, 5.0);
         AnchorPane.setTopAnchor(previousPaneButton, 5.0);
         AnchorPane.setTopAnchor(nextPaneButton, 5.0);
         AnchorPane.setBottomAnchor(previousPaneButton, 5.0);
@@ -118,59 +133,100 @@ public class Viewer extends Application
         
         return navigationPane;
     }
-    
-    private Pane makePanelPane() {
-        Pane panelPane = new Pane();
-        /*MapViewer map = new MapViewer();
-        map.start(stage);
-        Pane panelPane = map.getMap();*/
-        return panelPane;
-    }
-    
-    private void nextPane(ActionEvent event){
-        MapViewer newPanel = new MapViewer();
-        newPanel.start(stage);
-        panelPane = newPanel.getPanel();
-        updateScreen(stage);
-        
-        panelStack.push(panelPane);
-    }
-    
-    private void previousPane(ActionEvent event) {
-        /*panelPane = panelStack.pop().getPanel();
-        updateScreen(stage);*/
-    }   
 
-    
-    private void updateScreen(Stage stage){
-        try {
-            start(stage);
+    private void checkRangeValidity() {
+        isPriceRangeValid = welcomeViewer.checkValid();
+        if (isPriceRangeValid) {
+            previousPaneButton.setDisable(false);
+            nextPaneButton.setDisable(false);
         }
-        catch(Exception NullPointerException){
-            updateScreen(stage);
+        else {
+            previousPaneButton.setDisable(true);
+            nextPaneButton.setDisable(true);
+        }
+        lowerLimit = welcomeViewer.getLowerLimit();
+        upperLimit = welcomeViewer.getUpperLimit();
+    }
+
+    private void nextPane(){
+        panelNumber++;
+        switchPanel(lowerLimit, upperLimit);
+        
+        System.out.println(lowerLimit + " " + upperLimit);
+        contentPane.setCenter(currentPane);
+        stage.show();
+    }
+
+    private void previousPane(ActionEvent event) {
+        panelNumber--;
+        switchPanel(lowerLimit, upperLimit);
+
+        System.out.println(lowerLimit + " " + upperLimit);
+        contentPane.setCenter(currentPane);
+        stage.show();
+    }
+
+    private void switchPanel(int lowerLimit, int upperLimit) {
+        switch(panelNumber) {
+            case 1:
+                makeWelcomePanel();
+                break;
+            case 2:
+                makeMapPanel();
+                break;
         }
     }
     
+    private void makeWelcomePanel() {
+        welcomeViewer = new WelcomeViewer();
+        welcomeViewer.setComboBoxAction();
+        welcomeViewer.setComboBox(lowerLimit, upperLimit);
+        welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+
+        panelNumber = 1;
+        currentPane = welcomeViewer.getPanel();
+    }
+    
+    private void makeMapPanel() {
+        mapViewer = new MapViewer(lowerLimit, upperLimit);
+        currentPane = mapViewer.getPanel();
+    }
+    
+    // Menubar Buttons
+    private void aboutProgram(ActionEvent event) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("About Property Viewer");
+        alert.setHeaderText(null);  // Alerts have an optionl header. We don't want one.
+        alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
+        alert.showAndWait();
+    }
+
     private void hideViewer(ActionEvent event) {
         stage.hide();
     }
-    
+
     private void showViewer(ActionEvent event) {
         stage.show();
     }
-    
+
     private void quitViewer(ActionEvent event) {
         System.exit(0);
     }
-    
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
-     */
-    private void buttonClick(ActionEvent event)
-    {
-        // Counts number of button clicks and shows the result on a label
-        count = count + 1;
-        myLabel.setText(Integer.toString(count));
+
+    private void zoomIn(ActionEvent event) {
+
+    }
+
+    private void zoomOut(ActionEvent event) {
+
+    }
+
+    private void fullScreen(ActionEvent event) {
+        stage.setFullScreen(true);
+    }
+
+    private void instruction(ActionEvent event) {
+
     }
 }
