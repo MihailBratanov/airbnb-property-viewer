@@ -18,7 +18,7 @@ import java.lang.Math;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.text.*;
-
+import javafx.scene.control.Slider;
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -57,12 +57,15 @@ public class MapViewer extends Panel
         StackPane stackpane = new StackPane();
 
         ArrayList<Button> bouroughs = new ArrayList<>();
+        
+        Slider priceSlider = new Slider(lowerLimit, 7000, upperLimit);
+        priceSlider.setShowTickMarks(true);
 
         Label imageLabel = LoadImage();
         windowWidth = root.getMinWidth();
         windowHeight = root.getMinHeight();
 
-        createButtons();
+        createBoroughs();
 
         DropShadow shadow = new DropShadow(7,2,7, Color.GREY);
         DropShadow noShadow = new DropShadow(7,2,7, Color.TRANSPARENT);
@@ -184,10 +187,11 @@ public class MapViewer extends Panel
         
 
         stackpane.getChildren().addAll(gridPane);
+
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane,boroughHover);
 
-        root.getChildren().add(flowPane);
+        root.getChildren().addAll(flowPane);
         root.setAlignment(Pos.CENTER);
     }
     
@@ -265,7 +269,7 @@ public class MapViewer extends Panel
         return boroughCount;
     }
     
-    private void createButtons(){
+    private void createBoroughs(){
         
         enfield     = new Borough("Enfield",8,1);
 
