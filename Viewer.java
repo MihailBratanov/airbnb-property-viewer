@@ -69,6 +69,7 @@ public class Viewer extends Application
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
+        root.setMaxSize(800, 800);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
