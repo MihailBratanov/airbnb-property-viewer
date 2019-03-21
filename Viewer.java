@@ -15,6 +15,9 @@ import javafx.scene.shape.*;
 import javafx.util.*;
 import java.util.*;
 
+import javafx.scene.image.*;
+import javafx.scene.*;
+
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -49,20 +52,27 @@ public class Viewer extends Application
     Circle dotWelcomePanel;
     Circle dotMapPanel;
     
+    ScrollPane centerPane;
+    
 
     @Override
     public void start(Stage stage) throws Exception
     {
         this.stage = stage;
         // Create a new grid pane
+        //ScrollPane centerPane = new ScrollPane();
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
         panelNumber = 1;
         currentPane = welcomeViewer.getPanel();
+        //centerPane.setContent(currentPane);
+        //centerPane.setPrefSize(800, 800);
+        //centerPane.setVmax(440);
         contentPane = new BorderPane();
         contentPane.setCenter(currentPane);
+
         contentPane.setBottom(makeNavigationPane());
 
         root = new BorderPane();
@@ -74,6 +84,23 @@ public class Viewer extends Application
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
         scene.getStylesheets().add("viewerstyle.css");
+        
+        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Image image = new Image("cursor_clicked.png");
+                scene.setCursor(new ImageCursor(image));
+            }
+        });
+        
+        scene.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Image image = new Image("cursor.png");
+                scene.setCursor(new ImageCursor(image));
+            }
+        });
+        
         stage.setTitle("Airbnb Property Viewer");
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
         stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 3 / 4);
@@ -110,6 +137,7 @@ public class Viewer extends Application
         zoomInItem.setOnAction(this::zoomIn);
         zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.PLUS, KeyCodeCombination.SHORTCUT_DOWN));
         MenuItem actualSizeItem = new MenuItem("Actual Size");
+        actualSizeItem.setOnAction(this::actualSize);
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
         zoomOutItem.setOnAction(this::zoomOut);
         zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.MINUS, KeyCodeCombination.SHORTCUT_DOWN));
@@ -231,6 +259,7 @@ public class Viewer extends Application
     private void makeMapPanel() {
         mapViewer = new MapViewer(lowerLimit, upperLimit);
         currentPane = mapViewer.getPanel();
+        //centerPane.setContent(mapViewer.getPanel());
     }
     
     private void makeStatPanel() {
@@ -276,11 +305,18 @@ public class Viewer extends Application
     }
 
     private void zoomIn(ActionEvent event) {
-        
+        currentPane.setScaleX(currentPane.getScaleX() * 1.1);
+        currentPane.setScaleY(currentPane.getScaleY() * 1.1);
+    }
+    
+    private void actualSize(ActionEvent event) {
+        currentPane.setScaleX(1);
+        currentPane.setScaleY(1);
     }
 
     private void zoomOut(ActionEvent event) {
-
+        currentPane.setScaleX(currentPane.getScaleX() / 1.1);
+        currentPane.setScaleY(currentPane.getScaleY() / 1.1);
     }
 
     private void fullScreen(ActionEvent event) {
