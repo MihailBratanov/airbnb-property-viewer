@@ -40,14 +40,9 @@ public class WelcomeViewer extends Panel
 
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
-        StackPane stackpane = new StackPane();
-
         windowWidth = root.getMinWidth();
         windowHeight = root.getMinHeight();
 
-        //Label imageLabel = LoadImage();
-
-        
         from.getItems().addAll(
             "--Please Select--",
             "5",
@@ -83,9 +78,6 @@ public class WelcomeViewer extends Panel
             lowerLimit = Integer.parseInt(lowerLimitString);
         }    
 
-            
-
-
         to.getItems().addAll(
             "--Please Select--",
             "5",
@@ -115,16 +107,14 @@ public class WelcomeViewer extends Panel
             "7000");
             
         to.setValue("--Please Select--");
-        
 
-        
-            
-        Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
         Label toLabel=new Label("To");
 
         HBox range = new HBox();
         range.getChildren().addAll(fromLabel,from,toLabel,to);
+        // range.setSpacing(10);
+        
         range.setAlignment(Pos.TOP_RIGHT);
         root.getChildren().addAll(range);
     }

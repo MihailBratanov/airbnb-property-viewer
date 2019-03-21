@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.animation.*;
 import javafx.geometry.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -10,6 +11,8 @@ import javafx.scene.input.*;
 import javafx.stage.*;
 import javafx.scene.paint.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.shape.*;
+import javafx.util.*;
 import java.util.*;
 
 /**
@@ -24,7 +27,6 @@ public class Viewer extends Application
     // We keep track of the count, and label displaying the count:
     private Stage stage;
     private BorderPane contentPane;
-    private Pane panelPane;
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
@@ -32,9 +34,8 @@ public class Viewer extends Application
     private Pane currentPane;
     
 
-    private Pane navigationPane;
+    private BorderPane navigationPane;
     private BorderPane root;
-    private Stack panelStack;
 
     private Scene scene;
     private Button previousPaneButton;
@@ -44,6 +45,10 @@ public class Viewer extends Application
     private int upperLimit;
 
     private static final String VERSION = "Version 0.0.1";
+    
+    Circle dotWelcomePanel;
+    Circle dotMapPanel;
+    
 
     @Override
     public void start(Stage stage) throws Exception
@@ -55,9 +60,9 @@ public class Viewer extends Application
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
         panelNumber = 1;
-        panelPane = welcomeViewer.getPanel();
+        currentPane = welcomeViewer.getPanel();
         contentPane = new BorderPane();
-        contentPane.setCenter(panelPane);
+        contentPane.setCenter(currentPane);
         contentPane.setBottom(makeNavigationPane());
 
         root = new BorderPane();
@@ -113,7 +118,7 @@ public class Viewer extends Application
         viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
 
         Menu helpMenu = new Menu("Help");
-        MenuItem instructionItem = new MenuItem("Instructions");
+        MenuItem instructionItem = new MenuItem("Viewer Instructions");
         instructionItem.setOnAction(this::instruction);
         helpMenu.getItems().addAll(instructionItem);
 
@@ -122,22 +127,31 @@ public class Viewer extends Application
     }
 
     private Pane makeNavigationPane(){
-        navigationPane = new AnchorPane();
+        navigationPane = new BorderPane();
         navigationPane.setId("navigationpane");
         previousPaneButton = new Button("< Back");
         nextPaneButton = new Button("Next >");
         checkRangeValidity();
         previousPaneButton.setOnAction(this::previousPane);
         nextPaneButton.setOnAction(this::nextPane);
-
-        navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
-        AnchorPane.setLeftAnchor(previousPaneButton, 5.0);
-        AnchorPane.setRightAnchor(nextPaneButton, 5.0);
-        AnchorPane.setTopAnchor(previousPaneButton, 5.0);
-        AnchorPane.setTopAnchor(nextPaneButton, 5.0);
-        AnchorPane.setBottomAnchor(previousPaneButton, 5.0);
-        AnchorPane.setBottomAnchor(nextPaneButton, 5.0);
         
+        HBox dots = new HBox(8);
+        dotWelcomePanel = new Circle();
+        dotWelcomePanel.setRadius(3);
+        dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
+        dotWelcomePanel.setStroke(Color.BLACK);
+        dotMapPanel = new Circle();
+        dotMapPanel.setRadius(3);
+        dotMapPanel.setFill(javafx.scene.paint.Color.GRAY);
+        dotMapPanel.setStroke(Color.BLACK);
+        dots.getChildren().addAll(dotWelcomePanel, dotMapPanel);
+        dots.setAlignment(Pos.CENTER);
+
+        navigationPane.setCenter(dots);
+        navigationPane.setLeft(previousPaneButton);
+        navigationPane.setRight(nextPaneButton);
+        navigationPane.setPadding(new Insets(5, 5, 5, 5));
+
         return navigationPane;
     }
 
@@ -156,15 +170,18 @@ public class Viewer extends Application
 
     private void nextPane(ActionEvent event){
         panelNumber++;
+        //paneMoveLeft();
         switchPanel(lowerLimit, upperLimit);
-        
+        //paneMoveLeft();
         contentPane.setCenter(currentPane);
         stage.show();
     }
 
     private void previousPane(ActionEvent event) {
         panelNumber--;
+        //paneMoveRight();
         switchPanel(lowerLimit, upperLimit);
+        //paneMoveRight();
         checkRangeValidity();
         contentPane.setCenter(currentPane);
         stage.show();
@@ -175,11 +192,26 @@ public class Viewer extends Application
             case 1:
                 makeWelcomePanel();
                 previousPaneButton.setDisable(true);
+                switchDots();
                 break;
             case 2:
                 makeMapPanel();
                 previousPaneButton.setDisable(false);
                 nextPaneButton.setDisable(true);
+                switchDots();
+                break;
+        }
+    }
+    
+    private void switchDots() {
+        switch(panelNumber) {
+            case 1:
+                dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
+                dotMapPanel.setFill(javafx.scene.paint.Color.GRAY);
+                break;
+            case 2:
+                dotWelcomePanel.setFill(javafx.scene.paint.Color.GRAY);
+                dotMapPanel.setFill(javafx.scene.paint.Color.WHITE);
                 break;
         }
     }
@@ -205,6 +237,22 @@ public class Viewer extends Application
         currentPane = mapViewer.getPanel();
     }
     
+    private void paneMoveLeft() {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
+        double distance = stage.getWidth() * -1;
+        tt.setByX(distance);
+        tt.setAutoReverse(true);
+        tt.play();
+    }
+    
+    private void paneMoveRight() {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
+        double distance = stage.getWidth();
+        tt.setByX(distance);
+        tt.setAutoReverse(true);
+        tt.play();
+    }
+    
     // Menubar Buttons
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -227,7 +275,7 @@ public class Viewer extends Application
     }
 
     private void zoomIn(ActionEvent event) {
-
+        
     }
 
     private void zoomOut(ActionEvent event) {
