@@ -151,7 +151,6 @@ public class MapViewer extends Panel
                     text.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
-                            System.out.println("Borough :" + borough.getName());
                             hexagon.setEffect(pressed);
                         }
                     });
@@ -159,7 +158,6 @@ public class MapViewer extends Panel
                     text.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
-                            System.out.println("Borough :" + borough.getName());
                             hexagon.setEffect(shadow);
                         }
                     });
