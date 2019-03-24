@@ -1,22 +1,19 @@
+import javafx.animation.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.animation.*;
 import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ScrollPane.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
-import javafx.scene.input.*;
-import javafx.stage.*;
-import javafx.scene.paint.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.shape.*;
+import javafx.stage.*;
 import javafx.util.*;
-import java.util.*;
-
-import javafx.scene.image.*;
-import javafx.scene.*;
 
 /**
  * Write a description of JavaFX class Viewer here.
@@ -35,9 +32,14 @@ public class Viewer extends Application
     private MapViewer mapViewer;
     private StatViewer statViewer;
     private Pane currentPane;
+    VBox centerPane;
     
 
     private BorderPane navigationPane;
+    private HBox dots;
+    private Circle dotWelcomePanel;
+    private Circle dotMapPanel;
+    
     private BorderPane root;
 
     private Scene scene;
@@ -49,10 +51,7 @@ public class Viewer extends Application
 
     private static final String VERSION = "Version 0.0.1";
     
-    Circle dotWelcomePanel;
-    Circle dotMapPanel;
-    
-    ScrollPane centerPane;
+
     
 
     @Override
@@ -60,19 +59,19 @@ public class Viewer extends Application
     {
         this.stage = stage;
         // Create a new grid pane
-        //ScrollPane centerPane = new ScrollPane();
+        centerPane = new VBox();
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-        panelNumber = 1;
         currentPane = welcomeViewer.getPanel();
-        //centerPane.setContent(currentPane);
-        //centerPane.setPrefSize(800, 800);
-        //centerPane.setVmax(440);
-        contentPane = new BorderPane();
-        contentPane.setCenter(currentPane);
+        panelNumber = 1;
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
 
+        // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        
+        contentPane = new BorderPane();
+        contentPane.setCenter(centerPane);
         contentPane.setBottom(makeNavigationPane());
 
         root = new BorderPane();
@@ -83,9 +82,8 @@ public class Viewer extends Application
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
-        scene.getStylesheets().add("viewerstyle.css");
         
-        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+        /*scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Image image = new Image("cursor_clicked.png");
@@ -99,7 +97,7 @@ public class Viewer extends Application
                 Image image = new Image("cursor.png");
                 scene.setCursor(new ImageCursor(image));
             }
-        });
+        });*/
         
         stage.setTitle("Airbnb Property Viewer");
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
@@ -157,23 +155,25 @@ public class Viewer extends Application
 
     private Pane makeNavigationPane(){
         navigationPane = new BorderPane();
-        navigationPane.setId("navigationpane");
+        navigationPane.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 2px 0px 0px 0px;");                
         previousPaneButton = new Button("< Back");
         nextPaneButton = new Button("Next >");
         checkRangeValidity();
         previousPaneButton.setOnAction(this::previousPane);
         nextPaneButton.setOnAction(this::nextPane);
         
-        HBox dots = new HBox(8);
+        dots = new HBox(8);
+        
         dotWelcomePanel = new Circle();
         dotWelcomePanel.setRadius(3);
-        dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
         dotWelcomePanel.setStroke(Color.BLACK);
+        
         dotMapPanel = new Circle();
         dotMapPanel.setRadius(3);
-        dotMapPanel.setFill(javafx.scene.paint.Color.GRAY);
         dotMapPanel.setStroke(Color.BLACK);
+        
         dots.getChildren().addAll(dotWelcomePanel, dotMapPanel);
+        switchDots();
         dots.setAlignment(Pos.CENTER);
 
         navigationPane.setCenter(dots);
@@ -200,19 +200,26 @@ public class Viewer extends Application
     private void nextPane(ActionEvent event){
         panelNumber++;
         //paneMoveLeft();
+        centerPane.getChildren().clear();
         switchPanel(lowerLimit, upperLimit);
         //paneMoveLeft();
-        contentPane.setCenter(currentPane);
+        
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+        contentPane.setCenter(centerPane);
+        //contentPane.setBottom(navigationPane);
         stage.show();
     }
 
     private void previousPane(ActionEvent event) {
         panelNumber--;
         //paneMoveRight();
+        centerPane.getChildren().clear();
         switchPanel(lowerLimit, upperLimit);
         //paneMoveRight();
         checkRangeValidity();
-        contentPane.setCenter(currentPane);
+        
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, contentPane));
+        contentPane.setCenter(centerPane);
         stage.show();
     }
 
@@ -267,6 +274,18 @@ public class Viewer extends Application
         currentPane = mapViewer.getPanel();
     }
     
+    private ScrollPane makeScrollPane(Pane child, Pane parent) {
+        ScrollPane sp = new ScrollPane();
+        sp.setContent(child);
+        sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+        sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+        child.prefWidthProperty().bind(sp.widthProperty());
+        child.prefHeightProperty().bind(sp.heightProperty());
+        sp.prefWidthProperty().bind(parent.widthProperty());
+        sp.prefHeightProperty().bind(parent.heightProperty());
+        return sp;
+    }
+    
     private void paneMoveLeft() {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
         double distance = stage.getWidth() * -1;
@@ -307,6 +326,8 @@ public class Viewer extends Application
     private void zoomIn(ActionEvent event) {
         currentPane.setScaleX(currentPane.getScaleX() * 1.1);
         currentPane.setScaleY(currentPane.getScaleY() * 1.1);
+        System.out.println(currentPane.getHeight());
+        System.out.println(currentPane.getWidth());
     }
     
     private void actualSize(ActionEvent event) {
@@ -324,6 +345,10 @@ public class Viewer extends Application
     }
 
     private void instruction(ActionEvent event) {
-
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Viewer Instructions");
+        alert.setHeaderText("Instructions to this program:");  // Alerts have an optionl header. We don't want one.
+        alert.setContentText("Ting tang wala wala bing bang\nTing tang wala wala bing bang\nTing tang wala wala bing bang\n");
+        alert.showAndWait();
     }
 }

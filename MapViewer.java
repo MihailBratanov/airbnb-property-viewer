@@ -185,19 +185,20 @@ public class MapViewer extends Panel
                 }
             }
         }
-        
 
         stackpane.getChildren().addAll(gridPane);
 
-
         FlowPane flowPane = new FlowPane();
         flowPane.getChildren().addAll(stackpane,boroughHover);
-        
+        flowPane.prefWidthProperty().bind(root.widthProperty());
+        flowPane.prefHeightProperty().bind(root.heightProperty());
+
         scrollPane = new ScrollPane();
         scrollPane.setContent(flowPane);
-
-        root.getChildren().addAll(scrollPane);
+        
+        root.getChildren().addAll(flowPane);
         root.setAlignment(Pos.CENTER);
+
     }
     
     private double hexPointX(double degree){
