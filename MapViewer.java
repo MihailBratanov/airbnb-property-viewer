@@ -95,8 +95,8 @@ public class MapViewer extends Panel
             gridPane.getRowConstraints().add(row);
         }
 
-        for (int i = 0; i < 16; i ++){
-            ColumnConstraints col = new ColumnConstraints(height/15);
+        for (int i = 0; i < 16; i ++) {
+            ColumnConstraints col = new ColumnConstraints(height / 15);
             gridPane.getColumnConstraints().add(col);
         }
 
@@ -126,11 +126,16 @@ public class MapViewer extends Panel
                     hexagon.setEffect(noShadow);
                     
                     Text text = new Text(borough.getX(),borough.getY(), borough.getShortName());
+
+                    double initialScaleX = hexagon.getScaleX();
+                    double initialScaleY = hexagon.getScaleY();
                     
                     hexagon.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(pressed);
+                            hexagon.setScaleX(initialScaleX);
+                            hexagon.setScaleY(initialScaleY);
                             try {
                                 webView.start(webViewStage);
                                 webView.showByPlace(borough.getFullName());
@@ -147,6 +152,8 @@ public class MapViewer extends Panel
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(shadow);
+                            hexagon.setScaleX(initialScaleX * 1.2);
+                            hexagon.setScaleY(initialScaleY * 1.2);
                         }
                     });
                     
@@ -154,8 +161,10 @@ public class MapViewer extends Panel
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             boroughHover.setText(borough.getName());
-                            text.setText(borough.getFullName());
+                            //text.setText(borough.getFullName());
                             hexagon.setEffect(shadow);
+                            hexagon.setScaleX(initialScaleX * 1.2);
+                            hexagon.setScaleY(initialScaleY * 1.2);
                         }
                     });
                     
@@ -163,7 +172,9 @@ public class MapViewer extends Panel
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(null);
-                            text.setText(borough.getShortName());
+                            //text.setText(borough.getShortName());
+                            hexagon.setScaleX(initialScaleX);
+                            hexagon.setScaleY(initialScaleY);
                         }
                     });
                                     
@@ -189,6 +200,8 @@ public class MapViewer extends Panel
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(shadow);
                             text.setText(borough.getFullName());
+                            hexagon.setScaleX(initialScaleX * 1.2);
+                            hexagon.setScaleY(initialScaleY * 1.2);
                         }
                     });
                     
@@ -196,6 +209,8 @@ public class MapViewer extends Panel
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             text.setText(borough.getShortName());
+                            hexagon.setScaleX(initialScaleX);
+                            hexagon.setScaleY(initialScaleY);
                         }
                     });
                  

@@ -84,22 +84,7 @@ public class Viewer extends Application
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
         scene.getStylesheets().add("viewerstyle.css");
-        
-        scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Image image = new Image("cursor_clicked.png");
-                scene.setCursor(new ImageCursor(image));
-            }
-        });
-        
-        scene.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Image image = new Image("cursor.png");
-                scene.setCursor(new ImageCursor(image));
-            }
-        });
+
         
         stage.setTitle("Airbnb Property Viewer");
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
