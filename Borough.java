@@ -19,7 +19,9 @@ public class Borough
     private String name;
     private int x;
     private int y;
+
     private String nameId;
+
     
     public Borough(String name, int x, int y)
     {
@@ -27,6 +29,7 @@ public class Borough
         this.x = x;
         this.y = y;
         this.nameId = name.replaceAll("\\s+","");
+
     }
     
     public String getName(){
@@ -60,7 +63,7 @@ public class Borough
         
         return shortName;
     }
-    
+
     public int getX(){
         return x;
     }

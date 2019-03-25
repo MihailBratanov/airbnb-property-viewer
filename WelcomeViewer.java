@@ -10,6 +10,10 @@ import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
 import java.util.*;
+import javafx.scene.image.*;
+import javafx.scene.image.*;
+import javafx.animation.*;
+
 
 /**
  * Write a description of JavaFX class WelcomeViewer here.
@@ -35,13 +39,23 @@ public class WelcomeViewer extends Panel
     final ComboBox from = new ComboBox();
     final ComboBox to = new ComboBox();
 
+    private AirbnbDataLoader loader=new AirbnbDataLoader();
+    public ArrayList<AirbnbListing>data;
+
     public WelcomeViewer(){
         root = new VBox();
-
+        
+   
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
         windowWidth = root.getMinWidth();
         windowHeight = root.getMinHeight();
+
+        StackPane stackpane = new StackPane();
+        
+        root.setMinSize(500.0, 500.0);
+        windowWidth= root.getMinWidth();
+        windowHeight=root.getMinHeight();
 
         from.getItems().addAll(
             "--Please Select--",
@@ -105,12 +119,19 @@ public class WelcomeViewer extends Panel
             "6000",
             "6500",
             "7000");
-            
+
         to.setValue("--Please Select--");
 
+
+        ProgressBar loadingBar=new ProgressBar();
+        Label succesfully = new Label("Succesfully loaded!");
+        
+        
+
+        Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
         Label toLabel=new Label("To");
-
+        
         HBox range = new HBox();
         range.getChildren().addAll(fromLabel,from,toLabel,to);
         // range.setSpacing(10);
@@ -118,7 +139,17 @@ public class WelcomeViewer extends Panel
         range.setAlignment(Pos.TOP_RIGHT);
         root.getChildren().addAll(range);
     }
-    
+
+
+        range.getChildren().addAll(fromLabel,from,toLabel,to);
+
+        
+        range.setAlignment(Pos.TOP_RIGHT);
+
+        root.getChildren().addAll(range);
+        
+    }
+
     public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());

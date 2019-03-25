@@ -50,9 +50,6 @@ public class Viewer extends Application
     private int upperLimit;
 
     private static final String VERSION = "Version 0.0.1";
-    
-
-    
 
     @Override
     public void start(Stage stage) throws Exception
@@ -134,11 +131,13 @@ public class Viewer extends Application
         MenuItem zoomInItem = new MenuItem("Zoom In");
         zoomInItem.setOnAction(this::zoomIn);
         zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.PLUS, KeyCodeCombination.SHORTCUT_DOWN));
+
         MenuItem actualSizeItem = new MenuItem("Actual Size");
         actualSizeItem.setOnAction(this::actualSize);
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
         zoomOutItem.setOnAction(this::zoomOut);
         zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.MINUS, KeyCodeCombination.SHORTCUT_DOWN));
+
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
         fullScreenItem.setOnAction(this::fullScreen);

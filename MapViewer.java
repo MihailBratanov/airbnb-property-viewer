@@ -77,8 +77,7 @@ public class MapViewer extends Panel
         
         Text boroughHover = new Text();
         boroughHover.setFont(new Font(20));
-        
-        
+               
         GridPane gridPane = new GridPane();
 
         //for testing mapwebview
@@ -363,7 +362,6 @@ public class MapViewer extends Panel
     public Pane getPanel(){
         return root;
     }
-
 
     private Label LoadImage(){
         Label imageLabel = new Label();        
