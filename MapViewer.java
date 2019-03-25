@@ -46,6 +46,9 @@ public class MapViewer extends Panel
     private ArrayList <Borough> boroughs;
     private HashMap <String, Integer> boroughCount;
 
+    private Stage webViewStage;
+    private MapWebView webView;
+
     public MapViewer(int lowerLimit, int upperLimit){
         houses = loadData(lowerLimit, upperLimit);
         
@@ -77,6 +80,15 @@ public class MapViewer extends Panel
         
         
         GridPane gridPane = new GridPane();
+
+        //for testing mapwebview
+
+        webViewStage = new Stage();
+
+        webView = new MapWebView();
+
+
+        // testing mapwebview
 
         for (int i = 0; i < 15; i ++){
             RowConstraints row = new RowConstraints(height/17);
@@ -119,7 +131,16 @@ public class MapViewer extends Panel
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(pressed);
+                            try {
+                                webView.start(webViewStage);
+                                webView.showByPlace(borough.getFullName());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                System.out.println("ERROR !!!!");
+                            }
+
                         }
+
                     });
                     
                      hexagon.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
