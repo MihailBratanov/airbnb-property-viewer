@@ -283,6 +283,7 @@ public class Viewer extends Application
         child.prefHeightProperty().bind(sp.heightProperty());
         sp.prefWidthProperty().bind(parent.widthProperty());
         sp.prefHeightProperty().bind(parent.heightProperty());
+        sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         return sp;
     }
     
