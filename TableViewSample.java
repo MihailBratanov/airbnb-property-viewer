@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
+import java.util.*;
 public class TableViewSample extends Application {
+    private Calculator calculator=new Calculator();
 
     public AirbnbDataLoader loader=new AirbnbDataLoader();
     public ArrayList<AirbnbListing> data=loader.load();
@@ -26,19 +28,20 @@ public class TableViewSample extends Application {
         FXCollections.observableArrayList();
     private TableView table = new TableView();
     private Label statsLabel;
+    private Label statsInfoLabel;
     private ArrayList<String>statActions=new ArrayList();
     private int currentActionIndex=0;
     @Override
     public void start(Stage stage) {
         //data=loader.load();
         //System.out.println(data.toString());
-        int lowerLimit=200;
+        int lowerLimit=500;
         int upperLimit=1000;
         tableData.addAll(filterData(data,lowerLimit,upperLimit));
 
         statActions.add("Average reviews");
         statActions.add("Available properties");
-        statActions.add("Homes and appartments");
+        statActions.add("Homes and apartments");
         statActions.add("Most expensive borough");
 
         GridPane pane = new GridPane();
@@ -89,13 +92,13 @@ public class TableViewSample extends Application {
         statsLabel.setText(statActions.get(currentActionIndex));
         Button myRightButton=new Button(">");
 
-        Label statDataLabel=new Label("");
+        statsInfoLabel=new Label("default");
         HBox statViewer=new HBox();
         //VBox rightPane = new VBox();
         //rightPane.getChildren().addAll(myLeftButton, myRightButton,statsLabel);
         statViewer.setSpacing(20);
         statViewer.setPadding(new Insets(50,50,120,120));
-        statViewer.getChildren().addAll(vbox,myLeftButton,statsLabel,statDataLabel,myRightButton);
+        statViewer.getChildren().addAll(vbox,myLeftButton,statsLabel,statsInfoLabel,myRightButton);
         myLeftButton.setOnAction(this::leftButtonClick);
         myRightButton.setOnAction(this::rightButtonClick);
 
@@ -105,7 +108,7 @@ public class TableViewSample extends Application {
         stage.show();
     }
     /**
-     * This method retirns the index of the current 
+     * This method returns the index of the current 
      */
     /**
      * This will be executed when the button is clicked
@@ -119,25 +122,67 @@ public class TableViewSample extends Application {
             currentActionIndex=0;
         }
         statsLabel.setText(statActions.get(currentActionIndex));
-        // doStatistic();
+        doStatistic();
         currentActionIndex=currentActionIndex;
 
     }
+
     /**
      * This will be executed when the button is clicked
      * It increments the count by 1
      */
     private void doStatistic()
     {
-        
-        // Counts number of button clicks and shows the result on a label
-        for(AirbnbListing listing :tableData){
-
+        if (statsLabel.getText().equals("Average reviews")){
+            double average=calculator.calculateAverageViews(tableData);
+            {
+                statsInfoLabel.setText(Double.toString(Math.round(average)));
+            }
+        }
+        else
+        if (statsLabel.getText().equals("Available properties")){
+            int total=calculator.calculateAvailability(tableData);
+            {
+                statsInfoLabel.setText(Integer.toString(total));
+            }
+        }
+        else
+        if (statsLabel.getText().equals("Homes and apartments")){
+            int totalProperties=calculator.calculateRoomType(tableData);
+            {
+                statsInfoLabel.setText(Integer.toString(totalProperties));
+            }
+        }
+        else
+        if (statsLabel.getText().equals("Most expensive borough")){
+            String mostExpensiveBorough="";
+            HashMap<String,Integer>filteredData=calculator.calculateMostExpensiveBorough(tableData);
+            System.out.println(filteredData);
+            ArrayList<Integer> pricesToFilter=new ArrayList();
+            int large = 0;
+            for(String borough:filteredData.keySet()){
+                String key=borough.toString();
+                int price=filteredData.get(borough);
+                pricesToFilter.add(price);
+                large=pricesToFilter.get(0);
+                for(int i=0;i<pricesToFilter.size();i++){
+                    if(large<pricesToFilter.get(i)){
+                        large=pricesToFilter.get(i);
+                    }
+                }
+            }
+            
+             for(String currKey : filteredData.keySet()){
+                if(large == filteredData.get(currKey)){
+                    mostExpensiveBorough=currKey;
+                    break;
+                }
+            }
+            statsInfoLabel.setText(mostExpensiveBorough);
         }
     }
 
-    /**
-     * This will be executed when the button is clicked
+    /**aked
      * It increments the count by 1
      */
     private ArrayList<AirbnbListing> filterData(ArrayList<AirbnbListing> data, int lowerLimit, int upperLimit)
@@ -145,11 +190,14 @@ public class TableViewSample extends Application {
         // Counts number of button clicks and shows the result on a label
         ArrayList<AirbnbListing> newList= new ArrayList<>();
         for(AirbnbListing listing : data){
-            if(listing.getNeighbourhood().equals("Croydon") && listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
+            /*if((listing.getNeighbourhood().equals("Westminster") || listing.getNeighbourhood().equals("Croydon"))&& listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
+
+                newList.add(listing);
+            }*/
+            if( listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
 
                 newList.add(listing);
             }
-
         }
         return newList;
     }
