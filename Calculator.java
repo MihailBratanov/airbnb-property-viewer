@@ -11,8 +11,8 @@ public class Calculator
 {
     // instance variables - replace the example below with your own
     private int x;
-    public AirbnbDataLoader loader=new AirbnbDataLoader();
-    public ArrayList<AirbnbListing> data=loader.load();
+    private AirbnbDataLoader loader=new AirbnbDataLoader();
+    private ArrayList<AirbnbListing> data=new ArrayList<>();
     /**
      * Constructor for objects of class Calculator
      */
@@ -22,12 +22,6 @@ public class Calculator
         x = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
     public double calculateAverageViews(ObservableList<AirbnbListing> dataToDoStatsOn)
     {
         //dataToDoStatsOn.addAll(data);
@@ -64,8 +58,8 @@ public class Calculator
 
     public HashMap<String,Integer>  calculateMostExpensiveBorough(ObservableList<AirbnbListing> dataToDoStatsOn)
     {
-        ArrayList<String> boroughs= new ArrayList();
-        ArrayList<String> filteredBoroughs=new ArrayList();
+        ArrayList<String> boroughs= new ArrayList<>();
+        ArrayList<String> filteredBoroughs=new ArrayList<>();
         for (AirbnbListing listing :dataToDoStatsOn){
             boroughs.add(listing.getNeighbourhood());
         }
