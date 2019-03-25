@@ -2,30 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42b5e9a1-4e1d-45c2-8d57-c2cd77c3f4de" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/_libs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/_libs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PPAAssignment4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PPAAssignment4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Viewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/libraries/_libs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/libraries/_libs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WelcomeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WelcomeViewer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/PPAAssignment4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/PPAAssignment4.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/AirbnbDataLoader.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/AirbnbDataLoader.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Borough.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Borough.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Borough.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapWebView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.ctxt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/package.bluej" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/viewerstyle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/package.bluej" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,23 +34,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Viewer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="285" column="70" lean-forward="true" selection-start-line="285" selection-start-column="70" selection-end-line="285" selection-end-column="70" />
+            <state relative-caret-position="3120">
+              <caret line="208" column="21" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="21" />
               <folding>
-                <element signature="e#11696#11697#0" expanded="true" />
-                <element signature="e#11724#11725#0" expanded="true" />
+                <element signature="imports" expanded="true" />
                 <element signature="e#11774#11775#0" expanded="true" />
                 <element signature="e#11802#11803#0" expanded="true" />
                 <element signature="e#11852#11853#0" expanded="true" />
-                <element signature="e#11882#11883#0" expanded="true" />
-                <element signature="e#12518#12519#0" expanded="true" />
-                <element signature="e#12559#12560#0" expanded="true" />
+                <element signature="e#11880#11881#0" expanded="true" />
+                <element signature="e#11930#11931#0" expanded="true" />
+                <element signature="e#11960#11961#0" expanded="true" />
+                <element signature="e#12596#12597#0" expanded="true" />
+                <element signature="e#12637#12638#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WelcomeViewer.class">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -64,6 +77,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Viewer.java" />
+        <option value="$PROJECT_DIR$/WelcomeViewer.java" />
       </list>
     </option>
   </component>
@@ -96,7 +110,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553540368479" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553541167882" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
@@ -135,12 +149,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1553539762453</updated>
-      <workItem from="1553539765018" duration="561000" />
+      <workItem from="1553539765018" duration="1338000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="561000" />
+    <option name="totallyTimeSpent" value="1338000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1062" y="-1417" width="3440" height="1417" extended-state="6" />
@@ -151,9 +165,9 @@
       <window_info id="UI Designer" />
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24985285" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24985285" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32981133" />
+      <window_info anchor="bottom" id="Messages" visible="true" weight="0.32981133" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
@@ -181,6 +195,27 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3120">
+          <caret line="208" column="21" selection-start-line="208" selection-start-column="21" selection-end-line="208" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#11774#11775#0" expanded="true" />
+            <element signature="e#11802#11803#0" expanded="true" />
+            <element signature="e#11852#11853#0" expanded="true" />
+            <element signature="e#11880#11881#0" expanded="true" />
+            <element signature="e#11930#11931#0" expanded="true" />
+            <element signature="e#11960#11961#0" expanded="true" />
+            <element signature="e#12596#12597#0" expanded="true" />
+            <element signature="e#12637#12638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WelcomeViewer.class">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/javafx.base/javafx/event/EventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -188,20 +223,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Viewer.java">
+    <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="285" column="70" lean-forward="true" selection-start-line="285" selection-start-column="70" selection-end-line="285" selection-end-column="70" />
-          <folding>
-            <element signature="e#11696#11697#0" expanded="true" />
-            <element signature="e#11724#11725#0" expanded="true" />
-            <element signature="e#11774#11775#0" expanded="true" />
-            <element signature="e#11802#11803#0" expanded="true" />
-            <element signature="e#11852#11853#0" expanded="true" />
-            <element signature="e#11882#11883#0" expanded="true" />
-            <element signature="e#12518#12519#0" expanded="true" />
-            <element signature="e#12559#12560#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="221">
+          <caret line="121" lean-forward="true" selection-start-line="121" selection-end-line="121" />
         </state>
       </provider>
     </entry>

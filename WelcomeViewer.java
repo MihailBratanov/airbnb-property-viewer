@@ -140,16 +140,6 @@ public class WelcomeViewer extends Panel
         root.getChildren().addAll(range);
     }
 
-
-        range.getChildren().addAll(fromLabel,from,toLabel,to);
-
-        
-        range.setAlignment(Pos.TOP_RIGHT);
-
-        root.getChildren().addAll(range);
-        
-    }
-
     public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
