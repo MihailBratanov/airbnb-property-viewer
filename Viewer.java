@@ -51,6 +51,7 @@ public class Viewer extends Application
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+
         panelNumber = 1;
         panelPane = welcomeViewer.getPanel();
         contentPane = new BorderPane();
@@ -183,11 +184,10 @@ public class Viewer extends Application
         welcomeViewer.setComboBox(lowerLimit, upperLimit);
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-
         panelNumber = 1;
         currentPane = welcomeViewer.getPanel();
     }
-    
+
     private void makeMapPanel() {
         mapViewer = new MapViewer(lowerLimit, upperLimit);
         currentPane = mapViewer.getPanel();

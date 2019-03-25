@@ -13,7 +13,7 @@ import java.util.*;
 import javafx.scene.image.*;
 import javafx.scene.image.*;
 import javafx.animation.*;
-import javafx.util.Duration;
+
 
 /**
  * Write a description of JavaFX class WelcomeViewer here.
@@ -38,8 +38,9 @@ public class WelcomeViewer extends Panel
     private int upperLimit;
     final ComboBox from = new ComboBox();
     final ComboBox to = new ComboBox();
-
-public static Duration ZERO;
+    
+    private AirbnbDataLoader loader=new AirbnbDataLoader();
+    public ArrayList<AirbnbListing>data;
 
     public WelcomeViewer(){
         root = new VBox();
@@ -127,77 +128,32 @@ public static Duration ZERO;
         
         ProgressBar loadingBar=new ProgressBar();
         Label succesfully = new Label("Succesfully loaded!");
+        
+        
 
-        
-
-
-        
-            
-        
-        
         Button myButton = new Button("Count");
         Label fromLabel= new Label("From");
         Label toLabel=new Label("To");
         
         HBox range = new HBox();
-        VBox airbnb=new VBox();
-        HBox loadingBox=new HBox();
-        HBox succesfullyLoaded=new HBox();
-        
-        Label imageLabel = LoadImage();
-        Label loading = new Label("loading..."); 
-        
-    
-        
+
         range.getChildren().addAll(fromLabel,from,toLabel,to);
-        succesfullyLoaded.getChildren().addAll(succesfully);
-        airbnb.getChildren().addAll(imageLabel);
-        loadingBox.getChildren().addAll(loading,loadingBar);
+
         
         range.setAlignment(Pos.TOP_RIGHT);
-        airbnb.setAlignment(Pos.CENTER);
-        loadingBox.setAlignment(Pos.CENTER);
-        succesfullyLoaded.setAlignment(Pos.CENTER);
-        root.getChildren().addAll(range,airbnb,loadingBox,succesfullyLoaded);
+
+        root.getChildren().addAll(range);
         
     }
     
 
-     private void delay(int millisec)
-    {
-        try {
-            Thread.sleep(millisec);
-        }
-        catch (InterruptedException ie) {
-            // wake up
-        }
-    }
+
     
     public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
     }
     
-     private Label LoadImage(){
-        Label imageLabel = new Label();        
-        String imagePath = "airbnb.png";
-        Image image = new Image(imagePath);
-
-        ImageView imageViewer = new ImageView(image);
-
-        width =  image.getWidth();
-        width = width/2;
-        height =  image.getHeight(); 
-        height = height/2;
-
-        imageViewer.setPreserveRatio(true);
-        imageViewer.setFitHeight(height);
-        imageViewer.setFitWidth(width);
-        imageViewer.setSmooth(true);
-        imageLabel.setGraphic(imageViewer);
-       
-        return imageLabel;
-    }
     
     public void setComboBox(int lowerLimit, int upperLimit) {
         String fromValue = Integer.toString(lowerLimit);
