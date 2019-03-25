@@ -1,16 +1,19 @@
+import javafx.animation.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.geometry.*;
+import javafx.scene.*;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ScrollPane.*;
+import javafx.scene.image.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
-import javafx.scene.input.*;
-import javafx.stage.Stage;
-import javafx.scene.paint.*;
-import javafx.scene.control.Alert.AlertType;
-import java.util.*;
+import javafx.scene.shape.*;
+import javafx.stage.*;
+import javafx.util.*;
 
 /**
  * Write a description of JavaFX class Viewer here.
@@ -24,17 +27,20 @@ public class Viewer extends Application
     // We keep track of the count, and label displaying the count:
     private Stage stage;
     private BorderPane contentPane;
-    private Pane panelPane;
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
     private StatViewer statViewer;
     private Pane currentPane;
+    VBox centerPane;
     
 
-    private Pane navigationPane;
+    private BorderPane navigationPane;
+    private HBox dots;
+    private Circle dotWelcomePanel;
+    private Circle dotMapPanel;
+    
     private BorderPane root;
-    private Stack panelStack;
 
     private Scene scene;
     private Button previousPaneButton;
@@ -50,28 +56,53 @@ public class Viewer extends Application
     {
         this.stage = stage;
         // Create a new grid pane
+        centerPane = new VBox();
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+        currentPane = welcomeViewer.getPanel();
         panelNumber = 1;
-        panelPane = welcomeViewer.getPanel();
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+
+        // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        
         contentPane = new BorderPane();
-        contentPane.setCenter(panelPane);
+        contentPane.setCenter(centerPane);
         contentPane.setBottom(makeNavigationPane());
 
         root = new BorderPane();
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
-        root.setMaxSize(500, 500);
+        root.setMaxSize(800, 800);
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
-        scene = new Scene(root, root.getMaxHeight(), root.getMaxWidth());
-        scene.getStylesheets().add("viewerstyle.css");
+        scene = new Scene(root);
+        
+        /*scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Image image = new Image("cursor_clicked.png");
+                scene.setCursor(new ImageCursor(image));
+            }
+        });
+        
+        scene.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Image image = new Image("cursor.png");
+                scene.setCursor(new ImageCursor(image));
+            }
+        });*/
+        
         stage.setTitle("Airbnb Property Viewer");
+        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
+        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 3 / 4);
+        stage.setMinWidth(400);
+        stage.setMinHeight(200);
         stage.setScene(scene);
-
+        
         // Show the Stage (window)
         stage.show();
     }
@@ -100,17 +131,20 @@ public class Viewer extends Application
         MenuItem zoomInItem = new MenuItem("Zoom In");
         zoomInItem.setOnAction(this::zoomIn);
         zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.PLUS, KeyCodeCombination.SHORTCUT_DOWN));
+
         MenuItem actualSizeItem = new MenuItem("Actual Size");
+        actualSizeItem.setOnAction(this::actualSize);
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
         zoomOutItem.setOnAction(this::zoomOut);
         zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.MINUS, KeyCodeCombination.SHORTCUT_DOWN));
+
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
         fullScreenItem.setOnAction(this::fullScreen);
         viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
 
         Menu helpMenu = new Menu("Help");
-        MenuItem instructionItem = new MenuItem("Instructions");
+        MenuItem instructionItem = new MenuItem("Viewer Instructions");
         instructionItem.setOnAction(this::instruction);
         helpMenu.getItems().addAll(instructionItem);
 
@@ -119,29 +153,39 @@ public class Viewer extends Application
     }
 
     private Pane makeNavigationPane(){
-        navigationPane = new AnchorPane();
-        navigationPane.setId("navigationpane");
+        navigationPane = new BorderPane();
+        navigationPane.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 2px 0px 0px 0px;");                
         previousPaneButton = new Button("< Back");
         nextPaneButton = new Button("Next >");
         checkRangeValidity();
         previousPaneButton.setOnAction(this::previousPane);
-        nextPaneButton.setOnAction(e -> nextPane());
-
-        navigationPane.getChildren().addAll(previousPaneButton, nextPaneButton);
-        AnchorPane.setLeftAnchor(previousPaneButton, 5.0);
-        AnchorPane.setRightAnchor(nextPaneButton, 5.0);
-        AnchorPane.setTopAnchor(previousPaneButton, 5.0);
-        AnchorPane.setTopAnchor(nextPaneButton, 5.0);
-        AnchorPane.setBottomAnchor(previousPaneButton, 5.0);
-        AnchorPane.setBottomAnchor(nextPaneButton, 5.0);
+        nextPaneButton.setOnAction(this::nextPane);
         
+        dots = new HBox(8);
+        
+        dotWelcomePanel = new Circle();
+        dotWelcomePanel.setRadius(3);
+        dotWelcomePanel.setStroke(Color.BLACK);
+        
+        dotMapPanel = new Circle();
+        dotMapPanel.setRadius(3);
+        dotMapPanel.setStroke(Color.BLACK);
+        
+        dots.getChildren().addAll(dotWelcomePanel, dotMapPanel);
+        switchDots();
+        dots.setAlignment(Pos.CENTER);
+
+        navigationPane.setCenter(dots);
+        navigationPane.setLeft(previousPaneButton);
+        navigationPane.setRight(nextPaneButton);
+        navigationPane.setPadding(new Insets(5, 5, 5, 5));
+
         return navigationPane;
     }
 
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
         if (isPriceRangeValid) {
-            previousPaneButton.setDisable(false);
             nextPaneButton.setDisable(false);
         }
         else {
@@ -152,19 +196,29 @@ public class Viewer extends Application
         upperLimit = welcomeViewer.getUpperLimit();
     }
 
-    private void nextPane(){
+    private void nextPane(ActionEvent event){
         panelNumber++;
+        //paneMoveLeft();
+        centerPane.getChildren().clear();
         switchPanel(lowerLimit, upperLimit);
+        //paneMoveLeft();
         
-        contentPane.setCenter(currentPane);
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+        contentPane.setCenter(centerPane);
+        //contentPane.setBottom(navigationPane);
         stage.show();
     }
 
     private void previousPane(ActionEvent event) {
         panelNumber--;
+        //paneMoveRight();
+        centerPane.getChildren().clear();
         switchPanel(lowerLimit, upperLimit);
-
-        contentPane.setCenter(currentPane);
+        //paneMoveRight();
+        checkRangeValidity();
+        
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, contentPane));
+        contentPane.setCenter(centerPane);
         stage.show();
     }
 
@@ -172,9 +226,27 @@ public class Viewer extends Application
         switch(panelNumber) {
             case 1:
                 makeWelcomePanel();
+                previousPaneButton.setDisable(true);
+                switchDots();
                 break;
             case 2:
                 makeMapPanel();
+                previousPaneButton.setDisable(false);
+                nextPaneButton.setDisable(true);
+                switchDots();
+                break;
+        }
+    }
+    
+    private void switchDots() {
+        switch(panelNumber) {
+            case 1:
+                dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
+                dotMapPanel.setFill(javafx.scene.paint.Color.GRAY);
+                break;
+            case 2:
+                dotWelcomePanel.setFill(javafx.scene.paint.Color.GRAY);
+                dotMapPanel.setFill(javafx.scene.paint.Color.WHITE);
                 break;
         }
     }
@@ -193,11 +265,41 @@ public class Viewer extends Application
     private void makeMapPanel() {
         mapViewer = new MapViewer(lowerLimit, upperLimit);
         currentPane = mapViewer.getPanel();
+        //centerPane.setContent(mapViewer.getPanel());
     }
     
     private void makeStatPanel() {
         // statViewer = new StatViewer(lowerLimit, upperLimit);
         currentPane = mapViewer.getPanel();
+    }
+    
+    private ScrollPane makeScrollPane(Pane child, Pane parent) {
+        ScrollPane sp = new ScrollPane();
+        sp.setContent(child);
+        sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+        sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+        child.prefWidthProperty().bind(sp.widthProperty());
+        child.prefHeightProperty().bind(sp.heightProperty());
+        sp.prefWidthProperty().bind(parent.widthProperty());
+        sp.prefHeightProperty().bind(parent.heightProperty());
+        sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        return sp;
+    }
+    
+    private void paneMoveLeft() {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
+        double distance = stage.getWidth() * -1;
+        tt.setByX(distance);
+        tt.setAutoReverse(true);
+        tt.play();
+    }
+    
+    private void paneMoveRight() {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
+        double distance = stage.getWidth();
+        tt.setByX(distance);
+        tt.setAutoReverse(true);
+        tt.play();
     }
     
     // Menubar Buttons
@@ -222,11 +324,20 @@ public class Viewer extends Application
     }
 
     private void zoomIn(ActionEvent event) {
-
+        currentPane.setScaleX(currentPane.getScaleX() * 1.1);
+        currentPane.setScaleY(currentPane.getScaleY() * 1.1);
+        System.out.println(currentPane.getHeight());
+        System.out.println(currentPane.getWidth());
+    }
+    
+    private void actualSize(ActionEvent event) {
+        currentPane.setScaleX(1);
+        currentPane.setScaleY(1);
     }
 
     private void zoomOut(ActionEvent event) {
-
+        currentPane.setScaleX(currentPane.getScaleX() / 1.1);
+        currentPane.setScaleY(currentPane.getScaleY() / 1.1);
     }
 
     private void fullScreen(ActionEvent event) {
@@ -234,6 +345,10 @@ public class Viewer extends Application
     }
 
     private void instruction(ActionEvent event) {
-
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Viewer Instructions");
+        alert.setHeaderText("Instructions to this program:");  // Alerts have an optionl header. We don't want one.
+        alert.setContentText("Ting tang wala wala bing bang\nTing tang wala wala bing bang\nTing tang wala wala bing bang\n");
+        alert.showAndWait();
     }
 }
