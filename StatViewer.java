@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 /**
  * Write a description of JavaFX class StatViewer here.
+
  *
  * @author (your name)
  * @version (a version number or a date)
@@ -61,5 +62,6 @@ public class StatViewer extends Application
         // Counts number of button clicks and shows the result on a label
         count = count + 1;
         myLabel.setText(Integer.toString(count));
+
     }
 }
