@@ -73,9 +73,13 @@ public class StatisticsPanel extends Application {
 
 //---------------------------------------------------------
         Button myLeftButton1 = new Button("<");
+        myLeftButton1.setPrefHeight(stage.getHeight()/2);
+
+
         statsLabel1 = new Label();
         statsLabel1.setText(statActions.get(currentActionIndex));
         Button myRightButton1 = new Button(">");
+        myRightButton1.setPrefHeight(stageMidY);
 
         statsInfoLabel1 = new Label("default");
 //-----------------------------------------------------------
@@ -234,8 +238,19 @@ public class StatisticsPanel extends Application {
         if (currentActionIndex > statActions.size() - 1) {
             currentActionIndex = 0;
         }
-        statsLabel1.setText(statActions.get(currentActionIndex));
+
         int paneNumber=determinePane(mouseX,mouseY);
+        switch(paneNumber) {
+            case 1: statsLabel1.setText(statActions.get(currentActionIndex));
+            break;
+            case 2: statsLabel2.setText(statActions.get(currentActionIndex));
+                break;
+            case 3: statsLabel3.setText(statActions.get(currentActionIndex));
+                break;
+            case 4: statsLabel4.setText(statActions.get(currentActionIndex));
+                break;
+        }
+
         doStatistic(paneNumber);
         currentActionIndex = currentActionIndex;
 
@@ -246,184 +261,184 @@ public class StatisticsPanel extends Application {
      * It increments the count by 1
      */
     private void doStatistic(int number) {
-        switch (number) {
-            case 1:
-                if (statsLabel1.getText().equals("Average reviews")) {
-                    double average = calculator.calculateAverageViews(tableData);
-                    {
-                        statsInfoLabel1.setText(Double.toString(Math.round(average)));
-                    }
-                } else if (statsLabel1.getText().equals("Available properties")) {
-                    int total = calculator.calculateAvailability(tableData);
-                    {
-                        statsInfoLabel1.setText(Integer.toString(total));
-                    }
-                } else if (statsLabel1.getText().equals("Homes and apartments")) {
-                    int totalProperties = calculator.calculateRoomType(tableData);
-                    {
-                        statsInfoLabel1.setText(Integer.toString(totalProperties));
-                    }
-                } else if (statsLabel1.getText().equals("Most expensive borough")) {
-                    String mostExpensiveBorough = "";
-                    HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                    System.out.println(filteredData);
-                    ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                    int large = 0;
-                    for (String borough : filteredData.keySet()) {
-                        String key = borough.toString();
-                        int price = filteredData.get(borough);
-                        pricesToFilter.add(price);
-                        large = pricesToFilter.get(0);
-                        for (int i = 0; i < pricesToFilter.size(); i++) {
-                            if (large < pricesToFilter.get(i)) {
-                                large = pricesToFilter.get(i);
-                            }
+        int paneNumber=number;
+        if (paneNumber == 1) {
+            if (statsLabel1.getText().equals("Average reviews")) {
+                double average = calculator.calculateAverageViews(tableData);
+                {
+                    statsInfoLabel1.setText(Double.toString(Math.round(average)));
+                }
+            } else if (statsLabel1.getText().equals("Available properties")) {
+                int total = calculator.calculateAvailability(tableData);
+                {
+                    statsInfoLabel1.setText(Integer.toString(total));
+                }
+            } else if (statsLabel1.getText().equals("Homes and apartments")) {
+                int totalProperties = calculator.calculateRoomType(tableData);
+                {
+                    statsInfoLabel1.setText(Integer.toString(totalProperties));
+                }
+            } else if (statsLabel1.getText().equals("Most expensive borough")) {
+                String mostExpensiveBorough = "";
+                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
+                System.out.println(filteredData);
+                ArrayList<Integer> pricesToFilter = new ArrayList<>();
+                int large = 0;
+                for (String borough : filteredData.keySet()) {
+                    String key = borough.toString();
+                    int price = filteredData.get(borough);
+                    pricesToFilter.add(price);
+                    large = pricesToFilter.get(0);
+                    for (int i = 0; i < pricesToFilter.size(); i++) {
+                        if (large < pricesToFilter.get(i)) {
+                            large = pricesToFilter.get(i);
                         }
                     }
-
-                    for (String currKey : filteredData.keySet()) {
-                        if (large == filteredData.get(currKey)) {
-                            mostExpensiveBorough = currKey;
-                            break;
-                        }
-                    }
-                    statsInfoLabel1.setText(mostExpensiveBorough);
-
                 }
 
-                break;
-            case 2:
-                if (statsLabel2.getText().equals("Average reviews")) {
-                    double average = calculator.calculateAverageViews(tableData);
-                    {
-                        statsInfoLabel2.setText(Double.toString(Math.round(average)));
+                for (String currKey : filteredData.keySet()) {
+                    if (large == filteredData.get(currKey)) {
+                        mostExpensiveBorough = currKey;
+                        break;
                     }
-                } else if (statsLabel2.getText().equals("Available properties")) {
-                    int total = calculator.calculateAvailability(tableData);
-                    {
-                        statsInfoLabel2.setText(Integer.toString(total));
-                    }
-                } else if (statsLabel2.getText().equals("Homes and apartments")) {
-                    int totalProperties = calculator.calculateRoomType(tableData);
-                    {
-                        statsInfoLabel2.setText(Integer.toString(totalProperties));
-                    }
-                } else if (statsLabel2.getText().equals("Most expensive borough")) {
-                    String mostExpensiveBorough = "";
-                    HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                    System.out.println(filteredData);
-                    ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                    int large = 0;
-                    for (String borough : filteredData.keySet()) {
-                        String key = borough.toString();
-                        int price = filteredData.get(borough);
-                        pricesToFilter.add(price);
-                        large = pricesToFilter.get(0);
-                        for (int i = 0; i < pricesToFilter.size(); i++) {
-                            if (large < pricesToFilter.get(i)) {
-                                large = pricesToFilter.get(i);
-                            }
-                        }
-                    }
-
-                    for (String currKey : filteredData.keySet()) {
-                        if (large == filteredData.get(currKey)) {
-                            mostExpensiveBorough = currKey;
-                            break;
-                        }
-                    }
-                    statsInfoLabel2.setText(mostExpensiveBorough);
                 }
-                break;
-            case 3:
-                if (statsLabel3.getText().equals("Average reviews")) {
-                    double average = calculator.calculateAverageViews(tableData);
-                    {
-                        statsInfoLabel3.setText(Double.toString(Math.round(average)));
-                    }
-                } else if (statsLabel3.getText().equals("Available properties")) {
-                    int total = calculator.calculateAvailability(tableData);
-                    {
-                        statsInfoLabel3.setText(Integer.toString(total));
-                    }
-                } else if (statsLabel3.getText().equals("Homes and apartments")) {
-                    int totalProperties = calculator.calculateRoomType(tableData);
-                    {
-                        statsInfoLabel3.setText(Integer.toString(totalProperties));
-                    }
-                } else if (statsLabel3.getText().equals("Most expensive borough")) {
-                    String mostExpensiveBorough = "";
-                    HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                    System.out.println(filteredData);
-                    ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                    int large = 0;
-                    for (String borough : filteredData.keySet()) {
-                        String key = borough.toString();
-                        int price = filteredData.get(borough);
-                        pricesToFilter.add(price);
-                        large = pricesToFilter.get(0);
-                        for (int i = 0; i < pricesToFilter.size(); i++) {
-                            if (large < pricesToFilter.get(i)) {
-                                large = pricesToFilter.get(i);
-                            }
-                        }
-                    }
+                statsInfoLabel1.setText(mostExpensiveBorough);
 
-                    for (String currKey : filteredData.keySet()) {
-                        if (large == filteredData.get(currKey)) {
-                            mostExpensiveBorough = currKey;
-                            break;
+            }
+        } else if (paneNumber == 2) {
+            if (statsLabel2.getText().equals("Average reviews")) {
+                double average = calculator.calculateAverageViews(tableData);
+                {
+                    statsInfoLabel2.setText(Double.toString(Math.round(average)));
+                }
+            } else if (statsLabel2.getText().equals("Available properties")) {
+                int total = calculator.calculateAvailability(tableData);
+                {
+                    statsInfoLabel2.setText(Integer.toString(total));
+                }
+            } else if (statsLabel2.getText().equals("Homes and apartments")) {
+                int totalProperties = calculator.calculateRoomType(tableData);
+                {
+                    statsInfoLabel2.setText(Integer.toString(totalProperties));
+                }
+            } else if (statsLabel2.getText().equals("Most expensive borough")) {
+                String mostExpensiveBorough = "";
+                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
+                System.out.println(filteredData);
+                ArrayList<Integer> pricesToFilter = new ArrayList<>();
+                int large = 0;
+                for (String borough : filteredData.keySet()) {
+                    String key = borough.toString();
+                    int price = filteredData.get(borough);
+                    pricesToFilter.add(price);
+                    large = pricesToFilter.get(0);
+                    for (int i = 0; i < pricesToFilter.size(); i++) {
+                        if (large < pricesToFilter.get(i)) {
+                            large = pricesToFilter.get(i);
                         }
                     }
-                    statsInfoLabel3.setText(mostExpensiveBorough);
                 }
 
-                break;
-            case 4:
-                if (statsLabel4.getText().equals("Average reviews")) {
-                    double average = calculator.calculateAverageViews(tableData);
-                    {
-                        statsInfoLabel4.setText(Double.toString(Math.round(average)));
+                for (String currKey : filteredData.keySet()) {
+                    if (large == filteredData.get(currKey)) {
+                        mostExpensiveBorough = currKey;
+                        break;
                     }
-                } else if (statsLabel4.getText().equals("Available properties")) {
-                    int total = calculator.calculateAvailability(tableData);
-                    {
-                        statsInfoLabel4.setText(Integer.toString(total));
-                    }
-                } else if (statsLabel4.getText().equals("Homes and apartments")) {
-                    int totalProperties = calculator.calculateRoomType(tableData);
-                    {
-                        statsInfoLabel4.setText(Integer.toString(totalProperties));
-                    }
-                } else if (statsLabel4.getText().equals("Most expensive borough")) {
-                    String mostExpensiveBorough = "";
-                    HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                    System.out.println(filteredData);
-                    ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                    int large = 0;
-                    for (String borough : filteredData.keySet()) {
-                        String key = borough.toString();
-                        int price = filteredData.get(borough);
-                        pricesToFilter.add(price);
-                        large = pricesToFilter.get(0);
-                        for (int i = 0; i < pricesToFilter.size(); i++) {
-                            if (large < pricesToFilter.get(i)) {
-                                large = pricesToFilter.get(i);
-                            }
-                        }
-                    }
-
-                    for (String currKey : filteredData.keySet()) {
-                        if (large == filteredData.get(currKey)) {
-                            mostExpensiveBorough = currKey;
-                            break;
-                        }
-                    }
-                    statsInfoLabel4.setText(mostExpensiveBorough);
                 }
-                break;
+                statsInfoLabel2.setText(mostExpensiveBorough);
+            }
+        } else if (paneNumber == 3) {
+
+            if (statsLabel3.getText().equals("Average reviews")) {
+                double average = calculator.calculateAverageViews(tableData);
+                {
+                    statsInfoLabel3.setText(Double.toString(Math.round(average)));
+                }
+            } else if (statsLabel3.getText().equals("Available properties")) {
+                int total = calculator.calculateAvailability(tableData);
+                {
+                    statsInfoLabel3.setText(Integer.toString(total));
+                }
+            } else if (statsLabel3.getText().equals("Homes and apartments")) {
+                int totalProperties = calculator.calculateRoomType(tableData);
+                {
+                    statsInfoLabel3.setText(Integer.toString(totalProperties));
+                }
+            } else if (statsLabel3.getText().equals("Most expensive borough")) {
+                String mostExpensiveBorough = "";
+                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
+                System.out.println(filteredData);
+                ArrayList<Integer> pricesToFilter = new ArrayList<>();
+                int large = 0;
+                for (String borough : filteredData.keySet()) {
+                    String key = borough.toString();
+                    int price = filteredData.get(borough);
+                    pricesToFilter.add(price);
+                    large = pricesToFilter.get(0);
+                    for (int i = 0; i < pricesToFilter.size(); i++) {
+                        if (large < pricesToFilter.get(i)) {
+                            large = pricesToFilter.get(i);
+                        }
+                    }
+                }
+
+                for (String currKey : filteredData.keySet()) {
+                    if (large == filteredData.get(currKey)) {
+                        mostExpensiveBorough = currKey;
+                        break;
+                    }
+                }
+                statsInfoLabel3.setText(mostExpensiveBorough);
+            }
+        } else if (paneNumber == 4) {
+
+            if (statsLabel4.getText().equals("Average reviews")) {
+                double average = calculator.calculateAverageViews(tableData);
+                {
+                    statsInfoLabel4.setText(Double.toString(Math.round(average)));
+                }
+            } else if (statsLabel4.getText().equals("Available properties")) {
+                int total = calculator.calculateAvailability(tableData);
+                {
+                    statsInfoLabel4.setText(Integer.toString(total));
+                }
+            } else if (statsLabel4.getText().equals("Homes and apartments")) {
+                int totalProperties = calculator.calculateRoomType(tableData);
+                {
+                    statsInfoLabel4.setText(Integer.toString(totalProperties));
+                }
+            } else if (statsLabel4.getText().equals("Most expensive borough")) {
+                String mostExpensiveBorough = "";
+                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
+                System.out.println(filteredData);
+                ArrayList<Integer> pricesToFilter = new ArrayList<>();
+                int large = 0;
+                for (String borough : filteredData.keySet()) {
+                    String key = borough.toString();
+                    int price = filteredData.get(borough);
+                    pricesToFilter.add(price);
+                    large = pricesToFilter.get(0);
+                    for (int i = 0; i < pricesToFilter.size(); i++) {
+                        if (large < pricesToFilter.get(i)) {
+                            large = pricesToFilter.get(i);
+                        }
+                    }
+                }
+
+                for (String currKey : filteredData.keySet()) {
+                    if (large == filteredData.get(currKey)) {
+                        mostExpensiveBorough = currKey;
+                        break;
+                    }
+                }
+                statsInfoLabel4.setText(mostExpensiveBorough);
+            }
+
         }
     }
+
+
+
 
     /**
      * aked
@@ -454,8 +469,18 @@ public class StatisticsPanel extends Application {
         if (currentActionIndex < 0) {
             currentActionIndex = statActions.size() - 1;
         }
-        statsLabel1.setText(statActions.get(currentActionIndex));
+
         int paneNumber=determinePane(mouseX,mouseY);
+        switch(paneNumber) {
+            case 1: statsLabel1.setText(statActions.get(currentActionIndex));
+                break;
+            case 2: statsLabel2.setText(statActions.get(currentActionIndex));
+                break;
+            case 3: statsLabel3.setText(statActions.get(currentActionIndex));
+                break;
+            case 4: statsLabel4.setText(statActions.get(currentActionIndex));
+                break;
+        }
         doStatistic(paneNumber);
         currentActionIndex = currentActionIndex;
 
