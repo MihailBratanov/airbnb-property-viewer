@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.*;
-import javafx.scene.image.*;
+// import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
@@ -50,6 +50,7 @@ public class Viewer extends Application
     private int upperLimit;
 
     private static final String VERSION = "Version 0.0.1";
+    private static final int MAX_PANEL_NUMBER = 2;
 
     @Override
     public void start(Stage stage) throws Exception
@@ -186,6 +187,7 @@ public class Viewer extends Application
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
         if (isPriceRangeValid) {
+            previousPaneButton.setDisable(false);
             nextPaneButton.setDisable(false);
         }
         else {
@@ -198,6 +200,9 @@ public class Viewer extends Application
 
     private void nextPane(ActionEvent event){
         panelNumber++;
+        if (panelNumber > MAX_PANEL_NUMBER) {
+            panelNumber = 1;
+        }
         //paneMoveLeft();
         centerPane.getChildren().clear();
         switchPanel(lowerLimit, upperLimit);
@@ -211,6 +216,9 @@ public class Viewer extends Application
 
     private void previousPane(ActionEvent event) {
         panelNumber--;
+        if (panelNumber < 1) {
+            panelNumber = MAX_PANEL_NUMBER;
+        }
         //paneMoveRight();
         centerPane.getChildren().clear();
         switchPanel(lowerLimit, upperLimit);
@@ -226,13 +234,10 @@ public class Viewer extends Application
         switch(panelNumber) {
             case 1:
                 makeWelcomePanel();
-                previousPaneButton.setDisable(true);
                 switchDots();
                 break;
             case 2:
                 makeMapPanel();
-                previousPaneButton.setDisable(false);
-                nextPaneButton.setDisable(true);
                 switchDots();
                 break;
         }
@@ -276,10 +281,10 @@ public class Viewer extends Application
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);
-        sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-        sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-        child.prefWidthProperty().bind(sp.widthProperty());
-        child.prefHeightProperty().bind(sp.heightProperty());
+        sp.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        child.prefWidthProperty().bind(sp.widthProperty().subtract(2)); // so that the ScrollBar would not appear at all times.
+        child.prefHeightProperty().bind(sp.heightProperty().subtract(2));
         sp.prefWidthProperty().bind(parent.widthProperty());
         sp.prefHeightProperty().bind(parent.heightProperty());
         sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -306,7 +311,7 @@ public class Viewer extends Application
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About Property Viewer");
-        alert.setHeaderText(null);  // Alerts have an optionl header. We don't want one.
+        alert.setHeaderText(null);
         alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
         alert.showAndWait();
     }
