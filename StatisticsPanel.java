@@ -3,6 +3,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -15,6 +16,9 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import javafx.scene.control.Button;
@@ -42,6 +46,9 @@ public class StatisticsPanel extends Application {
     private Label statsInfoLabel3;
     private Label statsLabel4;
     private Label statsInfoLabel4;
+    private Font titleFont;
+    private Font contentFont;
+
     private ArrayList<String> statActions = new ArrayList<>();
     private int currentActionIndex = 0;
 
@@ -53,7 +60,7 @@ public class StatisticsPanel extends Application {
 
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws FileNotFoundException {
         //data=loader.load();
         //System.out.println(data.toString());
         int lowerLimit = 500;
@@ -65,146 +72,93 @@ public class StatisticsPanel extends Application {
         statActions.add("Homes and apartments");
         statActions.add("Most expensive borough");
 
+        titleFont = Font.loadFont(new FileInputStream(new File("KingsFontBold.ttf")), 20);
+        contentFont = Font.loadFont(new FileInputStream(new File("KingsFont.ttf")), 16);
 
 
         Scene scene = new Scene(new Group());
 
+        BorderPane statPane = new BorderPane();
+        BorderPane paneToBeCentered = new BorderPane();
+        BorderPane paneSeparatorTop = new BorderPane();
 
+        BorderPane paneSeparatorBottom = new BorderPane();
 
-//---------------------------------------------------------
+        BorderPane statPane1 = new BorderPane();
+        VBox box1 = new VBox();
         Button myLeftButton1 = new Button("<");
-        myLeftButton1.setPrefHeight(stage.getHeight()/2);
-
-
         statsLabel1 = new Label();
         statsLabel1.setText(statActions.get(currentActionIndex));
         Button myRightButton1 = new Button(">");
-        myRightButton1.setPrefHeight(stageMidY);
-
         statsInfoLabel1 = new Label("default");
-//-----------------------------------------------------------
+        configStatPane(statPane1, box1, myLeftButton1, myRightButton1, statsLabel1, statsInfoLabel1, stage);
+
+        BorderPane statPane2 = new BorderPane();
+        VBox box2 = new VBox();
         Button myLeftButton2 = new Button("<");
         statsLabel2 = new Label();
         statsLabel2.setText(statActions.get(currentActionIndex));
         Button myRightButton2 = new Button(">");
-
         statsInfoLabel2 = new Label("default");
-//---------------------------------------------------------
+        configStatPane(statPane2, box2, myLeftButton2, myRightButton2, statsLabel2, statsInfoLabel2, stage);
+
+        BorderPane statPane3 = new BorderPane();
+        VBox box3 = new VBox();
         Button myLeftButton3 = new Button("<");
         statsLabel3 = new Label();
         statsLabel3.setText(statActions.get(currentActionIndex));
         Button myRightButton3 = new Button(">");
-
         statsInfoLabel3 = new Label("default");
-//-----------------------------------------------------------
+        configStatPane(statPane3, box3, myLeftButton3, myRightButton3, statsLabel3, statsInfoLabel3, stage);
+
+        BorderPane statPane4 = new BorderPane();
+        VBox box4=new VBox();
         Button myLeftButton4 = new Button("<");
         statsLabel4 = new Label();
         statsLabel4.setText(statActions.get(currentActionIndex));
         Button myRightButton4 = new Button(">");
-
         statsInfoLabel4 = new Label("default");
-
-
-        myLeftButton1.setOnAction(this::leftButtonClick);
-        myRightButton1.setOnAction(this::rightButtonClick);
-
-        myLeftButton2.setOnAction(this::leftButtonClick);
-        myRightButton2.setOnAction(this::rightButtonClick);
-
-        myLeftButton3.setOnAction(this::leftButtonClick);
-        myRightButton3.setOnAction(this::rightButtonClick);
-
-        myLeftButton4.setOnAction(this::leftButtonClick);
-        myRightButton4.setOnAction(this::rightButtonClick);
-
-        BorderPane statPane=new BorderPane();
-        BorderPane paneToBeCentered=new BorderPane();
-        BorderPane paneSeparatorTop=new BorderPane();
-        BorderPane paneSeparatorBottom=new BorderPane();
-        BorderPane statPane1=new BorderPane();
-        BorderPane statPane2=new BorderPane();
-        BorderPane statPane3=new BorderPane();
-        BorderPane statPane4=new BorderPane();
-
-
-
-        VBox box1=new VBox();
-        box1.getChildren().addAll(statsLabel1,statsInfoLabel1);
-        statPane1.setCenter(box1);
-        statPane1.setRight(myRightButton1);
-        statPane1.setLeft(myLeftButton1);
-
-        VBox box2=new VBox();
-        box2.getChildren().addAll(statsLabel2,statsInfoLabel2);
-        statPane2.setCenter(box2);
-        statPane2.setRight(myRightButton2);
-        statPane2.setLeft(myLeftButton2);
-
-        VBox box3=new VBox();
-        box3.getChildren().addAll(statsLabel3,statsInfoLabel3);
-        statPane3.setCenter(box3);
-        statPane3.setRight(myRightButton3);
-        statPane3.setLeft(myLeftButton3);
-
-        VBox box4=new VBox();
-        box4.getChildren().addAll(statsLabel4,statsInfoLabel4);
-        statPane4.setCenter(box4);
-        statPane4.setRight(myRightButton4);
-        statPane4.setLeft(myLeftButton4);
-
-        statPane1.prefWidthProperty().bind(stage.widthProperty().divide(2));
-        statPane1.prefHeightProperty().bind(stage.heightProperty().divide(2));
-        statPane4.prefWidthProperty().bind(stage.widthProperty().divide(2));
-        statPane4.prefHeightProperty().bind(stage.heightProperty().divide(2));
-        statPane2.prefWidthProperty().bind(stage.widthProperty().divide(2));
-        statPane2.prefHeightProperty().bind(stage.heightProperty().divide(2));
-        statPane3.prefWidthProperty().bind(stage.widthProperty().divide(2));
-        statPane3.prefHeightProperty().bind(stage.heightProperty().divide(2));
-
-
+        configStatPane(statPane4, box4, myLeftButton4, myRightButton4, statsLabel4, statsInfoLabel4, stage);
 
         paneSeparatorTop.setLeft(statPane1);
         paneSeparatorTop.setRight(statPane2);
         paneSeparatorBottom.setLeft(statPane3);
-        statPane3.setBackground(new Background(new BackgroundFill(Color.YELLOW, null, null)));
         paneSeparatorBottom.setRight(statPane4);
-        statPane4.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
-
-        paneSeparatorTop.setMinHeight(100);
-        paneSeparatorTop.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-        paneSeparatorBottom.setMinHeight(100);
-        paneSeparatorBottom.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
 
         paneToBeCentered.setTop(paneSeparatorTop);
         paneToBeCentered.setBottom(paneSeparatorBottom);
+        paneSeparatorTop.setStyle("-fx-border-color: #7a7a7a;  -fx-border-width: 0px 0px 2px 0px;");
+        statPane1.setStyle("-fx-border-color: #7a7a7a;  -fx-border-width: 0px 2px 0px 0px;");
+        statPane3.setStyle("-fx-border-color: #7a7a7a;  -fx-border-width: 0px 2px 0px 0px;");
+        paneToBeCentered.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
         statPane.setCenter(paneToBeCentered);
 
         ((Group) scene.getRoot()).getChildren().addAll(statPane);
 
-        stage.setScene(scene);
-        stage.show();
+        stage.setWidth(600);
+        stage.setHeight(600);
 
         statPane.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        mouseX = event.getX();
-                        mouseY = event.getY();
-                        //System.out.println(event.getX());
-                        //System.out.println(event.getY());
-                    }
-                });
+            @Override
+            public void handle(MouseEvent event) {
+                mouseX = event.getX();
+                mouseY = event.getY();
+            }
+        });
         stage.heightProperty().addListener((observe, oldVal, newVal) -> {
             stageMidY = stage.getHeight()/2;
-            System.out.println(stageMidY);
         });
 
         stage.widthProperty().addListener((observe, oldVal, newVal) -> {
             stageMidX = stage.getWidth()/2;
-            System.out.println(stageMidX);
         });
 
+        stage.setScene(scene);
+        stage.show();
 
+        stageMidX = stage.getWidth()/2;
+        stageMidY = stage.getHeight()/2;
     }
 
     private int determinePane(double mouseX,double mouseY){
@@ -221,6 +175,9 @@ public class StatisticsPanel extends Application {
         else if (mouseX >= stageMidX && mouseY >= stageMidY) {
             pane = 4;
         }
+        System.out.println(mouseX + " " + stageMidX);
+        System.out.println(mouseY + " " + stageMidY);
+        System.out.println(pane);
         return pane;
     }
 
@@ -239,7 +196,7 @@ public class StatisticsPanel extends Application {
             currentActionIndex = 0;
         }
 
-        int paneNumber=determinePane(mouseX,mouseY);
+        int paneNumber = determinePane(mouseX,mouseY);
         switch(paneNumber) {
             case 1: statsLabel1.setText(statActions.get(currentActionIndex));
             break;
@@ -486,4 +443,22 @@ public class StatisticsPanel extends Application {
 
     }
 
+    private void configStatPane(BorderPane pane, VBox box, Button leftButton, Button rightButton, Label statsLabel, Label statsInfoLabel, Stage stage) {
+        box.getChildren().addAll(statsLabel,statsInfoLabel);
+        statsLabel.setFont(titleFont);
+        statsInfoLabel.setFont(contentFont);
+        box.setAlignment(Pos.CENTER);
+        box.spacingProperty().bind(pane.heightProperty().divide(5));
+        pane.setLeft(leftButton);
+        pane.setCenter(box);
+        pane.setRight(rightButton);
+        leftButton.prefHeightProperty().bind(pane.heightProperty());
+        leftButton.prefWidthProperty().bind(pane.widthProperty().divide(5));
+        rightButton.prefHeightProperty().bind(pane.heightProperty());
+        rightButton.prefWidthProperty().bind(pane.widthProperty().divide(5));
+        pane.prefWidthProperty().bind(stage.widthProperty().divide(2));
+        pane.prefHeightProperty().bind(stage.heightProperty().divide(2));
+        leftButton.setOnAction(this::leftButtonClick);
+        rightButton.setOnAction(this::rightButtonClick);
+    }
 }
