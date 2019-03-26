@@ -37,11 +37,14 @@ public class TableViewSample extends Application {
     private ArrayList<String> statActions = new ArrayList<>();
     private int currentActionIndex = 0;
 
+    private Stage stage;
 
     @Override
     public void start(Stage stage) {
         //data=loader.load();
-        //System.out.println(data.toString());
+        //System.out.println(data.toString());\
+
+        this.stage = stage;
         int lowerLimit = 500;
         int upperLimit = 1000;
         tableData.addAll(filterData(data, lowerLimit, upperLimit));
