@@ -61,7 +61,6 @@ public class MapViewer extends Panel {
     private Stage tableViewStage;
     private TableViewSample tableView;
 
-    private Text boroughHover;
 
 
     public MapViewer(int lowerLimit, int upperLimit) {
@@ -120,9 +119,9 @@ public class MapViewer extends Panel {
 
         webView = new MapWebView();
 
-        tableViewStage = new Stage();
 
-        tableView = new TableViewSample();
+
+
 
 
         // testing mapwebview
@@ -137,32 +136,12 @@ public class MapViewer extends Panel {
             gridPane.getColumnConstraints().add(col);
         }
 
-        makeMap();
-
-        stackpane.getChildren().addAll(gridPane);
-
-        FlowPane flowPane = new FlowPane();
-        flowPane.getChildren().addAll(numberOfNights, stackpane, boroughHover);
-        flowPane.prefWidthProperty().bind(root.widthProperty());
-        flowPane.prefHeightProperty().bind(root.heightProperty());
-
-        scrollPane = new ScrollPane();
-        scrollPane.setContent(flowPane);
-
-        root.getChildren().addAll(flowPane);
-        root.setAlignment(Pos.CENTER);
-
-    }
-
-    private void makeMap(){
-
-        gridPane.getChildren().clear();
 
         DropShadow shadow = new DropShadow(7, 2, 7, Color.GREY);
         DropShadow noShadow = new DropShadow(7, 2, 7, Color.TRANSPARENT);
         InnerShadow pressed = new InnerShadow(3, 4, 3, Color.WHITE);
 
-        boroughHover = new Text();
+        Text boroughHover = new Text();
         boroughHover.setFont(new Font(20));
 
         for (Borough borough : boroughs) {
@@ -211,6 +190,162 @@ public class MapViewer extends Panel {
                                 System.out.println("ERROR !!!!");
                             }
                             */
+                            tableViewStage = new Stage();
+                            dateSortedProperties = boroughSortedProperties;
+                            tableView = new TableViewSample(borough.getName(), dateSortedProperties);
+
+                            tableView.start(tableViewStage);
+
+                        }
+
+                    });
+
+                    hexagon.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(shadow);
+                            hexagon.setScaleX(initialScaleX * 1.1);
+                            hexagon.setScaleY(initialScaleY * 1.1);
+                        }
+                    });
+
+                    hexagon.addEventFilter(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            boroughHover.setText(borough.getName());
+                            //text.setText(borough.getFullName());
+                            hexagon.setEffect(shadow);
+                            hexagon.setScaleX(initialScaleX * 1.1);
+                            hexagon.setScaleY(initialScaleY * 1.1);
+                        }
+                    });
+
+                    hexagon.addEventFilter(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(null);
+                            //text.setText(borough.getShortName());
+                            hexagon.setScaleX(initialScaleX);
+                            hexagon.setScaleY(initialScaleY);
+                        }
+                    });
+
+
+                    text.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(pressed);
+                        }
+                    });
+
+                    text.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(shadow);
+                        }
+                    });
+
+
+                    text.addEventFilter(MouseEvent.MOUSE_ENTERED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(shadow);
+                            text.setText(borough.getFullName());
+                            hexagon.setScaleX(initialScaleX * 1.1);
+                            hexagon.setScaleY(initialScaleY * 1.1);
+                        }
+                    });
+
+                    text.addEventFilter(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            text.setText(borough.getShortName());
+                            hexagon.setScaleX(initialScaleX);
+                            hexagon.setScaleY(initialScaleY);
+                        }
+                    });
+
+                    gridPane.add(hexagon, borough.getX(), borough.getY());
+                    gridPane.add(text, borough.getX(), borough.getY());
+                }
+            }
+        }
+
+        stackpane.getChildren().addAll(gridPane);
+
+        FlowPane flowPane = new FlowPane();
+        flowPane.getChildren().addAll(numberOfNights, stackpane, boroughHover);
+        flowPane.prefWidthProperty().bind(root.widthProperty());
+        flowPane.prefHeightProperty().bind(root.heightProperty());
+
+        scrollPane = new ScrollPane();
+        scrollPane.setContent(flowPane);
+
+        root.getChildren().addAll(flowPane);
+        root.setAlignment(Pos.CENTER);
+
+    }
+
+
+    private void updateMap(){
+        setNumberOfNights(numberOfNights.getSelectionModel().getSelectedItem().toString());
+        boroughCount = countBoroughs(dateSortedProperties);
+        gridPane.getChildren().clear();
+
+        DropShadow shadow = new DropShadow(7, 2, 7, Color.GREY);
+        DropShadow noShadow = new DropShadow(7, 2, 7, Color.TRANSPARENT);
+        InnerShadow pressed = new InnerShadow(3, 4, 3, Color.WHITE);
+
+        Text boroughHover = new Text();
+        boroughHover.setFont(new Font(20));
+        for (Borough borough : boroughs) {
+            for (String currentBorough : boroughCount.keySet()) {
+                if (currentBorough.equals(borough.getNameID())) {
+                    Polygon hexagon = new Polygon();
+
+                    hexagon.getPoints().addAll(new Double[]{
+                            hexPointX(30), hexPointY(30),
+                            hexPointX(90), hexPointY(90),
+                            hexPointX(150), hexPointY(150),
+                            hexPointX(210), hexPointY(210),
+                            hexPointX(270), hexPointY(270),
+                            hexPointX(330), hexPointY(330),
+
+                    });
+
+                    int colorGreen = (int) Math.round(boroughCount.get(currentBorough) * 0.1);
+                    colorGreen = colorGreen % 255;
+                    colorGreen = 255 - colorGreen;
+                    int colorRed = 255 - colorGreen;
+                    hexagon.setFill(Color.rgb(colorRed, colorGreen, 0));
+
+                    hexagon.setStroke(Color.BLACK);
+
+                    hexagon.setEffect(noShadow);
+
+                    Text text = new Text(borough.getX(), borough.getY(), borough.getShortName());
+
+                    double initialScaleX = hexagon.getScaleX();
+                    double initialScaleY = hexagon.getScaleY();
+
+                    hexagon.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent mouseEvent) {
+                            hexagon.setEffect(pressed);
+                            hexagon.setScaleX(initialScaleX);
+                            hexagon.setScaleY(initialScaleY);
+
+                            /* MAP VIEW START
+                            try {
+                                webView.start(webViewStage);
+                                webView.showByPlace(borough.getFullName());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                System.out.println("ERROR !!!!");
+                            }
+                            */
+                            tableViewStage = new Stage();
+                            tableView = new TableViewSample(borough.getName(),dateSortedProperties);
 
                             tableView.start(tableViewStage);
 
@@ -290,13 +425,6 @@ public class MapViewer extends Panel {
         }
     }
 
-    private void updateMap(){
-        setNumberOfNights(numberOfNights.getSelectionModel().getSelectedItem().toString());
-        boroughCount = countBoroughs(dateSortedProperties);
-        makeMap();
-        stage.show();
-    }
-
     private void setNumberOfNights(String nights) {
         if (nights != "Any"){
             dateSortedProperties = sortByDay(Integer.parseInt(nights), boroughSortedProperties);
@@ -312,21 +440,21 @@ public class MapViewer extends Panel {
     
     private double hexPointX(double degree){
         double centerPoint = height/15;
-        
+
         double rad = (Math.PI / 180) * degree;
-        
+
         double X = centerPoint + height/14 * Math.cos(rad);
-        
+
         return X;
     }
-    
+
     private double hexPointY(double degree){
         double centerPoint = height/15;
-        
+
         double rad = (Math.PI / 180) * degree;
-        
+
         double X = centerPoint + height/14 * Math.sin(rad);
-        
+
         return X;
     }
     

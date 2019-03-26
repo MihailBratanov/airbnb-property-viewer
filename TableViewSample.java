@@ -13,6 +13,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -27,7 +30,9 @@ public class TableViewSample extends Application {
     private Calculator calculator = new Calculator();
 
     public AirbnbDataLoader loader = new AirbnbDataLoader();
-    public ArrayList<AirbnbListing> data = loader.load();
+    public ArrayList<AirbnbListing> data = new ArrayList<>();
+
+    public String borough;
 
     private final ObservableList<AirbnbListing> tableData =
             FXCollections.observableArrayList();
@@ -39,6 +44,11 @@ public class TableViewSample extends Application {
 
     private Stage stage;
 
+    public TableViewSample(String borough, ArrayList<AirbnbListing> data) {
+        this.data = data;
+        this.borough = borough;
+    }
+
     @Override
     public void start(Stage stage) {
         //data=loader.load();
@@ -47,7 +57,8 @@ public class TableViewSample extends Application {
         this.stage = stage;
         int lowerLimit = 500;
         int upperLimit = 1000;
-        tableData.addAll(filterData(data, lowerLimit, upperLimit));
+        tableData.addAll(filterData(data));
+
 
         statActions.add("Average reviews");
         statActions.add("Available properties");
@@ -61,11 +72,11 @@ public class TableViewSample extends Application {
         pane.setHgap(10);
 
         Scene scene = new Scene(new Group());
-        stage.setTitle("Table");
+        stage.setTitle(borough);
         stage.setWidth(500);
         stage.setHeight(500);
 
-        final Label label = new Label("Name");
+        final Label label = new Label(borough);
         label.setFont(new Font("Arial", 20));
 
         table.setEditable(true);
@@ -204,7 +215,7 @@ public class TableViewSample extends Application {
      * aked
      * It increments the count by 1
      */
-    private ArrayList<AirbnbListing> filterData(ArrayList<AirbnbListing> data, int lowerLimit, int upperLimit) {
+    private ArrayList<AirbnbListing> filterData(ArrayList<AirbnbListing> data) {
         // Counts number of button clicks and shows the result on a label
         ArrayList<AirbnbListing> newList = new ArrayList<>();
         for (AirbnbListing listing : data) {
@@ -212,8 +223,12 @@ public class TableViewSample extends Application {
 
                 newList.add(listing);
             }*/
-            if (listing.getPrice() >= lowerLimit && listing.getPrice() <= upperLimit) {
+            /*if (listing.getPrice() >= lowerLimit && listing.getPrice() <= upperLimit) {
 
+                newList.add(listing);
+            }*/
+            System.out.println(listing.getNeighbourhood().replaceAll("\\s+","") + "// -- //" + borough.replaceAll("\\s+","") + "//");
+            if (listing.getNeighbourhood().replaceAll("\\s+","").equals( borough.replaceAll("\\s+",""))){
                 newList.add(listing);
             }
         }
