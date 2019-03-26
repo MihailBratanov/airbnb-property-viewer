@@ -31,6 +31,7 @@ public class MapViewer extends Panel
 
     private Label myLabel = new Label("0");
     private Stage stage;
+
     VBox root;
     ScrollPane scrollPane;
     private double width;
@@ -151,8 +152,8 @@ public class MapViewer extends Panel
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(shadow);
-                            hexagon.setScaleX(initialScaleX * 1.2);
-                            hexagon.setScaleY(initialScaleY * 1.2);
+                            hexagon.setScaleX(initialScaleX * 1.1);
+                            hexagon.setScaleY(initialScaleY * 1.1);
                         }
                     });
                     
@@ -162,8 +163,8 @@ public class MapViewer extends Panel
                             boroughHover.setText(borough.getName());
                             //text.setText(borough.getFullName());
                             hexagon.setEffect(shadow);
-                            hexagon.setScaleX(initialScaleX * 1.2);
-                            hexagon.setScaleY(initialScaleY * 1.2);
+                            hexagon.setScaleX(initialScaleX * 1.1);
+                            hexagon.setScaleY(initialScaleY * 1.1);
                         }
                     });
                     
@@ -199,8 +200,8 @@ public class MapViewer extends Panel
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(shadow);
                             text.setText(borough.getFullName());
-                            hexagon.setScaleX(initialScaleX * 1.2);
-                            hexagon.setScaleY(initialScaleY * 1.2);
+                            hexagon.setScaleX(initialScaleX * 1.1);
+                            hexagon.setScaleY(initialScaleY * 1.1);
                         }
                     });
                     

@@ -1,4 +1,6 @@
+
 import javafx.animation.*;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.*;
@@ -78,6 +80,7 @@ public class Viewer extends Application
         root.setTop(makeMenuBar(root));
         root.setMaxSize(800, 800);
 
+
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
         
@@ -111,7 +114,6 @@ public class Viewer extends Application
 
     private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
-
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
         aboutViewerItem.setOnAction(this::aboutProgram);
