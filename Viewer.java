@@ -17,6 +17,8 @@ import javafx.scene.shape.*;
 import javafx.stage.*;
 import javafx.util.*;
 
+import java.util.ArrayList;
+
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -54,11 +56,16 @@ public class Viewer extends Application
     private static final String VERSION = "Version 0.0.1";
     private static final int MAX_PANEL_NUMBER = 2;
 
+    private AirbnbDataLoader loader;
+    private ArrayList<AirbnbListing> data;
+
     @Override
     public void start(Stage stage) throws Exception
     {
         this.stage = stage;
         // Create a new grid pane
+        loader = new AirbnbDataLoader();
+        data = loader.load();
         centerPane = new VBox();
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
@@ -293,7 +300,7 @@ public class Viewer extends Application
     }
 
     private void makeMapPanel() {
-        mapViewer = new MapViewer(lowerLimit, upperLimit);
+        mapViewer = new MapViewer(lowerLimit, upperLimit, data);
         currentPane = mapViewer.getPanel();
         //centerPane.setContent(mapViewer.getPanel());
     }

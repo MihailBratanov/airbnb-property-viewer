@@ -49,7 +49,7 @@ public class MapViewer extends Panel {
     private ArrayList<Borough> boroughs;
     private HashMap<String, Integer> boroughCount;
     private int lowerLimit, upperLimit;
-    private AirbnbDataLoader loader;
+    private ArrayList<AirbnbListing> data;
 
     private GridPane gridPane;
 
@@ -63,14 +63,14 @@ public class MapViewer extends Panel {
 
 
 
-    public MapViewer(int lowerLimit, int upperLimit) {
+    public MapViewer(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data) {
 
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
+        this.data = data;
 
-        loader = new AirbnbDataLoader();
 
-        boroughSortedProperties = loadData(lowerLimit, upperLimit);
+        boroughSortedProperties = loadData(lowerLimit, upperLimit, data);
 
 
         boroughCount = countBoroughs(boroughSortedProperties);
@@ -458,9 +458,7 @@ public class MapViewer extends Panel {
         return X;
     }
     
-    private ArrayList<AirbnbListing> loadData(int lowerLimit, int upperLimit){
-        ArrayList<AirbnbListing> data = loader.load();
-        System.out.println(data);
+    private ArrayList<AirbnbListing> loadData(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data){
         ArrayList<AirbnbListing> specifiedData = new ArrayList<>();
         ArrayList<String> neighbourhoods = new ArrayList<>();
         for (AirbnbListing listing : data){
@@ -611,7 +609,7 @@ public class MapViewer extends Panel {
     }
 
     public void setRange(int lowerLimit, int upperLimit) {
-        boroughSortedProperties = loadData(lowerLimit, upperLimit);
+        boroughSortedProperties = loadData(lowerLimit, upperLimit, data);
         boroughCount = countBoroughs(boroughSortedProperties);
     }
 }
