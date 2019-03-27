@@ -1,3 +1,9 @@
+import javafx.scene.control.DatePicker;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * Write a description of class UserDetails here.
@@ -27,6 +33,9 @@ public class UserDetails
         this.surname=surname;
         this.userName=userName;
         this.password=password;
+
+        Database database = new Database();
+        database.writeDetails(firstName, surname, userName, password);
     }
 
     /**
@@ -75,4 +84,6 @@ public class UserDetails
                 ", password='" + password + '\'' +
                 '}';
     }
+
+
 }
