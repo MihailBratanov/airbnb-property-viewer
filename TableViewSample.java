@@ -186,7 +186,7 @@ public class TableViewSample extends Application {
         } else if (statsLabel.getText().equals("Most expensive borough")) {
             String mostExpensiveBorough = "";
             HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-            System.out.println(filteredData);
+            //System.out.println(filteredData);
             ArrayList<Integer> pricesToFilter = new ArrayList();
             int large = 0;
             for (String borough : filteredData.keySet()) {
@@ -227,7 +227,7 @@ public class TableViewSample extends Application {
 
                 newList.add(listing);
             }*/
-            System.out.println(listing.getNeighbourhood().replaceAll("\\s+","") + "// -- //" + borough.replaceAll("\\s+","") + "//");
+            //System.out.println(listing.getNeighbourhood().replaceAll("\\s+","") + "// -- //" + borough.replaceAll("\\s+","") + "//");
             if (listing.getNeighbourhood().replaceAll("\\s+","").equals( borough.replaceAll("\\s+",""))){
                 newList.add(listing);
             }
