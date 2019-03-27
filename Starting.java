@@ -48,6 +48,10 @@ public class Starting extends Application
 
     private ArrayList<UserDetails> details=new ArrayList<>();
 
+    private Database database=new Database();
+    public ArrayList<UserDetails> login=new ArrayList<>();
+
+
     private String userName;
     private String password;
     private UserDetails userdetail;
@@ -64,6 +68,9 @@ public class Starting extends Application
         this.stage=stage;
 
         root = new VBox();
+
+
+
 
         root.getStylesheets().add("startingdesign.css");
 
@@ -107,7 +114,7 @@ public class Starting extends Application
         Label remainder = new Label("");
 
         TextField userNameText = new TextField();
-        TextField passwordText = new TextField();
+        PasswordField passwordText = new PasswordField();
 
 
         Button createAccount=new Button ("Create Account");
@@ -118,7 +125,7 @@ public class Starting extends Application
         // set the action to the login button when it is clicked
 
         logIn.setOnAction((event)->{
-            if (details.size()>0) {
+
 
                 if (!checkUserName(userNameText.getText())) {
                     remainder.setText("There is no such account, please create an account!");
@@ -127,14 +134,16 @@ public class Starting extends Application
                     if (!checkPassword(passwordText.getText())) {
                         remainder.setText("Please enter the correct password!");
                     }
+                    else {
+
+                        remainder.setText("You have loged in succesfully!");
+                    }
 
                 }
 
-            }
 
-            else{
-                    remainder.setText("There is no account, please create an account!");
-                }
+
+
 
             });
         remainder.setTextFill(Color.web("#fa8072"));
@@ -175,7 +184,7 @@ public class Starting extends Application
 
         primaryScene=new Scene(root);
         stage.setScene(primaryScene);
-        stage.setTitle("Airbnb");
+        stage.setTitle("Airbnb Viewer");
         stage.show();
     }
 
