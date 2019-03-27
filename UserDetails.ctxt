@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=UserDetails
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ UserDetails\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=firstName\ surname\ userName\ password
+comment1.target=UserDetails(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ UserDetails\r\n
+comment2.params=
+comment2.target=java.lang.String\ getFirstName()
+comment3.params=
+comment3.target=java.lang.String\ getSurname()
+comment4.params=
+comment4.target=java.lang.String\ getUserName()
+comment5.params=
+comment5.target=java.lang.String\ getPassword()
+numComments=6

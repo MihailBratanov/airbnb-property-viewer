@@ -30,7 +30,7 @@ public class Viewer extends Application
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
-    private StatViewer statViewer;
+
     private Pane currentPane;
     VBox centerPane;
     
@@ -39,7 +39,8 @@ public class Viewer extends Application
     private HBox dots;
     private Circle dotWelcomePanel;
     private Circle dotMapPanel;
-    
+
+
     private BorderPane root;
 
     private Scene scene;
@@ -57,14 +58,22 @@ public class Viewer extends Application
         this.stage = stage;
         // Create a new grid pane
         centerPane = new VBox();
+         
+
+
+
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-        currentPane = welcomeViewer.getPanel();
         panelNumber = 1;
-        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
 
+        currentPane = welcomeViewer.getPanel();
+        
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+        
+        
+       
         // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         
         contentPane = new BorderPane();
@@ -162,10 +171,12 @@ public class Viewer extends Application
         nextPaneButton.setOnAction(this::nextPane);
         
         dots = new HBox(8);
-        
+                
+
         dotWelcomePanel = new Circle();
         dotWelcomePanel.setRadius(3);
         dotWelcomePanel.setStroke(Color.BLACK);
+
         
         dotMapPanel = new Circle();
         dotMapPanel.setRadius(3);
@@ -224,6 +235,7 @@ public class Viewer extends Application
 
     private void switchPanel(int lowerLimit, int upperLimit) {
         switch(panelNumber) {
+
             case 1:
                 makeWelcomePanel();
                 previousPaneButton.setDisable(true);
@@ -241,13 +253,18 @@ public class Viewer extends Application
     private void switchDots() {
         switch(panelNumber) {
             case 1:
+
                 dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
                 dotMapPanel.setFill(javafx.scene.paint.Color.GRAY);
+                
                 break;
             case 2:
+
                 dotWelcomePanel.setFill(javafx.scene.paint.Color.GRAY);
                 dotMapPanel.setFill(javafx.scene.paint.Color.WHITE);
+                
                 break;
+               
         }
     }
     
@@ -257,8 +274,6 @@ public class Viewer extends Application
         welcomeViewer.setComboBox(lowerLimit, upperLimit);
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-
-        panelNumber = 1;
         currentPane = welcomeViewer.getPanel();
     }
     
@@ -267,12 +282,8 @@ public class Viewer extends Application
         currentPane = mapViewer.getPanel();
         //centerPane.setContent(mapViewer.getPanel());
     }
-    
-    private void makeStatPanel() {
-        // statViewer = new StatViewer(lowerLimit, upperLimit);
-        currentPane = mapViewer.getPanel();
-    }
-    
+
+
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);

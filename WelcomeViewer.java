@@ -39,9 +39,6 @@ public class WelcomeViewer extends Panel
     final ComboBox from = new ComboBox();
     final ComboBox to = new ComboBox();
 
-    private AirbnbDataLoader loader=new AirbnbDataLoader();
-    public ArrayList<AirbnbListing>data;
-
     public WelcomeViewer(){
         root = new VBox();
         
