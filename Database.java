@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Database {
@@ -17,11 +19,12 @@ public class Database {
     public void writeDetails(String name, String surname, String username, String password){
         String entry = name + "-" + surname + "-" + username + "-" + password;
         writeToDatabase(entry);
+        createUserFile(name,surname,password);
     }
 
     public void writeToDatabase(String entry){
 
-        try (BufferedReader currentReader = new BufferedReader(new FileReader("database.txt"))) {
+        try (BufferedReader currentReader = new BufferedReader(new FileReader("database/database.txt"))) {
 
             String currentEntry = null;
 
@@ -37,7 +40,7 @@ public class Database {
         }
 
         try {
-            fileWriter = new FileWriter("database.txt");
+            fileWriter = new FileWriter("database/database.txt");
             writer = new BufferedWriter(fileWriter);
             for (String currentEntry : existingEntries){
                 writer.append(currentEntry + "\n");
@@ -61,11 +64,43 @@ public class Database {
         }
     }
 
+    public void createUserFile(String name, String surname, String userName){
+        String fileName = name.concat("_").concat(surname).concat("_").concat(userName);
+        String pathToFile = "users/".concat(fileName).concat(".txt");
+        File userFile = new File(pathToFile);
+
+        if (! userFile.exists()){
+            //create file
+
+            try {
+                fileWriter = new FileWriter(pathToFile);
+                writer = new BufferedWriter(fileWriter);
+
+                writer.append(fileName);
+                writer.append("\nfavs : ");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        else{
+            System.out.println("ERROR !");
+        }
+    }
+
     public ArrayList<UserDetails> getDatabaseEntries(){
         ArrayList<UserDetails> users = new ArrayList<>();
 
         try {
-            reader = new BufferedReader(new FileReader("database.txt"));
+            reader = new BufferedReader(new FileReader("database/database.txt"));
 
             String entry = reader.readLine();
 
