@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Database {
 
@@ -19,7 +20,8 @@ public class Database {
     public void writeDetails(String name, String surname, String username, String password){
         String entry = name + "-" + surname + "-" + username + "-" + password;
         writeToDatabase(entry);
-        createUserFile(name,surname,username);
+
+        createUserFile(username);
 
     }
 
@@ -65,9 +67,9 @@ public class Database {
         }
     }
 
-    public void createUserFile(String name, String surname, String userName){
-        String fileName = name.concat("_").concat(surname).concat("_").concat(userName);
-        String pathToFile = "users/".concat(fileName).concat(".txt");
+    public void createUserFile(String userName){
+        String fileName = userName;
+        String pathToFile = "users/".concat(fileName).concat(".user");
         File userFile = new File(pathToFile);
 
         if (! userFile.exists()){
@@ -79,6 +81,7 @@ public class Database {
 
                 writer.append(fileName);
                 writer.append("\nfavs : ");
+
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -126,5 +129,70 @@ public class Database {
         }
 
         return users;
+    }
+
+    public HashMap<String, Integer> getUserProfile(String username){
+
+        HashMap<String, Integer> clickCount = new HashMap<>();
+
+        String path = "users/".concat(username).concat(".user");
+        try {
+            reader = new BufferedReader(new FileReader(path));
+            reader.readLine();
+            reader.readLine();
+            String borough;
+
+            while ((borough = reader.readLine()) != null){
+                String[] currentLine = borough.split("-");
+                clickCount.put(currentLine[0], Integer.parseInt(currentLine[1]));
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("User Not Found, Error.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("line not found.");
+        }
+        System.out.println(clickCount);
+        return clickCount;
+    }
+
+    public void writeToProfile(String username, HashMap<String, Integer> clickCount){
+
+        String idLine = username;
+        String favLine = "fav : ";
+
+        String path = "users/".concat(username).concat(".user");
+        Boolean empty = false;
+
+        try {
+            reader = new BufferedReader(new FileReader(path));
+            idLine = reader.readLine();
+            favLine = reader.readLine();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            fileWriter = new FileWriter(path);
+            writer = new BufferedWriter(fileWriter);
+            writer.append(idLine + "\n");
+            writer.append(favLine + "\n");
+
+            for (String borough : clickCount.keySet()){
+                String line = borough.concat("-").concat(String.valueOf(clickCount.get(borough))+"\n");
+                //System.out.println(line);
+                writer.append(line);
+            }
+            writer.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

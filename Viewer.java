@@ -1,4 +1,5 @@
 import javafx.animation.*;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.*;
@@ -6,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.*;
-import javafx.scene.image.*;
+// import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
@@ -25,13 +26,15 @@ import java.util.ArrayList;
 
 public class Viewer extends Application
 {
+    private String username;
+
     // We keep track of the count, and label displaying the count:
     private Stage stage;
     private BorderPane contentPane;
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
-    private StatViewer statViewer;
+    private StatisticsPanel statViewer;
     private Pane currentPane;
     VBox centerPane;
 
@@ -52,9 +55,14 @@ public class Viewer extends Application
     private int upperLimit;
 
     private static final String VERSION = "Version 0.0.1";
+    private static final int MAX_PANEL_NUMBER = 3;
 
     private AirbnbDataLoader loader;
     private ArrayList<AirbnbListing> data;
+
+    public Viewer(String username){
+        this.username = username;
+    }
 
     @Override
     public void start(Stage stage) throws Exception
@@ -68,19 +76,9 @@ public class Viewer extends Application
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-
-
-        panelNumber = 1;
-
-
         currentPane = welcomeViewer.getPanel();
-        
+        panelNumber = 1;
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
-
-        
-        
-       
-        // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
         contentPane = new BorderPane();
         contentPane.setCenter(centerPane);
@@ -90,6 +88,7 @@ public class Viewer extends Application
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
+
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
@@ -124,7 +123,6 @@ public class Viewer extends Application
 
     private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
-
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
         aboutViewerItem.setOnAction(this::aboutProgram);
@@ -178,7 +176,6 @@ public class Viewer extends Application
 
         dots = new HBox(8);
 
-
         dotWelcomePanel = new Circle();
         dotWelcomePanel.setRadius(3);
         dotWelcomePanel.setStroke(Color.BLACK);
@@ -205,9 +202,20 @@ public class Viewer extends Application
 
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
-
-        if (isPriceRangeValid) {
-            nextPaneButton.setDisable(false);
+        if(welcomeViewer.checkToBoxSelected()) {
+            if (isPriceRangeValid) {
+                previousPaneButton.setDisable(false);
+                nextPaneButton.setDisable(false);
+            } else {
+                previousPaneButton.setDisable(true);
+                nextPaneButton.setDisable(true);
+                Alert wrongInput = new Alert(AlertType.ERROR);
+                wrongInput.setTitle("Error");
+                wrongInput.setHeaderText("Invalid Range.");
+                wrongInput.setContentText("The upper limit is smaller than the lower limit.\nPlease try again.");
+                wrongInput.showAndWait();
+                welcomeViewer.setComoboBoxDefault();
+            }
         }
         else {
             previousPaneButton.setDisable(true);
@@ -220,21 +228,23 @@ public class Viewer extends Application
     private void nextPane(ActionEvent event){
 
         panelNumber++;
-        //paneMoveLeft();
-        centerPane.getChildren().clear();
+        if (panelNumber > MAX_PANEL_NUMBER) {
+            panelNumber = 1;
+        }
         switchPanel();
+
+        paneMoveLeft(currentPane, centerPane);
 
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
         contentPane.setCenter(centerPane);
         stage.show();
     }
+
     private void previousPane(ActionEvent event) {
         panelNumber--;
-
-        //paneMoveRight();
-        centerPane.getChildren().clear();
-        currentPane.getChildren().clear();
-
+        if (panelNumber < 1) {
+            panelNumber = MAX_PANEL_NUMBER;
+        }
         switchPanel();
 
         paneMoveRight(currentPane, centerPane);
@@ -248,17 +258,14 @@ public class Viewer extends Application
         switch(panelNumber) {
             case 1:
                 makeWelcomePanel();
-                previousPaneButton.setDisable(true);
                 switchDots();
                 break;
             case 2:
                 makeMapPanel();
-                previousPaneButton.setDisable(false);
-                nextPaneButton.setDisable(true);
                 switchDots();
                 break;
             case 3:
-                //makeStatPanel();
+                makeStatPanel();
                 switchDots();
                 break;
         }
@@ -296,18 +303,23 @@ public class Viewer extends Application
     }
 
     private void makeMapPanel() {
-        mapViewer = new MapViewer(lowerLimit, upperLimit, data);
+        mapViewer = new MapViewer(lowerLimit, upperLimit, data, username);
         currentPane = mapViewer.getPanel();
         //centerPane.setContent(mapViewer.getPanel());
+    }
+
+    private void makeStatPanel() {
+        statViewer = new StatisticsPanel();
+        currentPane = mapViewer.getPanel();
     }
 
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);
-        sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-        sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-        child.prefWidthProperty().bind(sp.widthProperty());
-        child.prefHeightProperty().bind(sp.heightProperty());
+        sp.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        child.prefWidthProperty().bind(sp.widthProperty().subtract(2)); // so that the ScrollBar would not appear at all times.
+        child.prefHeightProperty().bind(sp.heightProperty().subtract(2));
         sp.prefWidthProperty().bind(parent.widthProperty());
         sp.prefHeightProperty().bind(parent.heightProperty());
         sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -338,7 +350,7 @@ public class Viewer extends Application
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About Property Viewer");
-        alert.setHeaderText(null);  // Alerts have an optionl header. We don't want one.
+        alert.setHeaderText(null);
         alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
         alert.showAndWait();
     }

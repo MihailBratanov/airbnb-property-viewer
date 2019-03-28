@@ -30,6 +30,8 @@ import javafx.scene.control.Slider;
 
 public class MapViewer extends Panel {
 
+    private String username;
+
     private Label myLabel = new Label("0");
     private Stage stage;
 
@@ -51,6 +53,8 @@ public class MapViewer extends Panel {
     private int lowerLimit, upperLimit;
     private ArrayList<AirbnbListing> data;
 
+    private HashMap<String, Integer> boroughClick;
+
     private GridPane gridPane;
 
     private ComboBox numberOfNights = new ComboBox();
@@ -63,12 +67,12 @@ public class MapViewer extends Panel {
 
 
 
-    public MapViewer(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data) {
+    public MapViewer(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data, String username) {
 
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
         this.data = data;
-
+        this.username = username;
 
         boroughSortedProperties = loadData(lowerLimit, upperLimit, data);
 
@@ -119,10 +123,14 @@ public class MapViewer extends Panel {
 
         webView = new MapWebView();
 
+        Database database = new Database();
 
+        boroughClick = database.getUserProfile(username);
 
-
-
+        if (boroughClick.isEmpty()) {
+            boroughClick = setUpUserClick(boroughs);
+        }
+        System.out.println(boroughClick);
 
         // testing mapwebview
 
@@ -158,6 +166,7 @@ public class MapViewer extends Panel {
                             hexPointX(330), hexPointY(330),
 
                     });
+                    
 
                     int colorGreen = (int) Math.round(boroughCount.get(currentBorough) * 0.1);
                     colorGreen = colorGreen % 255;
@@ -190,8 +199,18 @@ public class MapViewer extends Panel {
                                 System.out.println("ERROR !!!!");
                             }
                             */
+
+                            String thisBorough = borough.getName();
+                            int count = boroughClick.get(thisBorough);
+                            count += 1;
+                            boroughClick.replace(thisBorough, count);
+
                             tableViewStage = new Stage();
                             dateSortedProperties = boroughSortedProperties;
+
+                            Database database = new Database();
+                            database.writeToProfile(username, boroughClick);
+
                             tableView = new TableViewSample(borough.getName(), dateSortedProperties);
 
                             tableView.start(tableViewStage);
@@ -284,6 +303,18 @@ public class MapViewer extends Panel {
         root.getChildren().addAll(flowPane);
         root.setAlignment(Pos.CENTER);
 
+    }
+
+    private HashMap<String, Integer> setUpUserClick(ArrayList<Borough> boroughs){
+
+        HashMap<String, Integer> boroughClick = new HashMap<>();
+
+        for (Borough borough : boroughs){
+            String boroughName = borough.getName();
+            boroughClick.put(boroughName, 0);
+        }
+
+        return boroughClick;
     }
 
 

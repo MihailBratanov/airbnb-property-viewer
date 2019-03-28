@@ -204,7 +204,7 @@ public class Starting extends Application
             if (logInPass){
                 //getUserProfile(userNameTemp);
                 Stage main = new Stage();
-                Viewer mainViewer = new Viewer();
+                Viewer mainViewer = new Viewer(userNameTemp);
 
                 try {
                     mainViewer.start(main);
@@ -249,7 +249,6 @@ public class Starting extends Application
      *
      * method to load the image
      */
-
      private Label LoadImage(){
 
         Label imageLabel = new Label();
