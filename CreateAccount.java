@@ -84,14 +84,14 @@ public class CreateAccount extends Application
 
 
         Button submit =new Button("Submit");
-        Button GoBack=new Button("Go Back and LogIn");
+        Button goBack=new Button("Go Back and LogIn");
         Label reminder=new Label();
         reminder.setText("");
 
         submit.getStylesheets().add("startingdesign.css");
 
         submit.setStyle("-fx-text-fill: #fa8072");
-        GoBack.setStyle("-fx-text-fill: #fa8072");
+        goBack.setStyle("-fx-text-fill: #fa8072");
 
 
         submit.setOnAction((event)-> {
@@ -126,6 +126,7 @@ public class CreateAccount extends Application
 
 
                 userDetails.add(userdetails);
+                userdetails.writeToDatabase();
 
                 //System.out.println(userDetails.get(0));
 
@@ -147,6 +148,10 @@ public class CreateAccount extends Application
 
 
         });
+
+        goBack.setOnAction( event -> stage.close());
+
+
         reminder.setTextFill(Color.web("#fa8072"));
 
 
@@ -165,7 +170,7 @@ public class CreateAccount extends Application
         surNameBox.getChildren().addAll(surNameLabel,surNameText);
         userNameBox.getChildren().addAll(userNameLabel,userNameText);
         passwordBox.getChildren().addAll(passwordLabel,passwordText);
-        submitBox.getChildren().addAll(submit,GoBack);
+        submitBox.getChildren().addAll(submit,goBack);
         reminderBox.getChildren().addAll(reminder);
 
 

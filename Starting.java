@@ -66,7 +66,7 @@ public class Starting extends Application
 
     private boolean finishloading;
     private UserDetails userdetail;
-    private CreateAccount createaccount;
+    //CreateAccount createAccount;
 
     private WelcomeViewer welcomViewr;
     private int index;
@@ -180,11 +180,38 @@ public class Starting extends Application
         // set actions when create account button is clicked
         createAccount.setOnAction((event)->{
 
-            createaccount=new CreateAccount();
+            CreateAccount createAccountWindow = new CreateAccount();
 
-            newPanel = createaccount.getPanel();
+            Stage accountCreateStage = new Stage();
+
+            try {
+                createAccountWindow.start(accountCreateStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
 
+        });
+
+        logIn.setOnAction((event) -> {
+
+            String userNameTemp = userNameText.getText();
+            String passwordTemp = passwordText.getText();
+
+            Boolean logInPass = loginCheck(userNameTemp, passwordTemp);
+            if (logInPass){
+                //getUserProfile(userNameTemp);
+                Stage main = new Stage();
+                Viewer mainViewer = new Viewer();
+
+                try {
+                    mainViewer.start(main);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                stage.close();
+            }
         });
 
 
@@ -254,7 +281,44 @@ public class Starting extends Application
         return root;
     }
 
+    public boolean loginCheck(String userName, String password){
 
+        boolean loginStatus = false;
+
+        Database database = new Database();
+        ArrayList<UserDetails> logins = database.getDatabaseEntries();
+        // logins[2] is username, logins[3] is password.
+
+        for (UserDetails login : logins){
+            if (login.getUserName().equals(userName)){
+                if (login.getPassword().equals(password)){
+                    loginStatus = true;
+                }
+            }
+        }
+
+        return  loginStatus;
+    }
+
+    public UserDetails getUserProfile(String userName){
+
+        UserDetails userProfile = null;
+
+        Database database = new Database();
+
+        ArrayList<UserDetails> logins = database.getDatabaseEntries();
+
+        for (UserDetails login : logins) {
+            if (login.getUserName().equals(userName)) {
+                userProfile = login;
+                break;
+            }
+        }
+
+        return userProfile;
+    }
+
+    /*
     public boolean CheckUserName(String userName){
         if (checkuser.size()>0){
             for (int i=0;i<checkuser.size();i++){
@@ -278,7 +342,7 @@ public boolean CheckPassword(String password){
    else{checkpassword=false;}
    return checkpassword;
 
-}
+} */
 
     public Task createWorker() {
         return new Task() {
