@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Calculator
+comment0.text=\n\ This\ class\ is\ where\ all\ statistical\ computations\ take\ place.\n\n\ @author\ Mihail\ Bratanov\n\ @version\ 0.1\n
+comment1.params=
+comment1.target=Calculator()
+comment1.text=\n\ Constructor\ for\ objects\ of\ class\ Calculator\n
+comment2.params=dataToDoStatsOn
+comment2.target=double\ calculateAverageViews(javafx.collections.ObservableList)
+comment2.text=\n\ An\ example\ of\ a\ method\ -\ replace\ this\ comment\ with\ your\ own\n\n\ @param\ \ y\ \ a\ sample\ parameter\ for\ a\ method\n\ @return\ \ \ \ the\ sum\ of\ x\ and\ y\n
+comment3.params=dataToDoStatsOn
+comment3.target=int\ calculateAvailability(javafx.collections.ObservableList)
+comment4.params=dataToDoStatsOn
+comment4.target=int\ calculateRoomType(javafx.collections.ObservableList)
+comment5.params=dataToDoStatsOn
+comment5.target=java.util.HashMap\ calculateMostExpensiveBorough(javafx.collections.ObservableList)
+numComments=6
