@@ -231,7 +231,7 @@ public class Viewer extends Application
         panelNumber++;
         //paneMoveLeft();
         centerPane.getChildren().clear();
-        switchPanel(lowerLimit, upperLimit);
+        switchPanel();
         //paneMoveLeft();
         
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));

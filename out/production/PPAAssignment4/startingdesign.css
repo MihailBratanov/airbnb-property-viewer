@@ -1,0 +1,14 @@
+.root{
+
+-fx-background-image:url("airbnb1.gif");
+-fx-background-repeat: no-repeat;
+-fx-background-position: center,center;
+-fx-background-size: cover,auto;
+-fx-font-size: 15px;
+
+}
+
+.progress-bar.bar{
+-fx-padding: 0.75em;
+}
+
