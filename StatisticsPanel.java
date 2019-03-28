@@ -63,14 +63,19 @@ public class StatisticsPanel extends Application {
     public void start(Stage stage) throws FileNotFoundException {
         //data=loader.load();
         //System.out.println(data.toString());
-        int lowerLimit = 500;
-        int upperLimit = 1000;
+        int lowerLimit = 100;
+        int upperLimit = 500;
         tableData.addAll(filterData(data, lowerLimit, upperLimit));
-
+//--------------core---------------------------
         statActions.add("Average reviews");
         statActions.add("Available properties");
         statActions.add("Homes and apartments");
         statActions.add("Most expensive borough");
+//---------------extra--------------------------------
+        statActions.add("Most recent listing");
+        statActions.add("Most active month");
+        statActions.add("Most populated borough");
+        statActions.add("Most clicked borough");
 
         titleFont = Font.loadFont(new FileInputStream(new File("KingsFontBold.ttf")), 20);
         contentFont = Font.loadFont(new FileInputStream(new File("KingsFont.ttf")), 16);
@@ -146,19 +151,19 @@ public class StatisticsPanel extends Application {
                 mouseY = event.getY();
             }
         });
-//        stage.heightProperty().addListener((observe, oldVal, newVal) -> {
-//            stageMidY = stage.getHeight()/2;
-//        });
-//
-//        stage.widthProperty().addListener((observe, oldVal, newVal) -> {
-//            stageMidX = stage.getWidth()/2;
-//        });
-//
-//        stage.setScene(scene);
-//        stage.show();
-//
-//        stageMidX = stage.getWidth()/2;
-//        stageMidY = stage.getHeight()/2;
+        stage.heightProperty().addListener((observe, oldVal, newVal) -> {
+            stageMidY = stage.getHeight()/2;
+        });
+
+        stage.widthProperty().addListener((observe, oldVal, newVal) -> {
+            stageMidX = stage.getWidth()/2;
+        });
+
+        stage.setScene(scene);
+        stage.show();
+
+        stageMidX = stage.getWidth()/2;
+        stageMidY = stage.getHeight()/2;
     }
 
     private int determinePane(double mouseX,double mouseY){
@@ -175,9 +180,7 @@ public class StatisticsPanel extends Application {
         else if (mouseX >= stageMidX && mouseY >= stageMidY) {
             pane = 4;
         }
-        System.out.println(mouseX + " " + stageMidX);
-        System.out.println(mouseY + " " + stageMidY);
-        System.out.println(pane);
+
         return pane;
     }
 
@@ -220,25 +223,59 @@ public class StatisticsPanel extends Application {
     private void doStatistic(int number) {
         int paneNumber=number;
         if (paneNumber == 1) {
-            if (statsLabel1.getText().equals("Average reviews")) {
+            if(statsLabel1.getText().equals("Most populated borough")){
+                HashMap<String,Integer>counts=calculator.calculateMostPopulatedBorough(tableData);
+                int max=Collections.max(counts.values());
+
+                for(Map.Entry<String,Integer> value:counts.entrySet()){
+                    if(value.getValue()==max){
+                        statsInfoLabel1.setText(value.getKey());
+                    }
+                }
+
+            }
+            else if(statsLabel1.getText().equals("Most active month")){
+                System.out.println("most act month");
+                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
+                int max=Collections.max(datesAndCounts.values());
+                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
+                    if(value.getValue()==max){
+                        statsInfoLabel1.setText(value.getKey());
+                    }
+                }
+            }
+            else if(statsLabel1.getText().equals("Most recent listing")){
+                System.out.println("running most rec listing");
+                 HashMap<Integer,String>dates;
+                dates=calculator.calculateMostRecentListing(tableData);
+
+                Set<Integer>datesToCompare=dates.keySet();
+                int max=Collections.max(datesToCompare);
+                statsInfoLabel1.setText(dates.get(max));
+            }
+            else if (statsLabel1.getText().equals("Average reviews")) {
+                System.out.println("avg reviews");
                 double average = calculator.calculateAverageViews(tableData);
                 {
                     statsInfoLabel1.setText(Double.toString(Math.round(average)));
                 }
             } else if (statsLabel1.getText().equals("Available properties")) {
+                System.out.println("avail prop");
                 int total = calculator.calculateAvailability(tableData);
                 {
                     statsInfoLabel1.setText(Integer.toString(total));
                 }
             } else if (statsLabel1.getText().equals("Homes and apartments")) {
+                System.out.println("hms and apps");
                 int totalProperties = calculator.calculateRoomType(tableData);
                 {
                     statsInfoLabel1.setText(Integer.toString(totalProperties));
                 }
             } else if (statsLabel1.getText().equals("Most expensive borough")) {
+                System.out.println("most exp bor");
                 String mostExpensiveBorough = "";
                 HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                System.out.println(filteredData);
+
                 ArrayList<Integer> pricesToFilter = new ArrayList<>();
                 int large = 0;
                 for (String borough : filteredData.keySet()) {
@@ -263,7 +300,24 @@ public class StatisticsPanel extends Application {
 
             }
         } else if (paneNumber == 2) {
-            if (statsLabel2.getText().equals("Average reviews")) {
+            if(statsLabel2.getText().equals("Most active month")){
+                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
+                int max=Collections.max(datesAndCounts.values());
+                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
+                    if(value.getValue()==max){
+                        statsInfoLabel2.setText(value.getKey());
+                    }
+                }
+            }
+            if(statsLabel2.getText().equals("Most recent listing")){
+                HashMap<Integer,String>dates;
+                dates=calculator.calculateMostRecentListing(tableData);
+
+                Set<Integer>datesToCompare=dates.keySet();
+                int max=Collections.max(datesToCompare);
+                statsInfoLabel2.setText(dates.get(max));
+            }
+            else if (statsLabel2.getText().equals("Average reviews")) {
                 double average = calculator.calculateAverageViews(tableData);
                 {
                     statsInfoLabel2.setText(Double.toString(Math.round(average)));
@@ -281,7 +335,7 @@ public class StatisticsPanel extends Application {
             } else if (statsLabel2.getText().equals("Most expensive borough")) {
                 String mostExpensiveBorough = "";
                 HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                System.out.println(filteredData);
+
                 ArrayList<Integer> pricesToFilter = new ArrayList<>();
                 int large = 0;
                 for (String borough : filteredData.keySet()) {
@@ -305,8 +359,25 @@ public class StatisticsPanel extends Application {
                 statsInfoLabel2.setText(mostExpensiveBorough);
             }
         } else if (paneNumber == 3) {
+            if(statsLabel3.getText().equals("Most active month")){
+                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
+                int max=Collections.max(datesAndCounts.values());
+                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
+                    if(value.getValue()==max){
+                        statsInfoLabel3.setText(value.getKey());
+                    }
+                }
+            }
+            else if(statsLabel3.getText().equals("Most recent listing")){
+                HashMap<Integer,String>dates;
+                dates=calculator.calculateMostRecentListing(tableData);
 
-            if (statsLabel3.getText().equals("Average reviews")) {
+                Set<Integer>datesToCompare=dates.keySet();
+                int max=Collections.max(datesToCompare);
+                statsInfoLabel3.setText(dates.get(max));
+            }
+
+            else if (statsLabel3.getText().equals("Average reviews")) {
                 double average = calculator.calculateAverageViews(tableData);
                 {
                     statsInfoLabel3.setText(Double.toString(Math.round(average)));
@@ -324,7 +395,7 @@ public class StatisticsPanel extends Application {
             } else if (statsLabel3.getText().equals("Most expensive borough")) {
                 String mostExpensiveBorough = "";
                 HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                System.out.println(filteredData);
+
                 ArrayList<Integer> pricesToFilter = new ArrayList<>();
                 int large = 0;
                 for (String borough : filteredData.keySet()) {
@@ -348,8 +419,25 @@ public class StatisticsPanel extends Application {
                 statsInfoLabel3.setText(mostExpensiveBorough);
             }
         } else if (paneNumber == 4) {
+            if(statsLabel4.getText().equals("Most active month")){
+                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
+                int max=Collections.max(datesAndCounts.values());
+                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
+                    if(value.getValue()==max){
+                        statsInfoLabel4.setText(value.getKey());
+                    }
+                }
+            }
+            else if(statsLabel4.getText().equals("Most recent listing")){
+                HashMap<Integer,String>dates;
+                dates=calculator.calculateMostRecentListing(tableData);
 
-            if (statsLabel4.getText().equals("Average reviews")) {
+                Set<Integer>datesToCompare=dates.keySet();
+                int max=Collections.max(datesToCompare);
+                statsInfoLabel4.setText(dates.get(max));
+            }
+
+            else if (statsLabel4.getText().equals("Average reviews")) {
                 double average = calculator.calculateAverageViews(tableData);
                 {
                     statsInfoLabel4.setText(Double.toString(Math.round(average)));
@@ -367,7 +455,7 @@ public class StatisticsPanel extends Application {
             } else if (statsLabel4.getText().equals("Most expensive borough")) {
                 String mostExpensiveBorough = "";
                 HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-                System.out.println(filteredData);
+
                 ArrayList<Integer> pricesToFilter = new ArrayList<>();
                 int large = 0;
                 for (String borough : filteredData.keySet()) {
