@@ -1,6 +1,4 @@
-
 import javafx.animation.*;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.*;
@@ -9,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.*;
-// import javafx.scene.image.*;
+import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
@@ -54,7 +52,6 @@ public class Viewer extends Application
     private int upperLimit;
 
     private static final String VERSION = "Version 0.0.1";
-    private static final int MAX_PANEL_NUMBER = 2;
 
     private AirbnbDataLoader loader;
     private ArrayList<AirbnbListing> data;
@@ -75,15 +72,14 @@ public class Viewer extends Application
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-        currentPane = welcomeViewer.getPanel();
-        currentPane.setStyle("-fx-border-color: #3e3e3e;  -fx-border-width: 2px 2px 2px 2px;");
+
         panelNumber = 1;
-        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
-        centerPane.setStyle("-fx-border-color: #000000;  -fx-border-width: 2px 2px 2px 2px;");
+
 
         currentPane = welcomeViewer.getPanel();
         
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+
         
         
        
@@ -98,7 +94,6 @@ public class Viewer extends Application
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
         root.setMaxSize(800, 800);
-
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
@@ -133,6 +128,7 @@ public class Viewer extends Application
 
     private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
+
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
         aboutViewerItem.setOnAction(this::aboutProgram);
@@ -186,9 +182,11 @@ public class Viewer extends Application
 
         dots = new HBox(8);
 
+
         dotWelcomePanel = new Circle();
         dotWelcomePanel.setRadius(3);
         dotWelcomePanel.setStroke(Color.BLACK);
+
         dotMapPanel = new Circle();
         dotMapPanel.setRadius(3);
         dotMapPanel.setStroke(Color.BLACK);
@@ -207,19 +205,8 @@ public class Viewer extends Application
 
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
-        if(welcomeViewer.checkToBoxSelected()) {
-            if (isPriceRangeValid) {
-                previousPaneButton.setDisable(false);
-                nextPaneButton.setDisable(false);
-            } else {
-                previousPaneButton.setDisable(true);
-                nextPaneButton.setDisable(true);
-                Alert wrongInput = new Alert(AlertType.ERROR);
-                wrongInput.setTitle("Error");
-                wrongInput.setHeaderText(null);
-                wrongInput.setContentText("Invalid Range. Please try again.");
-                wrongInput.showAndWait();
-            }
+        if (isPriceRangeValid) {
+            nextPaneButton.setDisable(false);
         }
         else {
             previousPaneButton.setDisable(true);
@@ -242,13 +229,11 @@ public class Viewer extends Application
         contentPane.setCenter(tempCenterPane);
 
         panelNumber++;
-        if (panelNumber > MAX_PANEL_NUMBER) {
-            panelNumber = 1;
-        }
-        switchPanel();
-
-        paneMoveLeft(currentPane, centerPane, contentPane, tempPane, tempCenterPane);
-
+        //paneMoveLeft();
+        centerPane.getChildren().clear();
+        switchPanel(lowerLimit, upperLimit);
+        //paneMoveLeft();
+        
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
         contentPane.setCenter(centerPane);
         stage.show();
@@ -256,9 +241,6 @@ public class Viewer extends Application
 
     private void previousPane(ActionEvent event) {
         panelNumber--;
-        if (panelNumber < 1) {
-            panelNumber = MAX_PANEL_NUMBER;
-        }
         //paneMoveRight();
         centerPane.getChildren().clear();
         currentPane.getChildren().clear();
@@ -276,10 +258,13 @@ public class Viewer extends Application
 
             case 1:
                 makeWelcomePanel();
+                previousPaneButton.setDisable(true);
                 switchDots();
                 break;
             case 2:
                 makeMapPanel();
+                previousPaneButton.setDisable(false);
+                nextPaneButton.setDisable(true);
                 switchDots();
                 break;
         }
@@ -318,17 +303,13 @@ public class Viewer extends Application
         //centerPane.setContent(mapViewer.getPanel());
     }
 
-    private void makeStatPanel() {
-        // statViewer = new StatViewer(lowerLimit, upperLimit);
-        currentPane = mapViewer.getPanel();
-    }
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);
-        sp.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
-        sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
-        child.prefWidthProperty().bind(sp.widthProperty().subtract(2)); // so that the ScrollBar would not appear at all times.
-        child.prefHeightProperty().bind(sp.heightProperty().subtract(2));
+        sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
+        sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
+        child.prefWidthProperty().bind(sp.widthProperty());
+        child.prefHeightProperty().bind(sp.heightProperty());
         sp.prefWidthProperty().bind(parent.widthProperty());
         sp.prefHeightProperty().bind(parent.heightProperty());
         sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -367,7 +348,7 @@ public class Viewer extends Application
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About Property Viewer");
-        alert.setHeaderText(null);
+        alert.setHeaderText(null);  // Alerts have an optionl header. We don't want one.
         alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
         alert.showAndWait();
     }

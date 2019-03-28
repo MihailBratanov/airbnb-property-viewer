@@ -43,6 +43,7 @@ public class TableViewSample extends Application {
 
     private Stage stage;
 
+
     private String latitude;
     private String longitude;
 
@@ -67,6 +68,7 @@ public class TableViewSample extends Application {
         int lowerLimit = 500;
         int upperLimit = 1000;
         tableData.addAll(filterData(data));
+
 
 
         GridPane pane = new GridPane();
@@ -162,6 +164,7 @@ public class TableViewSample extends Application {
             // Counts number of button clicks and shows the result on a label
             ArrayList<AirbnbListing> newList = new ArrayList<>();
             for (AirbnbListing listing : data) {
+
             /*if((listing.getNeighbourhood().equals("Westminster") || listing.getNeighbourhood().equals("Croydon"))&& listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
 
                 newList.add(listing);
@@ -174,6 +177,7 @@ public class TableViewSample extends Application {
                 if (listing.getNeighbourhood().replaceAll("\\s+", "").equals(borough.replaceAll("\\s+", ""))) {
                     newList.add(listing);
                 }
+
             }
             return newList;
         }
