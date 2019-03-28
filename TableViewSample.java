@@ -5,39 +5,51 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
+import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
-import javafx.scene.control.Button;
+
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.BorderPane;
 import java.util.*;
 
 public class TableViewSample extends Application {
+    private MapWebView terryMaps=new MapWebView();
 
 
-
-    private Calculator calculator = new Calculator();
 
     public AirbnbDataLoader loader = new AirbnbDataLoader();
-    public ArrayList<AirbnbListing> data = loader.load();
+    public ArrayList<AirbnbListing> data = new ArrayList<>();
 
-    private final ObservableList<AirbnbListing> tableData =
+    public String borough;
+
+    private ObservableList<AirbnbListing> tableData =
             FXCollections.observableArrayList();
     private TableView table = new TableView();
     private Label statsLabel;
     private Label statsInfoLabel;
+    private ArrayList<Double> coordinates = new ArrayList<>();
     private ArrayList<String> statActions = new ArrayList<>();
     private int currentActionIndex = 0;
 
     private Stage stage;
+
+    private String latitude;
+    private String longitude;
+
+    public TableViewSample(String borough, ArrayList<AirbnbListing> data) {
+        this.data = data;
+        this.borough = borough;
+    }
 
     @Override
     public void start(Stage stage) {
@@ -45,14 +57,16 @@ public class TableViewSample extends Application {
         //System.out.println(data.toString());\
 
         this.stage = stage;
+        Stage webMapStage=new Stage();
+        try {
+            terryMaps.start(webMapStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int lowerLimit = 500;
         int upperLimit = 1000;
-        tableData.addAll(filterData(data, lowerLimit, upperLimit));
+        tableData.addAll(filterData(data));
 
-        statActions.add("Average reviews");
-        statActions.add("Available properties");
-        statActions.add("Homes and apartments");
-        statActions.add("Most expensive borough");
 
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));
@@ -61,15 +75,34 @@ public class TableViewSample extends Application {
         pane.setHgap(10);
 
         Scene scene = new Scene(new Group());
-        stage.setTitle("Table");
+        stage.setTitle(borough);
         stage.setWidth(500);
         stage.setHeight(500);
 
-        final Label label = new Label("Name");
+        final Label label = new Label(borough);
         label.setFont(new Font("Arial", 20));
 
         table.setEditable(true);
         table.setItems(tableData);
+
+        table.setRowFactory(p -> {
+            TableRow<AirbnbListing> row = new TableRow<>();
+
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !(row.isEmpty())) {
+                    AirbnbListing rowData = row.getItem();
+                    //System.out.println(rowData.getLatitude()+" "+rowData.getLongitude());
+                    latitude = String.valueOf(rowData.getLatitude());
+                    longitude = String.valueOf(rowData.getLongitude());
+                    System.out.println(latitude+longitude);
+                    terryMaps.show(longitude,latitude);
+
+                }
+            });
+
+            return row;
+        });
+
 
         TableColumn hostNameCol = new TableColumn("Host");
         hostNameCol.setMinWidth(100);
@@ -97,10 +130,6 @@ public class TableViewSample extends Application {
         vbox.setPadding(new Insets(10, 10, 10, 10));
         vbox.getChildren().addAll(label, table);
 
-        Button myLeftButton = new Button("<");
-        statsLabel = new Label();
-        statsLabel.setText(statActions.get(currentActionIndex));
-        Button myRightButton = new Button(">");
 
         statsInfoLabel = new Label("default");
         HBox statViewer = new HBox();
@@ -108,131 +137,48 @@ public class TableViewSample extends Application {
         //rightPane.getChildren().addAll(myLeftButton, myRightButton,statsLabel);
         statViewer.setSpacing(20);
         statViewer.setPadding(new Insets(50, 50, 120, 120));
-        statViewer.getChildren().addAll(vbox, myLeftButton, statsLabel, myRightButton);
-
-        rightPane.setSpacing(120);
-        rightPane.setPadding(new Insets(150,150,550,550));
-        rightPane.getChildren().addAll(statsInfoLabel);
-        myLeftButton.setOnAction(this::leftButtonClick);
-        myRightButton.setOnAction(this::rightButtonClick);
-
-        BorderPane statPane=new BorderPane();
+        statViewer.getChildren().addAll(vbox);
 
 
-        ((Group) scene.getRoot()).getChildren().addAll(statViewer,rightPane);
+        ((Group) scene.getRoot()).getChildren().addAll(statViewer);
 
         stage.setScene(scene);
         stage.show();
-    }
 
-    private Label getTopLabel() {
-        Label lbl = new Label("Top");
-
-        lbl.setStyle("-fx-border-style: dotted; -fx-border-width: 0 0 1 0;"
-                + "-fx-border-color: gray; -fx-font-weight: bold");
-
-        return lbl;
-    }
-    /**
-     * This method returns the index of the current 
-     */
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
-     */
-    private void leftButtonClick(ActionEvent event) {
-        // Counts number of button clicks and shows the result on a label
-        currentActionIndex++;
-        if (currentActionIndex > statActions.size() - 1) {
-            currentActionIndex = 0;
-        }
-        statsLabel.setText(statActions.get(currentActionIndex));
-        doStatistic();
-        currentActionIndex = currentActionIndex;
 
     }
 
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
-     */
-    private void doStatistic() {
-        if (statsLabel.getText().equals("Average reviews")) {
-            double average = calculator.calculateAverageViews(tableData);
-            {
-                statsInfoLabel.setText(Double.toString(Math.round(average)));
-            }
-        } else if (statsLabel.getText().equals("Available properties")) {
-            int total = calculator.calculateAvailability(tableData);
-            {
-                statsInfoLabel.setText(Integer.toString(total));
-            }
-        } else if (statsLabel.getText().equals("Homes and apartments")) {
-            int totalProperties = calculator.calculateRoomType(tableData);
-            {
-                statsInfoLabel.setText(Integer.toString(totalProperties));
-            }
-        } else if (statsLabel.getText().equals("Most expensive borough")) {
-            String mostExpensiveBorough = "";
-            HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-            System.out.println(filteredData);
-            ArrayList<Integer> pricesToFilter = new ArrayList();
-            int large = 0;
-            for (String borough : filteredData.keySet()) {
-                String key = borough.toString();
-                int price = filteredData.get(borough);
-                pricesToFilter.add(price);
-                large = pricesToFilter.get(0);
-                for (int i = 0; i < pricesToFilter.size(); i++) {
-                    if (large < pricesToFilter.get(i)) {
-                        large = pricesToFilter.get(i);
-                    }
-                }
-            }
+        /**
+         * This will be executed when the button is clicked
+         * It increments the count by 1
+         */
 
-            for (String currKey : filteredData.keySet()) {
-                if (large == filteredData.get(currKey)) {
-                    mostExpensiveBorough = currKey;
-                    break;
-                }
-            }
-            statsInfoLabel.setText(mostExpensiveBorough);
-        }
-    }
-
-    /**
-     * aked
-     * It increments the count by 1
-     */
-    private ArrayList<AirbnbListing> filterData(ArrayList<AirbnbListing> data, int lowerLimit, int upperLimit) {
-        // Counts number of button clicks and shows the result on a label
-        ArrayList<AirbnbListing> newList = new ArrayList<>();
-        for (AirbnbListing listing : data) {
+        /**
+         * aked
+         * It increments the count by 1
+         */
+        private ArrayList<AirbnbListing> filterData (ArrayList < AirbnbListing > data) {
+            // Counts number of button clicks and shows the result on a label
+            ArrayList<AirbnbListing> newList = new ArrayList<>();
+            for (AirbnbListing listing : data) {
             /*if((listing.getNeighbourhood().equals("Westminster") || listing.getNeighbourhood().equals("Croydon"))&& listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
 
                 newList.add(listing);
             }*/
-            if (listing.getPrice() >= lowerLimit && listing.getPrice() <= upperLimit) {
+            /*if (listing.getPrice() >= lowerLimit && listing.getPrice() <= upperLimit) {
 
                 newList.add(listing);
+            }*/
+                //System.out.println(listing.getNeighbourhood().replaceAll("\\s+","") + "// -- //" + borough.replaceAll("\\s+","") + "//");
+                if (listing.getNeighbourhood().replaceAll("\\s+", "").equals(borough.replaceAll("\\s+", ""))) {
+                    newList.add(listing);
+                }
             }
+            return newList;
         }
-        return newList;
     }
 
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
-     */
-    private void rightButtonClick(ActionEvent event) {
-        currentActionIndex--;
-        if (currentActionIndex < 0) {
-            currentActionIndex = statActions.size() - 1;
-        }
-        statsLabel.setText(statActions.get(currentActionIndex));
-        doStatistic();
-        currentActionIndex = currentActionIndex;
 
-    }
 
-}
+
+

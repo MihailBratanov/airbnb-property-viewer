@@ -51,7 +51,7 @@ public class MapWebView extends Application {
 
 
         //stage.setResizable(false);
-        //stage.show();
+        stage.show();
 
         //show("3","3");
     }
@@ -85,5 +85,3 @@ public class MapWebView extends Application {
     }
 
 }
-
-

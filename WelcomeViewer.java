@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
@@ -38,9 +37,6 @@ public class WelcomeViewer extends Panel
     private int upperLimit;
     final ComboBox from = new ComboBox();
     final ComboBox to = new ComboBox();
-
-    private AirbnbDataLoader loader=new AirbnbDataLoader();
-    public ArrayList<AirbnbListing>data;
 
     public WelcomeViewer(){
         root = new VBox();
@@ -86,7 +82,7 @@ public class WelcomeViewer extends Panel
             "7000");
             
         from.setValue("--Please Select--");
-            
+
         String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
         if (lowerLimitString != "--Please Select--"){
             lowerLimit = Integer.parseInt(lowerLimitString);
@@ -123,7 +119,7 @@ public class WelcomeViewer extends Panel
         to.setValue("--Please Select--");
 
 
-        ProgressBar loadingBar=new ProgressBar();
+        ProgressBar loadingBar = new ProgressBar();
         Label succesfully = new Label("Succesfully loaded!");
         
         
@@ -141,6 +137,7 @@ public class WelcomeViewer extends Panel
     }
 
     public void setComboBoxAction(){
+        System.out.println(from.getSelectionModel().getSelectedIndex());
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
     }
@@ -164,6 +161,7 @@ public class WelcomeViewer extends Panel
     
     private void setUpperLimit() {
         String upperLimitString = to.getSelectionModel().getSelectedItem().toString();
+        checkToBoxSelected();
         if (upperLimitString != "--Please Select--"){
             upperLimit = Integer.parseInt(upperLimitString);
         }
@@ -181,6 +179,10 @@ public class WelcomeViewer extends Panel
         else {
             return false;
         }
+    }
+
+    public boolean checkToBoxSelected() {
+        return to.getSelectionModel().getSelectedIndex() != 0;
     }
  
     public Pane getPanel(){

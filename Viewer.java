@@ -17,6 +17,8 @@ import javafx.scene.shape.*;
 import javafx.stage.*;
 import javafx.util.*;
 
+import java.util.ArrayList;
+
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -32,16 +34,16 @@ public class Viewer extends Application
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
-    private StatViewer statViewer;
+
     private Pane currentPane;
     VBox centerPane;
-    
+
 
     private BorderPane navigationPane;
     private HBox dots;
     private Circle dotWelcomePanel;
     private Circle dotMapPanel;
-    
+
     private BorderPane root;
 
     private Scene scene;
@@ -54,22 +56,39 @@ public class Viewer extends Application
     private static final String VERSION = "Version 0.0.1";
     private static final int MAX_PANEL_NUMBER = 2;
 
+    private AirbnbDataLoader loader;
+    private ArrayList<AirbnbListing> data;
+
     @Override
     public void start(Stage stage) throws Exception
     {
         this.stage = stage;
         // Create a new grid pane
+        loader = new AirbnbDataLoader();
+        data = loader.load();
         centerPane = new VBox();
+         
+
+
+
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
         currentPane = welcomeViewer.getPanel();
+        currentPane.setStyle("-fx-border-color: #3e3e3e;  -fx-border-width: 2px 2px 2px 2px;");
         panelNumber = 1;
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+        centerPane.setStyle("-fx-border-color: #000000;  -fx-border-width: 2px 2px 2px 2px;");
 
-        // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        currentPane = welcomeViewer.getPanel();
         
+        centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
+        
+        
+       
+        // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+
         contentPane = new BorderPane();
         contentPane.setCenter(centerPane);
         contentPane.setBottom(makeNavigationPane());
@@ -83,7 +102,7 @@ public class Viewer extends Application
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
-        
+
         /*scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -91,7 +110,7 @@ public class Viewer extends Application
                 scene.setCursor(new ImageCursor(image));
             }
         });
-        
+
         scene.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -99,14 +118,14 @@ public class Viewer extends Application
                 scene.setCursor(new ImageCursor(image));
             }
         });*/
-        
+
         stage.setTitle("Airbnb Property Viewer");
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
         stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 3 / 4);
         stage.setMinWidth(400);
         stage.setMinHeight(200);
         stage.setScene(scene);
-        
+
         // Show the Stage (window)
         stage.show();
     }
@@ -157,23 +176,23 @@ public class Viewer extends Application
 
     private Pane makeNavigationPane(){
         navigationPane = new BorderPane();
-        navigationPane.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 2px 0px 0px 0px;");                
+        navigationPane.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 2px 0px 0px 0px;");
         previousPaneButton = new Button("< Back");
         nextPaneButton = new Button("Next >");
-        checkRangeValidity();
+        previousPaneButton.setDisable(true);
+        nextPaneButton.setDisable(true);
         previousPaneButton.setOnAction(this::previousPane);
         nextPaneButton.setOnAction(this::nextPane);
-        
+
         dots = new HBox(8);
-        
+
         dotWelcomePanel = new Circle();
         dotWelcomePanel.setRadius(3);
         dotWelcomePanel.setStroke(Color.BLACK);
-        
         dotMapPanel = new Circle();
         dotMapPanel.setRadius(3);
         dotMapPanel.setStroke(Color.BLACK);
-        
+
         dots.getChildren().addAll(dotWelcomePanel, dotMapPanel);
         switchDots();
         dots.setAlignment(Pos.CENTER);
@@ -188,9 +207,19 @@ public class Viewer extends Application
 
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
-        if (isPriceRangeValid) {
-            previousPaneButton.setDisable(false);
-            nextPaneButton.setDisable(false);
+        if(welcomeViewer.checkToBoxSelected()) {
+            if (isPriceRangeValid) {
+                previousPaneButton.setDisable(false);
+                nextPaneButton.setDisable(false);
+            } else {
+                previousPaneButton.setDisable(true);
+                nextPaneButton.setDisable(true);
+                Alert wrongInput = new Alert(AlertType.ERROR);
+                wrongInput.setTitle("Error");
+                wrongInput.setHeaderText(null);
+                wrongInput.setContentText("Invalid Range. Please try again.");
+                wrongInput.showAndWait();
+            }
         }
         else {
             previousPaneButton.setDisable(true);
@@ -201,18 +230,27 @@ public class Viewer extends Application
     }
 
     private void nextPane(ActionEvent event){
+        VBox tempCenterPane = new VBox();
+        Pane tempPane = new Pane();
+        tempPane.getChildren().addAll(currentPane.getChildren());
+        tempCenterPane.getChildren().addAll(tempPane.getChildren());
+        tempCenterPane.setStyle("-fx-border-color: #b7a739;  -fx-border-width: 2px 2px 2px 2px;");
+        currentPane.getChildren().clear();
+        centerPane.getChildren().clear();
+
+        contentPane.getChildren().removeAll(centerPane);
+        contentPane.setCenter(tempCenterPane);
+
         panelNumber++;
         if (panelNumber > MAX_PANEL_NUMBER) {
             panelNumber = 1;
         }
-        //paneMoveLeft();
-        centerPane.getChildren().clear();
-        switchPanel(lowerLimit, upperLimit);
-        //paneMoveLeft();
-        
+        switchPanel();
+
+        paneMoveLeft(currentPane, centerPane, contentPane, tempPane, tempCenterPane);
+
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
         contentPane.setCenter(centerPane);
-        //contentPane.setBottom(navigationPane);
         stage.show();
     }
 
@@ -223,17 +261,19 @@ public class Viewer extends Application
         }
         //paneMoveRight();
         centerPane.getChildren().clear();
-        switchPanel(lowerLimit, upperLimit);
+        currentPane.getChildren().clear();
+        switchPanel();
         //paneMoveRight();
         checkRangeValidity();
-        
+
         centerPane.getChildren().addAll(makeScrollPane(currentPane, contentPane));
         contentPane.setCenter(centerPane);
         stage.show();
     }
 
-    private void switchPanel(int lowerLimit, int upperLimit) {
+    private void switchPanel() {
         switch(panelNumber) {
+
             case 1:
                 makeWelcomePanel();
                 switchDots();
@@ -244,42 +284,44 @@ public class Viewer extends Application
                 break;
         }
     }
-    
+
     private void switchDots() {
         switch(panelNumber) {
             case 1:
+
                 dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
                 dotMapPanel.setFill(javafx.scene.paint.Color.GRAY);
+                
                 break;
             case 2:
+
                 dotWelcomePanel.setFill(javafx.scene.paint.Color.GRAY);
                 dotMapPanel.setFill(javafx.scene.paint.Color.WHITE);
+                
                 break;
+               
         }
     }
-    
+
     private void makeWelcomePanel() {
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
         welcomeViewer.setComboBox(lowerLimit, upperLimit);
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-
-        panelNumber = 1;
         currentPane = welcomeViewer.getPanel();
     }
-    
+
     private void makeMapPanel() {
-        mapViewer = new MapViewer(lowerLimit, upperLimit);
+        mapViewer = new MapViewer(lowerLimit, upperLimit, data);
         currentPane = mapViewer.getPanel();
         //centerPane.setContent(mapViewer.getPanel());
     }
-    
+
     private void makeStatPanel() {
         // statViewer = new StatViewer(lowerLimit, upperLimit);
         currentPane = mapViewer.getPanel();
     }
-    
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);
@@ -292,15 +334,27 @@ public class Viewer extends Application
         sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         return sp;
     }
-    
-    private void paneMoveLeft() {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
+
+    private void paneMoveLeft(Pane nextPane, Pane centerPane, Pane contentPane, Pane tempPane, Pane tempCenterPane) {
+        /*TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
         double distance = stage.getWidth() * -1;
         tt.setByX(distance);
         tt.setAutoReverse(true);
-        tt.play();
+        tt.play();*/
+        nextPane.translateXProperty().set(scene.getWidth());
+
+        //parentContainer.getChildren().add(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(nextPane.translateXProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.millis(300), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            contentPane.getChildren().removeAll(tempCenterPane);
+        });
+        timeline.play();
     }
-    
+
     private void paneMoveRight() {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1000), currentPane);
         double distance = stage.getWidth();
@@ -308,7 +362,7 @@ public class Viewer extends Application
         tt.setAutoReverse(true);
         tt.play();
     }
-    
+
     // Menubar Buttons
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -336,7 +390,7 @@ public class Viewer extends Application
         System.out.println(currentPane.getHeight());
         System.out.println(currentPane.getWidth());
     }
-    
+
     private void actualSize(ActionEvent event) {
         currentPane.setScaleX(1);
         currentPane.setScaleY(1);

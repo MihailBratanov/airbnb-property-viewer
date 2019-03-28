@@ -58,7 +58,7 @@ public class StatisticsPanel extends Application {
     private double mouseX;
     private double mouseY;
 
-
+    private BorderPane statPane;
     @Override
     public void start(Stage stage) throws FileNotFoundException {
         //data=loader.load();
@@ -78,7 +78,7 @@ public class StatisticsPanel extends Application {
 
         Scene scene = new Scene(new Group());
 
-        BorderPane statPane = new BorderPane();
+         statPane = new BorderPane();
         BorderPane paneToBeCentered = new BorderPane();
         BorderPane paneSeparatorTop = new BorderPane();
 
@@ -146,19 +146,19 @@ public class StatisticsPanel extends Application {
                 mouseY = event.getY();
             }
         });
-        stage.heightProperty().addListener((observe, oldVal, newVal) -> {
-            stageMidY = stage.getHeight()/2;
-        });
-
-        stage.widthProperty().addListener((observe, oldVal, newVal) -> {
-            stageMidX = stage.getWidth()/2;
-        });
-
-        stage.setScene(scene);
-        stage.show();
-
-        stageMidX = stage.getWidth()/2;
-        stageMidY = stage.getHeight()/2;
+//        stage.heightProperty().addListener((observe, oldVal, newVal) -> {
+//            stageMidY = stage.getHeight()/2;
+//        });
+//
+//        stage.widthProperty().addListener((observe, oldVal, newVal) -> {
+//            stageMidX = stage.getWidth()/2;
+//        });
+//
+//        stage.setScene(scene);
+//        stage.show();
+//
+//        stageMidX = stage.getWidth()/2;
+//        stageMidY = stage.getHeight()/2;
     }
 
     private int determinePane(double mouseX,double mouseY){
@@ -461,4 +461,9 @@ public class StatisticsPanel extends Application {
         leftButton.setOnAction(this::leftButtonClick);
         rightButton.setOnAction(this::rightButtonClick);
     }
+
+ public Pane getPanel(){
+        return statPane;
+ }
+
 }

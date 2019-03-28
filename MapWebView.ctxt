@@ -4,7 +4,7 @@ comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
 comment2.params=longitude\ latitude
 comment2.target=void\ show(java.lang.String,\ java.lang.String)
-comment2.text=public\ void\ show(long\ longitude,\ long\ latitude)\ {\n\ \ \ \ \ \ \ \ String\ longitudeString\ \=\ longitude.toString();\n\ \ \ \ \ \ \ \ String\ latitudeString\ \=\ latitude.toString();\n\n\ \ \ \ \ \ \ \ show(longitudeString,\ latitudeString);\n}
+comment2.text=public\ void\ show(long\ longitude,\ long\ latitude)\ {\r\n\ \ \ \ \ \ \ \ String\ longitudeString\ \=\ longitude.toString();\r\n\ \ \ \ \ \ \ \ String\ latitudeString\ \=\ latitude.toString();\r\n\r\n\ \ \ \ \ \ \ \ show(longitudeString,\ latitudeString);\r\n}
 comment3.params=place
 comment3.target=void\ showByPlace(java.lang.String)
 numComments=4
