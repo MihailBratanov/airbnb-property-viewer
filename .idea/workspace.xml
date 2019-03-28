@@ -2,44 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bfa0abe-db89-4776-b30a-7b1f60a4725a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/CreateAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Starting.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/CreateAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/CreateAccount.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/META-INF/PPAAssignment4.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapWebView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapWebView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StartingViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StartingViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatViewer.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatViewer.ctxt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/UserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/UserDetails.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/database.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,8 +36,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MapWebView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="74">
-                  <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+                <state relative-caret-position="208">
+                  <caret line="47" column="21" lean-forward="true" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
                 </state>
               </provider>
             </entry>
@@ -185,7 +148,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553779395129" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553779599198" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -312,8 +275,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MapWebView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+        <state relative-caret-position="208">
+          <caret line="47" column="21" lean-forward="true" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
         </state>
       </provider>
     </entry>
