@@ -23,6 +23,8 @@ import javafx.scene.image.*;
 import javafx.scene.image.*;
 import javafx.animation.*;
 
+import javax.xml.crypto.Data;
+
 /**
  * Write a description of JavaFX class CreateAccount here.
  *
@@ -96,9 +98,17 @@ public class CreateAccount extends Application
 
         submit.setOnAction((event)-> {
 
+            Database database = new Database();
+
+            ArrayList<UserDetails> logins = database.getDatabaseEntries();
+
+            ArrayList<String> userNameList = new ArrayList<>();
+
+            for (UserDetails login : logins){
+                userNameList.add(login.getUserName());
+            }
 
             if
-
             (userNameText.getText().contains(" ") || userNameText.getText().contains("-")) {
 
                 reminder.setText("The user name can not contain space or '-', please enter the username again");
@@ -110,8 +120,12 @@ public class CreateAccount extends Application
             else    if (passwordText.getText().length() >= 16 || passwordText.getText().length() < 8)
             {
                 passwordText.clear();
-                reminder.setText("Please enter a pasword from 8 to 16 charactors please!");
+                reminder.setText("Please enter a pasword from 8 to 16 characters please!");
 
+            }
+
+            else if (userNameList.contains(userNameText.getText())){
+                reminder.setText("User name taken ! please choose a different user name. what about steve ? ");
             }
 
 
