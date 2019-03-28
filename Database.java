@@ -20,7 +20,8 @@ public class Database {
         String entry = name + "-" + surname + "-" + username + "-" + password;
         writeToDatabase(entry);
 
-        createUserFile(name,surname,password);
+        createUserFile(name,surname,username);
+
     }
 
     public void writeToDatabase(String entry){
@@ -78,7 +79,8 @@ public class Database {
                 writer = new BufferedWriter(fileWriter);
 
                 writer.append(fileName);
-                writer.append("\n favs : ");
+                writer.append("\nfavs : ");
+
 
             } catch (IOException e) {
                 e.printStackTrace();

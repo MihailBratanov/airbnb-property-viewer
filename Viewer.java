@@ -1,4 +1,3 @@
-
 import javafx.animation.*;
 
 import javafx.application.Application;
@@ -33,7 +32,7 @@ public class Viewer extends Application
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
-    private StatViewer statViewer;
+    private StatisticsPanel statViewer;
     private Pane currentPane;
     VBox centerPane;
 
@@ -304,7 +303,7 @@ public class Viewer extends Application
     }
 
     private void makeStatPanel() {
-        statViewer = new StatViewer();
+        statViewer = new StatisticsPanel();
         currentPane = mapViewer.getPanel();
     }
 
