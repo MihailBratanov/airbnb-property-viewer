@@ -1,366 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="cd164c84-79a1-4ed6-b896-801662d4c2f3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Viewer$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Viewer$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/boroughs.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/house.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/loading.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" afterDir="false" />
-    </list>
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/PPAAssignment4$Crys.ic" NAME="Crys Coverage Results" MODIFIED="1553710620571" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-  </component>
-  <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/StartingViewer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Viewer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="234">
-                  <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#13689#13690#0" expanded="true" />
-                    <element signature="e#13717#13718#0" expanded="true" />
-                    <element signature="e#13767#13768#0" expanded="true" />
-                    <element signature="e#13795#13796#0" expanded="true" />
-                    <element signature="e#13845#13846#0" expanded="true" />
-                    <element signature="e#13875#13876#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/StatViewer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="94">
-                  <caret line="255" column="55" selection-start-line="255" selection-start-column="55" selection-end-line="255" selection-end-column="55" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Database.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="855">
-                  <caret line="60" column="37" lean-forward="true" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Starting.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2297">
-                  <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/UserDetails.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="115">
-                  <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/javafx.graphics/com/sun/javafx/tk/quantum/GlassViewEventHandler.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="276">
-                  <caret line="294" selection-start-line="294" selection-end-line="294" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/MapViewer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-138">
-                  <caret line="439" selection-start-line="439" selection-end-line="439" />
-                  <folding>
-                    <element signature="e#8325#8326#0" expanded="true" />
-                    <element signature="e#8407#8408#0" expanded="true" />
-                    <element signature="e#8634#8635#0" expanded="true" />
-                    <element signature="e#8715#8716#0" expanded="true" />
-                    <element signature="e#15043#15044#0" expanded="true" />
-                    <element signature="e#15125#15126#0" expanded="true" />
-                    <element signature="e#15352#15353#0" expanded="true" />
-                    <element signature="e#15433#15434#0" expanded="true" />
-                    <element signature="e#21736#21737#0" expanded="true" />
-                    <element signature="e#21763#21764#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Borough.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/AirbnbListing.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="99">
-                  <caret line="81" column="47" selection-start-line="81" selection-start-column="47" selection-end-line="81" selection-end-column="47" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="590">
-                  <caret line="116" column="20" selection-start-line="116" selection-start-column="20" selection-end-line="116" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/javafx.base/javafx/collections/ModifiableObservableListBase.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="350">
-                  <caret line="98" selection-start-line="98" selection-end-line="98" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Database.java" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1440" />
     <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="977" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="PPAAssignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PPAAssignment4" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+    <option name="width" value="3440" />
+    <option name="height" value="1417" />
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553732418411" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunManager">
-    <configuration name="CreateAccount" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CreateAccount" />
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Viewer" />
       <module name="PPAAssignment4" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="42b5e9a1-4e1d-45c2-8d57-c2cd77c3f4de" name="Default Changelist" comment="" />
-      <created>1553539762453</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1553539762453</updated>
-      <workItem from="1553539765018" duration="1338000" />
-    </task>
-    <servers />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="977" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.114774115" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Designer" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.498779" visible="true" weight="0.17062147" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997057" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.501221" side_tool="true" visible="true" weight="0.17062147" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4997057" weight="0.32941177" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32989994" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="255" column="55" selection-start-line="255" selection-start-column="55" selection-end-line="255" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UserDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Starting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2297">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StartingViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Viewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="62" column="51" selection-start-line="62" selection-start-column="51" selection-end-line="62" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13689#13690#0" expanded="true" />
-            <element signature="e#13717#13718#0" expanded="true" />
-            <element signature="e#13767#13768#0" expanded="true" />
-            <element signature="e#13795#13796#0" expanded="true" />
-            <element signature="e#13845#13846#0" expanded="true" />
-            <element signature="e#13875#13876#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/StatViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
-          <caret line="60" column="37" lean-forward="true" selection-start-line="60" selection-start-column="37" selection-end-line="60" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
+  <component name="masterDetails">
+    <states>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10.0.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>10.0.2</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
   </component>
 </project>
