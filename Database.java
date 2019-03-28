@@ -133,6 +133,8 @@ public class Database {
 
     public HashMap<String, Integer> getUserProfile(String username){
 
+        System.out.println(username);
+
         HashMap<String, Integer> clickCount = new HashMap<>();
 
         String path = "users/".concat(username).concat(".user");

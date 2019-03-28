@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.*;
 // import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
@@ -60,9 +61,9 @@ public class Viewer extends Application
     private AirbnbDataLoader loader;
     private ArrayList<AirbnbListing> data;
 
-    public Viewer(String username){
-        this.username = username;
-    }
+   public Viewer(String username){
+    this.username = username;
+   }
 
     @Override
     public void start(Stage stage) throws Exception
@@ -121,8 +122,8 @@ public class Viewer extends Application
     }
 
 
-    private MenuBar makeMenuBar(Pane parentPane) {
-        MenuBar menuBar = new MenuBar();
+    private HBox makeMenuBar(Pane parentPane) {
+        MenuBar leftMenuBar = new MenuBar();
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
         aboutViewerItem.setOnAction(this::aboutProgram);
@@ -160,7 +161,26 @@ public class Viewer extends Application
         instructionItem.setOnAction(this::instruction);
         helpMenu.getItems().addAll(instructionItem);
 
-        menuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu);
+        leftMenuBar.getMenus().addAll(propertyMenu, viewMenu, helpMenu);
+
+        Region space = new Region();
+        space.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e7e7e7); -fx-border-color: #b5b5b5;  -fx-border-width: 0px 0px 1px 0px;");
+        HBox.setHgrow(space, Priority.SOMETIMES);
+
+        MenuBar rightMenuBar = new MenuBar();
+        Menu userMenu = new Menu("User: " + username);
+        ImageView userLogo = new ImageView();
+        userLogo.setPreserveRatio(true);
+        userMenu.setGraphic(new ImageView("userlogo.png"));
+        MenuItem logoutItem = new MenuItem("Log Out " + username);
+        logoutItem.setOnAction(this:: logout);
+        userMenu.getItems().addAll(logoutItem);
+
+        rightMenuBar.getMenus().addAll(userMenu);
+
+        HBox menuBar = new HBox();
+        menuBar.getChildren().addAll(leftMenuBar, space, rightMenuBar);
+
         return menuBar;
     }
 
@@ -394,5 +414,19 @@ public class Viewer extends Application
         alert.setHeaderText("Instructions to this program:");  // Alerts have an optionl header. We don't want one.
         alert.setContentText("Ting tang wala wala bing bang\nTing tang wala wala bing bang\nTing tang wala wala bing bang\n");
         alert.showAndWait();
+    }
+
+    private void logout(ActionEvent event) {
+       Stage login = new Stage();
+       Starting loginScreen = new Starting();
+
+       try{
+           loginScreen.start(login);
+       }
+       catch (Exception e) {
+           e.printStackTrace();
+       }
+
+       stage.close();
     }
 }

@@ -382,10 +382,10 @@ public boolean CheckPassword(String password){
         return new Task() {
             @Override
             protected Object call() throws Exception {
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 1; i++) {
                     Thread.sleep(600);
                     updateMessage("500 milliseconds");
-                    updateProgress(i + 1, 5);
+                    updateProgress(i + 1, 1);
                 }
 
                 userNameText.setVisible(true);
