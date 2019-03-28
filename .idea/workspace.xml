@@ -105,9 +105,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1062" />
-    <option name="y" value="-1417" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1440" />
+    <option name="y" value="23" />
     <option name="width" value="3440" />
     <option name="height" value="1417" />
   </component>
