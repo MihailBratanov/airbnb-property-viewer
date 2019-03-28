@@ -27,7 +27,7 @@ public class WelcomeViewer extends Panel
     // We keep track of the count, and label displaying the count:
 
     private VBox root;
-    private BorderPane background;
+    private BorderPane rangeBoxBackground;
     private GridPane rangeBox;
 
     private int lowerLimit;
@@ -36,7 +36,9 @@ public class WelcomeViewer extends Panel
     final ComboBox to = new ComboBox();
 
     public WelcomeViewer(){
-
+        root = new VBox();
+        //root.getStylesheets().add("welcomeviewer.css");
+        Button logout = new Button("< Logout");
         Label fromLabel= new Label("From:");
         Label toLabel=new Label("To:");
 
@@ -114,17 +116,27 @@ public class WelcomeViewer extends Panel
         GridPane.setConstraints(toLabel, 2, 0);
         GridPane.setConstraints(to, 3, 0);
 
-        background = new BorderPane();
-        background.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 0px 0px 2px 0px;");
-        background.setPadding(new Insets(5, 5, 5, 5));
-        background.setRight(rangeBox);
-        ImageView airbnbLogo = new ImageView("airbnb.png");
+        rangeBoxBackground = new BorderPane();
+        rangeBoxBackground.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 0px 0px 2px 0px;");
+        rangeBoxBackground.setPadding(new Insets(5, 5, 5, 5));
+        rangeBoxBackground.setLeft(logout);
+        rangeBoxBackground.setRight(rangeBox);
+
+        ImageView logo = new ImageView("airbnb.gif");
+
         VBox imageBox = new VBox();
-        imageBox.getChildren().addAll(airbnbLogo);
+        logo.setPreserveRatio(true);
+        logo.fitHeightProperty().bind(root.heightProperty().subtract(rangeBoxBackground.heightProperty().divide(0.5)));
+        logo.fitWidthProperty().bind(root.widthProperty().subtract(rangeBoxBackground.widthProperty().divide(0.5)));
+
+        imageBox.getChildren().addAll(logo);
+
+
         imageBox.setAlignment(Pos.CENTER);
-        root = new VBox();
-        root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-        root.getChildren().addAll(background, imageBox);
+
+        root.setBackground(new Background(new BackgroundFill(Color.rgb(255, 70, 81), null, null)));
+        root.getChildren().addAll(rangeBoxBackground, imageBox);
+
     }
 
     public void setComboBoxAction(){
