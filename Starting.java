@@ -9,6 +9,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -21,6 +22,9 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.*;
 import javafx.scene.image.*;
 import javafx.scene.image.*;
@@ -41,7 +45,6 @@ public class Starting extends Application
 
 {
     Task loadworker;
-    private Label myLabel = new Label("0");
     private Stage stage;
     VBox root;
 
@@ -51,6 +54,17 @@ public class Starting extends Application
     private double windowWidth;
     private double windowHeight;
     private Scene primaryScene;
+
+    private TextField userNameText;
+    private PasswordField passwordText;
+    private Label successfully;
+    private Label userNameLabel;
+    private Label passwordLabel;
+    private Label loadingLabel;
+    private Button createAccount;
+    private Button logIn;
+
+    private Font titleFont;
 
     private boolean checkuserName;
     private boolean checkpassword;
@@ -73,7 +87,6 @@ public class Starting extends Application
     private UserDetails userdetail;
     //CreateAccount createAccount;
 
-    private WelcomeViewer welcomViewr;
     private int index;
 
     @Override
@@ -85,7 +98,7 @@ public class Starting extends Application
 
         root = new VBox();
 
-
+        titleFont = Font.loadFont(new FileInputStream(new File("Roboto-Regular.ttf")), 20);
 
 
         root.getStylesheets().add("startingdesign.css");
@@ -101,7 +114,7 @@ public class Starting extends Application
 
 
         ProgressBar loadingBar=new ProgressBar();
-        Label succesfully = new Label("Succesfully loaded!");
+        successfully = new Label("Succesfully loaded!");
 
 
 
@@ -114,31 +127,37 @@ public class Starting extends Application
 
         HBox reminderBox=new HBox();
 
-        Label loadingLabel = new Label("loading...");
-        loadingLabel.setTextFill(Color.web("#fa8072"));
-        succesfully.setTextFill(Color.web("#fa8072"));
+        loadingLabel = new Label("Loading...");
+        loadingLabel.setTextFill(Color.WHITE);
+        loadingLabel.setFont(titleFont);
+        successfully.setTextFill(Color.WHITE);
+        successfully.setVisible(false);
+        successfully.setFont(titleFont);
+
+        userNameLabel=new Label("Username: ");
+        passwordLabel=new Label("Password: ");
+        userNameLabel.setFont(titleFont);
+        passwordLabel.setFont(titleFont);
+        userNameLabel.setTextFill(Color.WHITE);
+        passwordLabel.setTextFill(Color.WHITE);
+        userNameLabel.setVisible(false);
+        passwordLabel.setVisible(false);
+
+        userNameText = new TextField();
+        userNameText.setVisible(false);
+        passwordText = new PasswordField();
+        passwordText.setVisible(false);
 
 
-        Label userNameLabel=new Label("UserName: ");
-        Label passwordLabel=new Label("Password: ");
-        userNameLabel.setTextFill(Color.web("#fa8072"));
-        passwordLabel.setTextFill(Color.web("#fa8072"));
+        createAccount=new Button ("Create Account");
+        logIn=new Button ("Login");
+        createAccount.setStyle("-fx-text-fill: #000000");
+        logIn.setStyle("-fx-text-fill: #000000");
+        createAccount.setVisible(false);
+        logIn.setVisible(false);
 
 
-
-        Label reminder = new Label("");
-
-        TextField userNameText = new TextField();
-        PasswordField passwordText = new PasswordField();
-
-
-        Button createAccount=new Button ("Create Account");
-        Button logIn=new Button ("LogIn");
-        createAccount.setStyle("-fx-text-fill: #fa8072");
-        logIn.setStyle("-fx-text-fill: #fa8072");
-
-
-        /**checkuser.add(userdetail.getUserName());
+        /*checkuser.add(userdetail.getUserName());
 
         checkPassword.add(userdetail.getPassword());
 
@@ -178,6 +197,8 @@ public class Starting extends Application
         new Thread(loadworker).start();
 
 
+
+
         // set actions when create account button is clicked
         createAccount.setOnAction((event)->{
 
@@ -214,34 +235,43 @@ public class Starting extends Application
 
                 stage.close();
             }
+            else {
+                Alert wrongInput = new Alert(Alert.AlertType.ERROR);
+                wrongInput.setTitle("Error");
+                wrongInput.setHeaderText("Incorrect user credentials.");
+                wrongInput.setContentText("The username or password is incorrect.\nPlease check and try again.");
+                wrongInput.showAndWait();
+            }
         });
 
 
-        succesfullyLoaded.getChildren().addAll(succesfully);
+        succesfullyLoaded.getChildren().addAll(successfully);
 
         loadingBox.getChildren().addAll(loadingLabel,loadingBar);
         userNameBox.getChildren().addAll(userNameLabel,userNameText);
         passwordBox.getChildren().addAll(passwordLabel,passwordText);
         logInOrCreate.getChildren().addAll(createAccount,logIn);
         logInOrCreate.setSpacing(30);
-        reminderBox.getChildren().addAll(reminder);
 
-        loadingBox.setAlignment(Pos.CENTER);
-        succesfullyLoaded.setAlignment(Pos.CENTER);
-        userNameBox.setAlignment(Pos.CENTER);
-        passwordBox.setAlignment(Pos.CENTER);
-        logInOrCreate.setAlignment(Pos.CENTER);
-        reminderBox.setAlignment(Pos.CENTER);
 
-        root.getChildren().addAll(loadingBox,succesfullyLoaded,userNameBox,passwordBox,logInOrCreate,reminderBox);
-        root.setAlignment(Pos.CENTER);
-        root.setSpacing(10);
+        loadingBox.setAlignment(Pos.BOTTOM_CENTER);
+        succesfullyLoaded.setAlignment(Pos.BOTTOM_CENTER);
+        userNameBox.setAlignment(Pos.BOTTOM_CENTER);
+        passwordBox.setAlignment(Pos.BOTTOM_CENTER);
+        logInOrCreate.setAlignment(Pos.BOTTOM_CENTER);
+        reminderBox.setAlignment(Pos.BOTTOM_CENTER);
+
+        root.getChildren().addAll(loadingBox,succesfullyLoaded,userNameBox,passwordBox,logInOrCreate);
+        root.setAlignment(Pos.BOTTOM_CENTER);
+        root.setSpacing(30);
+        root.setPadding(new Insets(10, 10, 10, 10));
 
 
         primaryScene=new Scene(root);
         stage.setScene(primaryScene);
         stage.setTitle("Airbnb Viewer");
         stage.show();
+
 
     }
 
@@ -347,12 +377,18 @@ public boolean CheckPassword(String password){
         return new Task() {
             @Override
             protected Object call() throws Exception {
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i < 5; i++) {
                     Thread.sleep(600);
                     updateMessage("500 milliseconds");
-                    updateProgress(i + 1, 10);
+                    updateProgress(i + 1, 5);
                 }
-
+                userNameText.setVisible(true);
+                passwordText.setVisible(true);
+                successfully.setVisible(true);
+                userNameLabel.setVisible(true);
+                passwordLabel.setVisible(true);
+                createAccount.setVisible(true);
+                logIn.setVisible(true);
                 return true;
             }
         };
