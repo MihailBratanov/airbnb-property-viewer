@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=WelcomeViewer
+comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ WelcomeViewer\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=WelcomeViewer()
+comment10.params=
+comment10.target=javafx.scene.control.ComboBox\ getFromComboBox()
+comment11.params=
+comment11.target=javafx.scene.control.ComboBox\ getToComboBox()
+comment2.params=
+comment2.target=void\ setComboBoxAction()
+comment3.params=lowerLimit\ upperLimit
+comment3.target=void\ setComboBox(int,\ int)
+comment4.params=
+comment4.target=void\ setLowerLimit()
+comment5.params=
+comment5.target=void\ setUpperLimit()
+comment6.params=
+comment6.target=boolean\ checkValid()
+comment7.params=
+comment7.target=javafx.scene.layout.Pane\ getPanel()
+comment8.params=
+comment8.target=int\ getLowerLimit()
+comment9.params=
+comment9.target=int\ getUpperLimit()
+numComments=12

@@ -23,7 +23,7 @@ import javafx.scene.layout.BorderPane;
 import java.util.*;
 
 public class TableViewSample extends Application {
-    private MapWebView terryMaps=new MapWebView();
+    private MapWebView terryMaps;
 
 
 
@@ -58,6 +58,7 @@ public class TableViewSample extends Application {
 
         this.stage = stage;
         Stage webMapStage=new Stage();
+        terryMaps = new MapWebView();
         try {
             terryMaps.start(webMapStage);
         } catch (Exception e) {
@@ -95,7 +96,7 @@ public class TableViewSample extends Application {
                     latitude = String.valueOf(rowData.getLatitude());
                     longitude = String.valueOf(rowData.getLongitude());
                     System.out.println(latitude+longitude);
-                    terryMaps.show(longitude,latitude);
+                    terryMaps.show(latitude, longitude);
 
                 }
             });
