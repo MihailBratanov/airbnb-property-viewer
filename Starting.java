@@ -249,6 +249,7 @@ public class Starting extends Application
      *
      * method to load the image
      */
+
      private Label LoadImage(){
 
         Label imageLabel = new Label();

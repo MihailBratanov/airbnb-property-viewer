@@ -228,7 +228,6 @@ public class Viewer extends Application
         contentPane.setCenter(centerPane);
         stage.show();
     }
-
     private void previousPane(ActionEvent event) {
         panelNumber--;
 
@@ -259,7 +258,7 @@ public class Viewer extends Application
                 switchDots();
                 break;
             case 3:
-                makeStatPanel();
+                //makeStatPanel();
                 switchDots();
                 break;
         }
