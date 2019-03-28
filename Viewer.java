@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 public class Viewer extends Application
 {
+    private String username;
+
     // We keep track of the count, and label displaying the count:
     private Stage stage;
     private BorderPane contentPane;
@@ -57,6 +59,10 @@ public class Viewer extends Application
 
     private AirbnbDataLoader loader;
     private ArrayList<AirbnbListing> data;
+
+    public Viewer(String username){
+        this.username = username;
+    }
 
     @Override
     public void start(Stage stage) throws Exception
@@ -297,7 +303,7 @@ public class Viewer extends Application
     }
 
     private void makeMapPanel() {
-        mapViewer = new MapViewer(lowerLimit, upperLimit, data);
+        mapViewer = new MapViewer(lowerLimit, upperLimit, data, username);
         currentPane = mapViewer.getPanel();
         //centerPane.setContent(mapViewer.getPanel());
     }
