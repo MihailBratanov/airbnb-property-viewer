@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d77d3112-b2b6-4e19-b5a9-a89a9f9cf76d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Starting.java" beforeDir="false" afterPath="$PROJECT_DIR$/Starting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WelcomeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WelcomeViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ezgif.com-crop.gif" beforeDir="false" afterPath="$PROJECT_DIR$/airbnb.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/ezgif.com-crop.gif" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -78,8 +72,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/Viewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="403">
-                      <caret line="110" column="30" lean-forward="true" selection-start-line="110" selection-start-column="30" selection-end-line="110" selection-end-column="30" />
+                    <state relative-caret-position="823">
+                      <caret line="138" column="106" selection-start-line="138" selection-start-column="8" selection-end-line="138" selection-end-column="106" />
                       <folding>
                         <element signature="imports" expanded="true" />
                         <element signature="e#13310#13311#0" expanded="true" />
@@ -99,7 +93,7 @@
                 <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="720">
-                      <caret line="74" column="8" lean-forward="true" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="90" />
+                      <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="90" />
                     </state>
                   </provider>
                 </entry>
@@ -131,8 +125,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/Starting.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-457">
-                      <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
+                    <state relative-caret-position="980">
+                      <caret line="394" column="43" selection-start-line="394" selection-start-column="43" selection-end-line="394" selection-end-column="43" />
                       <folding>
                         <element signature="e#7840#7841#0" expanded="true" />
                         <element signature="e#7867#7868#0" expanded="true" />
@@ -166,8 +160,8 @@
         <option value="$PROJECT_DIR$/rangeselector.css" />
         <option value="$PROJECT_DIR$/welcomeviewer.css" />
         <option value="$PROJECT_DIR$/Viewer.java" />
-        <option value="$PROJECT_DIR$/Starting.java" />
         <option value="$PROJECT_DIR$/WelcomeViewer.java" />
+        <option value="$PROJECT_DIR$/Starting.java" />
       </list>
     </option>
   </component>
@@ -200,7 +194,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553795827728" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553796973596" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -255,18 +249,18 @@
       <workItem from="1553712012426" duration="641000" />
       <workItem from="1553712670835" duration="1147000" />
       <workItem from="1553713827848" duration="5979000" />
-      <workItem from="1553788180565" duration="7540000" />
+      <workItem from="1553788180565" duration="8382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13524000" />
+    <option name="totallyTimeSpent" value="14366000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1065" y="-1417" width="3440" height="1417" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10476751" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10476751" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -275,7 +269,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32981133" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.09056604" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.09056604" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -362,36 +356,7 @@
     <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
-          <caret line="74" column="8" lean-forward="true" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Starting.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-457">
-          <caret line="113" lean-forward="true" selection-start-line="113" selection-end-line="113" />
-          <folding>
-            <element signature="e#7840#7841#0" expanded="true" />
-            <element signature="e#7867#7868#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Viewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="300" column="28" selection-start-line="300" selection-start-column="28" selection-end-line="300" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#13310#13311#0" expanded="true" />
-            <element signature="e#13338#13339#0" expanded="true" />
-            <element signature="e#13388#13389#0" expanded="true" />
-            <element signature="e#13416#13417#0" expanded="true" />
-            <element signature="e#13466#13467#0" expanded="true" />
-            <element signature="e#13496#13497#0" expanded="true" />
-            <element signature="e#14128#14129#0" expanded="true" />
-            <element signature="e#14169#14170#0" expanded="true" />
-          </folding>
+          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="90" />
         </state>
       </provider>
     </entry>
@@ -406,6 +371,35 @@
             <element signature="imports" expanded="true" />
             <element signature="e#4913#4914#0" expanded="true" />
             <element signature="e#4961#4962#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="64" column="33" selection-start-line="64" selection-start-column="33" selection-end-line="64" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#13310#13311#0" expanded="true" />
+            <element signature="e#13338#13339#0" expanded="true" />
+            <element signature="e#13388#13389#0" expanded="true" />
+            <element signature="e#13416#13417#0" expanded="true" />
+            <element signature="e#13466#13467#0" expanded="true" />
+            <element signature="e#13496#13497#0" expanded="true" />
+            <element signature="e#14128#14129#0" expanded="true" />
+            <element signature="e#14169#14170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Starting.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="980">
+          <caret line="394" column="43" selection-start-line="394" selection-start-column="43" selection-end-line="394" selection-end-column="43" />
+          <folding>
+            <element signature="e#7840#7841#0" expanded="true" />
+            <element signature="e#7867#7868#0" expanded="true" />
           </folding>
         </state>
       </provider>

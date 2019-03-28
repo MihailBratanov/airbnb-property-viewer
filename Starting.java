@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -55,9 +56,10 @@ public class Starting extends Application
     private double windowHeight;
     private Scene primaryScene;
 
-    private TextField userNameText;
-    private PasswordField passwordText;
+    private ProgressBar loadingBar;
     private Label successfully;
+    private PasswordField passwordText;
+    private TextField userNameText;
     private Label userNameLabel;
     private Label passwordLabel;
     private Label loadingLabel;
@@ -108,12 +110,11 @@ public class Starting extends Application
 
         StackPane stackpane = new StackPane();
 
-        root.setMinSize(1000.0, 700.0);
         windowWidth= root.getMinWidth();
         windowHeight=root.getMinHeight();
 
 
-        ProgressBar loadingBar=new ProgressBar();
+        loadingBar=new ProgressBar();
         successfully = new Label("Succesfully loaded!");
 
 
@@ -268,6 +269,10 @@ public class Starting extends Application
 
 
         primaryScene=new Scene(root);
+        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 7 / 8);
+        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 15 / 16);
+        stage.setMinWidth(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
+        stage.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
         stage.setScene(primaryScene);
         stage.setTitle("Airbnb Viewer");
         stage.show();
@@ -382,6 +387,7 @@ public boolean CheckPassword(String password){
                     updateMessage("500 milliseconds");
                     updateProgress(i + 1, 5);
                 }
+
                 userNameText.setVisible(true);
                 passwordText.setVisible(true);
                 successfully.setVisible(true);
@@ -389,6 +395,9 @@ public boolean CheckPassword(String password){
                 passwordLabel.setVisible(true);
                 createAccount.setVisible(true);
                 logIn.setVisible(true);
+                Thread.sleep(600);
+                loadingLabel.setVisible(false);
+                loadingBar.setVisible(false);
                 return true;
             }
         };
