@@ -1,4 +1,5 @@
 import javafx.animation.*;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.*;
@@ -6,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.*;
-import javafx.scene.image.*;
+// import javafx.scene.image.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
@@ -31,7 +32,7 @@ public class Viewer extends Application
     private int panelNumber;
     private WelcomeViewer welcomeViewer;
     private MapViewer mapViewer;
-    private StatViewer statViewer;
+    private StatisticsPanel statViewer;
     private Pane currentPane;
     VBox centerPane;
 
@@ -82,6 +83,7 @@ public class Viewer extends Application
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
 
+
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
 
@@ -115,7 +117,6 @@ public class Viewer extends Application
 
     private MenuBar makeMenuBar(Pane parentPane) {
         MenuBar menuBar = new MenuBar();
-
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
         aboutViewerItem.setOnAction(this::aboutProgram);
@@ -169,7 +170,6 @@ public class Viewer extends Application
 
         dots = new HBox(8);
 
-
         dotWelcomePanel = new Circle();
         dotWelcomePanel.setRadius(3);
         dotWelcomePanel.setStroke(Color.BLACK);
@@ -222,10 +222,13 @@ public class Viewer extends Application
     private void nextPane(ActionEvent event){
 
         panelNumber++;
-        //paneMoveLeft();
-        centerPane.getChildren().clear();
+        if (panelNumber > MAX_PANEL_NUMBER) {
+            panelNumber = 1;
+        }
         switchPanel();
+
         paneMoveLeft(currentPane, centerPane);
+
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
         contentPane.setCenter(centerPane);
         stage.show();
@@ -249,13 +252,10 @@ public class Viewer extends Application
         switch(panelNumber) {
             case 1:
                 makeWelcomePanel();
-                previousPaneButton.setDisable(true);
                 switchDots();
                 break;
             case 2:
                 makeMapPanel();
-                previousPaneButton.setDisable(false);
-                nextPaneButton.setDisable(true);
                 switchDots();
                 break;
             case 3:
@@ -303,17 +303,17 @@ public class Viewer extends Application
     }
 
     private void makeStatPanel() {
-        statViewer = new StatViewer();
+        statViewer = new StatisticsPanel();
         currentPane = mapViewer.getPanel();
     }
-    
+
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);
-        sp.setVbarPolicy(ScrollBarPolicy.ALWAYS);
-        sp.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-        child.prefWidthProperty().bind(sp.widthProperty());
-        child.prefHeightProperty().bind(sp.heightProperty());
+        sp.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        sp.setHbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        child.prefWidthProperty().bind(sp.widthProperty().subtract(2)); // so that the ScrollBar would not appear at all times.
+        child.prefHeightProperty().bind(sp.heightProperty().subtract(2));
         sp.prefWidthProperty().bind(parent.widthProperty());
         sp.prefHeightProperty().bind(parent.heightProperty());
         sp.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
@@ -344,7 +344,7 @@ public class Viewer extends Application
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About Property Viewer");
-        alert.setHeaderText(null);  // Alerts have an optionl header. We don't want one.
+        alert.setHeaderText(null);
         alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
         alert.showAndWait();
     }
