@@ -158,6 +158,7 @@ public class MapViewer extends Panel {
                             hexPointX(330), hexPointY(330),
 
                     });
+                    
 
                     int colorGreen = (int) Math.round(boroughCount.get(currentBorough) * 0.1);
                     colorGreen = colorGreen % 255;
