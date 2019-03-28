@@ -136,13 +136,13 @@ public class Starting extends Application
 
 
 
-        checkuser.add(userdetail.getUserName());
+        /**checkuser.add(userdetail.getUserName());
 
         checkPassword.add(userdetail.getPassword());
 
         // set the action to the login button when it is clicked
 
-        logIn.setOnAction((event)->{
+        /**logIn.setOnAction((event)->{
 
             if(!CheckUserName(userName)) {
             reminder.setText("There is no such user name, please check again or create account");
@@ -162,7 +162,7 @@ public class Starting extends Application
 
             });
         reminder.setTextFill(Color.web("#fa8072"));
-
+*/
 
 
 
