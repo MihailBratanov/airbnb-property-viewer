@@ -19,7 +19,8 @@ public class Database {
     public void writeDetails(String name, String surname, String username, String password){
         String entry = name + "-" + surname + "-" + username + "-" + password;
         writeToDatabase(entry);
-        createUserFile(name,surname,password);
+        createUserFile(name,surname,username);
+
     }
 
     public void writeToDatabase(String entry){

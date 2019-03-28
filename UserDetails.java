@@ -34,14 +34,21 @@ public class UserDetails
         this.userName=userName;
         this.password=password;
 
-        Database database = new Database();
-        database.writeDetails(firstName, surname, userName, password);
+
     }
 
     /**
      *
      * return the first name
      */
+
+
+    public void writeToDatabase(){
+        Database database = new Database();
+        database.writeDetails(firstName, surname, userName, password);
+    }
+
+
     public String getFirstName(){
         return firstName;
     }
@@ -71,10 +78,7 @@ public class UserDetails
         return password;
     }
 
-    /**
-     *
-     *
-     */
+
     @Override
     public String toString() {
         return "UserDetails{" +

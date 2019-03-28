@@ -1,4 +1,7 @@
 import javafx.application.Application;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -23,6 +26,10 @@ import javafx.scene.image.*;
 import javafx.scene.image.*;
 import javafx.animation.*;
 
+import javafx.css.CssParser;
+import javafx.scene.Parent;
+import javafx.concurrent.Task;
+
 /**
  * Write a description of JavaFX class Starting here.
  *
@@ -30,8 +37,10 @@ import javafx.animation.*;
  * @version (a version number or a date)
  */
 public class Starting extends Application
-{
 
+
+{
+    Task loadworker;
     private Label myLabel = new Label("0");
     private Stage stage;
     VBox root;
@@ -43,19 +52,26 @@ public class Starting extends Application
     private double windowHeight;
     private Scene primaryScene;
 
+    private boolean checkuserName;
+    private boolean checkpassword;
+
     private AirbnbDataLoader loader=new AirbnbDataLoader();
     public ArrayList<AirbnbListing>data=loader.load();
 
-    private ArrayList<UserDetails> details=new ArrayList<>();
 
-    private Database database=new Database();
-    public ArrayList<UserDetails> login=new ArrayList<>();
+    private ArrayList<String> checkuser=new ArrayList<>();
+
+    private ArrayList<String> checkPassword=new ArrayList<>();
+
 
 
     private String userName;
     private String password;
+
+
+    private boolean finishloading;
     private UserDetails userdetail;
-    private CreateAccount createaccount;
+    //CreateAccount createAccount;
 
     private WelcomeViewer welcomViewr;
     private int index;
@@ -89,17 +105,15 @@ public class Starting extends Application
 
 
 
-        VBox airbnb=new VBox();
+
         HBox loadingBox=new HBox();
         HBox succesfullyLoaded=new HBox();
         HBox userNameBox = new HBox();
         HBox passwordBox = new HBox();
         HBox logInOrCreate=new HBox();
-        HBox remainderBox=new HBox();
 
+        HBox reminderBox=new HBox();
 
-
-        Label imageLabel = LoadImage();
         Label loadingLabel = new Label("loading...");
         loadingLabel.setTextFill(Color.web("#fa8072"));
         succesfully.setTextFill(Color.web("#fa8072"));
@@ -111,7 +125,8 @@ public class Starting extends Application
         passwordLabel.setTextFill(Color.web("#fa8072"));
 
 
-        Label remainder = new Label("");
+
+        Label reminder = new Label("");
 
         TextField userNameText = new TextField();
         PasswordField passwordText = new PasswordField();
@@ -122,70 +137,112 @@ public class Starting extends Application
         createAccount.setStyle("-fx-text-fill: #fa8072");
         logIn.setStyle("-fx-text-fill: #fa8072");
 
+
+        /**checkuser.add(userdetail.getUserName());
+
+        checkPassword.add(userdetail.getPassword());
+
         // set the action to the login button when it is clicked
 
-        logIn.setOnAction((event)->{
+        /**logIn.setOnAction((event)->{
+
+            if(!CheckUserName(userName)) {
+            reminder.setText("There is no such user name, please check again or create account");
+
+            }
+            else {if (CheckPassword(password)) {
+
+            reminder.setText("You have succesfully loged in");
+            }
+            else{
+                reminder.setText("You have enter the wrong password please check agin");
+            }
 
 
-                if (!checkUserName(userNameText.getText())) {
-                    remainder.setText("There is no such account, please create an account!");
-
-                } else {
-                    if (!checkPassword(passwordText.getText())) {
-                        remainder.setText("Please enter the correct password!");
-                    }
-                    else {
-
-                        remainder.setText("You have loged in succesfully!");
-                    }
-
-                }
-
-
-
+            }
 
 
             });
-        remainder.setTextFill(Color.web("#fa8072"));
+        reminder.setTextFill(Color.web("#fa8072"));
+*/
+
+
+
+        loadingBar.setProgress(0);
+
+        loadworker=createWorker();
+
+        loadingBar.progressProperty().unbind();
+        loadingBar.progressProperty().bind(loadworker.progressProperty());
+
+        new Thread(loadworker).start();
+
 
         // set actions when create account button is clicked
         createAccount.setOnAction((event)->{
 
-            createaccount=new CreateAccount();
+            CreateAccount createAccountWindow = new CreateAccount();
 
-            newPanel = createaccount.getPanel();
+            Stage accountCreateStage = new Stage();
+
+            try {
+                createAccountWindow.start(accountCreateStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
 
 
         });
 
+        logIn.setOnAction((event) -> {
 
+            String userNameTemp = userNameText.getText();
+            String passwordTemp = passwordText.getText();
+
+            Boolean logInPass = loginCheck(userNameTemp, passwordTemp);
+            if (logInPass){
+                //getUserProfile(userNameTemp);
+                Stage main = new Stage();
+                Viewer mainViewer = new Viewer();
+
+                try {
+                    mainViewer.start(main);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                stage.close();
+            }
+        });
 
 
         succesfullyLoaded.getChildren().addAll(succesfully);
-        airbnb.getChildren().addAll(imageLabel);
+
         loadingBox.getChildren().addAll(loadingLabel,loadingBar);
         userNameBox.getChildren().addAll(userNameLabel,userNameText);
         passwordBox.getChildren().addAll(passwordLabel,passwordText);
         logInOrCreate.getChildren().addAll(createAccount,logIn);
-        logInOrCreate.setSpacing(10);
-        remainderBox.getChildren().addAll(remainder);
+        logInOrCreate.setSpacing(30);
+        reminderBox.getChildren().addAll(reminder);
 
-        airbnb.setAlignment(Pos.CENTER);
         loadingBox.setAlignment(Pos.CENTER);
         succesfullyLoaded.setAlignment(Pos.CENTER);
         userNameBox.setAlignment(Pos.CENTER);
         passwordBox.setAlignment(Pos.CENTER);
         logInOrCreate.setAlignment(Pos.CENTER);
-        remainderBox.setAlignment(Pos.CENTER);
+        reminderBox.setAlignment(Pos.CENTER);
 
-        root.getChildren().addAll(airbnb,loadingBox,succesfullyLoaded,userNameBox,passwordBox,logInOrCreate,remainderBox);
+        root.getChildren().addAll(loadingBox,succesfullyLoaded,userNameBox,passwordBox,logInOrCreate,reminderBox);
         root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
+
 
         primaryScene=new Scene(root);
         stage.setScene(primaryScene);
         stage.setTitle("Airbnb Viewer");
         stage.show();
+
     }
 
     /**
@@ -193,6 +250,7 @@ public class Starting extends Application
      * method to load the image
      */
      private Label LoadImage(){
+
         Label imageLabel = new Label();
         String imagePath = "airbnb.png";
         Image image = new Image(imagePath);
@@ -217,45 +275,86 @@ public class Starting extends Application
      * return the VBOx
      * @return
      */
+
     public Pane getPanel(){
         return root;
     }
 
-    /**
-     * check if the userName is in the list or not
-     */
-    private boolean checkuserName;
-    public boolean checkUserName(String userName) {
+    public boolean loginCheck(String userName, String password){
 
-        for (int i = 0; i <=details.size(); i++) {
-            if (details.contains(userName)) {
-                index = i;
-                checkuserName = true;
-            } else {
-                checkuserName = false;
+        boolean loginStatus = false;
+
+        Database database = new Database();
+        ArrayList<UserDetails> logins = database.getDatabaseEntries();
+        // logins[2] is username, logins[3] is password.
+
+        for (UserDetails login : logins){
+            if (login.getUserName().equals(userName)){
+                if (login.getPassword().equals(password)){
+                    loginStatus = true;
+                }
             }
         }
 
+        return  loginStatus;
+    }
+
+    public UserDetails getUserProfile(String userName){
+
+        UserDetails userProfile = null;
+
+        Database database = new Database();
+
+        ArrayList<UserDetails> logins = database.getDatabaseEntries();
+
+        for (UserDetails login : logins) {
+            if (login.getUserName().equals(userName)) {
+                userProfile = login;
+                break;
+            }
+        }
+
+        return userProfile;
+    }
+
+    /*
+    public boolean CheckUserName(String userName){
+        if (checkuser.size()>0){
+            for (int i=0;i<checkuser.size();i++){
+                if (checkuser.get(i).equals(userName)){
+                    checkuserName=true;
+                    index=i;
+                }
+                else checkuserName=false;
+            }
+
+        }
+        else{checkuserName=false;}
         return checkuserName;
     }
 
-    /**
-     * check if the password meet the respective userName
-     */
-    private boolean checkpassword;
-    private boolean checkPassword(String password) {
 
-        for (int i = 0; i <=details.size(); i++) {
+public boolean CheckPassword(String password){
+   if (checkPassword.size()>0&&checkPassword.get(index).equals(password)){
+       checkpassword=true;
+   }
+   else{checkpassword=false;}
+   return checkpassword;
 
-            if (details.get(index).equals(password)) {
+} */
 
-                checkpassword = true;
-            } else {
-                checkpassword = false;
+    public Task createWorker() {
+        return new Task() {
+            @Override
+            protected Object call() throws Exception {
+                for (int i = 0; i < 10; i++) {
+                    Thread.sleep(600);
+                    updateMessage("500 milliseconds");
+                    updateProgress(i + 1, 10);
+                }
+
+                return true;
             }
-        }
-
-
-            return checkpassword;
-
-    }}
+        };
+}
+}
