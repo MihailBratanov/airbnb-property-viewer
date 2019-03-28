@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3bfa0abe-db89-4776-b30a-7b1f60a4725a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.txt~Temp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin_admin_admin.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/crystal_zou_911.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/test_test_test.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapWebView.java" beforeDir="false" afterPath="$PROJECT_DIR$/MapWebView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableViewSample.java" beforeDir="false" afterPath="$PROJECT_DIR$/TableViewSample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Viewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WelcomeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WelcomeViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/root.user" beforeDir="false" afterPath="$PROJECT_DIR$/users/root.user" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -33,8 +26,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/Viewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="690">
-                      <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+                    <state relative-caret-position="1317">
+                      <caret line="374" lean-forward="true" selection-start-line="374" selection-end-line="374" />
                       <folding>
                         <element signature="e#1616#1617#0" expanded="true" />
                         <element signature="e#1656#1657#0" expanded="true" />
@@ -52,6 +45,19 @@
                 </entry>
               </file>
               <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="2025">
+                      <caret line="148" column="4" selection-start-line="148" selection-start-column="4" selection-end-line="150" selection-end-column="5" />
+                      <folding>
+                        <element signature="e#4439#4440#0" expanded="true" />
+                        <element signature="e#4464#4465#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/StartingViewer.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="360">
@@ -60,19 +66,19 @@
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="false">
+              <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1237">
-                      <caret line="129" column="42" selection-start-line="129" selection-start-column="42" selection-end-line="129" selection-end-column="42" />
+                    <state relative-caret-position="1062">
+                      <caret line="114" column="29" lean-forward="true" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/MapViewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="-1308">
+                    <state relative-caret-position="-1893">
                       <caret line="217" column="25" selection-start-line="217" selection-start-column="25" selection-end-line="217" selection-end-column="25" />
                       <folding>
                         <element signature="e#8879#8880#0" expanded="true" />
@@ -86,15 +92,6 @@
                         <element signature="e#22677#22678#0" expanded="true" />
                         <element signature="e#22704#22705#0" expanded="true" />
                       </folding>
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/MapWebView.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="1215">
-                      <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
                     </state>
                   </provider>
                 </entry>
@@ -129,8 +126,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/Database.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="795">
-                      <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+                    <state relative-caret-position="1202">
+                      <caret line="106" column="55" lean-forward="true" selection-start-line="106" selection-start-column="55" selection-end-line="106" selection-end-column="55" />
                     </state>
                   </provider>
                 </entry>
@@ -139,10 +136,10 @@
           </split-first>
           <split-second>
             <leaf>
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/MapViewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="896">
+                    <state relative-caret-position="561">
                       <caret line="203" selection-start-line="203" selection-end-line="203" />
                     </state>
                   </provider>
@@ -151,8 +148,17 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/Database.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="860">
-                      <caret line="175" column="23" selection-start-line="175" selection-start-column="23" selection-end-line="175" selection-end-column="23" />
+                    <state relative-caret-position="379">
+                      <caret line="46" column="52" lean-forward="true" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/MapWebView.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="792">
+                      <caret line="151" column="92" selection-start-line="151" selection-start-column="92" selection-end-line="151" selection-end-column="92" />
                     </state>
                   </provider>
                 </entry>
@@ -166,8 +172,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MapViewer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="807">
-                  <caret line="623" column="8" selection-start-line="623" selection-start-column="8" selection-end-line="623" selection-end-column="8" />
+                <state relative-caret-position="483">
+                  <caret line="517" lean-forward="true" selection-start-line="517" selection-end-line="517" />
                   <folding>
                     <element signature="e#8879#8880#0" expanded="true" />
                     <element signature="e#8961#8962#0" expanded="true" />
@@ -187,7 +193,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/UserDetails.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="417">
+                <state relative-caret-position="492">
                   <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
                 </state>
               </provider>
@@ -196,8 +202,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TableViewSample.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="16">
-                  <caret line="33" selection-start-line="33" selection-end-line="33" />
+                <state relative-caret-position="501">
+                  <caret line="100" column="194" selection-start-line="100" selection-start-column="194" selection-end-line="100" selection-end-column="194" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -218,6 +224,14 @@
       </split-second>
     </splitter>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>replaceAll</find>
+      <find>logout</find>
+      <find>setUpUserCl</find>
+      <find>terryMaps</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -226,12 +240,21 @@
       <list>
         <option value="$PROJECT_DIR$/UserDetails.java" />
         <option value="$PROJECT_DIR$/CreateAccount.java" />
-        <option value="$PROJECT_DIR$/Viewer.java" />
         <option value="$PROJECT_DIR$/Starting.java" />
-        <option value="$PROJECT_DIR$/Database.java" />
         <option value="$PROJECT_DIR$/MapViewer.java" />
+        <option value="$PROJECT_DIR$/Database.java" />
+        <option value="$PROJECT_DIR$/WelcomeViewer.java" />
+        <option value="$PROJECT_DIR$/Viewer.java" />
+        <option value="$PROJECT_DIR$/TableViewSample.java" />
+        <option value="$PROJECT_DIR$/MapWebView.java" />
       </list>
     </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="-956" />
+    <option name="y" value="-1440" />
+    <option name="width" value="3440" />
+    <option name="height" value="1440" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -259,7 +282,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553797790157" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553814618182" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -296,7 +319,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="0" width="3440" height="1440" extended-state="0" />
+    <frame x="-956" y="-1440" width="3440" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -304,7 +327,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" weight="0.07798705" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.07798705" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -356,17 +379,85 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/StartingViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="38" column="3" selection-start-line="38" selection-start-column="3" selection-end-line="38" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2025">
+          <caret line="148" column="4" selection-start-line="148" selection-start-column="4" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="e#4439#4440#0" expanded="true" />
+            <element signature="e#4464#4465#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1317">
+          <caret line="374" lean-forward="true" selection-start-line="374" selection-end-line="374" />
+          <folding>
+            <element signature="e#1616#1617#0" expanded="true" />
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#13310#13311#0" expanded="true" />
+            <element signature="e#13338#13339#0" expanded="true" />
+            <element signature="e#13388#13389#0" expanded="true" />
+            <element signature="e#13416#13417#0" expanded="true" />
+            <element signature="e#13466#13467#0" expanded="true" />
+            <element signature="e#13496#13497#0" expanded="true" />
+            <element signature="e#14128#14129#0" expanded="true" />
+            <element signature="e#14169#14170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+        <state relative-caret-position="1202">
+          <caret line="106" column="55" lean-forward="true" selection-start-line="106" selection-start-column="55" selection-end-line="106" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TableViewSample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="501">
+          <caret line="100" column="194" selection-start-line="100" selection-start-column="194" selection-end-line="100" selection-end-column="194" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapWebView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="151" column="92" selection-start-line="151" selection-start-column="92" selection-end-line="151" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1062">
+          <caret line="114" column="29" lean-forward="true" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MapViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="807">
-          <caret line="623" column="8" selection-start-line="623" selection-start-column="8" selection-end-line="623" selection-end-column="8" />
+        <state relative-caret-position="483">
+          <caret line="517" lean-forward="true" selection-start-line="517" selection-end-line="517" />
           <folding>
             <element signature="e#8879#8880#0" expanded="true" />
             <element signature="e#8961#8962#0" expanded="true" />

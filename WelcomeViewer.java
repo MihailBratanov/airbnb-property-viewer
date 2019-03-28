@@ -30,6 +30,8 @@ public class WelcomeViewer extends Panel
     private BorderPane rangeBoxBackground;
     private GridPane rangeBox;
 
+    private Button logout;
+
     private int lowerLimit;
     private int upperLimit;
     final ComboBox from = new ComboBox();
@@ -38,7 +40,7 @@ public class WelcomeViewer extends Panel
     public WelcomeViewer(){
         root = new VBox();
         //root.getStylesheets().add("welcomeviewer.css");
-        Button logout = new Button("< Logout");
+        logout = new Button("< Logout");
         Label fromLabel= new Label("From:");
         Label toLabel=new Label("To:");
 
@@ -142,6 +144,10 @@ public class WelcomeViewer extends Panel
     public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
+    }
+
+    public Button getLogoutButton(){
+        return logout;
     }
     
     public void setComboBox(int lowerLimit, int upperLimit) {

@@ -195,4 +195,20 @@ public class Database {
         }
 
     }
+
+    public String getMostClickedBorough(String username){
+        HashMap<String, Integer> clickCount = getUserProfile(username);
+
+        String mostClicked = null;
+        int mostClickedCount = 0;
+
+        for (String borough : clickCount.keySet()){
+            if (clickCount.get(borough) > mostClickedCount){
+                mostClicked = borough;
+                mostClickedCount = clickCount.get(borough);
+            }
+        }
+
+        return mostClicked;
+    }
 }

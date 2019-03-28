@@ -98,7 +98,7 @@ public class TableViewSample extends Application {
                     latitude = String.valueOf(rowData.getLatitude());
                     longitude = String.valueOf(rowData.getLongitude());
                     System.out.println(latitude+longitude);
-                    terryMaps.show(latitude, longitude);
+                    terryMaps.show(latitude, longitude, rowData.getName(), rowData.getHost_name(), rowData.getRoom_type(), rowData.getPrice(), rowData.getLastReview(), rowData.getNeighbourhood());
 
                 }
             });
