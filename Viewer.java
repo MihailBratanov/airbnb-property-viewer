@@ -72,12 +72,8 @@ public class Viewer extends Application
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
         currentPane = welcomeViewer.getPanel();
-        currentPane.setStyle("-fx-border-color: #3e3e3e;  -fx-border-width: 2px 2px 2px 2px;");
         panelNumber = 1;
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
-        centerPane.setStyle("-fx-border-color: #000000;  -fx-border-width: 2px 2px 2px 2px;");
-
-        // centerPane.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
         contentPane = new BorderPane();
         contentPane.setCenter(centerPane);
@@ -87,7 +83,6 @@ public class Viewer extends Application
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
         root.setTop(makeMenuBar(root));
-        root.setMaxSize(800, 800);
 
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
@@ -110,10 +105,10 @@ public class Viewer extends Application
         });*/
 
         stage.setTitle("Airbnb Property Viewer");
-        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 4);
-        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 3 / 4);
-        stage.setMinWidth(400);
-        stage.setMinHeight(200);
+        stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 7 / 8);
+        stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 7 / 8);
+        stage.setMinWidth(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
+        stage.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
         stage.setScene(scene);
 
         // Show the Stage (window)
@@ -211,9 +206,10 @@ public class Viewer extends Application
                 nextPaneButton.setDisable(true);
                 Alert wrongInput = new Alert(AlertType.ERROR);
                 wrongInput.setTitle("Error");
-                wrongInput.setHeaderText(null);
-                wrongInput.setContentText("Invalid Range. Please try again.");
+                wrongInput.setHeaderText("Invalid Range.");
+                wrongInput.setContentText("The upper limit is smaller than the lower limit.\nPlease try again.");
                 wrongInput.showAndWait();
+                welcomeViewer.setComoboBoxDefault();
             }
         }
         else {
@@ -246,25 +242,11 @@ public class Viewer extends Application
         }
         switchPanel();
 
-        paneMoveLeft(currentPane, centerPane);
+        paneMoveRight(currentPane, centerPane);
 
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
         contentPane.setCenter(centerPane);
         stage.show();
-
-//        if (panelNumber < 1) {
-//            panelNumber = MAX_PANEL_NUMBER;
-//        }
-//        //paneMoveRight();
-//        centerPane.getChildren().clear();
-//        currentPane.getChildren().clear();
-//        switchPanel();
-//        //paneMoveRight();
-//        checkRangeValidity();
-//
-//        centerPane.getChildren().addAll(makeScrollPane(currentPane, contentPane));
-//        contentPane.setCenter(centerPane);
-//        stage.show();
     }
 
     private void switchPanel() {
@@ -341,27 +323,21 @@ public class Viewer extends Application
 
     private void paneMoveLeft(Pane nextPane, Pane parentPane) {
         parentPane.getChildren().clear();
-
         nextPane.translateXProperty().set(scene.getWidth());
-
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(nextPane.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(300), kv);
         timeline.getKeyFrames().add(kf);
-
         timeline.play();
     }
 
     private void paneMoveRight(Pane nextPane, Pane parentPane) {
         parentPane.getChildren().clear();
-
-        nextPane.translateXProperty().set(scene.getWidth());
-
+        nextPane.translateXProperty().set(scene.getWidth() * -1);
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(nextPane.translateXProperty(), 0, Interpolator.EASE_IN);
         KeyFrame kf = new KeyFrame(Duration.millis(300), kv);
         timeline.getKeyFrames().add(kf);
-
         timeline.play();
     }
 
