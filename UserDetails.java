@@ -71,10 +71,7 @@ public class UserDetails
         return password;
     }
 
-    /**
-     *
-     *
-     */
+
     @Override
     public String toString() {
         return "UserDetails{" +

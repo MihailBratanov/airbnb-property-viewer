@@ -32,9 +32,7 @@ public class StartingViewer extends Panel
     private double windowWidth;
     private double windowHeight;
     
-    private Starting starting;
-    private Stage startingStage;
-    private CreateAccount createAccount;
+
     
     public StartingViewer()
     {

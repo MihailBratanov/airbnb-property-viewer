@@ -85,8 +85,8 @@ public class CreateAccount extends Application
 
         Button submit =new Button("Submit");
         Button GoBack=new Button("Go Back and LogIn");
-        Label remainder=new Label();
-        remainder.setText("");
+        Label reminder=new Label();
+        reminder.setText("");
 
         submit.getStylesheets().add("startingdesign.css");
 
@@ -94,22 +94,28 @@ public class CreateAccount extends Application
         GoBack.setStyle("-fx-text-fill: #fa8072");
 
 
-        submit.setOnAction((event)->{
+        submit.setOnAction((event)-> {
 
 
             if
 
-            ( userNameText.getText().contains(" ") ||  userNameText.getText().contains("-") )
+            (userNameText.getText().contains(" ") || userNameText.getText().contains("-")) {
+
+                reminder.setText("The user name can not contain space or '-', please enter the username again");
+
+            } else if (passwordText.getText().contains(" ") || passwordText.getText().contains("-")) {
+                reminder.setText("The password can not contain space or '-', please enter the password again");
+
+            }
+            else    if (passwordText.getText().length() >= 16 || passwordText.getText().length() < 8)
             {
-
-                remainder.setText("The user name can not contain space or '-', please enter the username again");
-
-            }
-
-            else if(passwordText.getText().contains(" ") ||  passwordText.getText().contains("-")){
-                remainder.setText("The password can not contain space or '-', please enter the password again");
+                passwordText.clear();
+                reminder.setText("Please enter a pasword from 8 to 16 charactors please!");
 
             }
+
+
+
             else if (!firstNameText.getText().equals("") && !surNameText.getText().equals("") && !userNameText.getText().equals("") && !passwordText.getText().equals("")) {
 
                 userdetails=new UserDetails(
@@ -128,20 +134,20 @@ public class CreateAccount extends Application
                 userNameText.clear();
                 passwordText.clear();
 
-                remainder.setText("You have succesfully created your account");
+                reminder.setText("You have succesfully created your account");
 
             }
 
 
             else {
-                remainder.setText("Please enter your information!");
-                remainder.setDisable(false);
+                reminder.setText("Please enter your information!");
+                reminder.setDisable(false);
 
             }
 
 
         });
-        remainder.setTextFill(Color.web("#fa8072"));
+        reminder.setTextFill(Color.web("#fa8072"));
 
 
 
@@ -151,7 +157,7 @@ public class CreateAccount extends Application
         HBox userNameBox=new HBox();
         HBox passwordBox=new HBox();
         HBox submitBox=new HBox();
-        HBox remainderBox=new HBox();
+        HBox reminderBox=new HBox();
 
 
         createAccountBox.getChildren().addAll(createAccount);
@@ -160,7 +166,7 @@ public class CreateAccount extends Application
         userNameBox.getChildren().addAll(userNameLabel,userNameText);
         passwordBox.getChildren().addAll(passwordLabel,passwordText);
         submitBox.getChildren().addAll(submit,GoBack);
-        remainderBox.getChildren().addAll(remainder);
+        reminderBox.getChildren().addAll(reminder);
 
 
         surNameBox.setSpacing(10);
@@ -174,9 +180,9 @@ public class CreateAccount extends Application
         userNameBox.setAlignment(Pos.CENTER);
         passwordBox.setAlignment(Pos.CENTER);
         submitBox.setAlignment(Pos.CENTER);
-        remainderBox.setAlignment(Pos.CENTER);
+        reminderBox.setAlignment(Pos.CENTER);
 
-        root.getChildren().addAll(createAccountBox,firstNameBox,surNameBox,userNameBox,passwordBox,submitBox,remainderBox);
+        root.getChildren().addAll(createAccountBox,firstNameBox,surNameBox,userNameBox,passwordBox,submitBox,reminderBox);
         root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
         scene=new Scene(root);
