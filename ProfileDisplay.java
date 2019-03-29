@@ -1,7 +1,10 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -9,6 +12,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ProfileDisplay extends Application {
 
@@ -18,11 +23,18 @@ public class ProfileDisplay extends Application {
     private Font font;
     private Stage stage;
     private Scene scene;
+    private HashMap<String,Integer> userClicks;
 
     public ProfileDisplay(String username){
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
+
+        Database database = new Database();
+        String[] details = database.getUserDetails(username);
+
+        this.name = details[0];
+        this.surname = details[1];
+        this.username = details[2];
+
+        userClicks = database.getUserProfile(username);
     }
 
     private Font getKingsFont(int size) {
@@ -38,25 +50,56 @@ public class ProfileDisplay extends Application {
     public void start(Stage stage) {
         this.stage = stage;
 
-        HBox root = new HBox();
+        VBox root = new VBox();
 
-        VBox usernameLine = new VBox();
+        root.setMinSize(300.0,500.0);
 
-        //Text nameText = new Text(name);
-        //nameText.setFont(getKingsFont(20));
+        Text nameText = new Text(name);
+        nameText.setFont(getKingsFont(40));
 
-        //usernameLine.getChildren().addAll(nameText);
-
-        Text blank = new Text("");
-
-        //Text surnameText = new Text(surname);
-        //nameText.setFont(getKingsFont(20));
+        Text surnameText = new Text(surname);
+        nameText.setFont(getKingsFont(40));
 
         Text userNameText = new Text(username);
-        userNameText.setFont(getKingsFont(15));
+        userNameText.setFont(getKingsFont(17));
+
+        GridPane mainPane = new GridPane();
+
+        //mainPane.getColumnConstraints().add(new ColumnConstraints(100));
+        //mainPane.getRowConstraints().add(new RowConstraints(200));
+
+        ImageView userlogo = new ImageView("img/userlogoLarge.png");
+        userlogo.setFitHeight(40);
+        userlogo.setFitWidth(40);
+
+        mainPane.add(new Text (" "), 1,1);
+
+        mainPane.add(userlogo,1,2);
+        mainPane.add(new Text("   "), 2,1);
+        mainPane.add(nameText, 2, 2);
+        mainPane.add(surnameText, 2, 3);
+        mainPane.add(userNameText, 4, 4);
+
+        mainPane.add(new Text (" "), 1,5);
+        mainPane.add(new Text (" "), 1,6);
+        mainPane.add(new Text (" "), 1,7);
+        mainPane.add(new Text ("Borough Clicks : "), 1,8);
+
+        int row = 8;
+
+        for (String borough : userClicks.keySet()){
+            if (userClicks.get(borough) > 0){
+                row += 1;
+                mainPane.add( new Text ( borough.concat(" : ").concat(String.valueOf(userClicks.get(borough)))), 2, row);
+            }
+        }
 
 
-        root.getChildren().addAll(blank, userNameText);
+        //.setGridLinesVisible(true);
+        mainPane.setAlignment(Pos.CENTER);
+
+
+        root.getChildren().addAll(mainPane);
 
         scene = new Scene(root);
         stage.setScene(scene);
