@@ -1,8 +1,4 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
@@ -12,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.shape.Polygon;
 import javafx.scene.input.MouseEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.*;
 import javafx.scene.text.Text;
@@ -21,6 +16,9 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.text.*;
 import javafx.scene.control.Slider;
+
+import static javafx.scene.layout.BackgroundPosition.CENTER;
+
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -29,6 +27,8 @@ import javafx.scene.control.Slider;
  */
 
 public class MapViewer extends Panel {
+
+    private String username;
 
     private Label myLabel = new Label("0");
     private Stage stage;
@@ -51,6 +51,8 @@ public class MapViewer extends Panel {
     private int lowerLimit, upperLimit;
     private ArrayList<AirbnbListing> data;
 
+    private HashMap<String, Integer> boroughClick;
+
     private GridPane gridPane;
 
     private ComboBox numberOfNights = new ComboBox();
@@ -63,12 +65,12 @@ public class MapViewer extends Panel {
 
 
 
-    public MapViewer(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data) {
+    public MapViewer(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data, String username) {
 
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
         this.data = data;
-
+        this.username = username;
 
         boroughSortedProperties = loadData(lowerLimit, upperLimit, data);
 
@@ -96,6 +98,7 @@ public class MapViewer extends Panel {
         root = new VBox();
 
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        root.setAlignment(Pos.CENTER);
 
         StackPane stackpane = new StackPane();
 
@@ -119,10 +122,14 @@ public class MapViewer extends Panel {
 
         webView = new MapWebView();
 
+        Database database = new Database();
 
+        boroughClick = database.getUserProfile(username);
 
-
-
+        if (boroughClick.isEmpty()) {
+            boroughClick = setUpUserClick(boroughs);
+        }
+        System.out.println(boroughClick);
 
         // testing mapwebview
 
@@ -158,6 +165,7 @@ public class MapViewer extends Panel {
                             hexPointX(330), hexPointY(330),
 
                     });
+                    
 
                     int colorGreen = (int) Math.round(boroughCount.get(currentBorough) * 0.1);
                     colorGreen = colorGreen % 255;
@@ -190,8 +198,18 @@ public class MapViewer extends Panel {
                                 System.out.println("ERROR !!!!");
                             }
                             */
+
+                            String thisBorough = borough.getName();
+                            int count = boroughClick.get(thisBorough);
+                            count += 1;
+                            boroughClick.replace(thisBorough, count);
+
                             tableViewStage = new Stage();
                             dateSortedProperties = boroughSortedProperties;
+
+                            Database database = new Database();
+                            database.writeToProfile(username, boroughClick);
+
                             tableView = new TableViewSample(borough.getName(), dateSortedProperties);
 
                             tableView.start(tableViewStage);
@@ -271,19 +289,41 @@ public class MapViewer extends Panel {
             }
         }
 
+        gridPane.setAlignment(Pos.CENTER);
         stackpane.getChildren().addAll(gridPane);
+        gridPane.setBackground(new Background(new BackgroundFill(Color.GREEN, null,  null)));
+        stackpane.setAlignment(Pos.CENTER);
+        stackpane.setBackground(new Background(new BackgroundFill(Color.YELLOW, null,  null)));
 
-        FlowPane flowPane = new FlowPane();
-        flowPane.getChildren().addAll(numberOfNights, stackpane, boroughHover);
-        flowPane.prefWidthProperty().bind(root.widthProperty());
-        flowPane.prefHeightProperty().bind(root.heightProperty());
+        VBox content = new VBox();
+        content.getChildren().addAll(numberOfNights, stackpane, boroughHover);
+        content.prefWidthProperty().bind(root.widthProperty().divide(5));
+        content.prefHeightProperty().bind(root.heightProperty().divide(5));
+        content.setAlignment(Pos.CENTER);
+        content.setBackground(new Background(new BackgroundFill(Color.WHITE, null,  null)));
 
-        scrollPane = new ScrollPane();
-        scrollPane.setContent(flowPane);
+        BorderPane centerPane = new BorderPane();
+        centerPane.setCenter(content);
 
-        root.getChildren().addAll(flowPane);
+
+
+    root.setBackground(new Background(new BackgroundImage(new Image("mapViewerBg.jpg"), null, null, CENTER, null)));
+        root.getChildren().addAll(centerPane);
         root.setAlignment(Pos.CENTER);
 
+
+    }
+
+    private HashMap<String, Integer> setUpUserClick(ArrayList<Borough> boroughs){
+
+        HashMap<String, Integer> boroughClick = new HashMap<>();
+
+        for (Borough borough : boroughs){
+            String boroughName = borough.getName();
+            boroughClick.put(boroughName, 0);
+        }
+
+        return boroughClick;
     }
 
 
@@ -589,15 +629,15 @@ public class MapViewer extends Panel {
 
     private Label LoadImage(){
         Label imageLabel = new Label();        
-        String imagePath = "boroughs.png";
+        String imagePath = "img/boroughs.png";
         Image image = new Image(imagePath);
 
         ImageView imageViewer = new ImageView(image);
 
         width =  image.getWidth();
-        width = width * 0.2;
+        width = width * 0.18;
         height =  image.getHeight(); 
-        height = height * 0.2;
+        height = height * 0.18;
 
         imageViewer.setPreserveRatio(true);
         imageViewer.setFitHeight(height);

@@ -17,7 +17,7 @@ public class UserDetails
 
     private String firstName;
     private String surname;
-    private String userName;
+    private String username;
     private String password;
 
     /**
@@ -25,66 +25,63 @@ public class UserDetails
      * the parameters are the first name, surname, user name, and password
      *
      */
-    public UserDetails( String firstName,String surname,String userName,String password)
+    public UserDetails( String firstName,String surname,String username,String password)
     {
         // initialise instance variables
 
         this.firstName=firstName;
         this.surname=surname;
-        this.userName=userName;
+        this.username=username;
         this.password=password;
-
-
     }
-
-    /**
-     *
-     * return the first name
-     */
-
 
     public void writeToDatabase(){
         Database database = new Database();
-        database.writeDetails(firstName, surname, userName, password);
-    }
-
-
-    public String getFirstName(){
-        return firstName;
+        database.writeDetails(firstName, surname, username, password);
     }
 
     /**
-     *
-     * return the surname
+     * Return the first name from the constructor
+     * @return firstName as a String
      */
-    
+    public String getFirstName(){
+        return firstName;
+    }
+    /**
+     * Return the surname from the constructor
+     * @return surname as a String
+     */
     public String getSurname(){
         return surname;
     }
 
     /**
-     * return the user name
-     *
+     * Return the username from the constructor
+     * @return username as a String
      */
     public String getUserName(){
-        return userName;
+        return username;
     }
 
     /**
-     * return the password
-     *
+     * Return the password from the constructor
+     * @return password as a String
      */
     public String getPassword(){
         return password;
     }
 
+    /**
+     * Get user details to String
+     * @return UserDetails as String
+     */
 
     @Override
     public String toString() {
         return "UserDetails{" +
                 "firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
