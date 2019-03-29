@@ -1,26 +1,16 @@
 import javafx.application.Application;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Font;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.geometry.Insets;
-import javafx.scene.control.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
 
@@ -28,11 +18,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
 import javafx.scene.image.*;
-import javafx.scene.image.*;
-import javafx.animation.*;
-
-import javafx.css.CssParser;
-import javafx.scene.Parent;
 import javafx.concurrent.Task;
 
 /**
@@ -41,19 +26,13 @@ import javafx.concurrent.Task;
  * @author Haiyun Zou
  * @version (a version number or a date)
  */
-public class Starting extends Application
-
-
-{
+public class Starting extends Application {
     Task loadworker;
     private Stage stage;
     VBox root;
-
-    private Pane newPanel;
     private double width;
     private double height;
-    private double windowWidth;
-    private double windowHeight;
+
     private Scene primaryScene;
 
     private ProgressBar loadingBar;
@@ -63,40 +42,20 @@ public class Starting extends Application
     private Label userNameLabel;
     private Label passwordLabel;
     private Label loadingLabel;
+    private Button quit;
     private Button createAccount;
     private Button logIn;
 
     private Font titleFont;
 
-    private boolean checkuserName;
-    private boolean checkpassword;
-
-    private AirbnbDataLoader loader=new AirbnbDataLoader();
-    public ArrayList<AirbnbListing>data=loader.load();
-
-
-    private ArrayList<String> checkuser=new ArrayList<>();
-
-    private ArrayList<String> checkPassword=new ArrayList<>();
-
-
-
-    private String userName;
-    private String password;
-
-
-    private boolean finishloading;
-    private UserDetails userdetail;
-    //CreateAccount createAccount;
-
-    private int index;
+    private AirbnbDataLoader loader = new AirbnbDataLoader();
+    public ArrayList<AirbnbListing> data = loader.load();
 
     @Override
-    public void start(Stage stage) throws Exception
-    {
+    public void start(Stage stage) throws Exception {
         // Create new stage, VBox,HBox and all the labels, textFields,buttons that are needed
 
-        this.stage=stage;
+        this.stage = stage;
 
         root = new VBox();
 
@@ -105,28 +64,20 @@ public class Starting extends Application
 
         root.getStylesheets().add("startingdesign.css");
 
-
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 
-        StackPane stackpane = new StackPane();
 
-        windowWidth= root.getMinWidth();
-        windowHeight=root.getMinHeight();
+        loadingBar = new ProgressBar();
+        loadingBar.prefWidthProperty().bind(root.widthProperty().multiply(0.4));
+        successfully = new Label("Successfully loaded!");
 
-
-        loadingBar=new ProgressBar();
-        successfully = new Label("Succesfully loaded!");
-
-
-
-
-        HBox loadingBox=new HBox();
-        HBox succesfullyLoaded=new HBox();
+        VBox loadingBox = new VBox();
+        HBox successfullyLoaded = new HBox();
         HBox userNameBox = new HBox();
         HBox passwordBox = new HBox();
-        HBox logInOrCreate=new HBox();
+        HBox logInOrCreate = new HBox();
 
-        HBox reminderBox=new HBox();
+        HBox reminderBox = new HBox();
 
         loadingLabel = new Label("Loading...");
         loadingLabel.setTextFill(Color.WHITE);
@@ -135,8 +86,8 @@ public class Starting extends Application
         successfully.setVisible(false);
         successfully.setFont(titleFont);
 
-        userNameLabel=new Label("Username: ");
-        passwordLabel=new Label("Password: ");
+        userNameLabel = new Label("Username: ");
+        passwordLabel = new Label("Password: ");
         userNameLabel.setFont(titleFont);
         passwordLabel.setFont(titleFont);
         userNameLabel.setTextFill(Color.WHITE);
@@ -148,49 +99,24 @@ public class Starting extends Application
         userNameText.setVisible(false);
         passwordText = new PasswordField();
         passwordText.setVisible(false);
+        passwordText.setOnKeyReleased(e -> {
+            if(e.getCode() == KeyCode.ENTER) {
+                logIn();
+            }
+        });
 
-
-        createAccount=new Button ("Create Account");
-        logIn=new Button ("Login");
+        quit = new Button("Quit");
+        createAccount = new Button("Create Account");
+        logIn = new Button("Login");
         createAccount.setStyle("-fx-text-fill: #000000");
         logIn.setStyle("-fx-text-fill: #000000");
+        quit.setVisible(false);
         createAccount.setVisible(false);
         logIn.setVisible(false);
 
-
-        /*checkuser.add(userdetail.getUserName());
-
-        checkPassword.add(userdetail.getPassword());
-
-        // set the action to the login button when it is clicked
-
-        /**logIn.setOnAction((event)->{
-
-            if(!CheckUserName(userName)) {
-            reminder.setText("There is no such user name, please check again or create account");
-
-            }
-            else {if (CheckPassword(password)) {
-
-            reminder.setText("You have succesfully loged in");
-            }
-            else{
-                reminder.setText("You have enter the wrong password please check agin");
-            }
-
-
-            }
-
-
-            });
-        reminder.setTextFill(Color.web("#fa8072"));
-*/
-
-
-
         loadingBar.setProgress(0);
 
-        loadworker=createWorker();
+        loadworker = createWorker();
 
         loadingBar.progressProperty().unbind();
         loadingBar.progressProperty().bind(loadworker.progressProperty());
@@ -198,10 +124,12 @@ public class Starting extends Application
         new Thread(loadworker).start();
 
 
-
+        quit.setOnAction(e -> {
+            System.exit(0);
+        });
 
         // set actions when create account button is clicked
-        createAccount.setOnAction((event)->{
+        createAccount.setOnAction((event) -> {
 
             CreateAccount createAccountWindow = new CreateAccount();
 
@@ -214,61 +142,33 @@ public class Starting extends Application
             }
 
 
-
         });
 
-        logIn.setOnAction((event) -> {
+        logIn.setOnAction(e -> logIn());
 
-            String userNameTemp = userNameText.getText();
-            String passwordTemp = passwordText.getText();
+        successfullyLoaded.getChildren().addAll(successfully);
 
-            Boolean logInPass = loginCheck(userNameTemp, passwordTemp);
-            if (logInPass){
-                //getUserProfile(userNameTemp);
-                Stage main = new Stage();
-                Viewer mainViewer = new Viewer(userNameTemp);
-
-                try {
-                    mainViewer.start(main);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-                stage.close();
-            }
-            else {
-                Alert wrongInput = new Alert(Alert.AlertType.ERROR);
-                wrongInput.setTitle("Error");
-                wrongInput.setHeaderText("Incorrect user credentials.");
-                wrongInput.setContentText("The username or password is incorrect.\nPlease check and try again.");
-                wrongInput.showAndWait();
-            }
-        });
-
-
-        succesfullyLoaded.getChildren().addAll(successfully);
-
-        loadingBox.getChildren().addAll(loadingLabel,loadingBar);
-        userNameBox.getChildren().addAll(userNameLabel,userNameText);
-        passwordBox.getChildren().addAll(passwordLabel,passwordText);
-        logInOrCreate.getChildren().addAll(createAccount,logIn);
+        loadingBox.getChildren().addAll(loadingBar, loadingLabel);
+        userNameBox.getChildren().addAll(userNameLabel, userNameText);
+        passwordBox.getChildren().addAll(passwordLabel, passwordText);
+        logInOrCreate.getChildren().addAll(quit, createAccount, logIn);
         logInOrCreate.setSpacing(30);
 
 
         loadingBox.setAlignment(Pos.BOTTOM_CENTER);
-        succesfullyLoaded.setAlignment(Pos.BOTTOM_CENTER);
+        successfullyLoaded.setAlignment(Pos.BOTTOM_CENTER);
         userNameBox.setAlignment(Pos.BOTTOM_CENTER);
         passwordBox.setAlignment(Pos.BOTTOM_CENTER);
         logInOrCreate.setAlignment(Pos.BOTTOM_CENTER);
         reminderBox.setAlignment(Pos.BOTTOM_CENTER);
 
-        root.getChildren().addAll(loadingBox,succesfullyLoaded,userNameBox,passwordBox,logInOrCreate);
+        root.getChildren().addAll(loadingBox, successfullyLoaded, userNameBox, passwordBox, logInOrCreate);
         root.setAlignment(Pos.BOTTOM_CENTER);
-        root.setSpacing(30);
+        root.setSpacing(15);
         root.setPadding(new Insets(10, 10, 10, 10));
 
 
-        primaryScene=new Scene(root);
+        primaryScene = new Scene(root);
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 7 / 8);
         stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 15 / 16);
         stage.setMinWidth(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
@@ -281,10 +181,9 @@ public class Starting extends Application
     }
 
     /**
-     *
      * method to load the image
      */
-     private Label LoadImage(){
+    private Label LoadImage() {
 
         Label imageLabel = new Label();
         String imagePath = "airbnb.png";
@@ -292,10 +191,10 @@ public class Starting extends Application
 
         ImageView imageViewer = new ImageView(image);
 
-        width =  image.getWidth();
-        width = width/1.5;
-        height =  image.getHeight();
-        height = height/1.5;
+        width = image.getWidth();
+        width = width / 1.5;
+        height = image.getHeight();
+        height = height / 1.5;
 
         imageViewer.setPreserveRatio(true);
         imageViewer.setFitHeight(height);
@@ -307,15 +206,16 @@ public class Starting extends Application
     }
 
     /**
-     * return the VBOx
+     * return the VBox
+     *
      * @return
      */
 
-    public Pane getPanel(){
+    public Pane getPanel() {
         return root;
     }
 
-    public boolean loginCheck(String userName, String password){
+    private boolean loginCheck(String userName, String password) {
 
         boolean loginStatus = false;
 
@@ -323,18 +223,18 @@ public class Starting extends Application
         ArrayList<UserDetails> logins = database.getDatabaseEntries();
         // logins[2] is username, logins[3] is password.
 
-        for (UserDetails login : logins){
-            if (login.getUserName().equals(userName)){
-                if (login.getPassword().equals(password)){
+        for (UserDetails login : logins) {
+            if (login.getUserName().equals(userName)) {
+                if (login.getPassword().equals(password)) {
                     loginStatus = true;
                 }
             }
         }
 
-        return  loginStatus;
+        return loginStatus;
     }
 
-    public UserDetails getUserProfile(String userName){
+    public UserDetails getUserProfile(String userName) {
 
         UserDetails userProfile = null;
 
@@ -352,40 +252,40 @@ public class Starting extends Application
         return userProfile;
     }
 
-    /*
-    public boolean CheckUserName(String userName){
-        if (checkuser.size()>0){
-            for (int i=0;i<checkuser.size();i++){
-                if (checkuser.get(i).equals(userName)){
-                    checkuserName=true;
-                    index=i;
-                }
-                else checkuserName=false;
+    private void logIn() {
+        String userNameTemp = userNameText.getText();
+        String passwordTemp = passwordText.getText();
+
+        Boolean logInPass = loginCheck(userNameTemp, passwordTemp);
+        if (logInPass) {
+            Stage main = new Stage();
+            Viewer mainViewer = new Viewer(userNameTemp);
+
+            try {
+                mainViewer.start(main);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
+            stage.close();
+        } else {
+            Alert wrongInput = new Alert(Alert.AlertType.ERROR);
+            wrongInput.setTitle("Error");
+            wrongInput.setHeaderText("Incorrect user credentials.");
+            wrongInput.setContentText("The username or password is incorrect.\nPlease check and try again.");
+            wrongInput.showAndWait();
         }
-        else{checkuserName=false;}
-        return checkuserName;
+
     }
 
-
-public boolean CheckPassword(String password){
-   if (checkPassword.size()>0&&checkPassword.get(index).equals(password)){
-       checkpassword=true;
-   }
-   else{checkpassword=false;}
-   return checkpassword;
-
-} */
-
-    public Task createWorker() {
+    private Task createWorker() {
         return new Task() {
             @Override
             protected Object call() throws Exception {
-                for (int i = 0; i < 5; i++) {
-                    Thread.sleep(600);
+                for (int i = 0; i < 3; i++) {
+                    Thread.sleep(300);
                     updateMessage("500 milliseconds");
-                    updateProgress(i + 1, 5);
+                    updateProgress(i + 1, 10);
                 }
 
                 userNameText.setVisible(true);
@@ -393,13 +293,16 @@ public boolean CheckPassword(String password){
                 successfully.setVisible(true);
                 userNameLabel.setVisible(true);
                 passwordLabel.setVisible(true);
+                quit.setVisible(true);
                 createAccount.setVisible(true);
                 logIn.setVisible(true);
                 Thread.sleep(600);
                 loadingLabel.setVisible(false);
                 loadingBar.setVisible(false);
+                Thread.sleep(600);
+                successfully.setVisible(false);
                 return true;
             }
         };
-}
+    }
 }

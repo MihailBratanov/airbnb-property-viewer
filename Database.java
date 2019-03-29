@@ -1,6 +1,4 @@
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,7 +11,6 @@ public class Database {
     ArrayList<String> existingEntries;
 
     public Database(){
-        //database = new File("database.txt");
         existingEntries = new ArrayList();
     }
 
@@ -133,6 +130,8 @@ public class Database {
 
     public HashMap<String, Integer> getUserProfile(String username){
 
+        System.out.println(username);
+
         HashMap<String, Integer> clickCount = new HashMap<>();
 
         String path = "users/".concat(username).concat(".user");
@@ -184,8 +183,7 @@ public class Database {
             writer.append(favLine + "\n");
 
             for (String borough : clickCount.keySet()){
-                String line = borough.concat("-").concat(String.valueOf(clickCount.get(borough))+"\n");
-                //System.out.println(line);
+                String line = borough.concat("-").concat(clickCount.get(borough)+"\n");
                 writer.append(line);
             }
             writer.flush();

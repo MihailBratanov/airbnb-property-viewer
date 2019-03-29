@@ -1,17 +1,15 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
-import java.util.*;
 import javafx.scene.image.*;
-import javafx.scene.image.*;
-import javafx.animation.*;
+import javafx.scene.text.Font;
+
+import java.io.File;
+import java.io.FileInputStream;
+
+import static javafx.scene.text.TextAlignment.*;
 
 
 /**
@@ -21,11 +19,7 @@ import javafx.animation.*;
  * @version (a version number or a date)
  */
 
-public class WelcomeViewer extends Panel
-
-{
-    // We keep track of the count, and label displaying the count:
-
+public class WelcomeViewer extends Panel {
     private VBox root;
     private BorderPane rangeBoxBackground;
     private GridPane rangeBox;
@@ -39,10 +33,8 @@ public class WelcomeViewer extends Panel
 
     public WelcomeViewer(){
         root = new VBox();
-        //root.getStylesheets().add("welcomeviewer.css");
-        logout = new Button("< Logout");
-        Label fromLabel= new Label("From:");
-        Label toLabel=new Label("To:");
+        Label fromLabel = new Label("From:");
+        Label toLabel = new Label("To:");
 
         from.getItems().addAll(
             "--Please Select--",
@@ -121,17 +113,21 @@ public class WelcomeViewer extends Panel
         rangeBoxBackground = new BorderPane();
         rangeBoxBackground.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 0px 0px 2px 0px;");
         rangeBoxBackground.setPadding(new Insets(5, 5, 5, 5));
-        rangeBoxBackground.setLeft(logout);
         rangeBoxBackground.setRight(rangeBox);
 
         ImageView logo = new ImageView("airbnb.gif");
 
         VBox imageBox = new VBox();
         logo.setPreserveRatio(true);
-        logo.fitHeightProperty().bind(root.heightProperty().subtract(rangeBoxBackground.heightProperty().divide(0.5)));
-        logo.fitWidthProperty().bind(root.widthProperty().subtract(rangeBoxBackground.widthProperty().divide(0.5)));
+        logo.fitHeightProperty().bind(root.heightProperty().subtract(rangeBoxBackground.heightProperty().divide(0.4)));
+        logo.fitWidthProperty().bind(root.widthProperty().subtract(rangeBoxBackground.widthProperty().divide(0.4)));
 
-        imageBox.getChildren().addAll(logo);
+        Font font = new Font("Roboto-Regular.ttf", 20);
+        Label instruction = new Label("To begin viewing properties, please select a price range on the boxes above.\nUpon selection, press 'Next'.");
+        instruction.setFont(font);
+        instruction.setTextFill(Color.WHITE);
+        instruction.setTextAlignment(CENTER);
+        imageBox.getChildren().addAll(logo, instruction);
 
 
         imageBox.setAlignment(Pos.CENTER);
