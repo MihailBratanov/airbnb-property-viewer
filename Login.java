@@ -256,8 +256,8 @@ public class Login extends Application {
         return new Task() {
             @Override
             protected Object call() throws Exception {
-                for (int i = 0; i < 3; i++) {
-                    Thread.sleep(300);
+                for (int i = 0; i < 20; i++) {
+                    Thread.sleep(150);
                     updateMessage("500 milliseconds");
                     updateProgress(i + 1, 10);
                 }

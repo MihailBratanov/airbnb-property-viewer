@@ -15,6 +15,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Class ProfileDisplay: class that displays the profile of the logged in user.
+ * Displays the name, surname and username in the window.
+ * It then loads from the stored data, the amount of clicks the user has ever clicked on each borough.
+ *
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
+ */
 public class ProfileDisplay extends Application {
 
     private String name;
@@ -25,6 +39,11 @@ public class ProfileDisplay extends Application {
     private Scene scene;
     private HashMap<String,Integer> userClicks;
 
+    /**
+     * Constructor for the Profile display class. Displays the profile for
+     * the user, read from the database, from the username.
+     * @param username
+     */
     public ProfileDisplay(String username) {
 
         Database database = new Database();
@@ -38,6 +57,13 @@ public class ProfileDisplay extends Application {
 
     }
 
+    /**
+     * Get the font to be used inside of the text.
+     * We have selected to use the King's font.
+     *
+     * @param size gets the size of the font
+     * @return the font with the size.
+     */
     private Font getKingsFont(int size) {
         try {
             return font = Font.loadFont(new FileInputStream(new File("font/KingsFont.ttf")), size);
@@ -47,6 +73,10 @@ public class ProfileDisplay extends Application {
         }
     }
 
+    /**
+     * Stats the JAVAFX Stage : displays the user Profile window.
+     * @param stage
+     */
     @Override
     public void start(Stage stage) {
         this.stage = stage;

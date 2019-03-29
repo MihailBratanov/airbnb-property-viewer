@@ -1,8 +1,21 @@
-import javafx.scene.text.Font;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+/**
+ * Class database : writer and reader that does database operations
+ * tailored to this program. Creates user profiles, reads from the profiles
+ * writes to the profiles and passes it on to the classes which needs it.
+ *
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
+ */
 
 public class Database {
 
@@ -12,10 +25,20 @@ public class Database {
     BufferedReader reader;
     ArrayList<String> existingEntries;
 
+    /**
+     * Constructor of the Database class.
+     */
     public Database(){
         existingEntries = new ArrayList();
     }
 
+    /**
+     * Creates a new user, according to the details inputted by the user.
+     * @param name user's name
+     * @param surname user's surname
+     * @param username user's username
+     * @param password user's password.
+     */
     public void writeDetails(String name, String surname, String username, String password){
         String entry = name + "-" + surname + "-" + username + "-" + password;
         writeToDatabase(entry);
@@ -25,6 +48,13 @@ public class Database {
 
     }
 
+    /**
+     * Records, appends to the database : writes to the database file
+     * the user login, password, surname and name.
+     * Stored in database/database.txt
+     *
+     * @param entry
+     */
     public void writeToDatabase(String entry){
 
         try (BufferedReader currentReader = new BufferedReader(new FileReader("database/database.txt"))) {
@@ -67,6 +97,14 @@ public class Database {
         }
     }
 
+    /**
+     * Creates a new user profile. Writes initial settings and information of the user.
+     * Stores it in users/ [username].user
+     *
+     * @param name
+     * @param surname
+     * @param userName
+     */
     public void createUserFile(String name, String surname, String userName){
         String fileName = userName;
         String firstLine = name.concat("-").concat(surname).concat("-").concat(userName);
@@ -101,6 +139,12 @@ public class Database {
         }
     }
 
+    /**
+     * gets the database entries of each login and their respective password.
+     * Used to check if login is correct.
+     *
+     * @return
+     */
     public ArrayList<UserDetails> getDatabaseEntries(){
         ArrayList<UserDetails> users = new ArrayList<>();
 
@@ -132,6 +176,14 @@ public class Database {
         return users;
     }
 
+    /**
+     * returns userProfile. By UserProfile in this program it is meant the data on
+     * how many clicks there are on each borough click by the user since the
+     * creation of the user.
+     *
+     * @param username
+     * @return
+     */
     public HashMap<String, Integer> getUserProfile(String username){
 
         HashMap<String, Integer> clickCount = new HashMap<>();
@@ -159,6 +211,13 @@ public class Database {
         return clickCount;
     }
 
+    /**
+     * Writes to the user profile file. Writes the click count of the user,
+     * according to the user from username.
+     *
+     * @param username
+     * @param clickCount
+     */
     public void writeToProfile(String username, HashMap<String, Integer> clickCount){
 
         String idLine = username;
@@ -196,6 +255,13 @@ public class Database {
 
     }
 
+    /**
+     * gets the user ID data : surname, name.
+     * Identifies the user by their username.
+     *
+     * @param username
+     * @return
+     */
     public String[] getUserDetails(String username){
 
         String[] details = null;
@@ -214,6 +280,11 @@ public class Database {
         return details;
     }
 
+    /**
+     * gets the most clicked borough from the user by their username.
+     * @param username
+     * @return
+     */
     public String getMostClickedBorough(String username){
         HashMap<String, Integer> clickCount = getUserProfile(username);
 

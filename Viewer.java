@@ -27,8 +27,8 @@ import java.util.ArrayList;
  * 18-19 4CCS1PPA Programming Practice and Applications
  * Term 2 Coursework 4 - London Property Marketplace
  * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
- * Student ID:
- * k-number:
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
  */
 
 public class Viewer extends Application
@@ -431,7 +431,7 @@ public class Viewer extends Application
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About Property Viewer");
         alert.setHeaderText(null);
-        alert.setContentText("Airbnb Property Viewer\n\n" + VERSION);
+        alert.setContentText("Airbnb Property Viewer\n\n" + VERSION + "\n\nCreated By: \nTerry Phung, Ka Wang Sin,  Mihail Danielov Bratanov, Haiyun Zou");
         alert.showAndWait();
     }
 
@@ -512,7 +512,11 @@ public class Viewer extends Application
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Viewer Instructions");
         alert.setHeaderText("Instructions to this program:");  // Alerts have an optionl header. We don't want one.
-        alert.setContentText("Ting tang wala wala bing bang\nTing tang wala wala bing bang\nTing tang wala wala bing bang\n");
+        alert.setContentText("To use this program :" +
+                "\n" + "1. First Select the price range. Then press next, where you can select the borough." +
+                "\n" + "2. It will then show you a list of properties in that borough." +
+                "\n" + "3. Double click on the property desired to view it" +
+                "\n" + "4. To View Statistics, Press Next once more. The program will now calculate the statistics and you can now view it.");
         alert.showAndWait();
     }
 

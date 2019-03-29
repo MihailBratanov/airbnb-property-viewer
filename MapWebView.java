@@ -19,7 +19,24 @@ import java.io.FileNotFoundException;
 
 import static javafx.scene.layout.BackgroundPosition.CENTER;
 
-
+/**
+ * MapWebView class. Class that displays on one side, the property information
+ * on the other side, a map that shows where to property is according to the
+ * coordinates given.
+ *
+ * The Map is displayed using a link generated from the parameters, which
+ * leads to a google maps webpage. The class then loads a web browser
+ * displaying this page.
+ *
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
+ */
 public class MapWebView extends Application {
 
     private Stage stage;
@@ -32,6 +49,12 @@ public class MapWebView extends Application {
     private Slider zoomSlider;
     private Font font;
 
+    /**
+     * start the JAVAFX stage of the MapWebViewer class, and displays everything accordingly.
+     *
+     * @param stage the javafx stage where the map (web viewer) is supposed to be displayed in.
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         this.stage = stage;
@@ -62,26 +85,16 @@ public class MapWebView extends Application {
 
         loadingRoot.getChildren().addAll(loading);
 
-
-
         stage.setTitle("Map View");
-        //stage.setScene(scene);
-
-
-
-        //stage.setResizable(false);
-        //stage.show();
-
-        //show("3","3");
     }
 
-    /*public void show(long longitude, long latitude) {
-        String longitudeString = longitude.toString();
-        String latitudeString = latitude.toString();
-
-        show(longitudeString, latitudeString);
-    }*/
-
+    /**
+     * Get the font to be used inside of the text.
+     * We have selected to use the King's font.
+     *
+     * @param size size of the font
+     * @return returns king's font
+     */
     private Font getKingsFont(int size) {
         try {
             return font = Font.loadFont(new FileInputStream(new File("font/KingsFont.ttf")), size);
@@ -91,20 +104,18 @@ public class MapWebView extends Application {
         }
     }
 
-    public void show(String longitude, String latitude) {
-
-        System.out.println("showing map");
-
-        String mapLink = "https://www.google.com/maps/place/".concat(longitude).concat(",").concat(latitude);//
-
-        webEngine.load(mapLink);
-
-        root.getChildren().clear();
-        root.getChildren().addAll(mapBrowser);
-        stage.setScene(scene);
-        stage.show();
-    }
-
+    /**
+     * Displays the map (web viewer) window with the property information.
+     *
+     * @param longitude latitude of the property
+     * @param latitude longtitude of the property
+     * @param name name of the property listing
+     * @param hostName host of the property
+     * @param roomType type of the room
+     * @param price price per night
+     * @param reviews number of reviews
+     * @param borough borough where the property is located in
+     */
     public void show(String longitude, String latitude, String name, String hostName, String roomType, int price, String reviews, String borough) {
 
         //System.out.println("showing map");
@@ -167,26 +178,9 @@ public class MapWebView extends Application {
 
         property.setBackground(new Background(new BackgroundImage(new Image("img/house.gif"), null, null,CENTER ,null)));
 
-
-
-
-
         root.getChildren().clear();
         root.getChildren().addAll(mapBrowser, property);
         stage.setScene(scene);
         stage.show();
     }
-
-    public void showByPlace(String place){
-
-        place = " ".concat("London Borough of").concat(place);
-        String mapLink = "https://www.google.com/maps/place/".concat(place);
-
-        webEngine.load(mapLink);
-
-        root.getChildren().addAll(mapBrowser);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 }

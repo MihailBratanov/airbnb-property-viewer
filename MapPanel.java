@@ -23,12 +23,20 @@ import javafx.scene.text.*;
 import javafx.scene.control.Slider;
 
 /**
- * Write a description of JavaFX class Viewer here.
+ * Class MapPanel. Displays a simplified Map of London : the map is only
+ * made out of london boroughs. Represented as hexagons, it creates
+ * a clickable button that then initialises the table from TableView class
+ * and gives it parameters to launch the Table.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
  */
-
 public class MapPanel extends Panel {
 
     private String username;
@@ -67,8 +75,11 @@ public class MapPanel extends Panel {
     private TableViewer tableViewer;
     private Font font;
 
-
-
+    /**
+     * Constructor for the MapPanel class. Takes in lower limit and upper limit, the data
+     * then to filter the data. MapPanel creates the map of boroughs, links the data to the boroughs.
+     * It also tracks the number of click of boroughs of the user.
+     */
     public MapPanel(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data, String username) {
 
         this.lowerLimit = lowerLimit;
@@ -309,8 +320,8 @@ public class MapPanel extends Panel {
         VBox slogan = new VBox();
         slogan.setAlignment(Pos.CENTER_LEFT);
         //font = new Font("font/Roboto-Regular.ttf", 50);
-        font = getKingsFont(60);
-        Label instructions = new Label("Please select the\nnumber of nights you\nwant to stay.");
+        font = getKingsFont(45);
+        Label instructions = new Label("Please select the\nminimum number of nights\nyou want to stay.");
         instructions.setFont(font);
         instructions.setTextFill(Color.WHITE);
         instructions.setTextAlignment(TextAlignment.LEFT);
@@ -324,6 +335,16 @@ public class MapPanel extends Panel {
 
     }
 
+    /**
+     * Sets up a HashMap where it stores the
+     * amount of times each borough is clicked by the user.
+     *
+     * Initialises it to 0.
+     *
+     * @param boroughs list of boroughs.
+     * @return
+     */
+
     private HashMap<String, Integer> setUpUserClick(ArrayList<Borough> boroughs){
 
         HashMap<String, Integer> boroughClick = new HashMap<>();
@@ -336,6 +357,10 @@ public class MapPanel extends Panel {
         return boroughClick;
     }
 
+    /**
+     * Updates the map when changing the value of the minimum amount of nights.
+     * Refilters the data and then assigns it back to the map of boroughs.
+     */
 
     private void updateMap(){
         setNumberOfNights(numberOfNights.getSelectionModel().getSelectedItem().toString());
@@ -475,6 +500,11 @@ public class MapPanel extends Panel {
         }
     }
 
+    /**
+     * Method that updates what the user selected for the minimum amount of nights.
+     *
+     * @param nights number of minimum nights - input from the user.
+     */
     private void setNumberOfNights(String nights) {
         if (nights != "Any"){
             dateSortedProperties = sortByDay(Integer.parseInt(nights), boroughSortedProperties);
@@ -487,7 +517,12 @@ public class MapPanel extends Panel {
         }
     }
 
-    
+    /**
+     * Math method that gets the X coordinates
+     * for the hexagon drawing.
+     * @param degree degree of the angle
+     * @return
+     */
     private double hexPointX(double degree){
         double centerPoint = height/15;
 
@@ -498,6 +533,13 @@ public class MapPanel extends Panel {
         return X;
     }
 
+    /**
+     * Math method that gets the Y coordinates
+     * for the hexagon drawing.
+     *
+     * @param degree degree of the angle
+     * @return
+     */
     private double hexPointY(double degree){
         double centerPoint = height/15;
 
@@ -507,7 +549,15 @@ public class MapPanel extends Panel {
 
         return X;
     }
-    
+
+    /**
+     * loads the data from the Airbnb csv File.
+     *
+     * @param lowerLimit lower limit of the price
+     * @param upperLimit upper limit of the price
+     * @param data entire data of airbnb listings.
+     * @return returns the data filtered.
+     */
     private ArrayList<AirbnbListing> loadData(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data){
         ArrayList<AirbnbListing> specifiedData = new ArrayList<>();
         ArrayList<String> neighbourhoods = new ArrayList<>();
@@ -520,6 +570,14 @@ public class MapPanel extends Panel {
         return specifiedData;
     }
 
+    /**
+     * Sorts all the AirBnb listings loaded by
+     * minimum amount of nights.
+     *
+     * @param nights minimum amount of nights
+     * @param data data of airbnb listings.
+     * @return
+     */
     private ArrayList<AirbnbListing> sortByDay(int nights, ArrayList<AirbnbListing> data) {
 
         ArrayList<AirbnbListing> sortedByDay = new ArrayList<>();
@@ -535,7 +593,12 @@ public class MapPanel extends Panel {
         return sortedByDay;
     }
 
-    
+    /**
+     * Count the amount of properties there are in each borough.
+     *
+     * @param neighbourhoods List of boroughs.
+     * @return a hashmap of count of boroughs.
+     */
     private HashMap countBoroughs(ArrayList<AirbnbListing> neighbourhoods){
         
         ArrayList<String> boroughs = new ArrayList <>();
@@ -571,7 +634,12 @@ public class MapPanel extends Panel {
         
         return boroughCount;
     }
-    
+
+    /**
+     * Creates all the boroughs of type Borough,
+     * where it stores the name and the coordinate on the gridPane.
+     */
+
     private void createBoroughs(){
         
         enfield     = new Borough("Enfield",8,1);
@@ -622,21 +690,22 @@ public class MapPanel extends Panel {
                 lewisham, kingston, sutton, croydon, bromley ));
 
     }
-    
+
+    /**
+     * Main Method that returns the panel to the View class,
+     * for the map to get displayed.
+     *
+     * @return returns the panel.
+     */
     public Pane getPanel(){
         return root;
     }
 
-
-    public ArrayList<Integer> getLimits(){
-        ArrayList<Integer> lim = new ArrayList<>();
-        lim.add(lowerLimit);
-        lim.add(upperLimit);
-
-        return lim;
-    }
-
-
+    /**
+     * Loads the background image and returns it.
+     *
+     * @return returns the loaded image.
+     */
     private Label LoadImage(){
         Label imageLabel = new Label();        
         String imagePath = "img/boroughs.png";
@@ -658,11 +727,14 @@ public class MapPanel extends Panel {
         return imageLabel;
     }
 
-    public void setRange(int lowerLimit, int upperLimit) {
-        boroughSortedProperties = loadData(lowerLimit, upperLimit, data);
-        boroughCount = countBoroughs(boroughSortedProperties);
-    }
 
+    /**
+     * Get the font to be used inside of the text.
+     * We have selected to use the King's font.
+     *
+     * @param size gets the size of the font
+     * @return the font with the size.
+     */
     private Font getKingsFont(int size) {
         Font font;
         try {
