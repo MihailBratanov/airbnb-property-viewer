@@ -9,7 +9,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.ArrayList;
@@ -33,7 +32,10 @@ public class TableViewer extends Application {
 
     private ObservableList<AirbnbListing> tableData =
             FXCollections.observableArrayList();
-    private TableView table = new TableView();
+
+    private javafx.scene.control.TableView table = new javafx.scene.control.TableView();
+    private Label statsLabel;
+    private Label statsInfoLabel;
     private ArrayList<Double> coordinates = new ArrayList<>();
     private ArrayList<String> statActions = new ArrayList<>();
     private int currentActionIndex = 0;
