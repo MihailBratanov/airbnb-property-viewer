@@ -3,29 +3,23 @@ import javafx.collections.ObservableList;
 
 /**
  * This class is where all statistical computations take place.
- *
- * @author Mihail Bratanov
- * @version 0.1
  */
 public class Calculator {
-    // instance variables - replace the example below with your own
-    private int x;
-    private AirbnbDataLoader loader = new AirbnbDataLoader();
-    private ArrayList<AirbnbListing> data = new ArrayList<>();
 
     /**
      * Constructor for objects of class Calculator
      */
     public Calculator() {
-        // initialise instance variables
-        x = 0;
     }
 
+    /**
+     * A methid to calculate the average reviews
+     * @param dataToDoStatsOn
+     * @return the average
+     */
     public double calculateAverageViews(ObservableList<AirbnbListing> dataToDoStatsOn) {
-        //dataToDoStatsOn.addAll(data);
         double current = 0;
         double average;
-        // Counts number of button clicks and shows the result on a label
         for (AirbnbListing listing : dataToDoStatsOn) {
             current += listing.getNumberOfReviews();
         }
@@ -34,6 +28,11 @@ public class Calculator {
         return average;
     }
 
+    /**
+     * A method to get the amount of available properties
+     * @param dataToDoStatsOn
+     * @return amount of available properties
+     */
     public int calculateAvailability(ObservableList<AirbnbListing> dataToDoStatsOn) {
         int totalAvailableProperties = 0;
         for (AirbnbListing listing : dataToDoStatsOn) {
@@ -43,6 +42,11 @@ public class Calculator {
         return totalAvailableProperties;
     }
 
+    /**
+     *A method to calculate the amount of properties which are not private rooms
+     * @param dataToDoStatsOn
+     * @return the amount of properties
+     */
     public int calculateRoomType(ObservableList<AirbnbListing> dataToDoStatsOn) {
         int propertyCount = 0;
         for (AirbnbListing listing : dataToDoStatsOn) {
@@ -52,24 +56,13 @@ public class Calculator {
         return propertyCount;
     }
 
+    /**
+     * A method that calculates the most expensive borough
+     * @param dataToDoStatsOn
+     * @return name of borough
+     */
     public String calculateMostExpensiveBorough(ObservableList<AirbnbListing> dataToDoStatsOn) {
-        //ArrayList<String> boroughs = new ArrayList<>();
-        ArrayList<String> filteredBoroughs = new ArrayList<>();
-        /*
-        for (AirbnbListing listing : dataToDoStatsOn) {
-            boroughs.add(listing.getNeighbourhood());
-        }
 
-
-
-        for (int i = 0; i < boroughs.size(); i++) {
-            for (int j = i + 1; j < boroughs.size(); j++) {
-                if (!boroughs.get(i).equals(boroughs.get(j)))
-                    filteredBoroughs.add(boroughs.get(j));
-            }
-
-        }
-        */
         int minimumStayListing = 0;
         int priceListing = 0;
         int totalPriceForListing = 0;
@@ -83,30 +76,15 @@ public class Calculator {
 
         }
 
-        HashMap<String, Integer> priceBoroughs = new HashMap<>();
-
-        for (String listing : priceListings.keySet()){
-
-            Boolean exists = priceListings.containsKey(listing);
-
-            if ( ! exists){
-                priceBoroughs.put(listing, 1);
-            }
-
-            else if (exists){
-                int count = priceListings.get(listing);
-                count += 1;
-                priceListings.replace(listing, count);
-            }
-        }
 
         int max = 0;
-        String mostExpensiveBorough = "";
+        String mostExpensiveBorough=" ";
 
-        for (String listing : priceBoroughs.keySet()){
-            if (priceBoroughs.get(listing) > max){
-                max = priceBoroughs.get(listing);
-                mostExpensiveBorough = listing;
+        for (String listing : priceListings.keySet()){
+            if (priceListings.get(listing) > max){
+                System.out.println(priceListings.get(listing));
+                max = priceListings.get(listing);
+                mostExpensiveBorough=listing;
             }
         }
 
@@ -114,6 +92,11 @@ public class Calculator {
         return mostExpensiveBorough;
     }
 
+    /**
+     * A method to calculate the most recent listing
+     * @param dataToDoStatsOn
+     * @return a hashmap with the listing id's and dates
+     */
     public HashMap<Integer, String> calculateMostRecentListing(ObservableList<AirbnbListing> dataToDoStatsOn) {
         ArrayList<String> dates = new ArrayList<>();
         ArrayList<String> ids = new ArrayList<>();
@@ -144,6 +127,11 @@ public class Calculator {
 
     }
 
+    /**
+     * Calculates the month with most listings
+     * @param dataToDoStatsOn
+     * @return a hashmap of each month mapped to the amount of listings
+     */
     public HashMap<String, Integer> calculateBusiestMonth(ObservableList<AirbnbListing> dataToDoStatsOn) {
         ArrayList<String> dates = new ArrayList<>();
         List<String> months = new ArrayList<>();
@@ -175,34 +163,18 @@ public class Calculator {
                     counter = 0;
 
                 }
-
         }
-
-
         }
         return datesAndCounts;
 
     }
 
+    /**
+     * Calculates the borough with most listings
+     * @param dataToDoStatsOn
+     * @return a hashmap of the borough mapped to the count of listings
+     */
     public HashMap<String, Integer> calculateMostPopulatedBorough(ObservableList<AirbnbListing> dataToDoStatsOn) {
-        /**
-        ArrayList<String> boroughs = new ArrayList<>();
-        ArrayList<String> filteredBoroughs = new ArrayList<>();
-        for (AirbnbListing listing : dataToDoStatsOn) {
-            boroughs.add(listing.getNeighbourhood());
-        }
-
-         for (int i = 0; i < boroughs.size(); i++) {
-            for (int j = i + 1; j < boroughs.size(); j++) {
-                if (!boroughs.get(i).equals(boroughs.get(j)))
-                    filteredBoroughs.add(boroughs.get(j));
-                System.out.println(filteredBoroughs);
-            }
-
-
-            }
-            return null;
-        }*/
 
         HashMap<String, Integer> boroughPropertyCount = new HashMap<>();
 

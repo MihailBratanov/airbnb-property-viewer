@@ -35,6 +35,11 @@ public class ProfileDisplay extends Application {
         this.username = details[2];
 
         userClicks = database.getUserProfile(username);
+
+    public ProfileDisplay(String username){
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
     }
 
     private Font getKingsFont(int size) {
@@ -49,7 +54,7 @@ public class ProfileDisplay extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-
+        
         VBox root = new VBox();
 
         root.setMinSize(300.0,500.0);

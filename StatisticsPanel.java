@@ -22,7 +22,11 @@ import javafx.event.ActionEvent;
 
 import java.util.*;
 
-public class StatisticsPanel {
+/**
+ * This class implements and visualizes all the statistics, done over the filtered data by the user selection
+ * of lower and upper limit. The calculations themselves, however are done in a separate class called Calculator.
+ */
+public class  StatisticsPanel {
 
 
 
@@ -56,12 +60,23 @@ public class StatisticsPanel {
 
     private BorderPane statPane;
 
+    private String username;
+
+    Database database=new Database();
+
+    /**
+     * Constructor for class StatisticsPanel
+     * @param stage -the stage where the stats are to appear
+     * @param lowerLimit - lower price limit from Viewer
+     * @param upperLimit - upper price limit from Viewer
+     * @param username - username of the currently logged in user
+     */
+
     public StatisticsPanel(Stage stage, int lowerLimit, int upperLimit, String username) {
 
-        tableData = FXCollections.observableArrayList();
+        this.username = username;
 
-        //int lowerLimit = 100;
-        //int upperLimit = 500;
+        tableData = FXCollections.observableArrayList();
         tableData.addAll(filterData(data, lowerLimit, upperLimit));
 
 
@@ -72,19 +87,12 @@ public class StatisticsPanel {
         StatValues availableProperties = new StatValues("availableProperties",getAvailableProperties());
         StatValues homeAndAppartments = new StatValues("homeAndAppartments",getHomeAndAppartments());
         StatValues mostExpensiveBorough = new StatValues("mostExpensiveBorough",getMostExpensiveBorough());
+        StatValues mostClickedBorough=new StatValues("mostClickedBorough", getClickedBorough());
 
         displayedText = new ArrayList<>( Arrays.asList(mostPopulatedBorough, mostActiveMonth, mostRecentListing, averageReviews,
-                           availableProperties, homeAndAppartments, mostExpensiveBorough));
-    /*}
+                           availableProperties, homeAndAppartments, mostExpensiveBorough,mostClickedBorough));
 
-    @Override
-    public void start(Stage stage) throws FileNotFoundException {*/
-        //data=loader.load();
-        //System.out.println(data.toString());
-        //int lowerLimit = 100;
-        //int upperLimit = 500;
-        //tableData.addAll(filterData(data, lowerLimit, upperLimit));
-        //System.out.println(tableData);
+//statistics:
 //--------------core---------------------------
         statActions.add("Average reviews");
         statActions.add("Available properties");
@@ -105,14 +113,17 @@ public class StatisticsPanel {
 
 
 
+        //Setting a new scene
         Scene scene = new Scene(new Group());
 
+        //creating a border pane for all four stats
         statPane = new BorderPane();
         BorderPane paneToBeCentered = new BorderPane();
         BorderPane paneSeparatorTop = new BorderPane();
 
         BorderPane paneSeparatorBottom = new BorderPane();
 
+        //adding the first stat box elements to the pane
         BorderPane statPane1 = new BorderPane();
         VBox box1 = new VBox();
         Button myLeftButton1 = new Button("<");
@@ -125,6 +136,7 @@ public class StatisticsPanel {
         configStatPane(statPane1, box1, myLeftButton1, myRightButton1, statsLabel1, statsInfoLabel1, stage);
         displayedText.remove(0);
 
+        //adding the second stat box elements to the pane
         BorderPane statPane2 = new BorderPane();
         VBox box2 = new VBox();
         Button myLeftButton2 = new Button("<");
@@ -137,6 +149,7 @@ public class StatisticsPanel {
         configStatPane(statPane2, box2, myLeftButton2, myRightButton2, statsLabel2, statsInfoLabel2, stage);
         displayedText.remove(0);
 
+        //adding the third stat box elements to the pane
         BorderPane statPane3 = new BorderPane();
         VBox box3 = new VBox();
         Button myLeftButton3 = new Button("<");
@@ -149,6 +162,7 @@ public class StatisticsPanel {
         configStatPane(statPane3, box3, myLeftButton3, myRightButton3, statsLabel3, statsInfoLabel3, stage);
         displayedText.remove(0);
 
+        //adding the forth stat box elements to the pane
         BorderPane statPane4 = new BorderPane();
         VBox box4=new VBox();
         Button myLeftButton4 = new Button("<");
@@ -161,6 +175,7 @@ public class StatisticsPanel {
         configStatPane(statPane4, box4, myLeftButton4, myRightButton4, statsLabel4, statsInfoLabel4, stage);
         displayedText.remove(0);
 
+        //distributing them via another pane
         paneSeparatorTop.setLeft(statPane1);
         paneSeparatorTop.setRight(statPane2);
         paneSeparatorBottom.setLeft(statPane3);
@@ -178,10 +193,7 @@ public class StatisticsPanel {
         ((Group) scene.getRoot()).getChildren().addAll(statPane);
 
 
-
-        //stage.setWidth(600);
-        //stage.setHeight(600);
-
+        //adding an eventlistener to track the mouse position
         statPane.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -189,25 +201,29 @@ public class StatisticsPanel {
                 mouseY = event.getY();
             }
         });
+        //a function to get the stage height/2 dynamically
         stage.heightProperty().addListener((observe, oldVal, newVal) -> {
             stageMidY = stage.getHeight()/2;
         });
 
+        //a function to get the stage width/2 dynamically
         stage.widthProperty().addListener((observe, oldVal, newVal) -> {
             stageMidX = stage.getWidth()/2;
         });
-
-        //stage.setScene(scene);
-        //stage.show();
 
         stageMidX = stage.getWidth()/2;
         stageMidY = stage.getHeight()/2;
     }
 
-    public Pane getStatePane(){
-        return statPane;
-    }
-
+    /**
+     * a method to determine the position of the mouse cursor at any give time so as to detect the quadrant
+     * of the stage in which the user is currently
+     * @param mouseX the X coordinate of the mouse
+     * @param mouseY the Y coordinate of the mouse
+     * @return and integer with the number of the current pane
+     * [1,2]
+     * [3,4]
+     */
     private int determinePane(double mouseX,double mouseY){
         int pane = 0;
         if (mouseX <= stageMidX && mouseY <= stageMidY) {
@@ -226,16 +242,11 @@ public class StatisticsPanel {
         return pane;
     }
 
-
     /**
-     * This method returns the index of the current
-     */
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
+     * This method executes upon a click on any left button. At any point only the stats that are not shown
+     * by any of the boxes are available to iterate through.
      */
     private void leftButtonClick(ActionEvent event) {
-        // Counts number of button clicks and shows the result on a label
         currentActionIndex++;
         if (currentActionIndex > statActions.size() - 1) {
             currentActionIndex = 0;
@@ -243,7 +254,6 @@ public class StatisticsPanel {
 
         int paneNumber = determinePane(mouseX, mouseY);
 
-        System.out.println(displayedText);
 
         switch (paneNumber) {
             case 1:
@@ -293,11 +303,14 @@ public class StatisticsPanel {
                 break;
         }
 
-        //doStatistic(paneNumber);
         currentActionIndex = currentActionIndex;
 
     }
 
+    /**
+     * This method executes upon a click on any right button. At any point only the stats that are not shown
+     * by any of the boxes are available to iterate through.
+     */
     private void rightButtonClick(ActionEvent event) {
         currentActionIndex--;
         if (currentActionIndex < 0) {
@@ -307,28 +320,62 @@ public class StatisticsPanel {
         int paneNumber=determinePane(mouseX,mouseY);
         switch(paneNumber) {
             case 1:
-                //statsLabel1.setText(statActions.get(currentActionIndex));
-                statsLabel1.setText(statActions.get(currentActionIndex));
+                StatValues tempValue1 = new StatValues(statsLabel1.getText(), statsInfoLabel1.getText());
+                displayedText.add(tempValue1);
+
+                StatValues newValue1 = displayedText.get(0);
+
+                statsLabel1.setText(newValue1.getName());
+                statsInfoLabel1.setText(newValue1.getValue());
+
+                displayedText.remove(0);
                 break;
-            case 2: statsLabel2.setText(statActions.get(currentActionIndex));
+            case 2:
+                StatValues tempValue2 = new StatValues(statsLabel2.getText(), statsInfoLabel2.getText());
+                displayedText.add(tempValue2);
+
+                StatValues newValue2 = displayedText.get(0);
+
+                statsLabel2.setText(newValue2.getName());
+                statsInfoLabel2.setText(newValue2.getValue());
+
+                displayedText.remove(0);
                 break;
-            case 3: statsLabel3.setText(statActions.get(currentActionIndex));
+            case 3: StatValues tempValue3 = new StatValues(statsLabel3.getText(), statsInfoLabel3.getText());
+                displayedText.add(tempValue3);
+
+                StatValues newValue3 = displayedText.get(0);
+
+                statsLabel3.setText(newValue3.getName());
+                statsInfoLabel3.setText(newValue3.getValue());
+
+                displayedText.remove(0);
                 break;
-            case 4: statsLabel4.setText(statActions.get(currentActionIndex));
+            case 4: StatValues tempValue4 = new StatValues(statsLabel4.getText(), statsInfoLabel4.getText());
+                displayedText.add(tempValue4);
+
+                StatValues newValue4 = displayedText.get(0);
+
+                statsLabel4.setText(newValue4.getName());
+                statsInfoLabel4.setText(newValue4.getValue());
+
+                displayedText.remove(0);
                 break;
         }
-        //doStatistic(paneNumber);
         currentActionIndex = currentActionIndex;
 
     }
 
-    //=============================================================================================================================================
+    //====================Methods to calculate the statistics through the Calculator class===============================
 
+    /**
+     * A method to get the most populated borough aka the one with the most properties
+     * @return the borough
+     */
     private String getMostPopulatedBorough(){
         String returnValue = "";
 
         HashMap<String,Integer>counts=calculator.calculateMostPopulatedBorough(tableData);
-        //int max = Collections.max(counts.values());
         int max = 0;
         for (String borough : counts.keySet()){
             if (counts.get(borough) > max){
@@ -347,11 +394,15 @@ public class StatisticsPanel {
         return returnValue;
     }
 
+    /**
+     * a method to get the month when the most listings happen
+     * @return the month
+     */
     private String getMostActiveMonth(){
 
         String returnValue = null;
 
-        System.out.println("most act month");
+
         HashMap<String,Integer> datesAndCounts =calculator.calculateBusiestMonth(tableData);
 
         //int max=Collections.max(datesAndCounts.values());
@@ -370,14 +421,16 @@ public class StatisticsPanel {
         }
         return returnValue;
     }
+
+    /**
+     * A method to get the most recent listing's io
+     * @return the id of the listing
+     */
     private String getMostRecentListing(){
 
-        System.out.println("running most rec listing");
+
         HashMap<Integer,String>dates;
         dates=calculator.calculateMostRecentListing(tableData);
-
-        //Set<Integer>datesToCompare=dates.keySet();
-        //int max=Collections.max(datesToCompare);
 
         int max = 0;
         for (Integer date : dates.keySet()){
@@ -389,347 +442,75 @@ public class StatisticsPanel {
         return dates.get(max);
     }
 
+    /**
+     * A method to calculate the average reviews from the data
+     * @return the average, rounded
+     */
     private String getAverageReviews(){
 
-        System.out.println("avg reviews");
+
         double average = calculator.calculateAverageViews(tableData);
 
         return Double.toString(Math.round(average));
 
     }
+
+    /**
+     * A method which return the amount of all the currently available properties
+     * @return the number of properties
+     */
     private String getAvailableProperties() {
-        System.out.println("avail prop");
+
         int total = calculator.calculateAvailability(tableData);
 
         return Integer.toString(total);
 
     }
+
+    /**
+     * A method which returns the amount of all the whole properties
+     * @return amount of whole properties
+     */
     private String getHomeAndAppartments() {
-        System.out.println("hms and apps");
+
         int totalProperties = calculator.calculateRoomType(tableData);
 
         return (Integer.toString(totalProperties));
 
     }
+
+    /**
+     * A method used to calculate the most expensive borough
+     * @return the borough
+     */
     private String getMostExpensiveBorough() {
-        System.out.println("most exp bor");
-        /**
-        String mostExpensiveBorough = "";
-        HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
 
-        System.out.println("Begin Calc");
-        ArrayList<Integer> pricesToFilter = new ArrayList<>();
-        int large = 0;
-        for (String borough : filteredData.keySet()) {
-            String key = borough.toString();
-            int price = filteredData.get(borough);
-            pricesToFilter.add(price);
-            large = pricesToFilter.get(0);
-            for (int i = 0; i < pricesToFilter.size(); i++) {
-                if (large < pricesToFilter.get(i)) {
-                    large = pricesToFilter.get(i);
-                }
-            }
-        }
 
-        System.out.println("Data filtered and got the most expensive one.");
-
-        for (String currKey : filteredData.keySet()) {
-            if (large == filteredData.get(currKey)) {
-                mostExpensiveBorough = currKey;
-                break;
-            }
-        }
-        return mostExpensiveBorough;
-         */
         String mostExpensiveBorough = calculator.calculateMostExpensiveBorough(tableData);
-
+        System.out.println(mostExpensiveBorough);
         return mostExpensiveBorough;
+    }
+
+    /**
+     * A method which reads from a database, which stores the clicks per borough and then displays the most clicked one
+     * @return the most clicked borough
+     */
+    private String getClickedBorough( ){
+
+        String mostClicked=database.getMostClickedBorough(username);
+        return mostClicked;
     }
 
 //======================================================================================================================
-    /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
-     *
-    private void doStatistic(int number) {
-        int paneNumber=number;
-        if (paneNumber == 1) {
-            if(statsLabel1.getText().equals("Most populated borough")){
-                HashMap<String,Integer>counts=calculator.calculateMostPopulatedBorough(tableData);
-                int max=Collections.max(counts.values());
-
-                for(Map.Entry<String,Integer> value:counts.entrySet()){
-                    if(value.getValue()==max){
-                        statsInfoLabel1.setText(value.getKey());
-                    }
-                }
-
-            }
-            else if(statsLabel1.getText().equals("Most active month")){
-                System.out.println("most act month");
-                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
-                int max=Collections.max(datesAndCounts.values());
-                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
-                    if(value.getValue()==max){
-                        statsInfoLabel1.setText(value.getKey());
-                    }
-                }
-            }
-            else if(statsLabel1.getText().equals("Most recent listing")){
-                System.out.println("running most rec listing");
-                 HashMap<Integer,String>dates;
-                dates=calculator.calculateMostRecentListing(tableData);
-
-                Set<Integer>datesToCompare=dates.keySet();
-                int max=Collections.max(datesToCompare);
-                statsInfoLabel1.setText(dates.get(max));
-            }
-            else if (statsLabel1.getText().equals("Average reviews")) {
-                System.out.println("avg reviews");
-                double average = calculator.calculateAverageViews(tableData);
-                {
-                    statsInfoLabel1.setText(Double.toString(Math.round(average)));
-                }
-            } else if (statsLabel1.getText().equals("Available properties")) {
-                System.out.println("avail prop");
-                int total = calculator.calculateAvailability(tableData);
-                {
-                    statsInfoLabel1.setText(Integer.toString(total));
-                }
-            } else if (statsLabel1.getText().equals("Homes and apartments")) {
-                System.out.println("hms and apps");
-                int totalProperties = calculator.calculateRoomType(tableData);
-                {
-                    statsInfoLabel1.setText(Integer.toString(totalProperties));
-                }
-            } else if (statsLabel1.getText().equals("Most expensive borough")) {
-                System.out.println("most exp bor");
-                String mostExpensiveBorough = "";
-                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-
-                ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                int large = 0;
-                for (String borough : filteredData.keySet()) {
-                    String key = borough.toString();
-                    int price = filteredData.get(borough);
-                    pricesToFilter.add(price);
-                    large = pricesToFilter.get(0);
-                    for (int i = 0; i < pricesToFilter.size(); i++) {
-                        if (large < pricesToFilter.get(i)) {
-                            large = pricesToFilter.get(i);
-                        }
-                    }
-                }
-
-                for (String currKey : filteredData.keySet()) {
-                    if (large == filteredData.get(currKey)) {
-                        mostExpensiveBorough = currKey;
-                        break;
-                    }
-                }
-                statsInfoLabel1.setText(mostExpensiveBorough);
-
-            }
-        } else if (paneNumber == 2) {
-            if(statsLabel2.getText().equals("Most active month")){
-                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
-                int max=Collections.max(datesAndCounts.values());
-                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
-                    if(value.getValue()==max){
-                        statsInfoLabel2.setText(value.getKey());
-                    }
-                }
-            }
-            if(statsLabel2.getText().equals("Most recent listing")){
-                HashMap<Integer,String>dates;
-                dates=calculator.calculateMostRecentListing(tableData);
-
-                Set<Integer>datesToCompare=dates.keySet();
-                int max=Collections.max(datesToCompare);
-                statsInfoLabel2.setText(dates.get(max));
-            }
-            else if (statsLabel2.getText().equals("Average reviews")) {
-                double average = calculator.calculateAverageViews(tableData);
-                {
-                    statsInfoLabel2.setText(Double.toString(Math.round(average)));
-                }
-            } else if (statsLabel2.getText().equals("Available properties")) {
-                int total = calculator.calculateAvailability(tableData);
-                {
-                    statsInfoLabel2.setText(Integer.toString(total));
-                }
-            } else if (statsLabel2.getText().equals("Homes and apartments")) {
-                int totalProperties = calculator.calculateRoomType(tableData);
-                {
-                    statsInfoLabel2.setText(Integer.toString(totalProperties));
-                }
-            } else if (statsLabel2.getText().equals("Most expensive borough")) {
-                String mostExpensiveBorough = "";
-                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-
-                ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                int large = 0;
-                for (String borough : filteredData.keySet()) {
-                    String key = borough.toString();
-                    int price = filteredData.get(borough);
-                    pricesToFilter.add(price);
-                    large = pricesToFilter.get(0);
-                    for (int i = 0; i < pricesToFilter.size(); i++) {
-                        if (large < pricesToFilter.get(i)) {
-                            large = pricesToFilter.get(i);
-                        }
-                    }
-                }
-
-                for (String currKey : filteredData.keySet()) {
-                    if (large == filteredData.get(currKey)) {
-                        mostExpensiveBorough = currKey;
-                        break;
-                    }
-                }
-                statsInfoLabel2.setText(mostExpensiveBorough);
-            }
-        } else if (paneNumber == 3) {
-            if(statsLabel3.getText().equals("Most active month")){
-                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
-                int max=Collections.max(datesAndCounts.values());
-                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
-                    if(value.getValue()==max){
-                        statsInfoLabel3.setText(value.getKey());
-                    }
-                }
-            }
-            else if(statsLabel3.getText().equals("Most recent listing")){
-                HashMap<Integer,String>dates;
-                dates=calculator.calculateMostRecentListing(tableData);
-
-                Set<Integer>datesToCompare=dates.keySet();
-                int max=Collections.max(datesToCompare);
-                statsInfoLabel3.setText(dates.get(max));
-            }
-
-            else if (statsLabel3.getText().equals("Average reviews")) {
-                double average = calculator.calculateAverageViews(tableData);
-                {
-                    statsInfoLabel3.setText(Double.toString(Math.round(average)));
-                }
-            } else if (statsLabel3.getText().equals("Available properties")) {
-                int total = calculator.calculateAvailability(tableData);
-                {
-                    statsInfoLabel3.setText(Integer.toString(total));
-                }
-            } else if (statsLabel3.getText().equals("Homes and apartments")) {
-                int totalProperties = calculator.calculateRoomType(tableData);
-                {
-                    statsInfoLabel3.setText(Integer.toString(totalProperties));
-                }
-            } else if (statsLabel3.getText().equals("Most expensive borough")) {
-                String mostExpensiveBorough = "";
-                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-
-                ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                int large = 0;
-                for (String borough : filteredData.keySet()) {
-                    String key = borough.toString();
-                    int price = filteredData.get(borough);
-                    pricesToFilter.add(price);
-                    large = pricesToFilter.get(0);
-                    for (int i = 0; i < pricesToFilter.size(); i++) {
-                        if (large < pricesToFilter.get(i)) {
-                            large = pricesToFilter.get(i);
-                        }
-                    }
-                }
-
-                for (String currKey : filteredData.keySet()) {
-                    if (large == filteredData.get(currKey)) {
-                        mostExpensiveBorough = currKey;
-                        break;
-                    }
-                }
-                statsInfoLabel3.setText(mostExpensiveBorough);
-            }
-        } else if (paneNumber == 4) {
-            if(statsLabel4.getText().equals("Most active month")){
-                HashMap<String,Integer>datesAndCounts=calculator.calculateBusiestMonth(tableData);
-                int max=Collections.max(datesAndCounts.values());
-                for(Map.Entry<String,Integer> value:datesAndCounts.entrySet()){
-                    if(value.getValue()==max){
-                        statsInfoLabel4.setText(value.getKey());
-                    }
-                }
-            }
-            else if(statsLabel4.getText().equals("Most recent listing")){
-                HashMap<Integer,String>dates;
-                dates=calculator.calculateMostRecentListing(tableData);
-
-                Set<Integer>datesToCompare=dates.keySet();
-                int max=Collections.max(datesToCompare);
-                statsInfoLabel4.setText(dates.get(max));
-            }
-
-            else if (statsLabel4.getText().equals("Average reviews")) {
-                double average = calculator.calculateAverageViews(tableData);
-                {
-                    statsInfoLabel4.setText(Double.toString(Math.round(average)));
-                }
-            } else if (statsLabel4.getText().equals("Available properties")) {
-                int total = calculator.calculateAvailability(tableData);
-                {
-                    statsInfoLabel4.setText(Integer.toString(total));
-                }
-            } else if (statsLabel4.getText().equals("Homes and apartments")) {
-                int totalProperties = calculator.calculateRoomType(tableData);
-                {
-                    statsInfoLabel4.setText(Integer.toString(totalProperties));
-                }
-            } else if (statsLabel4.getText().equals("Most expensive borough")) {
-                String mostExpensiveBorough = "";
-                HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
-
-                ArrayList<Integer> pricesToFilter = new ArrayList<>();
-                int large = 0;
-                for (String borough : filteredData.keySet()) {
-                    String key = borough.toString();
-                    int price = filteredData.get(borough);
-                    pricesToFilter.add(price);
-                    large = pricesToFilter.get(0);
-                    for (int i = 0; i < pricesToFilter.size(); i++) {
-                        if (large < pricesToFilter.get(i)) {
-                            large = pricesToFilter.get(i);
-                        }
-                    }
-                }
-
-                for (String currKey : filteredData.keySet()) {
-                    if (large == filteredData.get(currKey)) {
-                        mostExpensiveBorough = currKey;
-                        break;
-                    }
-                }
-                statsInfoLabel4.setText(mostExpensiveBorough);
-            }
-
-        }
-    }
-     */
-
-
-
 
     /**
-     * aked
-     * It increments the count by 1
+     *A method to filter the data by a lower price limit and an upper price limit
      */
     private ArrayList<AirbnbListing> filterData(ArrayList<AirbnbListing> data, int lowerLimit, int upperLimit) {
-        // Counts number of button clicks and shows the result on a label
+
         ArrayList<AirbnbListing> newList = new ArrayList<>();
         for (AirbnbListing listing : data) {
-            /*if((listing.getNeighbourhood().equals("Westminster") || listing.getNeighbourhood().equals("Croydon"))&& listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
 
-                newList.add(listing);
-            }*/
             if (listing.getPrice() >= lowerLimit && listing.getPrice() <= upperLimit) {
 
                 newList.add(listing);
@@ -738,12 +519,10 @@ public class StatisticsPanel {
         return newList;
     }
 
+
     /**
-     * This will be executed when the button is clicked
-     * It increments the count by 1
+     * A method to help display and modify the visuals of the border panes for the stats
      */
-
-
     private void configStatPane(BorderPane pane, VBox box, Button leftButton, Button rightButton, Label statsLabel, Label statsInfoLabel, Stage stage) {
         box.getChildren().addAll(statsLabel,statsInfoLabel);
         statsLabel.setFont(titleFont);
@@ -767,8 +546,11 @@ public class StatisticsPanel {
         leftButton.setOnAction(this::leftButtonClick);
         rightButton.setOnAction(this::rightButtonClick);
     }
-
- public Pane getPanel(){
+    /**
+     * a getter method to allow access to the statPane from another class
+     * @return statPane
+     */
+    public Pane getPanel(){
         return statPane;
  }
 

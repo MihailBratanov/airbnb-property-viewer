@@ -41,7 +41,6 @@ public class CreateAccount extends Application
         this.stage=stage;
 
         font = Font.loadFont(new FileInputStream(new File("font/Roboto-Regular.ttf")), 20);
-
         root = new VBox();
 
         root.getStylesheets().add("startingdesign.css");
@@ -75,10 +74,12 @@ public class CreateAccount extends Application
         PasswordField passwordText = new PasswordField();
 
 
-        Button submit =new Button("Submit");
 
-        Button goBack=new Button("Go Back and LogIn");
-        Label reminder=new Label();
+        Button submit = new Button("Submit");
+        Button goBack = new Button("Go Back and Log in");
+        Label reminder = new Label();
+        reminder.setFont(font);
+        reminder.setTextFill(Color.WHITE);
         reminder.setText("");
 
 

@@ -22,6 +22,7 @@ public class Database {
 
         createUserFile(name, surname, username);
 
+
     }
 
     public void writeToDatabase(String entry){
