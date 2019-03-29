@@ -620,7 +620,7 @@ public class MapViewer extends Panel {
 
     private Label LoadImage(){
         Label imageLabel = new Label();        
-        String imagePath = "boroughs.png";
+        String imagePath = "img/boroughs.png";
         Image image = new Image(imagePath);
 
         ImageView imageViewer = new ImageView(image);

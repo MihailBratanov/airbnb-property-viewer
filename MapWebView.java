@@ -17,6 +17,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import static javafx.scene.layout.BackgroundPosition.CENTER;
+
 
 public class MapWebView extends Application {
 
@@ -36,9 +38,16 @@ public class MapWebView extends Application {
 
         root = new HBox();
         loadingRoot = new StackPane();
-        System.out.println("loaded the class (terry class)");
+        //System.out.println("loaded the class (terry class)");
         mapBrowser = new WebView();
         webEngine = mapBrowser.getEngine();
+
+        webEngine.getLoadWorker().stateProperty().addListener(event -> {
+            String state = String.valueOf(webEngine.getLoadWorker().stateProperty().getValue());
+            if (state.equals("FAILED")){
+                webEngine.loadContent("Internet Connection error. Please Check Internet Connection");
+            }
+        });
 
         scene = new Scene(root);
 
@@ -98,11 +107,13 @@ public class MapWebView extends Application {
 
     public void show(String longitude, String latitude, String name, String hostName, String roomType, int price, String reviews, String borough) {
 
-        System.out.println("showing map");
+        //System.out.println("showing map");
+
 
         String mapLink = "https://www.google.com/maps/place/".concat(longitude).concat(",").concat(latitude);//
 
         webEngine.load(mapLink);
+
 
         VBox topbox = new VBox();
 
@@ -140,6 +151,9 @@ public class MapWebView extends Application {
         bottombox.getChildren().addAll(lastReviewText, boroughText);
 
         BorderPane property = new BorderPane();
+
+        property.getStylesheets().add("MapWebViewBackground.css");
+
         property.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
         property.setTop(topbox);
@@ -149,7 +163,11 @@ public class MapWebView extends Application {
 
         property.setBottom(bottombox);
 
-        property.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+        //property.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+
+        property.setBackground(new Background(new BackgroundImage(new Image("img/house.gif"), null, null,CENTER ,null)));
+
+
 
 
 

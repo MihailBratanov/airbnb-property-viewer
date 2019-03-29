@@ -163,9 +163,16 @@ public class Viewer extends Application
         ImageView userLogo = new ImageView();
         userLogo.setPreserveRatio(true);
         userMenu.setGraphic(new ImageView("userlogo.png"));
+        MenuItem profileItem = new MenuItem("Profile");
         MenuItem logoutItem = new MenuItem("Log Out " + username);
         logoutItem.setOnAction(this:: logout);
-        userMenu.getItems().addAll(logoutItem);
+        profileItem.setOnAction(event -> {
+            Stage profileStage = new Stage();
+            ProfileDisplay profileDisplay = new ProfileDisplay(username);
+            profileDisplay.start(profileStage);
+
+        });
+        userMenu.getItems().addAll(profileItem, logoutItem);
 
         rightMenuBar.getMenus().addAll(userMenu);
 

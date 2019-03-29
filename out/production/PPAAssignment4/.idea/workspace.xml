@@ -2,35 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26435328-0416-4004-94c8-b6673454e496" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapWebView.java" beforeDir="false" afterPath="$PROJECT_DIR$/MapWebView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Viewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.txt~Temp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin_admin_admin.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/crystal_zou_911.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/test_test_test.user" beforeDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57452923">
+    <splitter split-orientation="horizontal" split-proportion="0.6495778">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.9">
+        <splitter split-orientation="horizontal" split-proportion="0.5714286">
           <split-first>
-            <leaf>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/Database.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="166">
+                    <state>
                       <caret line="103" column="55" selection-start-line="103" selection-start-column="55" selection-end-line="103" selection-end-column="55" />
                     </state>
                   </provider>
@@ -39,7 +30,7 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/Calculator.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="317">
+                    <state>
                       <caret line="57" selection-start-line="57" selection-end-line="71" selection-end-column="10" />
                     </state>
                   </provider>
@@ -48,14 +39,8 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="268">
+                    <state>
                       <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-                      <folding>
-                        <element signature="e#7746#7747#0" expanded="true" />
-                        <element signature="e#7777#7778#0" expanded="true" />
-                        <element signature="e#30040#30041#0" expanded="true" />
-                        <element signature="e#30068#30069#0" expanded="true" />
-                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -63,20 +48,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/Viewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="350">
-                      <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
-                      <folding>
-                        <element signature="e#1951#1952#0" expanded="true" />
-                        <element signature="e#1991#1992#0" expanded="true" />
-                        <element signature="e#16980#16981#0" expanded="true" />
-                        <element signature="e#17008#17009#0" expanded="true" />
-                        <element signature="e#17167#17168#0" expanded="true" />
-                        <element signature="e#17195#17196#0" expanded="true" />
-                        <element signature="e#17344#17345#0" expanded="true" />
-                        <element signature="e#17374#17375#0" expanded="true" />
-                        <element signature="e#18452#18453#0" expanded="true" />
-                        <element signature="e#18493#18494#0" expanded="true" />
-                      </folding>
+                    <state relative-caret-position="613">
+                      <caret line="174" column="48" selection-start-line="174" selection-start-column="48" selection-end-line="174" selection-end-column="48" />
                     </state>
                   </provider>
                 </entry>
@@ -84,17 +57,24 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf>
-              <file pinned="false" current-in-tab="true">
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/StatValues.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="336">
+                    <state relative-caret-position="216">
                       <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
                       <folding>
-                        <element signature="e#229#230#0" expanded="true" />
-                        <element signature="e#255#256#0" expanded="true" />
-                        <element signature="e#319#320#0" expanded="true" />
+                        <element signature="e#303#304#0" expanded="true" />
                       </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/ProfileDisplay.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="594">
+                      <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
                     </state>
                   </provider>
                 </entry>
@@ -104,12 +84,12 @@
         </splitter>
       </split-first>
       <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/MapViewer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="369">
-                  <caret line="547" column="13" selection-start-line="535" selection-start-column="12" selection-end-line="547" selection-end-column="13" />
+                <state relative-caret-position="1019">
+                  <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
                   <folding>
                     <element signature="e#9115#9116#0" expanded="true" />
                     <element signature="e#9197#9198#0" expanded="true" />
@@ -123,17 +103,17 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Database.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="194">
+                <state>
                   <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MapWebView.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="351">
-                  <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
+                <state relative-caret-position="943">
+                  <caret line="145" column="54" lean-forward="true" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="54" />
                 </state>
               </provider>
             </entry>
@@ -142,22 +122,44 @@
       </split-second>
     </splitter>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>image</find>
+      <find>logoutItem</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/ProfileDIsplay.java" />
+        <option value="$PROJECT_DIR$/MapWebView.java" />
+        <option value="$PROJECT_DIR$/ProfileDisplay.java" />
         <option value="$PROJECT_DIR$/Viewer.java" />
       </list>
     </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-768" />
+    <option name="y" value="-1240" />
+    <option name="width" value="2897" />
+    <option name="height" value="1234" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -175,16 +177,18 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553824348465" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553864550754" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -212,7 +216,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f0995401-eb35-4a76-a98b-5d1454dc666c" name="Default Changelist" comment="" />
+      <changelist id="26435328-0416-4004-94c8-b6673454e496" name="Default Changelist" comment="" />
       <created>1553775880392</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -223,7 +227,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-956" y="-1440" width="3440" height="1440" extended-state="0" />
+    <frame x="-994" y="-1417" width="3440" height="1417" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -231,15 +235,15 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.07798705" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.11506768" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="2" visible="true" weight="0.32919708" />
+      <window_info anchor="bottom" id="Messages" order="2" weight="0.32919708" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.29921874" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.29854015" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39921874" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -377,55 +381,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Database.java">
+    <entry file="file://$PROJECT_DIR$/Calculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="103" column="55" selection-start-line="103" selection-start-column="55" selection-end-line="103" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Viewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#1951#1952#0" expanded="true" />
-            <element signature="e#1991#1992#0" expanded="true" />
-            <element signature="e#16980#16981#0" expanded="true" />
-            <element signature="e#17008#17009#0" expanded="true" />
-            <element signature="e#17167#17168#0" expanded="true" />
-            <element signature="e#17195#17196#0" expanded="true" />
-            <element signature="e#17344#17345#0" expanded="true" />
-            <element signature="e#17374#17375#0" expanded="true" />
-            <element signature="e#18452#18453#0" expanded="true" />
-            <element signature="e#18493#18494#0" expanded="true" />
-          </folding>
+        <state>
+          <caret line="57" selection-start-line="57" selection-end-line="71" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state>
           <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-          <folding>
-            <element signature="e#7746#7747#0" expanded="true" />
-            <element signature="e#7777#7778#0" expanded="true" />
-            <element signature="e#30040#30041#0" expanded="true" />
-            <element signature="e#30068#30069#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="103" column="55" selection-start-line="103" selection-start-column="55" selection-end-line="103" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MapViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="547" column="13" selection-start-line="535" selection-start-column="12" selection-end-line="547" selection-end-column="13" />
+        <state relative-caret-position="1019">
+          <caret line="355" lean-forward="true" selection-start-line="355" selection-end-line="355" />
           <folding>
             <element signature="e#9115#9116#0" expanded="true" />
             <element signature="e#9197#9198#0" expanded="true" />
             <element signature="e#9424#9425#0" expanded="true" />
             <element signature="e#9505#9506#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StatValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+          <folding>
+            <element signature="e#303#304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapWebView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="943">
+          <caret line="145" column="54" lean-forward="true" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProfileDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="613">
+          <caret line="174" column="48" selection-start-line="174" selection-start-column="48" selection-end-line="174" selection-end-column="48" />
         </state>
       </provider>
     </entry>
