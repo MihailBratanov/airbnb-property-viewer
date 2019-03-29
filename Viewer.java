@@ -515,6 +515,7 @@ public class Viewer extends Application
        Stage login = new Stage();
        Login loginScreen = new Login();
 
+
        try{
            loginScreen.start(login);
        }

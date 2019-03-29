@@ -9,14 +9,22 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import javafx.event.ActionEvent;
+
+import java.util.*;
+
+/**
+ * This is a separate viewer which gets initialized upon selecting a borough to display the properties in it.
+ * Then should the user wish to see the location of a property they need to double-click the cell. What is more each
+ * column could be sorted by double clicking on the header.
+ */
 
 public class TableViewer extends Application {
     private MapWebView terryMaps;
-
-
 
     public AirbnbDataLoader loader = new AirbnbDataLoader();
     public ArrayList<AirbnbListing> data = new ArrayList<>();
@@ -25,9 +33,7 @@ public class TableViewer extends Application {
 
     private ObservableList<AirbnbListing> tableData =
             FXCollections.observableArrayList();
-    private javafx.scene.control.TableView table = new javafx.scene.control.TableView();
-    private Label statsLabel;
-    private Label statsInfoLabel;
+    private TableView table = new TableView();
     private ArrayList<Double> coordinates = new ArrayList<>();
     private ArrayList<String> statActions = new ArrayList<>();
     private int currentActionIndex = 0;
@@ -126,7 +132,6 @@ public class TableViewer extends Application {
         table.prefWidthProperty().bind(vbox.widthProperty());
 
 
-        statsInfoLabel = new Label("default");
         HBox statViewer = new HBox();
         statViewer.setAlignment(Pos.CENTER);
         statViewer.prefHeightProperty().bind(stage.heightProperty());
@@ -145,28 +150,12 @@ public class TableViewer extends Application {
     }
 
         /**
-         * This will be executed when the button is clicked
-         * It increments the count by 1
-         */
-
-        /**
-         * aked
-         * It increments the count by 1
+         * A method to filter the data by a borough
          */
         private ArrayList<AirbnbListing> filterData (ArrayList < AirbnbListing > data) {
-            // Counts number of button clicks and shows the result on a label
             ArrayList<AirbnbListing> newList = new ArrayList<>();
             for (AirbnbListing listing : data) {
 
-            /*if((listing.getNeighbourhood().equals("Westminster") || listing.getNeighbourhood().equals("Croydon"))&& listing.getPrice()>=lowerLimit && listing.getPrice()<=upperLimit){
-
-                newList.add(listing);
-            }*/
-            /*if (listing.getPrice() >= lowerLimit && listing.getPrice() <= upperLimit) {
-
-                newList.add(listing);
-            }*/
-                //System.out.println(listing.getNeighbourhood().replaceAll("\\s+","") + "// -- //" + borough.replaceAll("\\s+","") + "//");
                 if (listing.getNeighbourhood().replaceAll("\\s+", "").equals(borough.replaceAll("\\s+", ""))) {
                     newList.add(listing);
                 }
