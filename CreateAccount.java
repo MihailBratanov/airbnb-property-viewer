@@ -15,14 +15,18 @@ import java.io.FileInputStream;
 import java.util.*;
 
 /**
- * Write a description of JavaFX class CreateAccount here.
+ * Class CreateAccount : launches a window to create a new account.
  *
  * this class allows the user to type their details and store these information in the UserDetails class by using an arrayList
  *
- * @author Haiyun Zou
- * @version (a version number or a date)
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
  *
- *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
  */
 public class CreateAccount extends Application
 {

@@ -1,32 +1,20 @@
 
 /**
- * Write a description of class Panels here.
+ * Abstract class of Panels. Only used to classify the type of classes
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
  */
-public class Panel
+public abstract class Panel
 {
-    // instance variables - replace the example below with your own
-
-    /**
-     * Constructor for objects of class Panels
-     */
     public Panel()
     {
-        // initialise instance variables
 
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    /*public Panel getPanel()
-    {
-        // put your code here
-        return null;
-    }*/
 }

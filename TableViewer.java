@@ -20,6 +20,15 @@ import java.util.*;
  * This is a separate viewer which gets initialized upon selecting a borough to display the properties in it.
  * Then should the user wish to see the location of a property they need to double-click the cell. What is more each
  * column could be sorted by double clicking on the header.
+ *
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID: 1828556, 1850162, 1838362, 1833386
+ * k-number: k1895418, k1802265, k1888765, k1895389
  */
 
 public class TableViewer extends Application {
