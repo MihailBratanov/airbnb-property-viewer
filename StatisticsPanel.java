@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ import javafx.event.ActionEvent;
 
 import java.util.*;
 
-public class StatisticsPanel {
+public class  StatisticsPanel {
 
 
 
@@ -55,7 +56,13 @@ public class StatisticsPanel {
 
     private BorderPane statPane;
 
-    public StatisticsPanel(Stage stage, int lowerLimit, int upperLimit) {
+    private String username;
+
+    Database database=new Database();
+
+    public StatisticsPanel(Stage stage, int lowerLimit, int upperLimit, String username) {
+
+        this.username = username;
 
         tableData = FXCollections.observableArrayList();
 
@@ -71,9 +78,10 @@ public class StatisticsPanel {
         StatValues availableProperties = new StatValues("availableProperties",getAvailableProperties());
         StatValues homeAndAppartments = new StatValues("homeAndAppartments",getHomeAndAppartments());
         StatValues mostExpensiveBorough = new StatValues("mostExpensiveBorough",getMostExpensiveBorough());
+        StatValues mostClickedBorough=new StatValues("mostClickedBorough", getClickedBorough());
 
         displayedText = new ArrayList<>( Arrays.asList(mostPopulatedBorough, mostActiveMonth, mostRecentListing, averageReviews,
-                           availableProperties, homeAndAppartments, mostExpensiveBorough));
+                           availableProperties, homeAndAppartments, mostExpensiveBorough,mostClickedBorough));
     /*}
 
     @Override
@@ -89,7 +97,7 @@ public class StatisticsPanel {
         statActions.add("Available properties");
         statActions.add("Homes and apartments");
         statActions.add("Most expensive borough");
-//---------------extra--------------------------------
+//---------------extra-------------------------
         statActions.add("Most recent listing");
         statActions.add("Most active month");
         statActions.add("Most populated borough");
@@ -178,8 +186,8 @@ public class StatisticsPanel {
 
 
 
-        /*stage.setWidth(600);
-        stage.setHeight(600);
+        //stage.setWidth(600);
+        //stage.setHeight(600);
 
         statPane.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             @Override
@@ -196,11 +204,11 @@ public class StatisticsPanel {
             stageMidX = stage.getWidth()/2;
         });
 
-        stage.setScene(scene);
-        stage.show();
+        //stage.setScene(scene);
+        //stage.show();
 
         stageMidX = stage.getWidth()/2;
-        stageMidY = stage.getHeight()/2;*/
+        stageMidY = stage.getHeight()/2;
     }
 
     public Pane getStatePane(){
@@ -242,7 +250,6 @@ public class StatisticsPanel {
 
         int paneNumber = determinePane(mouseX, mouseY);
 
-        System.out.println(displayedText);
 
         switch (paneNumber) {
             case 1:
@@ -307,13 +314,46 @@ public class StatisticsPanel {
         switch(paneNumber) {
             case 1:
                 //statsLabel1.setText(statActions.get(currentActionIndex));
-                statsLabel1.setText(statActions.get(currentActionIndex));
+                StatValues tempValue1 = new StatValues(statsLabel1.getText(), statsInfoLabel1.getText());
+                displayedText.add(tempValue1);
+
+                StatValues newValue1 = displayedText.get(0);
+
+                statsLabel1.setText(newValue1.getName());
+                statsInfoLabel1.setText(newValue1.getValue());
+
+                displayedText.remove(0);
                 break;
-            case 2: statsLabel2.setText(statActions.get(currentActionIndex));
+            case 2:
+                StatValues tempValue2 = new StatValues(statsLabel2.getText(), statsInfoLabel2.getText());
+                displayedText.add(tempValue2);
+
+                StatValues newValue2 = displayedText.get(0);
+
+                statsLabel2.setText(newValue2.getName());
+                statsInfoLabel2.setText(newValue2.getValue());
+
+                displayedText.remove(0);
                 break;
-            case 3: statsLabel3.setText(statActions.get(currentActionIndex));
+            case 3: StatValues tempValue3 = new StatValues(statsLabel3.getText(), statsInfoLabel3.getText());
+                displayedText.add(tempValue3);
+
+                StatValues newValue3 = displayedText.get(0);
+
+                statsLabel3.setText(newValue3.getName());
+                statsInfoLabel3.setText(newValue3.getValue());
+
+                displayedText.remove(0);
                 break;
-            case 4: statsLabel4.setText(statActions.get(currentActionIndex));
+            case 4: StatValues tempValue4 = new StatValues(statsLabel4.getText(), statsInfoLabel4.getText());
+                displayedText.add(tempValue4);
+
+                StatValues newValue4 = displayedText.get(0);
+
+                statsLabel4.setText(newValue4.getName());
+                statsInfoLabel4.setText(newValue4.getValue());
+
+                displayedText.remove(0);
                 break;
         }
         //doStatistic(paneNumber);
@@ -350,7 +390,7 @@ public class StatisticsPanel {
 
         String returnValue = null;
 
-        System.out.println("most act month");
+
         HashMap<String,Integer> datesAndCounts =calculator.calculateBusiestMonth(tableData);
 
         //int max=Collections.max(datesAndCounts.values());
@@ -371,7 +411,7 @@ public class StatisticsPanel {
     }
     private String getMostRecentListing(){
 
-        System.out.println("running most rec listing");
+
         HashMap<Integer,String>dates;
         dates=calculator.calculateMostRecentListing(tableData);
 
@@ -390,28 +430,28 @@ public class StatisticsPanel {
 
     private String getAverageReviews(){
 
-        System.out.println("avg reviews");
+
         double average = calculator.calculateAverageViews(tableData);
 
         return Double.toString(Math.round(average));
 
     }
     private String getAvailableProperties() {
-        System.out.println("avail prop");
+
         int total = calculator.calculateAvailability(tableData);
 
         return Integer.toString(total);
 
     }
     private String getHomeAndAppartments() {
-        System.out.println("hms and apps");
+
         int totalProperties = calculator.calculateRoomType(tableData);
 
         return (Integer.toString(totalProperties));
 
     }
     private String getMostExpensiveBorough() {
-        System.out.println("most exp bor");
+
         /**
         String mostExpensiveBorough = "";
         HashMap<String, Integer> filteredData = calculator.calculateMostExpensiveBorough(tableData);
@@ -442,8 +482,13 @@ public class StatisticsPanel {
         return mostExpensiveBorough;
          */
         String mostExpensiveBorough = calculator.calculateMostExpensiveBorough(tableData);
-
+        System.out.println(mostExpensiveBorough);
         return mostExpensiveBorough;
+    }
+    private String getClickedBorough( ){
+
+        String mostClicked=database.getMostClickedBorough(username);
+        return mostClicked;
     }
 
 //======================================================================================================================
@@ -752,10 +797,15 @@ public class StatisticsPanel {
         pane.setLeft(leftButton);
         pane.setCenter(box);
         pane.setRight(rightButton);
+        pane.setAlignment(leftButton, Pos.CENTER_LEFT);
+        pane.setAlignment(rightButton, Pos.CENTER_RIGHT);
+        pane.setPadding(new Insets(15 ,15, 15, 15));
         leftButton.prefHeightProperty().bind(pane.heightProperty());
-        leftButton.prefWidthProperty().bind(pane.widthProperty().divide(5));
+        leftButton.prefWidthProperty().bind(pane.widthProperty().divide(7));
+        leftButton.setOpacity(0.5);
         rightButton.prefHeightProperty().bind(pane.heightProperty());
-        rightButton.prefWidthProperty().bind(pane.widthProperty().divide(5));
+        rightButton.prefWidthProperty().bind(pane.widthProperty().divide(7));
+        rightButton.setOpacity(0.5);
         pane.prefWidthProperty().bind(stage.widthProperty().divide(2));
         pane.prefHeightProperty().bind(stage.heightProperty().divide(2));
         leftButton.setOnAction(this::leftButtonClick);

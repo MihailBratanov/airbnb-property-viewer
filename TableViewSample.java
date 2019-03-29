@@ -3,13 +3,14 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -17,9 +18,8 @@ import java.lang.reflect.Array;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 
-import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
-import javafx.scene.layout.BorderPane;
+
 import java.util.*;
 
 public class TableViewSample extends Application {
@@ -54,8 +54,7 @@ public class TableViewSample extends Application {
 
     @Override
     public void start(Stage stage) {
-        //data=loader.load();
-        //System.out.println(data.toString());\
+
 
         this.stage = stage;
         Stage webMapStage=new Stage();
@@ -65,8 +64,7 @@ public class TableViewSample extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        int lowerLimit = 500;
-        int upperLimit = 1000;
+
         tableData.addAll(filterData(data));
 
 
@@ -94,11 +92,10 @@ public class TableViewSample extends Application {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && !(row.isEmpty())) {
                     AirbnbListing rowData = row.getItem();
-                    //System.out.println(rowData.getLatitude()+" "+rowData.getLongitude());
                     latitude = String.valueOf(rowData.getLatitude());
                     longitude = String.valueOf(rowData.getLongitude());
                     System.out.println(latitude+longitude);
-                    terryMaps.show(latitude, longitude);
+                    terryMaps.show(latitude, longitude, rowData.getName(), rowData.getHost_name(), rowData.getRoom_type(), rowData.getPrice(), rowData.getLastReview(), rowData.getNeighbourhood());
 
                 }
             });
@@ -128,18 +125,23 @@ public class TableViewSample extends Application {
                 new PropertyValueFactory<>("minimumNights"));
         table.getColumns().addAll(hostNameCol, priceCol, reviewsCol, minNightsCol);
 
+
         VBox vbox = new VBox();
         vbox.setSpacing(20);
-        vbox.setPadding(new Insets(10, 10, 10, 10));
+        vbox.setPadding(new Insets(5, 5, 5, 5));
         vbox.getChildren().addAll(label, table);
+        vbox.setAlignment(Pos.CENTER);
+        table.prefHeightProperty().bind(vbox.heightProperty());
+        table.prefWidthProperty().bind(vbox.widthProperty());
 
 
         statsInfoLabel = new Label("default");
         HBox statViewer = new HBox();
-        VBox rightPane = new VBox();
-        //rightPane.getChildren().addAll(myLeftButton, myRightButton,statsLabel);
+        statViewer.setAlignment(Pos.CENTER);
+        statViewer.prefHeightProperty().bind(stage.heightProperty());
+        statViewer.prefWidthProperty().bind(stage.widthProperty());
         statViewer.setSpacing(20);
-        statViewer.setPadding(new Insets(50, 50, 120, 120));
+        statViewer.setPadding(new Insets(5, 5, 5, 5));
         statViewer.getChildren().addAll(vbox);
 
 

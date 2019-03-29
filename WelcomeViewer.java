@@ -1,17 +1,15 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import javafx.scene.paint.*;
 import javafx.geometry.Pos;
-import java.util.*;
 import javafx.scene.image.*;
-import javafx.scene.image.*;
-import javafx.animation.*;
+import javafx.scene.text.Font;
+
+import java.io.File;
+import java.io.FileInputStream;
+
+import static javafx.scene.text.TextAlignment.*;
 
 
 /**
@@ -21,18 +19,11 @@ import javafx.animation.*;
  * @version (a version number or a date)
  */
 
-public class WelcomeViewer extends Panel
+public class WelcomeViewer extends Panel {
+    private VBox root;
+    private BorderPane rangeBoxBackground;
+    private GridPane rangeBox;
 
-{
-    // We keep track of the count, and label displaying the count:
-
-    private Label myLabel = new Label("0");
-    private Stage stage;
-    VBox root;
-    private double width;
-    private double height;
-    private double windowWidth;
-    private double windowHeight;
     private int lowerLimit;
     private int upperLimit;
     final ComboBox from = new ComboBox();
@@ -40,18 +31,8 @@ public class WelcomeViewer extends Panel
 
     public WelcomeViewer(){
         root = new VBox();
-        
-   
-        root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
-
-        windowWidth = root.getMinWidth();
-        windowHeight = root.getMinHeight();
-
-        StackPane stackpane = new StackPane();
-        
-        root.setMinSize(500.0, 500.0);
-        windowWidth= root.getMinWidth();
-        windowHeight=root.getMinHeight();
+        Label fromLabel = new Label("From:");
+        Label toLabel = new Label("To:");
 
         from.getItems().addAll(
             "--Please Select--",
@@ -83,11 +64,6 @@ public class WelcomeViewer extends Panel
             
         from.setValue("--Please Select--");
 
-        String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
-        if (lowerLimitString != "--Please Select--"){
-            lowerLimit = Integer.parseInt(lowerLimitString);
-        }    
-
         to.getItems().addAll(
             "--Please Select--",
             "5",
@@ -118,26 +94,48 @@ public class WelcomeViewer extends Panel
 
         to.setValue("--Please Select--");
 
+        setLowerLimit();
+        setUpperLimit();
 
-        ProgressBar loadingBar = new ProgressBar();
-        Label succesfully = new Label("Succesfully loaded!");
-        
-        
+        rangeBox = new GridPane();
+        rangeBox.getChildren().addAll(fromLabel, from, toLabel, to);
+        rangeBox.getColumnConstraints().add(new ColumnConstraints(45));
+        rangeBox.getColumnConstraints().add(new ColumnConstraints(180));
+        rangeBox.getColumnConstraints().add(new ColumnConstraints(25));
+        rangeBox.getColumnConstraints().add(new ColumnConstraints(155));
+        GridPane.setConstraints(fromLabel, 0, 0);
+        GridPane.setConstraints(from, 1, 0);
+        GridPane.setConstraints(toLabel, 2, 0);
+        GridPane.setConstraints(to, 3, 0);
 
-        Button myButton = new Button("Count");
-        Label fromLabel= new Label("From");
-        Label toLabel=new Label("To");
-        
-        HBox range = new HBox();
-        range.getChildren().addAll(fromLabel,from,toLabel,to);
-        // range.setSpacing(10);
-        
-        range.setAlignment(Pos.TOP_RIGHT);
-        root.getChildren().addAll(range);
+        rangeBoxBackground = new BorderPane();
+        rangeBoxBackground.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 0px 0px 2px 0px;");
+        rangeBoxBackground.setPadding(new Insets(5, 5, 5, 5));
+        rangeBoxBackground.setRight(rangeBox);
+
+        ImageView logo = new ImageView("airbnb.gif");
+
+        VBox imageBox = new VBox();
+        logo.setPreserveRatio(true);
+        logo.fitHeightProperty().bind(root.heightProperty().subtract(rangeBoxBackground.heightProperty().divide(0.4)));
+        logo.fitWidthProperty().bind(root.widthProperty().subtract(rangeBoxBackground.widthProperty().divide(0.4)));
+
+        Font font = new Font("Roboto-Regular.ttf", 20);
+        Label instruction = new Label("To begin viewing properties, please select a price range on the boxes above.\nUpon selection, press 'Next'.");
+        instruction.setFont(font);
+        instruction.setTextFill(Color.WHITE);
+        instruction.setTextAlignment(CENTER);
+        imageBox.getChildren().addAll(logo, instruction);
+
+
+        imageBox.setAlignment(Pos.CENTER);
+
+        root.setBackground(new Background(new BackgroundFill(Color.rgb(255, 70, 81), null, null)));
+        root.getChildren().addAll(rangeBoxBackground, imageBox);
+
     }
 
     public void setComboBoxAction(){
-        System.out.println(from.getSelectionModel().getSelectedIndex());
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
     }
@@ -183,6 +181,10 @@ public class WelcomeViewer extends Panel
 
     public boolean checkToBoxSelected() {
         return to.getSelectionModel().getSelectedIndex() != 0;
+    }
+
+    public void setComoboBoxDefault() {
+        to.setValue("--Please Select--");
     }
  
     public Pane getPanel(){

@@ -53,23 +53,23 @@ public class Calculator {
     }
 
     public String calculateMostExpensiveBorough(ObservableList<AirbnbListing> dataToDoStatsOn) {
-        //ArrayList<String> boroughs = new ArrayList<>();
+        ArrayList<String> boroughs = new ArrayList<>();
         ArrayList<String> filteredBoroughs = new ArrayList<>();
-        /*
-        for (AirbnbListing listing : dataToDoStatsOn) {
-            boroughs.add(listing.getNeighbourhood());
-        }
+
+       // for (AirbnbListing listing : dataToDoStatsOn) {
+        //    boroughs.add(listing.getNeighbourhood());
+        //}
 
 
 
-        for (int i = 0; i < boroughs.size(); i++) {
-            for (int j = i + 1; j < boroughs.size(); j++) {
-                if (!boroughs.get(i).equals(boroughs.get(j)))
-                    filteredBoroughs.add(boroughs.get(j));
-            }
+//        //for (int i = 0; i < boroughs.size(); i++) {
+//            for (int j = i + 1; j < boroughs.size(); j++) {
+//                if (!boroughs.get(i).equals(boroughs.get(j)))
+//                    filteredBoroughs.add(boroughs.get(j));
+//            }
+//
+//        }
 
-        }
-        */
         int minimumStayListing = 0;
         int priceListing = 0;
         int totalPriceForListing = 0;
@@ -95,18 +95,18 @@ public class Calculator {
 
             else if (exists){
                 int count = priceListings.get(listing);
-                count += 1;
+
                 priceListings.replace(listing, count);
             }
         }
 
-        int max = 0;
-        String mostExpensiveBorough = "";
+        int max =Collections.max(priceListings.values());
+        String mostExpensiveBorough=" ";
 
         for (String listing : priceBoroughs.keySet()){
             if (priceBoroughs.get(listing) > max){
                 max = priceBoroughs.get(listing);
-                mostExpensiveBorough = listing;
+                mostExpensiveBorough=listing;
             }
         }
 
