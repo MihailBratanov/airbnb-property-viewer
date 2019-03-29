@@ -487,7 +487,6 @@ public class  StatisticsPanel {
 
 
         String mostExpensiveBorough = calculator.calculateMostExpensiveBorough(tableData);
-        System.out.println(mostExpensiveBorough);
         return mostExpensiveBorough;
     }
 

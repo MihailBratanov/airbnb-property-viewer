@@ -466,8 +466,6 @@ public class Viewer extends Application
     private void zoomIn(ActionEvent event) {
         currentPane.setScaleX(currentPane.getScaleX() * 1.1);
         currentPane.setScaleY(currentPane.getScaleY() * 1.1);
-        System.out.println(currentPane.getHeight());
-        System.out.println(currentPane.getWidth());
     }
 
     /**

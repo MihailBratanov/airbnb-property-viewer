@@ -61,7 +61,6 @@ public class MapWebView extends Application {
 
         root = new HBox();
         loadingRoot = new StackPane();
-        //System.out.println("loaded the class (terry class)");
         mapBrowser = new WebView();
         webEngine = mapBrowser.getEngine();
 
@@ -117,8 +116,6 @@ public class MapWebView extends Application {
      * @param borough borough where the property is located in
      */
     public void show(String longitude, String latitude, String name, String hostName, String roomType, int price, String reviews, String borough) {
-
-        //System.out.println("showing map");
 
 
         String mapLink = "https://www.google.com/maps/place/".concat(longitude).concat(",").concat(latitude);//

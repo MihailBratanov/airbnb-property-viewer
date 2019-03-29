@@ -144,7 +144,6 @@ public class MapPanel extends Panel {
         if (boroughClick.isEmpty()) {
             boroughClick = setUpUserClick(boroughs);
         }
-        System.out.println(boroughClick);
 
         // testing mapwebview
 
@@ -203,16 +202,6 @@ public class MapPanel extends Panel {
                             hexagon.setEffect(pressed);
                             hexagon.setScaleX(initialScaleX);
                             hexagon.setScaleY(initialScaleY);
-
-                            /* MAP VIEW START
-                            try {
-                                webView.start(webViewStage);
-                                webView.showByPlace(borough.getFullName());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                System.out.println("ERROR !!!!");
-                            }
-                            */
 
                             String thisBorough = borough.getName();
                             int count = boroughClick.get(thisBorough);
@@ -410,15 +399,6 @@ public class MapPanel extends Panel {
                             hexagon.setScaleX(initialScaleX);
                             hexagon.setScaleY(initialScaleY);
 
-                            /* MAP VIEW START
-                            try {
-                                webView.start(webViewStage);
-                                webView.showByPlace(borough.getFullName());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                System.out.println("ERROR !!!!");
-                            }
-                            */
                             tableViewStage = new Stage();
                             tableViewer = new TableViewer(borough.getName(),dateSortedProperties);
 

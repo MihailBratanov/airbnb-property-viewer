@@ -82,7 +82,6 @@ public class Calculator {
 
         for (String listing : priceListings.keySet()){
             if (priceListings.get(listing) > max){
-                System.out.println(priceListings.get(listing));
                 max = priceListings.get(listing);
                 mostExpensiveBorough=listing;
             }
