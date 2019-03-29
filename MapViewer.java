@@ -1,8 +1,4 @@
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
@@ -12,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.shape.Polygon;
 import javafx.scene.input.MouseEvent;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.*;
 import javafx.scene.text.Text;
@@ -21,6 +16,9 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.text.*;
 import javafx.scene.control.Slider;
+
+import static javafx.scene.layout.BackgroundPosition.CENTER;
+
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -293,17 +291,24 @@ public class MapViewer extends Panel {
 
         gridPane.setAlignment(Pos.CENTER);
         stackpane.getChildren().addAll(gridPane);
+        gridPane.setBackground(new Background(new BackgroundFill(Color.GREEN, null,  null)));
         stackpane.setAlignment(Pos.CENTER);
-
+        stackpane.setBackground(new Background(new BackgroundFill(Color.YELLOW, null,  null)));
 
         VBox content = new VBox();
         content.getChildren().addAll(numberOfNights, stackpane, boroughHover);
-        content.prefWidthProperty().bind(root.widthProperty());
-        content.prefHeightProperty().bind(root.heightProperty());
+        content.prefWidthProperty().bind(root.widthProperty().divide(5));
+        content.prefHeightProperty().bind(root.heightProperty().divide(5));
         content.setAlignment(Pos.CENTER);
+        content.setBackground(new Background(new BackgroundFill(Color.WHITE, null,  null)));
+
+        BorderPane centerPane = new BorderPane();
+        centerPane.setCenter(content);
 
 
-        root.getChildren().addAll(content);
+
+    root.setBackground(new Background(new BackgroundImage(new Image("mapViewerBg.jpg"), null, null, CENTER, null)));
+        root.getChildren().addAll(centerPane);
         root.setAlignment(Pos.CENTER);
 
 
