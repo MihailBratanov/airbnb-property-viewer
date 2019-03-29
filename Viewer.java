@@ -55,7 +55,7 @@ public class Viewer extends Application
     private int lowerLimit;
     private int upperLimit;
 
-    private static final String VERSION = "Version 0.0.1";
+    private static final String VERSION = "Version 1.0";
     private static final int MAX_PANEL_NUMBER = 3;
 
     private AirbnbDataLoader loader;
