@@ -21,6 +21,8 @@ import java.util.*;
  *
  * @author Haiyun Zou
  * @version (a version number or a date)
+ *
+ *
  */
 public class CreateAccount extends Application
 {
@@ -74,21 +76,15 @@ public class CreateAccount extends Application
 
 
 
-        Button submit = new Button("Submit");
-        Button goBack = new Button("Go Back and Log in");
-        Label reminder = new Label();
-        reminder.setFont(font);
-        reminder.setTextFill(Color.WHITE);
-        reminder.setText("");
-
-
         //submit.getStylesheets().add("startingdesign.css");
 
         submit.setStyle("-fx-text-fill: #000000");
 
         goBack.setStyle("-fx-text-fill: #000000");
 
+        goBack.setStyle("-fx-text-fill: #000000");
 
+        // Set action to the submit button
         submit.setOnAction((event)-> {
 
             Database database = new Database();
@@ -101,6 +97,7 @@ public class CreateAccount extends Application
                 userNameList.add(login.getUserName());
             }
 
+            // Check the username, and make sure the username does not contain " " or "-"
             if
             (userNameText.getText().contains(" ") || userNameText.getText().contains("-")) {
 
@@ -110,17 +107,18 @@ public class CreateAccount extends Application
                 reminder.setText("The password can not contain space or '-', please enter the password again");
 
             }
+            // Check the password, and make sure the password is between 8 and 16 characters
             else    if (passwordText.getText().length() >= 16 || passwordText.getText().length() < 8)
             {
                 passwordText.clear();
                 reminder.setText("Please enter a password of 8-16 characters.");
 
             }
-
+            // Check the username, and make sure the username dose not exist in the database
             else if (userNameList.contains(userNameText.getText())){
                 reminder.setText("This username has been taken! Choose another one. How about Steve?");
             }
-
+            // Check the TextField, and make sure all the TextFields are not empty
             else if (!firstNameText.getText().equals("") && !surNameText.getText().equals("") && !userNameText.getText().equals("") && !passwordText.getText().equals("")) {
 
                 userdetails=new UserDetails(
@@ -148,8 +146,6 @@ public class CreateAccount extends Application
                 stage.close();
 
             }
-
-
             else {
                 reminder.setText("An error occurred.");
                 reminder.setDisable(false);
@@ -198,6 +194,10 @@ public class CreateAccount extends Application
         stage.show();
     }
 
+    /**
+     * Return the VBox form this viewer
+     * @return VBox
+     */
     public Pane getPanel(){
         return root;
     }
