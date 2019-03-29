@@ -1,6 +1,6 @@
 .root{
 
--fx-background-image:url("airbnb1.gif");
+-fx-background-image:url("img/airbnb1.gif");
 -fx-background-repeat: no-repeat;
 -fx-background-position: center,center;
 -fx-background-size: cover,auto;

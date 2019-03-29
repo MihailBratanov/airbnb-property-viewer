@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=WelcomeViewer
-comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ WelcomeViewer\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.target=RangeSelectorView
+comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ RangeSelectorView\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=WelcomeViewer()
+comment1.target=RangeSelectorView()
 comment10.params=
 comment10.target=javafx.scene.control.ComboBox\ getFromComboBox()
 comment11.params=

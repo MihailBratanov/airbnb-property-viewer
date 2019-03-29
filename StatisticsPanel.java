@@ -1,3 +1,4 @@
+import dataStructure.StatValues;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -55,7 +56,7 @@ public class StatisticsPanel {
 
     private BorderPane statPane;
 
-    public StatisticsPanel(Stage stage, int lowerLimit, int upperLimit) {
+    public StatisticsPanel(Stage stage, int lowerLimit, int upperLimit, String username) {
 
         tableData = FXCollections.observableArrayList();
 

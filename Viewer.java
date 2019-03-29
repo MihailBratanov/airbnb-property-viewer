@@ -37,7 +37,7 @@ public class Viewer extends Application
     private Stage stage;
     private BorderPane contentPane;
     private int panelNumber;
-    private WelcomeViewer welcomeViewer;
+    private RangeSelectorView rangeSelectorView;
     private MapViewer mapViewer;
     private StatisticsPanel statViewer;
     private Pane currentPane;
@@ -77,11 +77,11 @@ public class Viewer extends Application
         loader = new AirbnbDataLoader();
         data = loader.load();
         centerPane = new VBox();
-        welcomeViewer = new WelcomeViewer();
-        welcomeViewer.setComboBoxAction();
-        welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
-        welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-        currentPane = welcomeViewer.getPanel();
+        rangeSelectorView = new RangeSelectorView();
+        rangeSelectorView.setComboBoxAction();
+        rangeSelectorView.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        rangeSelectorView.getToComboBox().setOnAction(e -> checkRangeValidity());
+        currentPane = rangeSelectorView.getPanel();
         panelNumber = 1;
         centerPane.getChildren().addAll(makeScrollPane(currentPane, centerPane));
 
@@ -228,8 +228,8 @@ public class Viewer extends Application
      * If it is valid, the navigating buttons will be enabled.
      */
     private void checkRangeValidity() {
-        isPriceRangeValid = welcomeViewer.checkValid();
-        if(welcomeViewer.checkToBoxSelected()) {
+        isPriceRangeValid = rangeSelectorView.checkValid();
+        if(rangeSelectorView.checkToBoxSelected()) {
             if (isPriceRangeValid) {
                 previousPaneButton.setDisable(false);
                 nextPaneButton.setDisable(false);
@@ -241,15 +241,15 @@ public class Viewer extends Application
                 wrongInput.setHeaderText("Invalid Range.");
                 wrongInput.setContentText("The upper limit is smaller than the lower limit.\nPlease try again.");
                 wrongInput.showAndWait();
-                welcomeViewer.setComoboBoxDefault();
+                rangeSelectorView.setComoboBoxDefault();
             }
         }
         else {
             previousPaneButton.setDisable(true);
             nextPaneButton.setDisable(true);
         }
-        lowerLimit = welcomeViewer.getLowerLimit();
-        upperLimit = welcomeViewer.getUpperLimit();
+        lowerLimit = rangeSelectorView.getLowerLimit();
+        upperLimit = rangeSelectorView.getUpperLimit();
     }
 
     /**
@@ -343,15 +343,15 @@ public class Viewer extends Application
      * Creates a welcome panel object, and assign it to the currentPane.
      */
     private void makeWelcomePanel() {
-        welcomeViewer = new WelcomeViewer();
+        rangeSelectorView = new RangeSelectorView();
 
-        welcomeViewer.setComboBoxAction();
-        welcomeViewer.setComboBox(lowerLimit, upperLimit);
-        welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
-        welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
+        rangeSelectorView.setComboBoxAction();
+        rangeSelectorView.setComboBox(lowerLimit, upperLimit);
+        rangeSelectorView.getFromComboBox().setOnAction(e -> checkRangeValidity());
+        rangeSelectorView.getToComboBox().setOnAction(e -> checkRangeValidity());
 
         panelNumber = 1;
-        currentPane = welcomeViewer.getPanel();
+        currentPane = rangeSelectorView.getPanel();
     }
 
     /**
@@ -513,7 +513,7 @@ public class Viewer extends Application
      */
     private void logout(ActionEvent event) {
        Stage login = new Stage();
-       Starting loginScreen = new Starting();
+       Login loginScreen = new Login();
 
        try{
            loginScreen.start(login);

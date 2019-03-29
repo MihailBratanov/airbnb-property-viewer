@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url("mapViewerBg.jpg");
+    -fx-background-image: url("img/mapViewerBg.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: cover;

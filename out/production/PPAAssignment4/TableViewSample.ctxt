@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=TableViewSample
+comment0.target=TableViewer
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
 comment2.params=event

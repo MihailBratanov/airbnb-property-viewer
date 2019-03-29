@@ -1,3 +1,4 @@
+import dataStructure.Borough;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -60,7 +61,7 @@ public class MapViewer extends Panel {
     private MapWebView webView;
 
     private Stage tableViewStage;
-    private TableViewSample tableView;
+    private TableViewer tableViewer;
     private Font font;
 
 
@@ -210,9 +211,9 @@ public class MapViewer extends Panel {
                             Database database = new Database();
                             database.writeToProfile(username, boroughClick);
 
-                            tableView = new TableViewSample(borough.getName(), dateSortedProperties);
+                            tableViewer = new TableViewer(borough.getName(), dateSortedProperties);
 
-                            tableView.start(tableViewStage);
+                            tableViewer.start(tableViewStage);
 
                         }
 
@@ -390,9 +391,9 @@ public class MapViewer extends Panel {
                             }
                             */
                             tableViewStage = new Stage();
-                            tableView = new TableViewSample(borough.getName(),dateSortedProperties);
+                            tableViewer = new TableViewer(borough.getName(),dateSortedProperties);
 
-                            tableView.start(tableViewStage);
+                            tableViewer.start(tableViewStage);
 
                         }
 
