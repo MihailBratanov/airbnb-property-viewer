@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/admin.user" beforeDir="false" afterPath="$PROJECT_DIR$/users/admin.user" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,7 +37,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Starting.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="513">
+                <state relative-caret-position="130">
                   <caret line="262" selection-start-line="262" selection-end-line="262" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -91,8 +90,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="362">
-                      <caret line="181" column="10" selection-start-line="181" selection-start-column="10" selection-end-line="181" selection-end-column="10" />
+                    <state relative-caret-position="632">
+                      <caret line="199" column="10" selection-start-line="199" selection-start-column="10" selection-end-line="199" selection-end-column="10" />
                     </state>
                   </provider>
                 </entry>
@@ -125,8 +124,11 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/MapViewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="135">
-                      <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+                    <state>
+                      <caret column="7" selection-start-column="7" selection-end-column="7" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
+                      </folding>
                     </state>
                   </provider>
                 </entry>
@@ -237,12 +239,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553775880392</updated>
       <workItem from="1553802094712" duration="15137000" />
-      <workItem from="1553824456699" duration="746000" />
+      <workItem from="1553824456699" duration="278000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16124000" />
+    <option name="totallyTimeSpent" value="15656000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1062" y="-1417" width="3440" height="1372" extended-state="0" />
@@ -262,7 +264,7 @@
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
       <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.29921874" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.39921874" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.39968896" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="10" />
@@ -368,7 +370,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Starting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
+        <state relative-caret-position="130">
           <caret line="262" selection-start-line="262" selection-end-line="262" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -402,6 +404,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MapViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="7" selection-start-column="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Database.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1275">
@@ -414,8 +426,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Viewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6720">
-          <caret line="456" column="61" selection-start-line="456" selection-start-column="61" selection-end-line="456" selection-end-column="61" />
+        <state relative-caret-position="49">
+          <caret line="366" column="46" selection-start-line="366" selection-start-column="46" selection-end-line="366" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -424,15 +436,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="181" column="10" selection-start-line="181" selection-start-column="10" selection-end-line="181" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MapViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        <state relative-caret-position="632">
+          <caret line="199" column="10" selection-start-line="199" selection-start-column="10" selection-end-line="199" selection-end-column="10" />
         </state>
       </provider>
     </entry>
