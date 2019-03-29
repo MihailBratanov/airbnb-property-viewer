@@ -20,7 +20,7 @@ public class Database {
         String entry = name + "-" + surname + "-" + username + "-" + password;
         writeToDatabase(entry);
 
-        createUserFile(username);
+        createUserFile(name, surname, username);
 
     }
 
@@ -66,8 +66,9 @@ public class Database {
         }
     }
 
-    public void createUserFile(String userName){
+    public void createUserFile(String name, String surname, String userName){
         String fileName = userName;
+        String firstLine = name.concat("-").concat(surname).concat("-").concat(userName);
         String pathToFile = "users/".concat(fileName).concat(".user");
         File userFile = new File(pathToFile);
 
@@ -78,7 +79,7 @@ public class Database {
                 fileWriter = new FileWriter(pathToFile);
                 writer = new BufferedWriter(fileWriter);
 
-                writer.append(fileName);
+                writer.append(firstLine);
                 writer.append("\nfavs : ");
 
 
@@ -192,6 +193,24 @@ public class Database {
             e.printStackTrace();
         }
 
+    }
+
+    public String[] getUserDetails(String username){
+
+        String[] details = null;
+
+        String path = "users/".concat(username).concat(".user");
+        try {
+            reader = new BufferedReader(new FileReader(path));
+            details = reader.readLine().split("-");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("User Not Found, Error.");
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("line not found.");
+        }
+        return details;
     }
 
     public String getMostClickedBorough(String username){
