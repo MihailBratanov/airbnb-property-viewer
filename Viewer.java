@@ -1,5 +1,4 @@
 import javafx.animation.*;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.*;
@@ -7,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane.*;
-// import javafx.scene.image.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
@@ -19,17 +17,22 @@ import javafx.util.*;
 import java.util.ArrayList;
 
 /**
- * Write a description of JavaFX class Viewer here.
+ * A system that illustrates Airbnb properties in London.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * Class Viewer - the main control unit of the system.
+ *
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID:
+ * k-number:
  */
 
 public class Viewer extends Application
 {
-    private String username;
-
-    // We keep track of the count, and label displaying the count:
     private Stage stage;
     private BorderPane contentPane;
     private int panelNumber;
@@ -38,17 +41,13 @@ public class Viewer extends Application
     private StatisticsPanel statViewer;
     private Pane currentPane;
     VBox centerPane;
-
-
     private BorderPane navigationPane;
+
     private HBox dots;
     private Circle dotWelcomePanel;
     private Circle dotMapPanel;
     private Circle dotStatPanel;
 
-    private BorderPane root;
-
-    private Scene scene;
     private Button previousPaneButton;
     private Button nextPaneButton;
     private boolean isPriceRangeValid = false;
@@ -60,6 +59,10 @@ public class Viewer extends Application
 
     private AirbnbDataLoader loader;
     private ArrayList<AirbnbListing> data;
+    private String username;
+
+    private BorderPane root;
+    private Scene scene;
 
    public Viewer(String username){
     this.username = username;
@@ -88,41 +91,28 @@ public class Viewer extends Application
         root = new BorderPane();
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setCenter(contentPane);
-        root.setTop(makeMenuBar(root));
+        root.setTop(makeMenuBar());
 
 
         // JavaFX must have a Scene (window content) inside a Stage (window)
         scene = new Scene(root);
 
-        /*scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Image image = new Image("cursor_clicked.png");
-                scene.setCursor(new ImageCursor(image));
-            }
-        });
-
-        scene.addEventFilter(MouseEvent.MOUSE_RELEASED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Image image = new Image("cursor.png");
-                scene.setCursor(new ImageCursor(image));
-            }
-        });*/
-
         stage.setTitle("Airbnb Property Viewer");
         stage.setWidth(Screen.getPrimary().getVisualBounds().getWidth() * 7 / 8);
         stage.setHeight(Screen.getPrimary().getVisualBounds().getHeight() * 7 / 8);
-        stage.setMinWidth(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
-        stage.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight() * 1 / 10);
+        stage.setMinWidth(Screen.getPrimary().getVisualBounds().getWidth() * 3 / 5);
+        stage.setMinHeight(Screen.getPrimary().getVisualBounds().getHeight() * 3 / 10);
         stage.setScene(scene);
 
         // Show the Stage (window)
         stage.show();
     }
 
-
-    private HBox makeMenuBar(Pane parentPane) {
+    /**
+     * Makes a menubar that provides different functions for the window.
+     * @return A HBox including all the menus.
+     */
+    private HBox makeMenuBar() {
         MenuBar leftMenuBar = new MenuBar();
         Menu propertyMenu = new Menu("Airbnb Property Viewer");
         MenuItem aboutViewerItem = new MenuItem("About Property Viewer");
@@ -184,6 +174,11 @@ public class Viewer extends Application
         return menuBar;
     }
 
+    /**
+     * Makes a navigation pane that allows the user to navigate between panels.
+     * The pane also tells the user which panel is he/she currently on.
+     * @return A Pane that include forward & backward buttons and navigating dots.
+     */
     private Pane makeNavigationPane(){
         navigationPane = new BorderPane();
         navigationPane.setStyle("-fx-background-color: linear-gradient(#fdfdfd, #e1e1e1); -fx-border-color: #b5b5b5;  -fx-border-width: 2px 0px 0px 0px;");
@@ -209,7 +204,7 @@ public class Viewer extends Application
         dotStatPanel.setStroke(Color.BLACK);
 
         dots.getChildren().addAll(dotWelcomePanel, dotMapPanel, dotStatPanel);
-        switchDots();
+        switchDots(panelNumber);
         dots.setAlignment(Pos.CENTER);
 
         navigationPane.setCenter(dots);
@@ -220,6 +215,10 @@ public class Viewer extends Application
         return navigationPane;
     }
 
+    /**
+     * Checks if the price range selected is valid.
+     * If it is valid, the navigating buttons will be enabled.
+     */
     private void checkRangeValidity() {
         isPriceRangeValid = welcomeViewer.checkValid();
         if(welcomeViewer.checkToBoxSelected()) {
@@ -245,13 +244,19 @@ public class Viewer extends Application
         upperLimit = welcomeViewer.getUpperLimit();
     }
 
+    /**
+     * Navigates the user to the next pane.
+     * The system will automatically return to the first panel
+     * when the current panel reaches its maximum.
+     * @param event When the button is clicked.
+     */
     private void nextPane(ActionEvent event){
 
         panelNumber++;
         if (panelNumber > MAX_PANEL_NUMBER) {
             panelNumber = 1;
         }
-        switchPanel();
+        switchPanel(panelNumber);
 
         paneMoveLeft(currentPane, centerPane);
 
@@ -260,12 +265,18 @@ public class Viewer extends Application
         stage.show();
     }
 
+    /**
+     * Navigates the user to the previous pane.
+     * The system will automatically return to the last panel
+     * when the current panel reaches its minimum.
+     * @param event When the button is clicked.
+     */
     private void previousPane(ActionEvent event) {
         panelNumber--;
         if (panelNumber < 1) {
             panelNumber = MAX_PANEL_NUMBER;
         }
-        switchPanel();
+        switchPanel(panelNumber);
 
         paneMoveRight(currentPane, centerPane);
 
@@ -274,24 +285,33 @@ public class Viewer extends Application
         stage.show();
     }
 
-    private void switchPanel() {
+    /**
+     * Decides which panel to be used based on the panel number input.
+     * Once the new panel is made, the navigating dots will be switched
+     * @param panelNumber the panel number that needs to be switched to.
+     */
+    private void switchPanel(int panelNumber) {
         switch(panelNumber) {
             case 1:
                 makeWelcomePanel();
-                switchDots();
+                switchDots(panelNumber);
                 break;
             case 2:
                 makeMapPanel();
-                switchDots();
+                switchDots(panelNumber);
                 break;
             case 3:
                 makeStatPanel();
-                switchDots();
+                switchDots(panelNumber);
                 break;
         }
     }
 
-    private void switchDots() {
+    /**
+     * Decides which dots to be coloured in white based on the panel number input.
+     * @param panelNumber the panel number that needs to be switched to.
+     */
+    private void switchDots(int panelNumber) {
         switch(panelNumber) {
             case 1:
                 dotWelcomePanel.setFill(javafx.scene.paint.Color.WHITE);
@@ -311,6 +331,9 @@ public class Viewer extends Application
         }
     }
 
+    /**
+     * Creates a welcome panel object, and assign it to the currentPane.
+     */
     private void makeWelcomePanel() {
         welcomeViewer = new WelcomeViewer();
         welcomeViewer.setComboBoxAction();
@@ -322,17 +345,29 @@ public class Viewer extends Application
         currentPane = welcomeViewer.getPanel();
     }
 
+    /**
+     * Creates a map panel object, and assign it to the currentPane.
+     */
     private void makeMapPanel() {
         mapViewer = new MapViewer(lowerLimit, upperLimit, data, username);
         currentPane = mapViewer.getPanel();
-        //centerPane.setContent(mapViewer.getPanel());
     }
 
+    /**
+     * Creates a statistics panel object, and assign it to the currentPane.
+     */
     private void makeStatPanel() {
         statViewer = new StatisticsPanel();
         currentPane = mapViewer.getPanel();
     }
 
+    /**
+     * Put the panels made into a scroll pane that allows the user to pan around the panel
+     * when the window is not large enough.
+     * @param child The panel that is created.
+     * @param parent The panel that this scroll pane will be put into.
+     * @return The scroll pane that have just been created.
+     */
     private ScrollPane makeScrollPane(Pane child, Pane parent) {
         ScrollPane sp = new ScrollPane();
         sp.setContent(child);
@@ -346,6 +381,11 @@ public class Viewer extends Application
         return sp;
     }
 
+    /**
+     * This is an animation method that allows the panels to move in from the right.
+     * @param nextPane The panel that is going to move in.
+     * @param parentPane The current panel that needs to be cleared before putting the new panel in.
+     */
     private void paneMoveLeft(Pane nextPane, Pane parentPane) {
         parentPane.getChildren().clear();
         nextPane.translateXProperty().set(scene.getWidth());
@@ -356,6 +396,11 @@ public class Viewer extends Application
         timeline.play();
     }
 
+    /**
+     * This is an animation method that allows the panels to move in from the left.
+     * @param nextPane The panel that is going to move in.
+     * @param parentPane The current panel that needs to be cleared before putting the new panel in.
+     */
     private void paneMoveRight(Pane nextPane, Pane parentPane) {
         parentPane.getChildren().clear();
         nextPane.translateXProperty().set(scene.getWidth() * -1);
@@ -367,6 +412,11 @@ public class Viewer extends Application
     }
 
     // Menubar Buttons
+
+    /**
+     * Gives information to the user about this program.
+     * @param event When the menu button is clicked.
+     */
     private void aboutProgram(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("About Property Viewer");
@@ -375,18 +425,34 @@ public class Viewer extends Application
         alert.showAndWait();
     }
 
+    /**
+     * Hides the window of the program.
+     * @param event When the menu button is clicked.
+     */
     private void hideViewer(ActionEvent event) {
         stage.hide();
     }
 
+    /**
+     * Shows the window of the program.
+     * @param event When the menu button is clicked.
+     */
     private void showViewer(ActionEvent event) {
         stage.show();
     }
 
+    /**
+     * Terminate the program.
+     * @param event When the menu button is clicked.
+     */
     private void quitViewer(ActionEvent event) {
         System.exit(0);
     }
 
+    /**
+     * Zooms in the current panel.
+     * @param event When the menu button is clicked.
+     */
     private void zoomIn(ActionEvent event) {
         currentPane.setScaleX(currentPane.getScaleX() * 1.1);
         currentPane.setScaleY(currentPane.getScaleY() * 1.1);
@@ -394,20 +460,36 @@ public class Viewer extends Application
         System.out.println(currentPane.getWidth());
     }
 
+    /**
+     * View the current panel in it's original size - which is in full.
+     * @param event When the menu button is clicked.
+     */
     private void actualSize(ActionEvent event) {
         currentPane.setScaleX(1);
         currentPane.setScaleY(1);
     }
 
+    /**
+     * Zooms out the current panel.
+     * @param event When the menu button is clicked.
+     */
     private void zoomOut(ActionEvent event) {
         currentPane.setScaleX(currentPane.getScaleX() / 1.1);
         currentPane.setScaleY(currentPane.getScaleY() / 1.1);
     }
 
+    /**
+     * Enters full screen.
+     * @param event When the menu button is clicked.
+     */
     private void fullScreen(ActionEvent event) {
         stage.setFullScreen(true);
     }
 
+    /**
+     * Gives the user the instruction of the program.
+     * @param event When the menu button is clicked.
+     */
     private void instruction(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Viewer Instructions");
@@ -416,6 +498,10 @@ public class Viewer extends Application
         alert.showAndWait();
     }
 
+    /**
+     * Logout the current user, the login window will appear.
+     * @param event When the menu button is clicked.
+     */
     private void logout(ActionEvent event) {
        Stage login = new Stage();
        Starting loginScreen = new Starting();
