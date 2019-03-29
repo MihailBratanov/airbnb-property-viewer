@@ -365,6 +365,13 @@ public class Viewer extends Application
      * Creates a statistics panel object, and assign it to the currentPane.
      */
     private void makeStatPanel() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Statistics Panel");
+        alert.setHeaderText("Loading...");
+        alert.setContentText("The Statistics are being processed. " +
+                "\nPlease be patient." +
+                "\nPress 'OK' to being loading.");
+        alert.showAndWait();
         statViewer = new StatisticsPanel(stage, lowerLimit, upperLimit, username);
         currentPane = statViewer.getPanel();
     }

@@ -248,6 +248,10 @@ public class MapPanel extends Panel {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(pressed);
+                            tableViewStage = new Stage();
+                            tableViewer = new TableViewer(borough.getName(),dateSortedProperties);
+
+                            tableViewer.start(tableViewStage);
                         }
                     });
 
@@ -432,6 +436,10 @@ public class MapPanel extends Panel {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(pressed);
+                            tableViewStage = new Stage();
+                            tableViewer = new TableViewer(borough.getName(),dateSortedProperties);
+
+                            tableViewer.start(tableViewStage);
                         }
                     });
 
