@@ -357,8 +357,8 @@ public class Viewer extends Application
      * Creates a statistics panel object, and assign it to the currentPane.
      */
     private void makeStatPanel() {
-        statViewer = new StatisticsPanel();
-        currentPane = mapViewer.getPanel();
+        statViewer = new StatisticsPanel(stage, lowerLimit, upperLimit);
+        currentPane = statViewer.getPanel();
     }
 
     /**

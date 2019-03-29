@@ -178,8 +178,8 @@ public class StatisticsPanel {
 
 
 
-        /*stage.setWidth(600);
-        stage.setHeight(600);
+        //stage.setWidth(600);
+        //stage.setHeight(600);
 
         statPane.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             @Override
@@ -196,11 +196,11 @@ public class StatisticsPanel {
             stageMidX = stage.getWidth()/2;
         });
 
-        stage.setScene(scene);
-        stage.show();
+        //stage.setScene(scene);
+        //stage.show();
 
         stageMidX = stage.getWidth()/2;
-        stageMidY = stage.getHeight()/2;*/
+        stageMidY = stage.getHeight()/2;
     }
 
     public Pane getStatePane(){
