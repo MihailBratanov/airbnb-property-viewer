@@ -56,6 +56,8 @@ public class Calculator {
         ArrayList<String> boroughs = new ArrayList<>();
         ArrayList<String> filteredBoroughs = new ArrayList<>();
 
+        //System.out.println(dataToDoStatsOn);
+
        // for (AirbnbListing listing : dataToDoStatsOn) {
         //    boroughs.add(listing.getNeighbourhood());
         //}
@@ -83,33 +85,20 @@ public class Calculator {
 
         }
 
-        HashMap<String, Integer> priceBoroughs = new HashMap<>();
+        System.out.println("priceListing : " + priceListings);
 
-        for (String listing : priceListings.keySet()){
-
-            Boolean exists = priceListings.containsKey(listing);
-
-            if ( ! exists){
-                priceBoroughs.put(listing, 1);
-            }
-
-            else if (exists){
-                int count = priceListings.get(listing);
-
-                priceListings.replace(listing, count);
-            }
-        }
-
-        int max =Collections.max(priceListings.values());
+        int max = 0; //Collections.max(priceListings.values());
         String mostExpensiveBorough=" ";
 
-        for (String listing : priceBoroughs.keySet()){
-            if (priceBoroughs.get(listing) > max){
-                max = priceBoroughs.get(listing);
+        for (String listing : priceListings.keySet()){
+            if (priceListings.get(listing) > max){
+                System.out.println(priceListings.get(listing));
+                max = priceListings.get(listing);
                 mostExpensiveBorough=listing;
             }
         }
 
+        System.out.println("calc says : "+max);
 
         return mostExpensiveBorough;
     }
