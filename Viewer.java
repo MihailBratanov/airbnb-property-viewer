@@ -65,10 +65,6 @@ public class Viewer extends Application
     private BorderPane root;
     private Scene scene;
 
-   public Viewer(String username){
-    this.username = username;
-   }
-
     public Viewer(String username){
         this.username = username;
     }
