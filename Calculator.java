@@ -52,12 +52,15 @@ public class Calculator {
         return propertyCount;
     }
 
-    public HashMap<String, Integer> calculateMostExpensiveBorough(ObservableList<AirbnbListing> dataToDoStatsOn) {
-        ArrayList<String> boroughs = new ArrayList<>();
+    public String calculateMostExpensiveBorough(ObservableList<AirbnbListing> dataToDoStatsOn) {
+        //ArrayList<String> boroughs = new ArrayList<>();
         ArrayList<String> filteredBoroughs = new ArrayList<>();
+        /*
         for (AirbnbListing listing : dataToDoStatsOn) {
             boroughs.add(listing.getNeighbourhood());
         }
+
+
 
         for (int i = 0; i < boroughs.size(); i++) {
             for (int j = i + 1; j < boroughs.size(); j++) {
@@ -66,24 +69,49 @@ public class Calculator {
             }
 
         }
-
+        */
         int minimumStayListing = 0;
         int priceListing = 0;
         int totalPriceForListing = 0;
-        HashMap<String, Integer> priceBoroughs = new HashMap<>();
-        for (AirbnbListing listing : dataToDoStatsOn) {
-            for (String borough : filteredBoroughs) {
-                if (listing.getNeighbourhood().equals(borough)) {
-                    minimumStayListing = listing.getMinimumNights();
-                    priceListing = listing.getPrice();
-                    totalPriceForListing += minimumStayListing * priceListing;
-                    priceBoroughs.put(borough, totalPriceForListing);
+        HashMap<String, Integer> priceListings = new HashMap<>();
 
-                }
-            }
+        for (AirbnbListing listing : dataToDoStatsOn) {
+            minimumStayListing = listing.getMinimumNights();
+            priceListing = listing.getPrice();
+            totalPriceForListing += minimumStayListing * priceListing;
+            priceListings.put(listing.getNeighbourhood(), totalPriceForListing);
 
         }
-        return priceBoroughs;
+
+        HashMap<String, Integer> priceBoroughs = new HashMap<>();
+
+        for (String listing : priceListings.keySet()){
+
+            Boolean exists = priceListings.containsKey(listing);
+
+            if ( ! exists){
+                priceBoroughs.put(listing, 1);
+            }
+
+            else if (exists){
+                int count = priceListings.get(listing);
+                count += 1;
+                priceListings.replace(listing, count);
+            }
+        }
+
+        int max = 0;
+        String mostExpensiveBorough = "";
+
+        for (String listing : priceBoroughs.keySet()){
+            if (priceBoroughs.get(listing) > max){
+                max = priceBoroughs.get(listing);
+                mostExpensiveBorough = listing;
+            }
+        }
+
+
+        return mostExpensiveBorough;
     }
 
     public HashMap<Integer, String> calculateMostRecentListing(ObservableList<AirbnbListing> dataToDoStatsOn) {
