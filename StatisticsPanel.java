@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -89,7 +90,7 @@ public class StatisticsPanel {
         statActions.add("Available properties");
         statActions.add("Homes and apartments");
         statActions.add("Most expensive borough");
-//---------------extra--------------------------------
+//---------------extra-------------------------
         statActions.add("Most recent listing");
         statActions.add("Most active month");
         statActions.add("Most populated borough");
@@ -752,10 +753,15 @@ public class StatisticsPanel {
         pane.setLeft(leftButton);
         pane.setCenter(box);
         pane.setRight(rightButton);
+        pane.setAlignment(leftButton, Pos.CENTER_LEFT);
+        pane.setAlignment(rightButton, Pos.CENTER_RIGHT);
+        pane.setPadding(new Insets(15 ,15, 15, 15));
         leftButton.prefHeightProperty().bind(pane.heightProperty());
-        leftButton.prefWidthProperty().bind(pane.widthProperty().divide(5));
+        leftButton.prefWidthProperty().bind(pane.widthProperty().divide(7));
+        leftButton.setOpacity(0.5);
         rightButton.prefHeightProperty().bind(pane.heightProperty());
-        rightButton.prefWidthProperty().bind(pane.widthProperty().divide(5));
+        rightButton.prefWidthProperty().bind(pane.widthProperty().divide(7));
+        rightButton.setOpacity(0.5);
         pane.prefWidthProperty().bind(stage.widthProperty().divide(2));
         pane.prefHeightProperty().bind(stage.heightProperty().divide(2));
         leftButton.setOnAction(this::leftButtonClick);

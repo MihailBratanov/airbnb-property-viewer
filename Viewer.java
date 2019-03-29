@@ -55,7 +55,7 @@ public class Viewer extends Application
     private int lowerLimit;
     private int upperLimit;
 
-    private static final String VERSION = "Version 0.0.1";
+    private static final String VERSION = "Version 1.0";
     private static final int MAX_PANEL_NUMBER = 3;
 
     private AirbnbDataLoader loader;
@@ -349,19 +349,6 @@ public class Viewer extends Application
         welcomeViewer.setComboBox(lowerLimit, upperLimit);
         welcomeViewer.getFromComboBox().setOnAction(e -> checkRangeValidity());
         welcomeViewer.getToComboBox().setOnAction(e -> checkRangeValidity());
-
-        welcomeViewer.getLogoutButton().setOnAction(event -> {
-            System.out.println("Pressed.");
-            Stage startingStage = new Stage();
-            Starting login = new Starting();
-            try {
-                login.start(startingStage);
-                stage.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        });
 
         panelNumber = 1;
         currentPane = welcomeViewer.getPanel();

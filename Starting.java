@@ -1,6 +1,4 @@
 import javafx.application.Application;
-
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
