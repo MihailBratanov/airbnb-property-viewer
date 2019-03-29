@@ -75,6 +75,12 @@ public class CreateAccount extends Application
         PasswordField passwordText = new PasswordField();
 
 
+        Button submit =new Button("Submit");
+
+        Button goBack=new Button("Go Back and LogIn");
+        Label reminder=new Label();
+        reminder.setText("");
+
 
         //submit.getStylesheets().add("startingdesign.css");
 

@@ -3,14 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="138eefb8-be9b-4769-b6c5-b528029f4d9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StartingViewer.ctxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/StartingViewer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TableViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/TableViewer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StartingViewer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StartingViewer.ctxt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/CreateAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/CreateAccount.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/ProfileDisplay.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/UserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/UserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/house.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,14 +54,6 @@
                       <folding>
                         <element signature="e#1878#1879#0" expanded="true" />
                         <element signature="e#1918#1919#0" expanded="true" />
-                        <element signature="e#16924#16925#0" expanded="true" />
-                        <element signature="e#16952#16953#0" expanded="true" />
-                        <element signature="e#17111#17112#0" expanded="true" />
-                        <element signature="e#17139#17140#0" expanded="true" />
-                        <element signature="e#17288#17289#0" expanded="true" />
-                        <element signature="e#17318#17319#0" expanded="true" />
-                        <element signature="e#18396#18397#0" expanded="true" />
-                        <element signature="e#18437#18438#0" expanded="true" />
                       </folding>
                     </state>
                   </provider>
@@ -71,8 +62,8 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/TableViewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="360">
-                      <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+                    <state relative-caret-position="144">
+                      <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
                       <folding>
                         <element signature="imports" expanded="true" />
                       </folding>
@@ -129,17 +120,38 @@
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/Login.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="2744">
-                      <caret line="196" column="70" lean-forward="true" selection-start-line="196" selection-start-column="70" selection-end-line="196" selection-end-column="70" />
+                    <state relative-caret-position="2735">
+                      <caret line="196" column="70" selection-start-line="196" selection-start-column="70" selection-end-line="196" selection-end-column="70" />
                       <folding>
                         <element signature="imports" expanded="true" />
                         <element signature="e#5779#5780#0" expanded="true" />
                         <element signature="e#5806#5807#0" expanded="true" />
                         <element signature="e#7707#8631#0" expanded="true" />
                         <element signature="e#8630#8631#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/startingdesign.css">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="108">
+                      <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/CreateAccount.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="-1637">
+                      <caret line="77" column="44" lean-forward="true" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
                       </folding>
                     </state>
                   </provider>
@@ -154,8 +166,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/MapViewer.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="268">
-                  <caret line="312" column="47" selection-start-line="312" selection-start-column="47" selection-end-line="312" selection-end-column="47" />
+                <state relative-caret-position="6552">
+                  <caret line="364" selection-start-line="364" selection-end-line="364" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#9217#9218#0" expanded="true" />
@@ -204,7 +216,7 @@
             <entry file="file://$PROJECT_DIR$/MapWebView.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="404">
-                  <caret line="84" column="4" lean-forward="true" selection-start-line="84" selection-start-column="4" selection-end-line="91" selection-end-column="5" />
+                  <caret line="84" column="4" selection-start-line="84" selection-start-column="4" selection-end-line="91" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -221,9 +233,9 @@
       <find>height</find>
       <find>GREEN</find>
       <find>font</find>
-      <find>Viewer</find>
       <find>css</find>
       <find>please</find>
+      <find>Viewer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -249,6 +261,8 @@
         <option value="$PROJECT_DIR$/TableViewer.java" />
         <option value="$PROJECT_DIR$/Database.java" />
         <option value="$PROJECT_DIR$/MapViewer.java" />
+        <option value="$PROJECT_DIR$/startingdesign.css" />
+        <option value="$PROJECT_DIR$/CreateAccount.java" />
       </list>
     </option>
   </component>
@@ -281,7 +295,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553882370142" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553883300175" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -345,15 +359,15 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.07828134" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.07828134" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="2" weight="0.32890624" />
+      <window_info active="true" anchor="bottom" id="Messages" order="2" visible="true" weight="0.32830188" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.3296875" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.2981132" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.2981132" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39849058" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -431,13 +445,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/startingdesign.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -460,16 +467,6 @@
     <entry file="file://$PROJECT_DIR$/airbnb.png" />
     <entry file="file://$PROJECT_DIR$/img/airbnb.gif">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CreateAccount.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="781">
-          <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/cursor.png" />
     <entry file="file://$PROJECT_DIR$/font/KingsFont.ttf">
@@ -551,14 +548,6 @@
           <folding>
             <element signature="e#1878#1879#0" expanded="true" />
             <element signature="e#1918#1919#0" expanded="true" />
-            <element signature="e#16924#16925#0" expanded="true" />
-            <element signature="e#16952#16953#0" expanded="true" />
-            <element signature="e#17111#17112#0" expanded="true" />
-            <element signature="e#17139#17140#0" expanded="true" />
-            <element signature="e#17288#17289#0" expanded="true" />
-            <element signature="e#17318#17319#0" expanded="true" />
-            <element signature="e#18396#18397#0" expanded="true" />
-            <element signature="e#18437#18438#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -594,48 +583,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2744">
-          <caret line="196" column="70" lean-forward="true" selection-start-line="196" selection-start-column="70" selection-end-line="196" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5779#5780#0" expanded="true" />
-            <element signature="e#5806#5807#0" expanded="true" />
-            <element signature="e#7707#8631#0" expanded="true" />
-            <element signature="e#8630#8631#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TableViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/MapWebView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
-          <caret line="84" column="4" lean-forward="true" selection-start-line="84" selection-start-column="4" selection-end-line="91" selection-end-column="5" />
+          <caret line="84" column="4" selection-start-line="84" selection-start-column="4" selection-end-line="91" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
-          <caret line="211" selection-start-line="211" selection-end-line="211" />
+        <state relative-caret-position="-385">
+          <caret line="138" selection-start-line="138" selection-end-line="138" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MapViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="312" column="47" selection-start-line="312" selection-start-column="47" selection-end-line="312" selection-end-column="47" />
+        <state relative-caret-position="6552">
+          <caret line="364" selection-start-line="364" selection-end-line="364" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#9217#9218#0" expanded="true" />
@@ -648,6 +613,47 @@
             <element signature="e#17435#17436#0" expanded="true" />
             <element signature="e#23353#23354#0" expanded="true" />
             <element signature="e#23380#23381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TableViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2735">
+          <caret line="196" column="70" selection-start-line="196" selection-start-column="70" selection-end-line="196" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5779#5780#0" expanded="true" />
+            <element signature="e#5806#5807#0" expanded="true" />
+            <element signature="e#7707#8631#0" expanded="true" />
+            <element signature="e#8630#8631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/startingdesign.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1637">
+          <caret line="77" column="44" lean-forward="true" selection-start-line="77" selection-start-column="44" selection-end-line="77" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
