@@ -38,7 +38,7 @@ public class Viewer extends Application
     private BorderPane contentPane;
     private int panelNumber;
     private RangeSelectorView rangeSelectorView;
-    private MapViewer mapViewer;
+    private MapPanel mapViewer;
     private StatisticsPanel statViewer;
     private Pane currentPane;
     VBox centerPane;
@@ -358,7 +358,7 @@ public class Viewer extends Application
      * Creates a map panel object, and assign it to the currentPane.
      */
     private void makeMapPanel() {
-        mapViewer = new MapViewer(lowerLimit, upperLimit, data, username);
+        mapViewer = new MapPanel(lowerLimit, upperLimit, data, username);
         currentPane = mapViewer.getPanel();
     }
 

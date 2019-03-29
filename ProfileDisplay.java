@@ -25,7 +25,7 @@ public class ProfileDisplay extends Application {
     private Scene scene;
     private HashMap<String,Integer> userClicks;
 
-    public ProfileDisplay(String username){
+    public ProfileDisplay(String username) {
 
         Database database = new Database();
         String[] details = database.getUserDetails(username);
@@ -35,11 +35,6 @@ public class ProfileDisplay extends Application {
         this.username = details[2];
 
         userClicks = database.getUserProfile(username);
-
-    public ProfileDisplay(String username){
-        this.name = name;
-        this.surname = surname;
-        this.username = username;
     }
 
     private Font getKingsFont(int size) {
