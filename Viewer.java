@@ -135,17 +135,18 @@ public class Viewer extends Application
         MenuItem zoomInItem = new MenuItem("Zoom In");
         zoomInItem.setOnAction(this::zoomIn);
         zoomInItem.setAccelerator(new KeyCodeCombination(KeyCode.PLUS, KeyCodeCombination.SHORTCUT_DOWN));
-
         MenuItem actualSizeItem = new MenuItem("Actual Size");
         actualSizeItem.setOnAction(this::actualSize);
         MenuItem zoomOutItem = new MenuItem("Zoom Out");
         zoomOutItem.setOnAction(this::zoomOut);
         zoomOutItem.setAccelerator(new KeyCodeCombination(KeyCode.MINUS, KeyCodeCombination.SHORTCUT_DOWN));
-
         SeparatorMenuItem viewMenuSeparator = new SeparatorMenuItem();
         MenuItem fullScreenItem = new MenuItem("Enter Full Screen");
         fullScreenItem.setOnAction(this::fullScreen);
-        viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem);
+        MenuItem exitFullScreenItem = new MenuItem("Exit Full Screen");
+        exitFullScreenItem.setOnAction(this::exitFullScreen);
+        exitFullScreenItem.setAccelerator(new KeyCodeCombination(KeyCode.ESCAPE));
+        viewMenu.getItems().addAll(zoomInItem, actualSizeItem, zoomOutItem, viewMenuSeparator, fullScreenItem, exitFullScreenItem);
 
         Menu helpMenu = new Menu("Help");
         MenuItem instructionItem = new MenuItem("Viewer Instructions");
@@ -493,6 +494,14 @@ public class Viewer extends Application
      */
     private void fullScreen(ActionEvent event) {
         stage.setFullScreen(true);
+    }
+
+    /**
+     * Exits full screen.
+     * @param event When the menu button is clicked.
+     */
+    private void exitFullScreen(ActionEvent event) {
+        stage.setFullScreen(false);
     }
 
     /**
