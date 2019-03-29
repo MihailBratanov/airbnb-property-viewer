@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -10,17 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-
-import javafx.event.ActionEvent;
-
-import java.util.*;
 
 public class TableViewer extends Application {
     private MapWebView terryMaps;

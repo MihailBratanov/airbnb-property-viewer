@@ -10,6 +10,9 @@ import javafx.geometry.Pos;
 import javafx.scene.shape.Polygon;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.*;
 import javafx.scene.text.Text;
@@ -305,7 +308,8 @@ public class MapViewer extends Panel {
 
         VBox slogan = new VBox();
         slogan.setAlignment(Pos.CENTER_LEFT);
-        font = new Font("font/Roboto-Regular.ttf", 50);
+        //font = new Font("font/Roboto-Regular.ttf", 50);
+        font = getKingsFont(60);
         Label instructions = new Label("Please select the\nnumber of nights you\nwant to stay.");
         instructions.setFont(font);
         instructions.setTextFill(Color.WHITE);
@@ -657,5 +661,15 @@ public class MapViewer extends Panel {
     public void setRange(int lowerLimit, int upperLimit) {
         boroughSortedProperties = loadData(lowerLimit, upperLimit, data);
         boroughCount = countBoroughs(boroughSortedProperties);
+    }
+
+    private Font getKingsFont(int size) {
+        Font font;
+        try {
+            return font = Font.loadFont(new FileInputStream(new File("font/KingsFont.ttf")), size);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return font = Font.font("Verdana", size);
+        }
     }
 }
