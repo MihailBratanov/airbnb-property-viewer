@@ -490,7 +490,7 @@ public class MapPanel extends Panel {
      * Math method that gets the X coordinates
      * for the hexagon drawing.
      * @param degree degree of the angle
-     * @return
+     * @return x coordinate.
      */
     private double hexPointX(double degree){
         double centerPoint = height/15;
@@ -507,7 +507,7 @@ public class MapPanel extends Panel {
      * for the hexagon drawing.
      *
      * @param degree degree of the angle
-     * @return
+     * @return y coordinate.
      */
     private double hexPointY(double degree){
         double centerPoint = height/15;
@@ -545,7 +545,7 @@ public class MapPanel extends Panel {
      *
      * @param nights minimum amount of nights
      * @param data data of airbnb listings.
-     * @return
+     * @return ArrayList of sorted data by minimum amount of nights.
      */
     private ArrayList<AirbnbListing> sortByDay(int nights, ArrayList<AirbnbListing> data) {
 

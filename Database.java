@@ -141,7 +141,7 @@ public class Database {
      * gets the database entries of each login and their respective password.
      * Used to check if login is correct.
      *
-     * @return
+     * @return returns list of users and their passwords file.
      */
     public ArrayList<UserDetails> getDatabaseEntries(){
         ArrayList<UserDetails> users = new ArrayList<>();
@@ -179,7 +179,7 @@ public class Database {
      * creation of the user.
      *
      * @param username
-     * @return
+     * @return HashMap of Clicks per borough.
      */
     public HashMap<String, Integer> getUserProfile(String username){
 
@@ -211,8 +211,8 @@ public class Database {
      * Writes to the user profile file. Writes the click count of the user,
      * according to the user from username.
      *
-     * @param username
-     * @param clickCount
+     * @param username - username of user
+     * @param clickCount - hashmap of click counts per borough.
      */
     public void writeToProfile(String username, HashMap<String, Integer> clickCount){
 
@@ -256,7 +256,7 @@ public class Database {
      * Identifies the user by their username.
      *
      * @param username
-     * @return
+     * @return String list of user details, [0] contains surname [1] contains name and [2] contains username
      */
     public String[] getUserDetails(String username){
 
@@ -279,7 +279,7 @@ public class Database {
     /**
      * gets the most clicked borough from the user by their username.
      * @param username
-     * @return
+     * @return HashMap of most clicked boroughs
      */
     public String getMostClickedBorough(String username){
         HashMap<String, Integer> clickCount = getUserProfile(username);

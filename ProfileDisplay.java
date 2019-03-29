@@ -42,7 +42,7 @@ public class ProfileDisplay extends Application {
     /**
      * Constructor for the Profile display class. Displays the profile for
      * the user, read from the database, from the username.
-     * @param username
+     * @param username - username of the user.
      */
     public ProfileDisplay(String username) {
 
@@ -75,7 +75,7 @@ public class ProfileDisplay extends Application {
 
     /**
      * Stats the JAVAFX Stage : displays the user Profile window.
-     * @param stage
+     * @param stage - stage in which this window will be displayed in.
      */
     @Override
     public void start(Stage stage) {

@@ -161,6 +161,7 @@ public class TableViewer extends Application {
 
         /**
          * A method to filter the data by a borough
+         * @return newList - list of filtered data by borough.
          */
         private ArrayList<AirbnbListing> filterData (ArrayList < AirbnbListing > data) {
             ArrayList<AirbnbListing> newList = new ArrayList<>();

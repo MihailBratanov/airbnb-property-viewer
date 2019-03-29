@@ -30,10 +30,8 @@ import java.util.ArrayList;
  * Student ID: 1828556, 1850162, 1838362, 1833386
  * k-number: k1895418, k1802265, k1888765, k1895389
  */
-
 public class Viewer extends Application
 {
-
     private Stage stage;
     private BorderPane contentPane;
     private int panelNumber;

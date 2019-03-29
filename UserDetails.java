@@ -27,9 +27,12 @@ public class UserDetails
     private String password;
 
     /**
-     * Constructor for objects of class UserDetails
+     *  Constructor for objects of class UserDetails
      * the parameters are the first name, surname, user name, and password
-     *
+     * @param firstName first name
+     * @param surname surname of user
+     * @param username username of user
+     * @param password password of user
      */
     public UserDetails( String firstName,String surname,String username,String password)
     {
@@ -81,7 +84,6 @@ public class UserDetails
      * Get user details to String
      * @return UserDetails as String
      */
-
     @Override
     public String toString() {
         return "UserDetails{" +
@@ -91,6 +93,4 @@ public class UserDetails
                 ", password='" + password + '\'' +
                 '}';
     }
-
-
 }
