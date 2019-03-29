@@ -4,18 +4,35 @@
     <list default="true" id="26435328-0416-4004-94c8-b6673454e496" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MapViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/MapViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TableViewSample.java" beforeDir="false" afterPath="$PROJECT_DIR$/TableViewSample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Viewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WelcomeViewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/WelcomeViewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$14.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$15.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$16.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewSample.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewSample.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.txt~Temp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin_admin_admin.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/crystal_zou_911.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/root.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/test_test_test.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/admin.user" beforeDir="false" afterPath="$PROJECT_DIR$/users/admin.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/root.user" beforeDir="false" afterPath="$PROJECT_DIR$/users/root.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,25 +40,58 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57452923">
+    <splitter split-orientation="horizontal" split-proportion="0.3193167">
       <split-first>
-        <splitter split-orientation="horizontal" split-proportion="0.9">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Viewer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="253">
+                  <caret line="343" column="77" selection-start-line="343" selection-start-column="77" selection-end-line="343" selection-end-column="77" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Starting.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2084">
+                  <caret line="262" selection-start-line="262" selection-end-line="262" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#6473#6474#0" expanded="true" />
+                    <element signature="e#6500#6501#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/CreateAccount.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="945">
+                  <caret line="63" column="48" selection-start-line="63" selection-start-column="48" selection-end-line="63" selection-end-column="48" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <splitter split-orientation="horizontal" split-proportion="0.5">
           <split-first>
-            <leaf>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/Database.java">
+                <entry file="file://$PROJECT_DIR$/AirbnbDataLoader.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="166">
-                      <caret line="103" column="55" selection-start-line="103" selection-start-column="55" selection-end-line="103" selection-end-column="55" />
-                    </state>
-                  </provider>
-                </entry>
-              </file>
-              <file pinned="false" current-in-tab="false">
-                <entry file="file://$PROJECT_DIR$/Calculator.java">
-                  <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="317">
-                      <caret line="57" selection-start-line="57" selection-end-line="71" selection-end-column="10" />
+                    <state relative-caret-position="630">
+                      <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
                     </state>
                   </provider>
                 </entry>
@@ -49,35 +99,40 @@
               <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="268">
-                      <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+                    <state relative-caret-position="-3562">
+                      <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/Viewer.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="767">
+                      <caret line="378" column="73" lean-forward="true" selection-start-line="378" selection-start-column="73" selection-end-line="378" selection-end-column="73" />
                       <folding>
-                        <element signature="e#7746#7747#0" expanded="true" />
-                        <element signature="e#7777#7778#0" expanded="true" />
-                        <element signature="e#30040#30041#0" expanded="true" />
-                        <element signature="e#30068#30069#0" expanded="true" />
+                        <element signature="imports" expanded="true" />
+                        <element signature="e#1880#1881#0" expanded="true" />
+                        <element signature="e#1920#1921#0" expanded="true" />
                       </folding>
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/Viewer.java">
+              <file pinned="false" current-in-tab="false">
+                <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="806">
-                      <caret line="85" column="81" lean-forward="true" selection-start-line="85" selection-start-column="81" selection-end-line="85" selection-end-column="81" />
-                      <folding>
-                        <element signature="e#1951#1952#0" expanded="true" />
-                        <element signature="e#1991#1992#0" expanded="true" />
-                        <element signature="e#16980#16981#0" expanded="true" />
-                        <element signature="e#17008#17009#0" expanded="true" />
-                        <element signature="e#17167#17168#0" expanded="true" />
-                        <element signature="e#17195#17196#0" expanded="true" />
-                        <element signature="e#17344#17345#0" expanded="true" />
-                        <element signature="e#17374#17375#0" expanded="true" />
-                        <element signature="e#18452#18453#0" expanded="true" />
-                        <element signature="e#18493#18494#0" expanded="true" />
-                      </folding>
+                    <state relative-caret-position="150">
+                      <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="75">
+                      <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
                     </state>
                   </provider>
                 </entry>
@@ -85,16 +140,35 @@
             </leaf>
           </split-first>
           <split-second>
-            <leaf>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
               <file pinned="false" current-in-tab="true">
-                <entry file="file://$PROJECT_DIR$/StatValues.java">
+                <entry file="file://$PROJECT_DIR$/MapViewer.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="336">
-                      <caret line="14" column="29" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+                    <state relative-caret-position="686">
+                      <caret line="644" lean-forward="true" selection-start-line="644" selection-end-line="644" />
                       <folding>
-                        <element signature="e#229#230#0" expanded="true" />
-                        <element signature="e#255#256#0" expanded="true" />
-                        <element signature="e#319#320#0" expanded="true" />
+                        <element signature="imports" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/TableViewSample.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="-53">
+                      <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/Database.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="1275">
+                      <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
                       </folding>
                     </state>
                   </provider>
@@ -103,43 +177,6 @@
             </leaf>
           </split-second>
         </splitter>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/MapViewer.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="705">
-                  <caret line="627" column="30" selection-start-line="627" selection-start-column="30" selection-end-line="627" selection-end-column="30" />
-                  <folding>
-                    <element signature="e#9115#9116#0" expanded="true" />
-                    <element signature="e#9197#9198#0" expanded="true" />
-                    <element signature="e#9424#9425#0" expanded="true" />
-                    <element signature="e#9505#9506#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Database.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="194">
-                  <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/MapWebView.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="351">
-                  <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
       </split-second>
     </splitter>
   </component>
@@ -149,6 +186,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/TableViewSample.java" />
+        <option value="$PROJECT_DIR$/MapViewer.java" />
+        <option value="$PROJECT_DIR$/WelcomeViewer.java" />
         <option value="$PROJECT_DIR$/Viewer.java" />
       </list>
     </option>
@@ -159,7 +199,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,23 +206,19 @@
               <item name="PPAAssignment4" type="b2602c69:ProjectViewProjectNode" />
               <item name="PPAAssignment4" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="PPAAssignment4" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PPAAssignment4" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553824348465" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553829715235" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
@@ -223,15 +258,19 @@
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="2204000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-956" y="-1440" width="3440" height="1440" extended-state="0" />
+    <frame x="-1062" y="-1417" width="3440" height="1372" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.07798705" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.07857563" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -239,7 +278,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.29854015" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.2984375" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39921874" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -343,7 +382,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Starting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
+        <state relative-caret-position="2084">
           <caret line="262" selection-start-line="262" selection-end-line="262" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -360,16 +399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -379,55 +408,132 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="103" column="55" selection-start-line="103" selection-start-column="55" selection-end-line="103" selection-end-column="55" />
+        <state relative-caret-position="1275">
+          <caret line="87" column="35" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
-          <folding>
-            <element signature="e#7746#7747#0" expanded="true" />
-            <element signature="e#7777#7778#0" expanded="true" />
-            <element signature="e#30040#30041#0" expanded="true" />
-            <element signature="e#30068#30069#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-3562">
+          <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TableViewSample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="52" column="5" lean-forward="true" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MapViewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="627" column="30" selection-start-line="627" selection-start-column="30" selection-end-line="627" selection-end-column="30" />
+        <state relative-caret-position="686">
+          <caret line="644" lean-forward="true" selection-start-line="644" selection-end-line="644" />
           <folding>
-            <element signature="e#9115#9116#0" expanded="true" />
-            <element signature="e#9197#9198#0" expanded="true" />
-            <element signature="e#9424#9425#0" expanded="true" />
-            <element signature="e#9505#9506#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Viewer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="806">
-          <caret line="85" column="81" lean-forward="true" selection-start-line="85" selection-start-column="81" selection-end-line="85" selection-end-column="81" />
+        <state relative-caret-position="767">
+          <caret line="378" column="73" lean-forward="true" selection-start-line="378" selection-start-column="73" selection-end-line="378" selection-end-column="73" />
           <folding>
-            <element signature="e#1951#1952#0" expanded="true" />
-            <element signature="e#1991#1992#0" expanded="true" />
-            <element signature="e#16980#16981#0" expanded="true" />
-            <element signature="e#17008#17009#0" expanded="true" />
-            <element signature="e#17167#17168#0" expanded="true" />
-            <element signature="e#17195#17196#0" expanded="true" />
-            <element signature="e#17344#17345#0" expanded="true" />
-            <element signature="e#17374#17375#0" expanded="true" />
-            <element signature="e#18452#18453#0" expanded="true" />
-            <element signature="e#18493#18494#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1880#1881#0" expanded="true" />
+            <element signature="e#1920#1921#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WelcomeViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="28" lean-forward="true" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>PPAAssignment4</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>+libs</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

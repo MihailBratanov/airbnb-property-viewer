@@ -24,8 +24,6 @@ public class WelcomeViewer extends Panel {
     private BorderPane rangeBoxBackground;
     private GridPane rangeBox;
 
-    private Button logout;
-
     private int lowerLimit;
     private int upperLimit;
     final ComboBox from = new ComboBox();
@@ -140,10 +138,6 @@ public class WelcomeViewer extends Panel {
     public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
-    }
-
-    public Button getLogoutButton(){
-        return logout;
     }
     
     public void setComboBox(int lowerLimit, int upperLimit) {
