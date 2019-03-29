@@ -29,7 +29,7 @@ import javafx.scene.control.Slider;
  * @version (a version number or a date)
  */
 
-public class MapViewer extends Panel {
+public class MapPanel extends Panel {
 
     private String username;
 
@@ -69,7 +69,7 @@ public class MapViewer extends Panel {
 
 
 
-    public MapViewer(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data, String username) {
+    public MapPanel(int lowerLimit, int upperLimit, ArrayList<AirbnbListing> data, String username) {
 
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
