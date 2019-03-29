@@ -61,8 +61,6 @@ public class Database {
 
             String currentEntry = null;
 
-            //existingEntries.add("Firstname - Surname - UserName - Password");
-
             while ((currentEntry = currentReader.readLine()) != null) {
                 existingEntries.add(currentEntry);
             }
@@ -154,7 +152,6 @@ public class Database {
             String entry = reader.readLine();
 
             while (entry != null){
-                //System.out.println(entry);
 
                 if (entry != null) {
 
@@ -207,7 +204,6 @@ public class Database {
             e.printStackTrace();
             System.out.println("line not found.");
         }
-        System.out.println(clickCount);
         return clickCount;
     }
 

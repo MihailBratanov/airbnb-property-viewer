@@ -96,8 +96,7 @@ public class ProfileDisplay extends Application {
 
         GridPane mainPane = new GridPane();
 
-        //mainPane.getColumnConstraints().add(new ColumnConstraints(100));
-        //mainPane.getRowConstraints().add(new RowConstraints(200));
+        //formats the text for the grid pane
 
         ImageView userlogo = new ImageView("img/userlogoLarge.png");
         userlogo.setFitHeight(40);
@@ -105,7 +104,8 @@ public class ProfileDisplay extends Application {
 
         mainPane.add(new Text (" "), 1,1);
 
-        mainPane.add(userlogo,1,2);
+        mainPane.add(userlogo,4,2);
+
         mainPane.add(new Text("   "), 2,1);
         mainPane.add(nameText, 2, 2);
         mainPane.add(surnameText, 2, 3);
@@ -114,19 +114,26 @@ public class ProfileDisplay extends Application {
         mainPane.add(new Text (" "), 1,5);
         mainPane.add(new Text (" "), 1,6);
         mainPane.add(new Text (" "), 1,7);
-        mainPane.add(new Text ("Borough Clicks : "), 1,8);
 
-        int row = 8;
+        Text boroughCount = new Text("Borough Clicks");
+        boroughCount.setFont(getKingsFont(25));
+
+        mainPane.add(boroughCount, 2,8);
+        mainPane.add(new Text (" "), 1,9);
+
+        //profile window - adds the data in this for loop.
+
+        int row = 9;
 
         for (String borough : userClicks.keySet()){
             if (userClicks.get(borough) > 0){
                 row += 1;
-                mainPane.add( new Text ( borough.concat(" : ").concat(String.valueOf(userClicks.get(borough)))), 2, row);
+                Text line = new Text(borough.concat(" : ").concat(String.valueOf(userClicks.get(borough))));
+                line.setFont(getKingsFont(15));
+                mainPane.add(line , 2, row);
             }
         }
 
-
-        //.setGridLinesVisible(true);
         mainPane.setAlignment(Pos.CENTER);
 
 

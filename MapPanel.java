@@ -41,11 +41,7 @@ public class MapPanel extends Panel {
 
     private String username;
 
-    private Label myLabel = new Label("0");
-    private Stage stage;
-
     HBox root;
-    ScrollPane scrollPane;
     private double width;
     private double height;
     private double windowWidth;
@@ -131,8 +127,6 @@ public class MapPanel extends Panel {
 
         gridPane = new GridPane();
 
-        //for testing mapwebview
-
         webViewStage = new Stage();
 
         webView = new MapWebView();
@@ -145,7 +139,6 @@ public class MapPanel extends Panel {
             boroughClick = setUpUserClick(boroughs);
         }
 
-        // testing mapwebview
 
         for (int i = 0; i < 15; i++) {
             RowConstraints row = new RowConstraints(height / 17);
@@ -235,7 +228,6 @@ public class MapPanel extends Panel {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             boroughHover.setText(borough.getName());
-                            //text.setText(borough.getFullName());
                             hexagon.setEffect(shadow);
                             hexagon.setScaleX(initialScaleX * 1.1);
                             hexagon.setScaleY(initialScaleY * 1.1);
@@ -246,7 +238,6 @@ public class MapPanel extends Panel {
                         @Override
                         public void handle(MouseEvent mouseEvent) {
                             hexagon.setEffect(null);
-                            //text.setText(borough.getShortName());
                             hexagon.setScaleX(initialScaleX);
                             hexagon.setScaleY(initialScaleY);
                         }
@@ -308,7 +299,6 @@ public class MapPanel extends Panel {
 
         VBox slogan = new VBox();
         slogan.setAlignment(Pos.CENTER_LEFT);
-        //font = new Font("font/Roboto-Regular.ttf", 50);
         font = getKingsFont(45);
         Label instructions = new Label("Please select the\nminimum number of nights\nyou want to stay.");
         instructions.setFont(font);
@@ -316,7 +306,6 @@ public class MapPanel extends Panel {
         instructions.setTextAlignment(TextAlignment.LEFT);
         slogan.getChildren().addAll(instructions, numberOfNights);
 
-    //root.setBackground(new Background(new BackgroundImage(new Image("mapViewerBg.jpg"), null, null, CENTER, null)));
         root.getChildren().addAll(content, slogan);
         root.setAlignment(Pos.CENTER_LEFT);
         root.getStyleClass().add("root");
