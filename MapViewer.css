@@ -1,0 +1,13 @@
+.root {
+    -fx-background-image: url("mapViewerBg.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: cover;
+}
+
+.contentbox{
+     -fx-background-color: rgba(233, 233, 233, 0.70);
+     -fx-border-radius: 5px;
+     -fx-effect: dropshadow(gaussian, rgba(64, 64, 64, 0.76), 300, 0, 0, 0);
+     -fx-text-align: center;
+ }

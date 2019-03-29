@@ -162,7 +162,7 @@ public class Viewer extends Application
         Menu userMenu = new Menu("User: " + username);
         ImageView userLogo = new ImageView();
         userLogo.setPreserveRatio(true);
-        userMenu.setGraphic(new ImageView("userlogo.png"));
+        userMenu.setGraphic(new ImageView("img/userlogo.png"));
         MenuItem profileItem = new MenuItem("Profile");
         MenuItem logoutItem = new MenuItem("Log Out " + username);
         logoutItem.setOnAction(this:: logout);
@@ -366,7 +366,7 @@ public class Viewer extends Application
      * Creates a statistics panel object, and assign it to the currentPane.
      */
     private void makeStatPanel() {
-        statViewer = new StatisticsPanel(stage, lowerLimit, upperLimit);
+        statViewer = new StatisticsPanel(stage, lowerLimit, upperLimit, username);
         currentPane = statViewer.getPanel();
     }
 

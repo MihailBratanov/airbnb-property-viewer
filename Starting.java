@@ -15,7 +15,7 @@ import javafx.geometry.Pos;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
-import javafx.scene.image.*;
+
 import javafx.concurrent.Task;
 
 /**
@@ -57,7 +57,7 @@ public class Starting extends Application {
 
         root = new VBox();
 
-        titleFont = Font.loadFont(new FileInputStream(new File("Roboto-Regular.ttf")), 20);
+        titleFont = Font.loadFont(new FileInputStream(new File("font/Roboto-Regular.ttf")), 20);
 
 
         root.getStylesheets().add("startingdesign.css");
@@ -178,30 +178,6 @@ public class Starting extends Application {
 
     }
 
-    /**
-     * method to load the image
-     */
-    private Label LoadImage() {
-
-        Label imageLabel = new Label();
-        String imagePath = "airbnb.png";
-        Image image = new Image(imagePath);
-
-        ImageView imageViewer = new ImageView(image);
-
-        width = image.getWidth();
-        width = width / 1.5;
-        height = image.getHeight();
-        height = height / 1.5;
-
-        imageViewer.setPreserveRatio(true);
-        imageViewer.setFitHeight(height);
-        imageViewer.setFitWidth(width);
-        imageViewer.setSmooth(true);
-        imageLabel.setGraphic(imageViewer);
-
-        return imageLabel;
-    }
 
     /**
      * return the VBox

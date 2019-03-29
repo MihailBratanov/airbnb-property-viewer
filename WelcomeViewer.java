@@ -6,17 +6,21 @@ import javafx.geometry.Pos;
 import javafx.scene.image.*;
 import javafx.scene.text.Font;
 
-import java.io.File;
-import java.io.FileInputStream;
-
 import static javafx.scene.text.TextAlignment.*;
 
-
 /**
- * Write a description of JavaFX class WelcomeViewer here.
+ * A system that illustrates Airbnb properties in London.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * Class WelcomeViewer - Creates a panel that allows the user to choose the price range of properties.
+ *
+ * @author Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * @version 2019.03.29
+ *
+ * 18-19 4CCS1PPA Programming Practice and Applications
+ * Term 2 Coursework 4 - London Property Marketplace
+ * Created by Haiyun Zou, Ka Wang Sin, Mihail Bratanov and Terry Phung
+ * Student ID:
+ * k-number:
  */
 
 public class WelcomeViewer extends Panel {
@@ -29,6 +33,9 @@ public class WelcomeViewer extends Panel {
     final ComboBox from = new ComboBox();
     final ComboBox to = new ComboBox();
 
+    /**
+     * Initialize the panel.
+     */
     public WelcomeViewer(){
         root = new VBox();
         Label fromLabel = new Label("From:");
@@ -113,14 +120,14 @@ public class WelcomeViewer extends Panel {
         rangeBoxBackground.setPadding(new Insets(5, 5, 5, 5));
         rangeBoxBackground.setRight(rangeBox);
 
-        ImageView logo = new ImageView("airbnb.gif");
+        ImageView logo = new ImageView("img/airbnb.gif");
 
         VBox imageBox = new VBox();
         logo.setPreserveRatio(true);
         logo.fitHeightProperty().bind(root.heightProperty().subtract(rangeBoxBackground.heightProperty().divide(0.4)));
         logo.fitWidthProperty().bind(root.widthProperty().subtract(rangeBoxBackground.widthProperty().divide(0.4)));
 
-        Font font = new Font("Roboto-Regular.ttf", 20);
+        Font font = new Font("font/Roboto-Regular.ttf", 20);
         Label instruction = new Label("To begin viewing properties, please select a price range on the boxes above.\nUpon selection, press 'Next'.");
         instruction.setFont(font);
         instruction.setTextFill(Color.WHITE);
@@ -135,18 +142,27 @@ public class WelcomeViewer extends Panel {
 
     }
 
+    /**
+     * Set the Combo Box that the upper and lower limits will be updated when boxes are changed.
+     */
     public void setComboBoxAction(){
         from.setOnAction(e -> setLowerLimit());
         to.setOnAction(e -> setUpperLimit());
     }
-    
+
+    /**
+     * Convert the selection into string values.
+     */
     public void setComboBox(int lowerLimit, int upperLimit) {
         String fromValue = Integer.toString(lowerLimit);
         String toValue = Integer.toString(upperLimit);
         from.setValue(fromValue);
         to.setValue(toValue);
     }
-    
+
+    /**
+     * Assign the selected value when lower limit is chosen.
+     */
     private void setLowerLimit() {
         String lowerLimitString = from.getSelectionModel().getSelectedItem().toString();
         if (lowerLimitString != "--Please Select--"){
@@ -156,7 +172,10 @@ public class WelcomeViewer extends Panel {
             lowerLimit = 9999;
         }
     }
-    
+
+    /**
+     * Assign the selected value when upper limit is chosen.
+     */
     private void setUpperLimit() {
         String upperLimitString = to.getSelectionModel().getSelectedItem().toString();
         checkToBoxSelected();
@@ -167,7 +186,11 @@ public class WelcomeViewer extends Panel {
             upperLimit = -9998;
         }
     }
-    
+
+    /**
+     * Check if the selected range is valid.
+     * @return True if it is valid, false otherwise.
+     */
     public boolean checkValid() {
         setLowerLimit();
         setUpperLimit();
@@ -179,33 +202,60 @@ public class WelcomeViewer extends Panel {
         }
     }
 
+    /**
+     * Check if the upper limit combo box is chosen.
+     * @return True if it is selected, false otherwise.
+     */
     public boolean checkToBoxSelected() {
         return to.getSelectionModel().getSelectedIndex() != 0;
     }
 
+    /**
+     * Set Combo Box to its default value.
+     */
     public void setComoboBoxDefault() {
         to.setValue("--Please Select--");
     }
- 
+
+    /**
+     * Return the pane of this panel.
+     * @return The pane of this panel.
+     */
     public Pane getPanel(){
         return root;
     }
 
+    /**
+     * Return the lower limit chosen.
+     * @return The lower limit chosen as an integer.
+     */
     public int getLowerLimit()
     {
         return lowerLimit;
     }
 
+    /**
+     * Return the upper limit chosen.
+     * @return The upper limit chosen as an integer.
+     */
     public int getUpperLimit()
     {
         return upperLimit;
     }
-    
+
+    /**
+     * Return the combo box of the lower limit.
+     * @return The lower limit combo box.
+     */
     public ComboBox getFromComboBox()
     {
         return from;
     }
-    
+
+    /**
+     * Return the combo box of the upper limit.
+     * @return The upper limit combo box.
+     */
     public ComboBox getToComboBox()
     {
         return to;

@@ -1,4 +1,5 @@
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.image.*;
@@ -17,8 +18,6 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.text.*;
 import javafx.scene.control.Slider;
 
-import static javafx.scene.layout.BackgroundPosition.CENTER;
-
 /**
  * Write a description of JavaFX class Viewer here.
  *
@@ -33,7 +32,7 @@ public class MapViewer extends Panel {
     private Label myLabel = new Label("0");
     private Stage stage;
 
-    VBox root;
+    HBox root;
     ScrollPane scrollPane;
     private double width;
     private double height;
@@ -62,6 +61,7 @@ public class MapViewer extends Panel {
 
     private Stage tableViewStage;
     private TableViewSample tableView;
+    private Font font;
 
 
 
@@ -95,8 +95,8 @@ public class MapViewer extends Panel {
         numberOfNights.setValue("Any");
         numberOfNights.setOnAction(e -> updateMap());
 
-        root = new VBox();
-
+        root = new HBox();
+        root.getStylesheets().add("MapViewer.css");
         root.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
         root.setAlignment(Pos.CENTER);
 
@@ -291,26 +291,31 @@ public class MapViewer extends Panel {
 
         gridPane.setAlignment(Pos.CENTER);
         stackpane.getChildren().addAll(gridPane);
-        gridPane.setBackground(new Background(new BackgroundFill(Color.GREEN, null,  null)));
         stackpane.setAlignment(Pos.CENTER);
-        stackpane.setBackground(new Background(new BackgroundFill(Color.YELLOW, null,  null)));
 
         VBox content = new VBox();
-        content.getChildren().addAll(numberOfNights, stackpane, boroughHover);
-        content.prefWidthProperty().bind(root.widthProperty().divide(5));
-        content.prefHeightProperty().bind(root.heightProperty().divide(5));
-        content.setAlignment(Pos.CENTER);
-        content.setBackground(new Background(new BackgroundFill(Color.WHITE, null,  null)));
+        content.getChildren().addAll(stackpane, boroughHover);
+        content.prefHeightProperty().bind(root.heightProperty());
 
-        BorderPane centerPane = new BorderPane();
-        centerPane.setCenter(content);
+        content.getStyleClass().add("contentbox");
+        content.setAlignment(Pos.CENTER_LEFT);
+        content.setMaxWidth(500);
+        content.setPadding(new Insets(10,10,10,10));
 
+        VBox slogan = new VBox();
+        slogan.setAlignment(Pos.CENTER_LEFT);
+        font = new Font("font/Roboto-Regular.ttf", 50);
+        Label instructions = new Label("Please select the\nnumber of nights you\nwant to stay.");
+        instructions.setFont(font);
+        instructions.setTextFill(Color.WHITE);
+        instructions.setTextAlignment(TextAlignment.LEFT);
+        slogan.getChildren().addAll(instructions, numberOfNights);
 
-
-    root.setBackground(new Background(new BackgroundImage(new Image("mapViewerBg.jpg"), null, null, CENTER, null)));
-        root.getChildren().addAll(centerPane);
-        root.setAlignment(Pos.CENTER);
-
+    //root.setBackground(new Background(new BackgroundImage(new Image("mapViewerBg.jpg"), null, null, CENTER, null)));
+        root.getChildren().addAll(content, slogan);
+        root.setAlignment(Pos.CENTER_LEFT);
+        root.getStyleClass().add("root");
+        root.setSpacing(30);
 
     }
 

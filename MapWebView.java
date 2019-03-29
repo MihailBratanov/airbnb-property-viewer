@@ -55,7 +55,7 @@ public class MapWebView extends Application {
 
         BorderPane loading = new BorderPane();
 
-        Image image = new Image("loading.gif");
+        Image image = new Image("img/loading.gif");
         ImageView imageView = new ImageView (image);
 
         loading.setCenter(imageView);
@@ -84,7 +84,7 @@ public class MapWebView extends Application {
 
     private Font getKingsFont(int size) {
         try {
-            return font = Font.loadFont(new FileInputStream(new File("KingsFont.ttf")), size);
+            return font = Font.loadFont(new FileInputStream(new File("font/KingsFont.ttf")), size);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return font = Font.font("Verdana", size);

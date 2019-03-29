@@ -38,7 +38,7 @@ public class CreateAccount extends Application
         // Create a Button or any control item
         this.stage=stage;
 
-        font = Font.loadFont(new FileInputStream(new File("Roboto-Regular.ttf")), 20);
+        font = Font.loadFont(new FileInputStream(new File("font/Roboto-Regular.ttf")), 20);
 
         root = new VBox();
 

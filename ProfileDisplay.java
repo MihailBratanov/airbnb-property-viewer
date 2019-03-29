@@ -1,8 +1,5 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -30,7 +27,7 @@ public class ProfileDisplay extends Application {
 
     private Font getKingsFont(int size) {
         try {
-            return font = Font.loadFont(new FileInputStream(new File("KingsFont.ttf")), size);
+            return font = Font.loadFont(new FileInputStream(new File("font/KingsFont.ttf")), size);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return font = Font.font("Verdana", size);

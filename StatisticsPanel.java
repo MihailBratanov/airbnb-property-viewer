@@ -1,4 +1,3 @@
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -97,8 +96,8 @@ public class StatisticsPanel {
         statActions.add("Most clicked borough");
 
         try {
-            titleFont = Font.loadFont(new FileInputStream(new File("KingsFontBold.ttf")), 20);
-            contentFont = Font.loadFont(new FileInputStream(new File("KingsFont.ttf")), 16);
+            titleFont = Font.loadFont(new FileInputStream(new File("font/KingsFontBold.ttf")), 20);
+            contentFont = Font.loadFont(new FileInputStream(new File("font/KingsFont.ttf")), 16);
         } catch (FileNotFoundException e) {
             titleFont = Font.loadFont("Verdana", 20);
         }
