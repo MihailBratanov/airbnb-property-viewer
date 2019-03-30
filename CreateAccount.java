@@ -81,7 +81,7 @@ public class CreateAccount extends Application
 
 
         Button submit = new Button("Submit");
-        Button goBack = new Button("Go Back and Log in");
+        Button goBack = new Button("Back");
         Label reminder = new Label();
         reminder.setFont(font);
         reminder.setTextFill(Color.WHITE);

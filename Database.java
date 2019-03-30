@@ -44,8 +44,6 @@ public class Database {
         writeToDatabase(entry);
 
         createUserFile(name, surname, username);
-
-
     }
 
     /**

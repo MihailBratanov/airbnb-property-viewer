@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="18ea626f-3f59-4dcd-a0a1-39d8b3de8606" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CreateAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/CreateAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PPAAssignment4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PPAAssignment4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/airbnb1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/background_2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/AirbnbDataLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/AirbnbDataLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Calculator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Calculator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/CreateAccount.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/CreateAccount.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Login$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Login$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/META-INF/PPAAssignment4.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$11.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$12.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$13.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$14.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$15.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$16.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$7.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$8.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer$9.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.ctxt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapViewer.ctxt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/MapWebView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/MapWebView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/PPAAssignment4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/PPAAssignment4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Panel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Panel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/ProfileDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/ProfileDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/RangeSelectorView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/RangeSelectorView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Roboto-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Starting.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatValues.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/StatisticsPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewSample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/TableViewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/TitleFont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/UserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/UserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/Viewer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/WelcomeViewer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/airbnb.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/dataStructure/Borough.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/dataStructure/Borough.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/dataStructure/StatValues.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/dataStructure/StatValues.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/dataStructure/package.bluej" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/dataStructure/package.bluej" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/database/database.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/house.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/img/airbnb1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/img/background_2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/mapViewerBg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/startingdesign.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/userlogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/admin.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PPAAssignment4/users/czou123.user" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PPAAssignment4/users/czou123.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/czou123.user" beforeDir="false" afterPath="$PROJECT_DIR$/users/czou123.user" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/CreateAccount.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="265">
+                  <caret line="83" column="40" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/DatabaseTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="576">
+                  <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1367#1368#0" expanded="true" />
+                    <element signature="e#1397#1398#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Login.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="234">
+                  <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/TableViewer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="409">
+                  <caret line="163" column="62" selection-start-line="163" selection-start-column="62" selection-end-line="163" selection-end-column="62" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/UserDetails.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="907">
+                  <caret line="95" column="1" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/MapWebView.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="827">
+                  <caret line="117" column="147" selection-start-line="117" selection-start-column="147" selection-end-line="117" selection-end-column="147" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/MapPanel.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="318">
+                  <caret line="241" column="61" selection-start-line="241" selection-start-column="61" selection-end-line="241" selection-end-column="61" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/ProfileDisplay.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="126">
+                  <caret line="22" selection-start-line="22" selection-end-line="30" selection-end-column="3" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RangeSelectorView.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="288">
+                  <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Viewer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="320">
+                  <caret line="369" column="39" selection-start-line="369" selection-start-column="39" selection-end-line="369" selection-end-column="39" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/DatabaseTest.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#165#166#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Database.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2173">
+                  <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>System.out.print</find>
+      <find>login</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/MapWebView.java" />
+        <option value="$PROJECT_DIR$/AirbnbDataLoader.java" />
+        <option value="$PROJECT_DIR$/Calculator.java" />
+        <option value="$PROJECT_DIR$/StatisticsPanel.java" />
+        <option value="$PROJECT_DIR$/Login.java" />
+        <option value="$PROJECT_DIR$/Panel.java" />
+        <option value="$PROJECT_DIR$/dataStructure/Borough.java" />
+        <option value="$PROJECT_DIR$/dataStructure/StatValues.java" />
+        <option value="$PROJECT_DIR$/MapPanel.java" />
+        <option value="$PROJECT_DIR$/ProfileDisplay.java" />
+        <option value="$PROJECT_DIR$/RangeSelectorView.java" />
+        <option value="$PROJECT_DIR$/TableViewer.java" />
+        <option value="$PROJECT_DIR$/UserDetails.java" />
+        <option value="$PROJECT_DIR$/Viewer.java" />
+        <option value="$PROJECT_DIR$/Database.java" />
+        <option value="$PROJECT_DIR$/DatabaseTest.java" />
+        <option value="$PROJECT_DIR$/CreateAccount.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PPAAssignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PPAAssignment4" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PPAAssignment4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PPAAssignment4" type="462c0819:PsiDirectoryNode" />
+              <item name="dataStructure" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553905281283" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Login">
+    <configuration name="Login" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Login" />
+      <module name="PPAAssignment4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="JUnit" factoryName="JUnit">
+      <module name="PPAAssignment4" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="DatabaseTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Login" />
+      <item itemvalue="JUnit.Test" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="63c48ae8-8baa-40c8-977d-cf1c6e8ba47c" name="Default Changelist" comment="" />
+      <created>1553890143680</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553890143680</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="Test - 2019.03.29 at 23h 56m 55s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.29 at 23h 59m 56s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 00m 43s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 06m 39s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 06m 54s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 08m 18s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 12m 10s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 13m 05s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="Test - 2019.03.30 at 00h 16m 04s.xml">
+      <configuration name="Test" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-994" y="-1417" width="3440" height="1417" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16421424" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32981133" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.33207548" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32981133" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Image Layers" order="0" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Capture Tool" order="3" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.16421424" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.32981133" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.32981133" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32981133" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Starting.java" />
+    <entry file="file://$PROJECT_DIR$/WelcomeViewer.java" />
+    <entry file="file://$PROJECT_DIR$/TableViewSample.ctxt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StatValues.java" />
+    <entry file="file://$PROJECT_DIR$/AirbnbDataLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapWebViewBackground.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AirbnbListing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateAccount.ctxt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Calculator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Panel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserDetails.ctxt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataStructure/Borough.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataStructure/StatValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StatisticsPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapWebView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="827">
+          <caret line="117" column="147" selection-start-line="117" selection-start-column="147" selection-end-line="117" selection-end-column="147" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/MapPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="241" column="61" selection-start-line="241" selection-start-column="61" selection-end-line="241" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ProfileDisplay.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="22" selection-start-line="22" selection-end-line="30" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TableViewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="163" column="62" selection-start-line="163" selection-start-column="62" selection-end-line="163" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UserDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="95" column="1" selection-start-line="95" selection-start-column="1" selection-end-line="95" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="369" column="39" selection-start-line="369" selection-start-column="39" selection-end-line="369" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RangeSelectorView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="24" column="46" selection-start-line="24" selection-start-column="46" selection-end-line="24" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2173">
+          <caret line="256" column="25" selection-start-line="256" selection-start-column="25" selection-end-line="256" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="50" selection-start-line="32" selection-start-column="50" selection-end-line="32" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="31" column="3" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CreateAccount.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="83" column="40" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
