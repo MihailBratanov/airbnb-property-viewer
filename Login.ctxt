@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Login
+comment0.text=\n\ Class\ Login\ \:\ Login\ window.\ Class\ to\ launch\ the\ program.\n\n\ @author\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ @version\ 2019.03.29\n\n\ 18-19\ 4CCS1PPA\ Programming\ Practice\ and\ Applications\n\ Term\ 2\ Coursework\ 4\ -\ London\ Property\ Marketplace\n\ Created\ by\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ Student\ ID\:\ 1828556,\ 1850162,\ 1838362,\ 1833386\n\ k-number\:\ k1895418,\ k1802265,\ k1888765,\ k1895389\n
+comment1.params=stage
+comment1.target=void\ start(javafx.stage.Stage)
+comment2.params=
+comment2.target=javafx.scene.layout.Pane\ getPanel()
+comment2.text=\n\ return\ the\ VBox\n\n\ @return\n
+comment3.params=userName\ password
+comment3.target=boolean\ loginCheck(java.lang.String,\ java.lang.String)
+comment4.params=userName
+comment4.target=UserDetails\ getUserProfile(java.lang.String)
+comment5.params=
+comment5.target=void\ logIn()
+comment6.params=
+comment6.target=javafx.concurrent.Task\ createWorker()
+comment7.params=
+comment7.target=java.lang.Object\ call()
+numComments=8

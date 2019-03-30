@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=DatabaseTest
+comment0.text=\n\ Test\ class\ for\ Airbnb\ Property\ Viewer.\n\ This\ class\ tests\ for\ the\ class\ Database\ of\ the\ project.\n\ \n\ @author\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ @version\ 2019.03.29\n\n\ 18-19\ 4CCS1PPA\ Programming\ Practice\ and\ Applications\n\ Term\ 2\ Coursework\ 4\ -\ London\ Property\ Marketplace\n\ Created\ by\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ Student\ ID\:\ 1828556,\ 1850162,\ 1838362,\ 1833386\n\ k-number\:\ k1895418,\ k1802265,\ k1888765,\ k1895389\n\n
+comment1.params=
+comment1.target=void\ getDatabaseEntries()
+comment2.params=
+comment2.target=void\ getUserProfile()
+comment3.params=
+comment3.target=void\ getUserDetails()
+comment4.params=
+comment4.target=void\ getMostClickedBorough()
+numComments=5

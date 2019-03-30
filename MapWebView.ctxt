@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=MapWebView
+comment0.text=\n\ MapWebView\ class.\ Class\ that\ displays\ on\ one\ side,\ the\ property\ information\n\ on\ the\ other\ side,\ a\ map\ that\ shows\ where\ to\ property\ is\ according\ to\ the\n\ coordinates\ given.\n\n\ The\ Map\ is\ displayed\ using\ a\ link\ generated\ from\ the\ parameters,\ which\n\ leads\ to\ a\ google\ maps\ webpage.\ The\ class\ then\ loads\ a\ web\ browser\n\ displaying\ this\ page.\n\n\ @author\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ @version\ 2019.03.29\n\n\ 18-19\ 4CCS1PPA\ Programming\ Practice\ and\ Applications\n\ Term\ 2\ Coursework\ 4\ -\ London\ Property\ Marketplace\n\ Created\ by\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ Student\ ID\:\ 1828556,\ 1850162,\ 1838362,\ 1833386\n\ k-number\:\ k1895418,\ k1802265,\ k1888765,\ k1895389\n
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
-comment2.params=longitude\ latitude
-comment2.target=void\ show(java.lang.String,\ java.lang.String)
-comment2.text=public\ void\ show(long\ longitude,\ long\ latitude)\ {\r\n\ \ \ \ \ \ \ \ String\ longitudeString\ \=\ longitude.toString();\r\n\ \ \ \ \ \ \ \ String\ latitudeString\ \=\ latitude.toString();\r\n\r\n\ \ \ \ \ \ \ \ show(longitudeString,\ latitudeString);\r\n}
-comment3.params=place
-comment3.target=void\ showByPlace(java.lang.String)
+comment1.text=\n\ start\ the\ JAVAFX\ stage\ of\ the\ MapWebViewer\ class,\ and\ displays\ everything\ accordingly.\n\n\ @param\ stage\ the\ javafx\ stage\ where\ the\ map\ (web\ viewer)\ is\ supposed\ to\ be\ displayed\ in.\n\ @throws\ Exception\n
+comment2.params=size
+comment2.target=javafx.scene.text.Font\ getKingsFont(int)
+comment2.text=\n\ Get\ the\ font\ to\ be\ used\ inside\ of\ the\ text.\n\ We\ have\ selected\ to\ use\ the\ King's\ font.\n\n\ @param\ size\ size\ of\ the\ font\n\ @return\ returns\ king's\ font\n
+comment3.params=longitude\ latitude\ name\ hostName\ roomType\ price\ reviews\ borough
+comment3.target=void\ show(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ java.lang.String,\ java.lang.String)
+comment3.text=\n\ Displays\ the\ map\ (web\ viewer)\ window\ with\ the\ property\ information.\n\n\ @param\ longitude\ latitude\ of\ the\ property\n\ @param\ latitude\ longtitude\ of\ the\ property\n\ @param\ name\ name\ of\ the\ property\ listing\n\ @param\ hostName\ host\ of\ the\ property\n\ @param\ roomType\ type\ of\ the\ room\n\ @param\ price\ price\ per\ night\n\ @param\ reviews\ number\ of\ reviews\n\ @param\ borough\ borough\ where\ the\ property\ is\ located\ in\n
 numComments=4

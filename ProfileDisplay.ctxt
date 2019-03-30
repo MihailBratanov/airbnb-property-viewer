@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ProfileDisplay
+comment0.text=\n\ Class\ ProfileDisplay\:\ class\ that\ displays\ the\ profile\ of\ the\ logged\ in\ user.\n\ Displays\ the\ name,\ surname\ and\ username\ in\ the\ window.\n\ It\ then\ loads\ from\ the\ stored\ data,\ the\ amount\ of\ clicks\ the\ user\ has\ ever\ clicked\ on\ each\ borough.\n\n\ @author\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ @version\ 2019.03.29\n\n\ 18-19\ 4CCS1PPA\ Programming\ Practice\ and\ Applications\n\ Term\ 2\ Coursework\ 4\ -\ London\ Property\ Marketplace\n\ Created\ by\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ Student\ ID\:\ 1828556,\ 1850162,\ 1838362,\ 1833386\n\ k-number\:\ k1895418,\ k1802265,\ k1888765,\ k1895389\n
+comment1.params=username
+comment1.target=ProfileDisplay(java.lang.String)
+comment1.text=\n\ Constructor\ for\ the\ Profile\ display\ class.\ Displays\ the\ profile\ for\n\ the\ user,\ read\ from\ the\ database,\ from\ the\ username.\n\ @param\ username\ -\ username\ of\ the\ user.\n
+comment2.params=size
+comment2.target=javafx.scene.text.Font\ getKingsFont(int)
+comment2.text=\n\ Get\ the\ font\ to\ be\ used\ inside\ of\ the\ text.\n\ We\ have\ selected\ to\ use\ the\ King's\ font.\n\n\ @param\ size\ gets\ the\ size\ of\ the\ font\n\ @return\ the\ font\ with\ the\ size.\n
+comment3.params=stage
+comment3.target=void\ start(javafx.stage.Stage)
+comment3.text=\n\ Stats\ the\ JAVAFX\ Stage\ \:\ displays\ the\ user\ Profile\ window.\n\ @param\ stage\ -\ stage\ in\ which\ this\ window\ will\ be\ displayed\ in.\n
+numComments=4

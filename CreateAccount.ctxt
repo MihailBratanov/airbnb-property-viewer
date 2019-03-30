@@ -1,6 +1,9 @@
 #BlueJ class context
 comment0.target=CreateAccount
-comment0.text=\r\n\ Write\ a\ description\ of\ JavaFX\ class\ CreateAccount\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Class\ CreateAccount\ \:\ launches\ a\ window\ to\ create\ a\ new\ account.\n\n\ this\ class\ allows\ the\ user\ to\ type\ their\ details\ and\ store\ these\ information\ in\ the\ UserDetails\ class\ by\ using\ an\ arrayList\n\n\ @author\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ @version\ 2019.03.29\n\n\ 18-19\ 4CCS1PPA\ Programming\ Practice\ and\ Applications\n\ Term\ 2\ Coursework\ 4\ -\ London\ Property\ Marketplace\n\ Created\ by\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ Student\ ID\:\ 1828556,\ 1850162,\ 1838362,\ 1833386\n\ k-number\:\ k1895418,\ k1802265,\ k1888765,\ k1895389\n
 comment1.params=stage
 comment1.target=void\ start(javafx.stage.Stage)
-numComments=2
+comment2.params=
+comment2.target=javafx.scene.layout.Pane\ getPanel()
+comment2.text=\n\ Return\ the\ VBox\ form\ this\ viewer\n\ @return\ VBox\n
+numComments=3

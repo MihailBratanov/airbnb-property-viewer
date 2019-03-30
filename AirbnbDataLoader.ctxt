@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AirbnbDataLoader
+comment0.text=\n\ AirBnb\ Data\ Loader\n\n\ @author\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ @version\ 2019.03.29\n\n\ 18-19\ 4CCS1PPA\ Programming\ Practice\ and\ Applications\n\ Term\ 2\ Coursework\ 4\ -\ London\ Property\ Marketplace\n\ Created\ by\ Haiyun\ Zou,\ Ka\ Wang\ Sin,\ Mihail\ Bratanov\ and\ Terry\ Phung\n\ Student\ ID\:\ 1828556,\ 1850162,\ 1838362,\ 1833386\n\ k-number\:\ k1895418,\ k1802265,\ k1888765,\ k1895389\n
+comment1.params=
+comment1.target=java.util.ArrayList\ load()
+comment1.text=\ \n\ Return\ an\ ArrayList\ containing\ the\ rows\ in\ the\ AirBnB\ London\ data\ set\ csv\ file.\n
+comment2.params=doubleString
+comment2.target=java.lang.Double\ convertDouble(java.lang.String)
+comment2.text=\n\n\ @param\ doubleString\ the\ string\ to\ be\ converted\ to\ Double\ type\n\ @return\ the\ Double\ value\ of\ the\ string,\ or\ -1.0\ if\ the\ string\ is\ \n\ either\ empty\ or\ just\ whitespace\n
+comment3.params=intString
+comment3.target=java.lang.Integer\ convertInt(java.lang.String)
+comment3.text=\n\n\ @param\ intString\ the\ string\ to\ be\ converted\ to\ Integer\ type\n\ @return\ the\ Integer\ value\ of\ the\ string,\ or\ -1\ if\ the\ string\ is\ \n\ either\ empty\ or\ just\ whitespace\n
+numComments=4
