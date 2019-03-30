@@ -37,7 +37,7 @@ import javafx.scene.control.Slider;
  * Student ID: 1828556, 1850162, 1838362, 1833386
  * k-number: k1895418, k1802265, k1888765, k1895389
  */
-public class MapPanel extends Panel {
+public class MapPanel {
 
     private String username;
 

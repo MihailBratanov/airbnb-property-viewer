@@ -22,7 +22,7 @@ import static javafx.scene.text.TextAlignment.*;
  * Student ID: 1828556, 1850162, 1838362, 1833386
  * k-number: k1895418, k1802265, k1888765, k1895389
  */
-public class RangeSelectorView extends Panel {
+public class RangeSelectorPanel{
     private VBox root;
     private BorderPane rangeBoxBackground;
     private GridPane rangeBox;
@@ -35,7 +35,7 @@ public class RangeSelectorView extends Panel {
     /**
      * Initialize the panel.
      */
-    public RangeSelectorView(){
+    public RangeSelectorPanel(){
         root = new VBox();
         Label fromLabel = new Label("From:");
         Label toLabel = new Label("To:");
